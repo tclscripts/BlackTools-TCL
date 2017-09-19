@@ -102,7 +102,7 @@ Copyright (c) 2008-2017 Daniel Voipan (aka BLaCkShaDoW).
 ----------------------------------------------------------------------------------------------
 AUTHOR   : Daniel Voipan
 NICK     : BLaCkShaDoW
-MEET ME  : On *UnderNet.org: #TCL-HELP, #UnBan, #HistoryOfUndernet, #TNTRadio
+MEET ME  : On *UnderNet.org: #TCL-HELP, #UnBan, #Undernet, #TNTRadio
 MAIL     : blackshadow@tclscripts.net
 URL      : https://github.com/DanielVoipan/
 GREETS   : o Special thanks to QueenElsa and Florian for testing, suggesting fixes and new 
