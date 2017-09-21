@@ -8,7 +8,7 @@
 #                                                  *** The Future is Here ***                                                    #
 #                                                                                     Copyright 2008 - 2017 @ www.tclscripts.net #
 ##################################################################################################################################
-#                                                                                                                         ®      #
+#                                                                                                                         Â®      #
 #     ######  #          #     #####  #    # ####### ####### ####### #        #####        #          #    #     #  #####        #
 #     #     # #         # #   #     # #   #     #    #     # #     # #       #     #       #         # #   ##    # #     #       #
 #     #     # #        #   #  #       #  #      #    #     # #     # #       #             #        #   #  # #   # #             #
@@ -1249,11 +1249,11 @@ set black(say.en.omsg.1) "\005\[BT\]\005 Message sent to all @'s from: \002%msg%
 
 #################################### forward ###################################
 
-set black(say.en.forward.1) "\005\[BT\]\005 \004\[PRIVATE MSG\]\004 from -- <\002%msg.1%\002> »»» \001%msg.8%\001"
+set black(say.en.forward.1) "\005\[BT\]\005 \004\[PRIVATE MSG\]\004 from -- <\002%msg.1%\002> Â»Â»Â» \001%msg.8%\001"
 
 ##################################### mb #######################################
 
-set black(say.en.mb.1) "\005\[BT\]\005 This client is used for abuse. Consider getting a different one."
+set black(say.en.mb.5) "\005\[BT\]\005 This client is used for abuse. Consider getting a different one."
 
 
 ##############################
