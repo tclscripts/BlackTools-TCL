@@ -286,7 +286,7 @@ set black(say.ro.man.164) "\[MAN\] \002%char%chuser\002 <handle> <handle nou> ; 
 set black(say.ro.man.165) "\[MAN\] \002s\002 este o comanda prin care se poate suspenda access-ul unui anumit user pe un anumit canal."
 set black(say.ro.man.165_1) "\[MAN\] Format perioada: <x>\002m\002 = minute, <x>\002h\002 = ore, <x>\002d\002 = zile"
 set black(say.ro.man.166) "\[MAN\] SINTAXA FOLOSIRE:"
-set black(say.ro.man.167) "\[MAN\] \002%char%s\002 <user> \[timp\] \[motiv\] ; \002%botnick% s\002 <user> \[timp\] \[motiv\] ; \002(PRIVMSG) s\002 <#canal> <user> \[timp\] \[motiv\]"
+set black(say.ro.man.167) "\[MAN\] \002%char%s\002 <user> \[perioada\] \[motiv\] ; \002%botnick% s\002 <user> \[perioada\] \[motiv\] ; \002(PRIVMSG) s\002 <#canal> <user> \[perioada\] \[motiv\]"
 
 #us
 
