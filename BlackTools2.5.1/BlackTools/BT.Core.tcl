@@ -1000,13 +1000,13 @@ if {$bantime == "0"} {
 if {$type != "gl"} {
 if {[setting:get $chan showhandle]} {
 if {$bl == "1"} {
-	set show_reason "\[BT\] ($gethand) blacklisted -- $black(say.$getlang.gl.reason): $reason"
+	set show_reason "\[BT\] ($gethand) blacklisted -- ($black(say.$getlang.gl.reason): $reason)"
 } else {
 	set show_reason "($gethand) $reason"
 	}
 } else {
 if {$bl == "1"} {
-	set show_reason "\[BT\] blacklisted -- $black(say.$getlang.gl.reason): $reason"
+	set show_reason "\[BT\] blacklisted -- ($black(say.$getlang.gl.reason): $reason)"
 } else {
 	set show_reason "$reason"
 	}
@@ -1161,13 +1161,13 @@ if {$getxlevel == ""} {
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 if {[setting:get $chan showhandle]} {
 if {$bl == "1"} {
-	set show_reason "\[BT\] ($gethand) blacklisted -- $black(say.$getlang.gl.reason): $reason"
+	set show_reason "\[BT\] ($gethand) blacklisted -- ($black(say.$getlang.gl.reason): $reason)"
 } else {
 	set show_reason "($gethand) $reason"
 	}
 } else {
 if {$bl == "1"} {
-	set show_reason "\[BT\] blacklisted -- $black(say.$getlang.gl.reason): $reason"
+	set show_reason "\[BT\] blacklisted -- ($black(say.$getlang.gl.reason): $reason)"
 } else {
 	set show_reason "$reason"
 	}
@@ -3097,9 +3097,9 @@ if {$expire == "0"} {
 	set show_reason [blacktools:setreason $chan $read_reason $read_handle $expire $getcount "0" $num]
 if {$bl == "1"} {
 if {[setting:get $chan showhandle]} {
-	set show_reason "\[BT\] ($gethand) blacklisted -- $black(say.$getlang.gl.reason): $read_reason" 
+	set show_reason "\[BT\] ($gethand) blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)" 
 } else {
-	set show_reason "\[BT\] blacklisted -- $black(say.$getlang.gl.reason): $read_reason"
+	set show_reason "\[BT\] blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)"
 	}
 if {[setting:get $chan showid]} {
 	set show_reason "$show_reason \[id: $num\]"	
@@ -3131,9 +3131,9 @@ if {$expire == "0"} {
 }
 if {$bl == "1"} {
 if {[setting:get $chan showhandle]} {
-	set show_reason "\[BT\] ($read_handle) blacklisted -- $black(say.$getlang.gl.reason): $read_reason" 
+	set show_reason "\[BT\] ($read_handle) blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)" 
 } else {
-	set show_reason "\[BT\] blacklisted -- $black(say.$getlang.gl.reason): $read_reason"
+	set show_reason "\[BT\] blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)"
 	}
 if {[setting:get $chan showid]} {
 	set show_reason "$show_reason \[id: $num\]"	
@@ -3616,9 +3616,9 @@ if {$expire == "0"} {
 	set show_reason [blacktools:setreason $chan $read_reason $read_handle $expire $getcount "0" $num]
 if {$bl == "1"} {
 if {[setting:get $chan showhandle]} {
-	set show_reason "\[BT\] ($gethand) blacklisted -- $black(say.$getlang.gl.reason): $read_reason" 
+	set show_reason "\[BT\] ($gethand) blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)" 
 } else {
-	set show_reason "\[BT\] blacklisted -- $black(say.$getlang.gl.reason): $read_reason"
+	set show_reason "\[BT\] blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)"
 	}
 if {[setting:get $chan showid]} {
 	set show_reason "$show_reason \[id: $num\]"	
@@ -3651,9 +3651,9 @@ if {$expire == "0"} {
 	set show_reason [blacktools:setreason $chan $read_reason $read_handle $expire "" "1" $num]
 if {$bl == "1"} {
 if {[setting:get $chan showhandle]} {
-	set show_reason "\[BT\] ($gethand) blacklisted -- $black(say.$getlang.gl.reason): $read_reason" 
+	set show_reason "\[BT\] ($gethand) blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)" 
 } else {
-	set show_reason "\[BT\] blacklisted -- $black(say.$getlang.gl.reason): $read_reason"
+	set show_reason "\[BT\] blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)"
 	}
 if {[setting:get $chan showid]} {
 	set show_reason "$show_reason \[id: $num\]"	
