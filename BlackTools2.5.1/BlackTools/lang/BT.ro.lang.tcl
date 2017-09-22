@@ -8,7 +8,7 @@
 #                                                   *** The Future is Here ***                                                   #
 #                                                                                     Copyright 2008 - 2017 @ www.tclscripts.net #
 ##################################################################################################################################
-#                                                                                                                         ®      #
+#                                                                                                                         Å½      #
 #     ######  #          #     #####  #    # ####### ####### ####### #        #####        #          #    #     #  #####        #
 #     #     # #         # #   #     # #   #     #    #     # #     # #       #     #       #         # #   ##    # #     #       #
 #     #     # #        #   #  #       #  #      #    #     # #     # #       #             #        #   #  # #   # #             #
@@ -552,7 +552,7 @@ set black(say.ro.next.4) "\002%current%\002 acum ca ai fost ajutat te rog sa dai
 set black(say.ro.next.5) "Nu ai voie sa faci idle aici! Te rog sa revii pe %chan% atunci cand ai nevoie de ajutor"
 set black(say.ro.next.6) "\005\[BT\]\005 ATENTIE: %nick% are nevoie de ajutor pe %chan%. Acesta este numarul \002%counter%\002 la rand."
 set black(say.ro.next.7) "\005\[BT\]\005 Lista celor care asteapta ajutor este:"
-set black(say.ro.next.8) "\005\[BT\]\005 Nimeni nu are nevoie de ajutor în acest moment."
+set black(say.ro.next.8) "\005\[BT\]\005 Nimeni nu are nevoie de ajutor Ã®n acest moment."
 set black(say.ro.next.9) "%msg%"
 set black(say.ro.next.11) "\005\[BT\]\005 Atentie: \002%current%\002 a fost preluat de \002%nick%\002 (\001%hand%\001)."
 set black(say.ro.next.13) "\005\[BT\]\005 Eroare! \002%msg.1%\002 este in lista de help, dar nu a fost ajutat inca."
@@ -1251,7 +1251,7 @@ set black(say.ro.omsg.1) "\005\[BT\]\005 Mesaj trimis catre toti @ de pe: \002%m
 
 #################################### forward ###################################
 
-set black(say.ro.forward.1) "\005\[BT\]\005 \004\[MESAJ PRIVAT\]\004 de la -- <\002%msg.1%\002> »»» \001%msg.8%\001"
+set black(say.ro.forward.1) "\005\[BT\]\005 \004\[MESAJ PRIVAT\]\004 de la -- <\002%msg.1%\002> Â»Â»Â» \001%msg.8%\001"
 
 ##################################### mb #######################################
 
