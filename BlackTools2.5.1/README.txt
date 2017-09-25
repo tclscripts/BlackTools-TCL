@@ -19,6 +19,10 @@
 
       This script is free of charge but I accept donations, old computers, free shells :))
       In any case, if you have any comment (good or bad) go to http://tclscripts.net.
+      
+   BlackTools commands:
+      o h - display menu of all available commands
+      o man - description manual of all commands, settings or modules
 
 2.5.1 Most important changes (summary)
 
@@ -108,9 +112,10 @@ URL      : https://github.com/DanielVoipan/
 GREETS   : o Special thanks to QueenElsa and Florian for testing, suggesting fixes and new 
              features inspiration for many parts of BlackTools.tcl that led to the improvement
              of this script. 
+           o As well, many thanks to psycho for his interest in testing & searching for issues.
            o Thanks also to Time2Go > Ionut (retired..)
              - admin of #TCL-HELP Channel (without whom this script would not have gone so far)
            o Thank you to all those people who found bugs in the script and reported them and
-             to all the users who joined #TCL-HELP and shared their ideas and suggestions.
+             to all the users who joined #TCL-HELP and make me keep this project alive and updated.
              - #TCL-HELP web page: http://tclscripts.net
 -----------------------------------------------------------------------------------------------
