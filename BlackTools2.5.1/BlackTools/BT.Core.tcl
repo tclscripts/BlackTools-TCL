@@ -3272,7 +3272,7 @@ while {[gets $file line] != -1} {
 	set read_chan [lindex [split $line] 2]
 	set read_host [lindex [split $line] 3]
 	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
-if {[string equal -nocase $host $real_read_host] && [string equal -nocase $chan $read_chan]} {
+if {([string match -nocase $host $real_read_host] || [string match -nocase $real_read_host $host]) && [string equal -nocase $chan $read_chan]} {
 	continue
 } else {
 	puts $tempwrite $line
