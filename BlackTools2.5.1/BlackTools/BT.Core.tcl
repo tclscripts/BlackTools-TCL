@@ -335,7 +335,7 @@ if {$isbackchan != ""} {
 	set gethost "$nick!$host"
 foreach b [blacktools:banlist:ban $isbackchan] {
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]	
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]	
 if {[string match -nocase $real_read_host $gethost] || [string match -nocase $gethost $real_read_host]} {
 	set replace(%msg.1%) $gethost
 	set replace(%chan%) $isbackchan
@@ -1040,7 +1040,7 @@ if {$getxlevel == ""} {
 if {![onchan $banned $chan]} {
 foreach user [chanlist $chan] {
 	set gethost "$user![getchanhost $user $chan]"
-	set real_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $gethost]
+	set real_host [string map [list \[ {\[} \] {\]} \\ {\\}] $gethost]
 if {[string match -nocase $mask $real_host] || [string match -nocase $real_host $mask]} {
 	set found 0
 if {[onchan $black(chanserv) $chan] && $xban == "1"} {
@@ -1181,7 +1181,7 @@ if {[setting:get $chan showtime] && $bantime != "0"} {
 }
 foreach user [chanlist $chan] {
 	set gethost "$user![getchanhost $user $chan]"
-	set real_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $gethost]
+	set real_host [string map [list \[ {\[} \] {\]} \\ {\\}] $gethost]
 if {[string match -nocase $mask $real_host] || [string match -nocase $real_host $mask]} {
 if {[onchan $black(chanserv) $chan] && $xban == "1"} {
 	putquick "PRIVMSG $black(chanserv) :ban $chan $mask $getxtime $getxlevel $show_reason"
@@ -3082,7 +3082,7 @@ foreach b [blacktools:banlist:ban $chan] {
 	set type [lindex [split $b] 0]
 	set read_chan [lindex [split $b] 2]
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string match -nocase $host $real_read_host] || [string match -nocase $real_read_host $host]} {
 	set foundblacktools_ban 1
 	set num [lindex [split $b] 1]
@@ -3117,7 +3117,7 @@ if {[onchan $black(chanserv) $chan] && $xban == "1"} {
 
 foreach b [blacktools:banlist:gl] {
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string match -nocase $host $real_read_host] || [string match -nocase $real_read_host $host]} {
 	set foundblacktools_ban 1
 	set num [lindex [split $b] 1]
@@ -3151,7 +3151,7 @@ if {[onchan $black(chanserv) $chan] && $xban == "1"} {
 
 foreach b [blacktools:gaglist $chan] {
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string match -nocase $host $real_read_host] || [string match -nocase $real_read_host $host]} {
 if {[ischanban $read_host $chan]} {
 	continue
@@ -3222,7 +3222,7 @@ proc blacktools:auto:remove {host chan} {
 while {[gets $file line] != -1} {
 	set read_host [lindex [split $line] 3]
 	set read_chan [lindex [split $line] 2]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string match -nocase $host $real_read_host] && [string equal -nocase $read_chan $chan]} {
 	continue
 } else {
@@ -3271,7 +3271,7 @@ return
 while {[gets $file line] != -1} {
 	set read_chan [lindex [split $line] 2]
 	set read_host [lindex [split $line] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string equal -nocase $host $real_read_host] && [string equal -nocase $chan $read_chan]} {
 	continue
 } else {
@@ -3390,7 +3390,7 @@ if {$bantime != "0"} {
 while {[gets $file line] != -1} {
 	set read_gl [lindex [split $line] 2]
 	set read_host [lindex [split $line] 3]	
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string match -nocase $host $real_read_host] && [string equal -nocase "GLOBAL" $read_gl]} { 	
 	continue
 } else {
@@ -3436,7 +3436,7 @@ if {![string equal -nocase $gethand "BADCHAN"] && ![string equal -nocase $gethan
 while {[gets $file line] != -1} {
 	set read_chan [lindex [split $line] 2]
 	set read_host [lindex [split $line] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {([string match -nocase $host $real_read_host] || [string match -nocase $real_read_host $host]) && [string equal -nocase $chan $read_chan]} { 
 	set read_time [lindex [split $line] 5]
 	set read_stick [lindex [split $line] 7]
@@ -3528,7 +3528,7 @@ if {[string match "*who:chan $chan*" [join [lindex $tmr 1]]]} {
 	}
 foreach b [blacktools:banlist:ban $chan] {
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 	set sticky [lindex [split $b] 7]
 if {$sticky == "1"} {
 	utimer 5 [list pushmode $chan +b $read_host]
@@ -3602,7 +3602,7 @@ foreach b [blacktools:banlist:ban $chan] {
 	set type [lindex [split $b] 0]
 	set read_chan [lindex [split $b] 2]
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string match -nocase $real_read_host $uhost]} {
 	set num [lindex [split $b] 1]
 	set read_reason [join [lrange [split $b] 9 end]]
@@ -3636,7 +3636,7 @@ if {[onchan $black(chanserv) $chan] && $xban == "1"} {
 }
 foreach b [blacktools:banlist:gl] {
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string match -nocase $real_read_host $uhost]} {
 	set num [lindex [split $b] 1]
 	set read_reason [join [lrange [split $b] 9 end]]
@@ -3670,7 +3670,7 @@ if {[onchan $black(chanserv) $chan] && $xban == "1"} {
 	}
 foreach b [blacktools:gaglist $chan] {
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string match -nocase $real_read_host $uhost]} {
 if {[ischanban $read_host $chan]} {
 	continue
@@ -3700,7 +3700,7 @@ proc blacktools:mode:ban {nick host hand chan mod who} {
 if {$mod == "-b"} {
 	foreach b [blacktools:banlist:ban $chan] {
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string match -nocase $real_read_host $who]} {
 	set sticky [lindex [split $b] 7]
 if {$sticky == "1"} {
@@ -3714,7 +3714,7 @@ if {$mod == "+o"} {
 if {[isbotnick $who]} {
 foreach b [blacktools:banlist:ban $chan] {
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 	set sticky [lindex [split $b] 7]
 if {$sticky == "1"} {
 if {![ischanban $read_host $chan]} {
@@ -3744,7 +3744,7 @@ foreach b [blacktools:banlist:all] {
 if {$read_time == "0"} { continue }
 if {[duration [expr $read_time - [unixtime]]] == "0 seconds"} {
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 	set read_type [lindex [split $b] 0]
 	set read_chan [lindex [split $b] 2]
 	set read_tr [lindex [split $b] 7]
@@ -5181,7 +5181,7 @@ proc blacktools:ban:exists {mask chan} {
 	set ban_exists 0
 foreach b [blacktools:banlist $chan] {
 	set read_host [lindex [split $b] 3]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
+	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string equal -nocase $real_read_host $mask]} {
 	set ban_exists 1
 	continue
