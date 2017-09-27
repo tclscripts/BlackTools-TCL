@@ -342,7 +342,7 @@ if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 foreach b [blacktools:banlist $chan] {
 	set mask [lindex [split $b] 3]
 	set id [lindex [split $b] 1]
-	set real_mask [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $mask]
+	set real_mask [string map [list \[ {\[} \] {\]} \\ {\\}] $mask]
 if {[string match -nocase $real_mask $bhost] || [string match -nocase $bhost $real_mask] || $bhost == $id} {
 	set local_bans [expr $local_bans + 1]
 	}
@@ -351,7 +351,7 @@ if {$gl == "1"} {
 	foreach b [blacktools:banlist:gl] {
 	set mask [lindex [split $b] 3]
 	set id [lindex [split $b] 1]
-	set real_mask [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $mask]
+	set real_mask [string map [list \[ {\[} \] {\]} \\ {\\}] $mask]
 if {[string match -nocase $real_mask $bhost] || [string match -nocase $bhost $real_mask] || $bhost == $id} {
 	set gl_bans [expr $gl_bans + 1]
 		}
@@ -362,7 +362,7 @@ if {$gl_bans > "0"} {
 foreach b [blacktools:banlist:gl] {
 	set mask [lindex [split $b] 3]
 	set id [lindex [split $b] 1]
-	set real_mask [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $mask]
+	set real_mask [string map [list \[ {\[} \] {\]} \\ {\\}] $mask]
 if {[string match -nocase $real_mask $bhost] || [string match -nocase $bhost $real_mask] || $bhost == $id} {
 	set mask [lindex [split $b] 3]
 	set id [lindex [split $b] 1]
@@ -386,7 +386,7 @@ if {$local_bans > "0"} {
 foreach b [blacktools:banlist $chan] {
 	set mask [lindex [split $b] 3]
 	set id [lindex [split $b] 1]
-	set real_mask [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $mask]
+	set real_mask [string map [list \[ {\[} \] {\]} \\ {\\}] $mask]
 if {[string match -nocase $real_mask $bhost] || [string match -nocase $bhost $real_mask] || $bhost == $id} {
 	set mask [lindex [split $b] 3]
 	set id [lindex [split $b] 1]
