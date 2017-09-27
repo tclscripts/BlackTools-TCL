@@ -25,6 +25,9 @@ if {[matchattr $handle $black(exceptflags) $chan]} {
 	pushmode $chan +v $nick
 	return
 }
+if {[string equal -nocase $nick $black(chanserv)]} {
+	return
+}
 if {[isbotnick $nick]} { 
 	black:next:joincheck $chan
 	return
