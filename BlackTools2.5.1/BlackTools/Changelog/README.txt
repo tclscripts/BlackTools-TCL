@@ -68,7 +68,7 @@ Changelog:
 Credits:
 
     o Settore for hosting the tclscripts.net project website.
-      settore@tclscripts.net [ www.sitexperts.eu ]
+      settore@tclscripts.net [ www.thedeveloper.site ]
          
     o Florian (most craziest imagination guy) for spotting some major and important issues, also
       for provinding all the required and necessary materials needed for this script to be ready.
