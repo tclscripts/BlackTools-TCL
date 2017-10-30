@@ -411,7 +411,7 @@ banlist {
 if {[matchattr $hand nmo|MAO $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.152 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.153 none
-if {[matchattr $hand nm]} {
+if {[matchattr $hand nmo|M]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.155 none
 } else {
 	blacktools:tell $nick $host $hand $chan $chan1 man.154 none	
