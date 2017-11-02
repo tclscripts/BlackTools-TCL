@@ -3,7 +3,11 @@
                     BlackTools - The Ultimate Channel Control Script
                              One TCL. One smart Eggdrop
 ============================================================================================
-
+                   _   _   _   _   _   _   _   _   _   _   _   _   _   _  
+                  / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ 
+                 ( t | c | l | s | c | r | i | p | t | s | . | n | e | t )
+                  \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/
+                  
    BlackTools is the most complete channel management script who can manage channels from all 
    the IRC networks, although some modules are specifically designed only for Undernet network.
 
