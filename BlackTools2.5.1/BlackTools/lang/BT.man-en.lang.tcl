@@ -9,7 +9,7 @@
 #                                                                                            Copyright 2008 - 2017 @ www.tclscripts.net #
 #########################################################################################################################################
 #                                                                                                                                       #
-#   ENGLISH LANGUAGE                                                                                                            ®       #
+#   ENGLISH LANGUAGE                                                                                                            Â®       #
 #   ######  #          #     #####  #    # ####### ####### ####### #        #####     #     #    #    #     # #     #    #    #         #
 #   #     # #         # #   #     # #   #     #    #     # #     # #       #     #    ##   ##   # #   ##    # #     #   # #   #         #
 #   #     # #        #   #  #       #  #      #    #     # #     # #       #          # # # #  #   #  # #   # #     #  #   #  #         #
@@ -1012,7 +1012,7 @@ set black(say.en.man.900) "\[MAN\] Optional settings: \002%char%set\002 quoteofd
 
 set black(say.en.man.901) "\[MAN\] \002Note\002 is a module that allows users to store and send notes."
 set black(say.en.man.902) "\[MAN\] USAGE SYNTAXES:"
-set black(say.en.man.903) "\[MAN\] \002%char%set\002 (+/-)note ; \002%botnick% set\002 (+/-)note ; \002(PRIVMSG) set\002 <#chan> <#chan> (+/-)note"
+set black(say.en.man.903) "\[MAN\] \002%char%set\002 (+/-)note ; \002%botnick% set\002 (+/-)note ; \002(PRIVMSG) set\002 <#chan> (+/-)note"
 set black(say.en.man.904) "\[MAN\] \002%char%note\002 send <user> <text> ; \002%char%note\002 <read / list / inbox> ; \002%char%note\002 del <no. note / all>"
 set black(say.en.man.905) "\[MAN\] \002Remember:\002 To add more than 1 sentence use \002%char%note send <user> <text1>~<text2>..\002 and eggdrop will show the notes as 2 different senteces."
 
