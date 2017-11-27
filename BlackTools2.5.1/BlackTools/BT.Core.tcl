@@ -776,14 +776,14 @@ if {[string equal -nocase $hand "NEXT"]} {
 
 if {[string equal -nocase $hand "BADCHAN"]} {
 	set banmask [lindex $split_hand 1]
-if {[string equal -nocase $badchan($banmask:$chan) $black(say.$getlang.$hand.5)]} {
+if {[string equal -nocase $badchan($banmask,$chan) $black(say.$getlang.$hand.5)]} {
 if {[setting:get $chan $hand-reason] != ""} {
 	set getreason [join [setting:get $chan $hand-reason]]
 } else {
 	set getreason $black(say.$getlang.badchan.5)
 	}
 } else {
-	set getreason [join $badchan($banmask:$chan)]
+	set getreason [join $badchan($banmask,$chan)]
 	}
 }
 	set replace(%chan%) $chan
