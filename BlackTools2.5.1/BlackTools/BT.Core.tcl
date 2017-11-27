@@ -748,8 +748,11 @@ if {$checkbantime == "-1"} {
 
 proc blacktools:getreason {chan hand type id} {
 	global black badchan
-	set split_hand [split $hand ":"]
-	set hand [lindex $split_hand 0]
+ if {[string match -nocase "*badchan,*" $hand]} {
+ 	set split_hand [split $hand ","]
+ } else {
+ 	set split_hand [split $hand ":"]
+ }	set hand [lindex $split_hand 0]
 	set bantime [setting:get $chan $hand-bantime]
 if {$bantime == ""} { set bantime $black($hand:bantime) }
 	set checkbantime [time_return_minute $bantime]
@@ -776,14 +779,14 @@ if {[string equal -nocase $hand "NEXT"]} {
 
 if {[string equal -nocase $hand "BADCHAN"]} {
 	set banmask [lindex $split_hand 1]
-if {[string equal -nocase $badchan($banmask,$chan) $black(say.$getlang.$hand.5)]} {
+if {[string equal -nocase $badchan($banmask:$chan) $black(say.$getlang.$hand.5)]} {
 if {[setting:get $chan $hand-reason] != ""} {
 	set getreason [join [setting:get $chan $hand-reason]]
 } else {
 	set getreason $black(say.$getlang.badchan.5)
 	}
 } else {
-	set getreason [join $badchan($banmask,$chan)]
+	set getreason [join $badchan($banmask:$chan)]
 	}
 }
 	set replace(%chan%) $chan
@@ -818,8 +821,11 @@ global black botnick
 	set xban 0
 	set num 0
 	set temp_num 0
-	set split_hand [split $bot ":"]
-	set hand [string tolower [lindex $split_hand 0]]
+ if {[string match -nocase "*badchan,*" $bot]} {
+ 	set split_hand [split $bot ","]
+ } else {
+ 	set split_hand [split $bot ":"]
+}	set hand [string tolower [lindex $split_hand 0]]
 	set banmask [return_mask [return_host_num $hand $chan] $host $nick]
 	set finduser [finduser $banmask]
 	set said [lindex $split_hand 1]
