@@ -371,8 +371,8 @@ foreach c [join $channels] {
 if {[string match -nocase $encoded $ch]} {
 	set file_found 1
 	set reason [lrange [split $line] 4 end]
-	set badchan($banmask:$chan) $reason
-	set badchan(channels:$banmask:$chan) $encoded
+	set badchan($banmask,$chan) $reason
+	set badchan(channels,$banmask,$chan) $ch
 			}			
 		}
 	}
@@ -384,78 +384,78 @@ foreach defchan $black(badcchannels) {
 foreach c [join $channels] {
 	set ch [string trimleft $c ":@+"]
 if {[string match -nocase $encoded $ch]} {
-	set badchan(channels:$banmask:$chan) $encoded
-	set badchan($banmask:$chan) $black(say.$getlang.badchan.5)
+	set badchan(channels,$banmask,$chan) $ch
+	set badchan($banmask,$chan) $black(say.$getlang.badchan.5)
 			}
 		}
 	}
 }
 
-if {[info exists badchan($banmask:$chan)]} {
-if {[string equal -nocase $badchan($banmask:$chan) $black(say.$getlang.badchan.5)]} {
+if {[info exists badchan($banmask,$chan)]} {
+if {[string equal -nocase $badchan($banmask,$chan) $black(say.$getlang.badchan.5)]} {
 if {[setting:get $chan badchan-reason] != ""} {
 	set getreason [join [setting:get $chan badchan-reason]]
 } else {
 	set getreason $black(say.$getlang.badchan.5)
 	}
 } else {
-	set getreason [join $badchan($banmask:$chan)]
+	set getreason [join $badchan($banmask,$chan)]
 }
 	
 if {[info exists badchan(checkagain:$banmask:$chan)]} {
-if {[info exists badchan($banmask:$chan)]} {
-	blacktools:banner:2 $nick "BADCHAN:[encoding convertto utf-8 $badchan(channels:$banmask:$chan)]" $chan $chan1 [getchanhost $nick $chan] "0"
+if {[info exists badchan($banmask,$chan)]} {
+	blacktools:banner:2 $nick "BADCHAN:[encoding convertto utf-8 $badchan(channels,$banmask,$chan)]" $chan $chan1 [getchanhost $nick $chan] "0"
 if {[setting:get $chan showbadchan]} {
 	set replace(%nick%) $nick
-	set replace(%chans%) $badchan(channels:$banmask:$chan)
+	set replace(%chans%) $badchan(channels,$banmask,$chan)
 	set mes [string map [array get replace] $black(say.$getlang.badchan.44)]
 	putserv "NOTICE @$chan :$mes"
 }
 	unset badchan(checkagain:$banmask:$chan)
-	unset badchan($banmask:$chan)
-	unset badchan(channels:$banmask:$chan)
+	unset badchan($banmask,$chan)
+	unset badchan(channels,$banmask,$chan)
 	return
 }
 	unset badchan(checkagain:$banmask:$chan)
 	return
 	}
 }
-if {[info exists badchan($banmask:$chan)]} {
+if {[info exists badchan($banmask,$chan)]} {
 if {[setting:get $chan badchan-bmethod] == "0" || [setting:get $chan badchan-bmethod] == ""} {
 	set bmethod $black(badcbanmethod)
 } else { set bmethod [setting:get $chan badchan-bmethod] }
 if {$bmethod == "2"} {
-	blacktools:banner:2 $nick "BADCHAN:[encoding convertto utf-8 $badchan(channels:$banmask:$chan)]" $chan $chan1 [getchanhost $nick $chan] "0"
+	blacktools:banner:2 $nick "BADCHAN:[encoding convertto utf-8 $badchan(channels,$banmask,$chan)]" $chan $chan1 [getchanhost $nick $chan] "0"
 if {[setting:get $chan showbadchan]} {
 	set replace(%nick%) $nick
-	set replace(%chans%) $badchan(channels:$banmask:$chan)
+	set replace(%chans%) $badchan(channels,$banmask,$chan)
 	set text [black:color:set "" $black(say.$getlang.badchan.44)]
 	set text [join $text]
 	set mes [string map [array get replace] $text]
 	putserv "NOTICE @$chan :$mes"
 }
-	unset badchan($banmask:$chan)
-	unset badchan(channels:$banmask:$chan)
+	unset badchan($banmask,$chan)
+	unset badchan(channels,$banmask,$chan)
 	return
 }
-	set replace(%badchans%) [join $badchan(channels:$banmask:$chan) ", "]
+	set replace(%badchans%) [join $badchan(channels,$banmask,$chan) ", "]
 	set text [black:color:set "" $black(say.$getlang.badchan.40)]
 	set reply [join $text]
 	set message [string map [array get replace] $reply]
 	putquick "PRIVMSG $nick :\[$chan\] $message"
 	utimer 30 [list badchan:check:again $nick $chan]
-	unset badchan($banmask:$chan)
-	unset badchan(channels:$banmask:$chan)
+	unset badchan($banmask,$chan)
+	unset badchan(channels,$banmask,$chan)
 	set badchan(checkagain:$banmask:$chan) 1
 } else {
 if {[info exists badchan(checkagain:$banmask:$chan]} {
 	unset badchan(checkagain:$banmask:$chan
 }
-if {[info exists badchan($banmask:$chan)]} {
-	unset badchan($banmask:$chan)
+if {[info exists badchan($banmask,$chan)]} {
+	unset badchan($banmask,$chan)
 }
-if {[info exists badchan(channels:$banmask:$chan)]} {
-	unset badchan(channels:$banmask:$chan)
+if {[info exists badchan(channels,$banmask,$chan)]} {
+	unset badchan(channels,$banmask,$chan)
 		}
 	}
 	unbind RAW - 319 badchan:execute
@@ -508,12 +508,12 @@ if {[info exists badchan(checkagain:$banmask:$chan)]} {
 	unset badchan(checkagain:$banmask:$chan)
 }
 
-if {[info exists badchan($banmask:$chan)]} {
-	unset badchan($banmask:$chan)
+if {[info exists badchan($banmask,$chan)]} {
+	unset badchan($banmask,$chan)
 }
 
-if {[info exists badchan(channels:$banmask:$chan)]} {
-	unset badchan(channels:$banmask:$chan)
+if {[info exists badchan(channels,$banmask,$chan)]} {
+	unset badchan(channels,$banmask,$chan)
 	}	
 }
 
