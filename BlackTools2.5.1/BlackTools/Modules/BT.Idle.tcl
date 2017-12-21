@@ -5,11 +5,12 @@
 #############################   IDLE TCL   ##############################
 #########################################################################
 ##						                       ##
-##     BlackTools  : http://blacktools.tclscripts.net	               ##
-##     Bugs report : http://www.tclscripts.net/	                       ##
-##     Online Help : irc://irc.undernet.org/tcl-help 	               ##
-##                   #TCL-HELP / UnderNet                              ##
-##                   You can ask in english or romanian                ##
+##   BlackTools  : http://blacktools.tclscripts.net	               ##
+##   Bugs report : http://www.tclscripts.net/	                       ##
+##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script ##
+##   Online Help : irc://irc.undernet.org/tcl-help 	               ##
+##                 #TCL-HELP / UnderNet                                ##
+##                 You can ask in english or romanian                  ##
 ##					                               ##
 #########################################################################
 
@@ -51,49 +52,34 @@ if {![onchan $botnick $chan]} {
 switch $why {
 
 +o {
+	antidle:set $chan
 	setting:set $chan +idleop ""
 	blacktools:tell $nick $host $hand $chan $chan1 idle.11 none
-foreach tmr [timers] {
-if {[string match "*antidle:module*" [join [lindex $tmr 1]]]} {
-	return
-	}	 
-}
-	set idle_time [time_return_minute $black(idleinterval)]
-	timer $idle_time antidle:module
 }
 -o {
 	setting:set $chan -idleop ""
 	blacktools:tell $nick $host $hand $chan $chan1 idle.12 none
+	antidle:unset $chan
 }
 -ho {
 	setting:set $chan -idlehalfop ""
 	blacktools:tell $nick $host $hand $chan $chan1 idle.26 none
+	antidle:unset $chan
 }
 +v {
+	antidle:set $chan
 	setting:set $chan +idlevoice ""
 	blacktools:tell $nick $host $hand $chan $chan1 idle.14 none
-foreach tmr [timers] {
-if {[string match "*antidle:module*" [join [lindex $tmr 1]]]} {
-	return
-	}	 
-}
-	set idle_time [time_return_minute $black(idleinterval)]
-	timer $idle_time antidle:module
 }
 +ho {
+	antidle:set $chan
 	setting:set $chan +idlehalfop ""
 	blacktools:tell $nick $host $hand $chan $chan1 idle.25 none
-foreach tmr [timers] {
-if {[string match "*antidle:module*" [join [lindex $tmr 1]]]} {
-	return
-	}	 
-}
-	set idle_time [time_return_minute $black(idleinterval)]
-	timer $idle_time antidle:module
 }
 -v {
 	setting:set $chan -idlevoice ""
 	blacktools:tell $nick $host $hand $chan $chan1 idle.15 none
+	antidle:unset $chan
 }
 
 add {
@@ -182,20 +168,56 @@ if {$type == "1"} {
 	}
 }
 
-proc antidle:module {} {
+proc antidle:unset {chan} {
+	global black
+	set idle_activ 0
+	set options {idleop idlevoice idlehalfop}
+foreach option $options {
+	if {[setting:get $chan $option]} {
+	set idle_activ 1
+	}
+}
+if {$idle_activ == "0"} {
+if {[info exists black(idle:$chan:timer_start)]} {
+	unset black(idle:$chan:timer_start)
+			}
+if {[info exists black(idle:counter:$chan)]} {
+	unset black(idle:counter:$chan)
+		}
+	}	
+}
+
+proc antidle:set {chan} {
+	global black
+	set idle_activ 0
+	set options {idleop idlevoice idlehalfop}
+foreach option $options {
+	if {[setting:get $chan $option]} {
+	set idle_activ 1
+	}
+}
+
+if {$idle_activ == "0"} {
+if {[setting:get $chan idle-scantime] != ""} {
+	set time [setting:get $chan idle-scantime]
+		} else {
+	set time $black(idleinterval)
+		}
+	set scan_time [time_return_minute $time]
+	set black(idle:$chan:timer_start) $scan_time
+	}
+}
+
+proc antidle:module {chans} {
 	global black
 	set channels ""
-foreach chan [channels] {
-if {[setting:get $chan idleop] || [setting:get $chan idlevoice]} {
+foreach chan $chans {
+if {[validchan $chan]} {
 	lappend channels $chan
 		}
 	}
 if {$channels != ""} {
 	idlewhois $channels 0
-	set idle_time [time_return_minute $black(idleinterval)]
-	timer $idle_time antidle:module
-	} else {
-	return
 	}
 }
 
@@ -213,9 +235,8 @@ if {$chan != ""} {
 
 proc black:check:idle {chan} {
 	global black
-	putlog "\[BT\] Scanning for idle on $chan"
-	set black(idle_chan) $chan
-foreach user [chanlist $chan] { 
+	set ::idle_chan $chan
+foreach user [chanlist $chan] {
 	set handle [nick2hand $user]
 if {[isop $user $chan] || [isvoice $user $chan] || [ishalfop $user $chan]} {
 if {![isbotnick $user]} { 
@@ -232,7 +253,7 @@ global black
 	set handle [nick2hand $nick]
 	set idler [string tolower [lindex [split $arg] 2]]
 	set minutesidle [expr $idler / 60]
-	set chan $black(idle_chan)
+	set chan $::idle_chan
 if {[onchan $nick $chan]} {
 	set idlevoicetime [setting:get $chan idlevoicemax]
 if {$idlevoicetime == ""} { set idlevoicetime "$black(idlevoicemax)" }
@@ -240,11 +261,14 @@ if {$idlevoicetime == ""} { set idlevoicetime "$black(idlevoicemax)" }
 if {$idleoptime == ""} { set idleoptime "$black(idleopmax)" }
 	set idlehalfoptime [setting:get $chan idlehalfopmax]
 if {$idlehalfoptime == ""} { set idlehalfoptime "$black(idlehalfopmax)" }
+	set idlevoicetime [time_return_minute $idlevoicetime]
+	set idleoptime [time_return_minute $idleoptime]
+	set idlehalfoptime [time_return_minute $idlehalfoptime]
 if {![info exists black(voiceonmsg:$nick:$chan)]} {
 if {[setting:get $chan idlevoice]} {
 if {![matchattr $handle "-|gf" $chan]} {
 if {$minutesidle > $idlevoicetime} {
-if {[setting:get $chan xonly]} {
+if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 	putserv "PRIVMSG $black(chanserv) :devoice $chan $nick"
 } else {
 	pushmode $chan -v $nick
@@ -256,7 +280,7 @@ if {[setting:get $chan xonly]} {
 if {[setting:get $chan idleop]} {
 if {![matchattr $handle "-|af" $chan]} {
 if {$minutesidle > $idleoptime} {
-if {[setting:get $chan xonly]} {
+if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 	putserv "PRIVMSG $black(chanserv) :deop $chan $nick"
 } else {
 	pushmode $chan -o $nick
@@ -267,7 +291,7 @@ if {[setting:get $chan xonly]} {
 if {[setting:get $chan idlehalfop]} {
 if {![matchattr $handle "-|f" $chan]} {
 if {$minutesidle > $idlehalfoptime} {
-if {[setting:get $chan xonly]} {
+if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 	return
 } else {
 	pushmode $chan -h $nick
