@@ -1,8 +1,8 @@
-=================================================================================================================
+===========================================================================================================
                                 -= BLaCkShaDoW Production Presents =-
                          BlackTools - The Ultimate Channel Control Script
                                      One TCL. One smart Eggdrop
-=================================================================================================================
+===========================================================================================================
 
    BlackTools is the most complete channel management script who can manage channels from all the IRC networks, 
    although some modules are specifically designed only for Undernet network.
@@ -74,9 +74,9 @@ Usuarios espanoles:
 ---------------------
       Sin traduccion oficial todavia (se puede hacer a peticion).
 
------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 Copyright (c) 2008-2018 Daniel Voipan (aka BLaCkShaDoW).
------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 AUTHOR   : Daniel Voipan
 NICK     : BLaCkShaDoW
 MEET ME  : On *UnderNet.org: #TCL-HELP, #UnBan, #TNTRadio
@@ -93,4 +93,4 @@ GREETS   : o Special thanks to QueenElsa and Florian for testing, suggesting fix
            o Many thanks to undernet.org (IRC Network). Without hosting 24/7 our support channel on their stable 
              servers we would not be able to continue in this 'mission'.
              - #TCL-HELP (BlackTools TCL Project Official Channel)
------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
