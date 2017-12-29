@@ -1,17 +1,18 @@
-============================================================================================
-                         -= BLaCkShaDoW Production Presents =-
-                    BlackTools - The Ultimate Channel Control Script
-                             One TCL. One smart Eggdrop
-============================================================================================
+===========================================================================================================
+                                -= BLaCkShaDoW Production Presents =-
+                         BlackTools - The Ultimate Channel Control Script
+                                     One TCL. One smart Eggdrop
+===========================================================================================================
 
-   BlackTools is the most complete channel management script who can manage channels from all 
-   the IRC networks, although some modules are specifically designed only for Undernet network.
+   BlackTools is the most complete channel management script who can manage channels from all the IRC networks, 
+   although some modules are specifically designed only for Undernet network.
 
-                                -----------------------
+                                      -----------------------
 
    BlackTools  : http://blacktools.tclscripts.net
    Bugs report : http://www.tclscripts.net/
-   Online Help : irc://irc.undernet.org/tcl-help 
+   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script
+   Online help : irc://irc.undernet.org/tcl-help 
                   #TCL-HELP / UnderNet
                   You can ask in english or romanian
 
@@ -101,9 +102,9 @@ Bugs tracker:
     We offer a lot of support for BlackTools script - however you can also support us:
     o Donations will help us to keep working on this project.
 
-----------------------------------------------------------------------------------------------
-Copyright (c) 2008-2017 Daniel Voipan (aka BLaCkShaDoW).
-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+Copyright (c) 2008-2018 Daniel Voipan (aka BLaCkShaDoW).
+-----------------------------------------------------------------------------------------------------------
 AUTHOR   : Daniel Voipan
 NICK     : BLaCkShaDoW
 MEET ME  : On *UnderNet.org: #TCL-HELP, #UnBan, #TNTRadio
@@ -120,4 +121,4 @@ GREETS   : o Special thanks to QueenElsa and Florian for testing, suggesting fix
            o Many thanks to undernet.org (IRC Network). Without hosting 24/7 our support channel on their stable 
              servers we would not be able to continue in this 'mission'.
              - #TCL-HELP (BlackTools TCL Project Official Channel)
------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
