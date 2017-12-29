@@ -9,12 +9,13 @@
 
                                       -----------------------
 
-   BlackTools  : http://blacktools.tclscripts.net
-   Bugs report : http://www.tclscripts.net/
+   Download    : http://blacktools.tclscripts.net
+   Bugs report : http://www.tclscripts.net
+   History     : http://www.tclscripts.net/release-notes
    GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script
    Online help : irc://irc.undernet.org/tcl-help 
-                  #TCL-HELP / UnderNet
-                  You can ask in english or romanian
+                #TCL-HELP / UnderNet
+                You can ask in english or romanian
 
                      / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \
                     ( T | C | L | S | C | R | I | P | T | S | . | N | E | T )
