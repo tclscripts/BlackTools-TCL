@@ -4,8 +4,8 @@
                                      One TCL. One smart Eggdrop
 ===========================================================================================================
 
-   BlackTools is the most complete channel management script who can manage channels from all the IRC networks, 
-   although some modules are specifically designed only for Undernet network.
+   BlackTools is the most complete channel management script who can manage channels from all the 
+   IRC networks, although some modules are specifically designed only for Undernet network.
 
                                       -----------------------
 
@@ -16,6 +16,18 @@
                   #TCL-HELP / UnderNet
                   You can ask in english or romanian
 
+                     / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \
+                    ( T | C | L | S | C | R | I | P | T | S | . | N | E | T )
+                     \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ /
+                     
+                        You want a customised TCL Script for your eggdrop? 
+                            Easy-peasy, just tell us what you need!
+             We can create almost anything in TCL based on your ideas and donations. 
+    Email: blackshadow@tclscripts.net or info@tclscripts.net with your request informations 
+                            and we'll contact you as soon as possible.
+
+                                      -----------------------
+                                      
    Ideas, suggestions, comments ?
 
       This script is free of charge but I accept donations, old computers, free shells :))
