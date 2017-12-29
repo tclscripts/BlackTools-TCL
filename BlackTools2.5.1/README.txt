@@ -106,16 +106,18 @@ Copyright (c) 2008-2017 Daniel Voipan (aka BLaCkShaDoW).
 ----------------------------------------------------------------------------------------------
 AUTHOR   : Daniel Voipan
 NICK     : BLaCkShaDoW
-MEET ME  : On *UnderNet.org: #TCL-HELP, #UnBan, #Undernet, #TNTRadio
-MAIL     : blackshadow@tclscripts.net
+MEET ME  : On *UnderNet.org: #TCL-HELP, #UnBan, #TNTRadio
+EMAIL    : blackshadow@tclscripts.net
 URL      : https://github.com/DanielVoipan/
-GREETS   : o Special thanks to QueenElsa and Florian for testing, suggesting fixes and new 
-             features inspiration for many parts of BlackTools.tcl that led to the improvement
-             of this script. 
-           o As well, many thanks to psycho for his interest in testing & searching for issues.
-           o Thanks also to Time2Go > Ionut (retired..)
-             - admin of #TCL-HELP Channel (without whom this script would not have gone so far)
-           o Thank you to all those people who found bugs in the script and reported them and
-             to all the users who joined #TCL-HELP and make me keep this project alive and updated.
-             - #TCL-HELP web page: http://tclscripts.net
+GREETS   : o Special thanks to QueenElsa and Florian for testing, suggesting fixes and new features inspiration 
+             for many parts of BlackTools.tcl that led to the improvement of this script. 
+           o Thanks also to Time2Go > Ionut (retired..) without whom this script would not have gone so far.
+             - admin of #TCL-HELP Channel
+           o Thank you to all those people who found bugs in the script and reported them and to all the users 
+             who joined #TCL-HELP and shared their ideas and suggestions.
+             - Website: wWw.TclScriptS.NeT
+           o As well, many thanks to psycho & WildMan for the interest shown in testing & searching for errors.
+           o Many thanks to undernet.org (IRC Network). Without hosting 24/7 our support channel on their stable 
+             servers we would not be able to continue in this 'mission'.
+             - #TCL-HELP (BlackTools TCL Project Official Channel)
 -----------------------------------------------------------------------------------------------
