@@ -104,12 +104,10 @@ GREETS   : o Special thanks to QueenElsa and Florian for testing, suggesting fix
            o Thanks also to Time2Go > Ionut (retired..) without whom this script would not have gone
              so far.
              - admin of #TCL-HELP Channel
+           o As well, many thanks to psycho & WildMan for the interest shown in testing & searching
+             for errors.
            o Thank you to all those people who found bugs in the script and reported them and to all
              the users who joined #TCL-HELP and shared their ideas and suggestions.
              - Website: wWw.TclScriptS.NeT
-           o As well, many thanks to psycho & WildMan for the interest shown in testing & searching
-             for errors.
-           o Many thanks to undernet.org (IRC Network). Without hosting 24/7 our support channel
-             on their stable servers we would not be able to continue in this 'mission'.
              - #TCL-HELP (BlackTools TCL Project Official Channel)
 -----------------------------------------------------------------------------------------------------------
