@@ -4,22 +4,35 @@
                                      One TCL. One smart Eggdrop
 ===========================================================================================================
 
-   BlackTools is the most complete channel management script who can manage channels from all the IRC networks, 
-   although some modules are specifically designed only for Undernet network.
+   BlackTools is the most complete channel management script who can manage channels from all 
+   the IRC networks, although some modules are specifically designed only for Undernet network.
 
                                       -----------------------
 
-   BlackTools  : http://blacktools.tclscripts.net
-   Bugs report : http://www.tclscripts.net/
+   Download    : http://blacktools.tclscripts.net
+   Bugs report : http://www.tclscripts.net
+   History     : http://www.tclscripts.net/release-notes
    GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script
    Online help : irc://irc.undernet.org/tcl-help 
-                  #TCL-HELP / UnderNet
-                  You can ask in english or romanian
+                 #TCL-HELP / UnderNet
+                 You can ask in english or romanian
+
+                     / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \
+                    ( T | C | L | S | C | R | I | P | T | S | . | N | E | T )
+                     \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ /
+                     
+                        You want a customised TCL Script for your eggdrop? 
+                            Easy-peasy, just tell us what you need!
+             We can create almost anything in TCL based on your ideas and donations. 
+    Email: blackshadow@tclscripts.net or info@tclscripts.net with your request informations 
+                            and we'll contact you as soon as possible.
+
+                                      -----------------------
 
    Ideas, suggestions, comments ?
 
       This script is free of charge but I accept donations, old computers, free shells :))
-      In any case, if you have any comment (good or bad) go to http://tclscripts.net.
+      In any case, if you have any comment (good or bad) go to www.tclscripts.net.
 
 Minimum requirements:
      o Eggdrop 1.6.x
@@ -57,7 +70,7 @@ Most important features:
 
 Important:
 
-     Read BlackTools MANUAL (.man command) for more info about configuration.
+     Read BlackTools MANUAL (.man command) for help and information about configuration.
      Read INSTALL file to know how to install it.
      Read FAQ file for the most frequently asked questions.
 
@@ -91,12 +104,10 @@ GREETS   : o Special thanks to QueenElsa and Florian for testing, suggesting fix
            o Thanks also to Time2Go > Ionut (retired..) without whom this script would not have gone
              so far.
              - admin of #TCL-HELP Channel
+           o As well, many thanks to psycho & WildMan for the interest shown in testing & searching
+             for errors.
            o Thank you to all those people who found bugs in the script and reported them and to all
              the users who joined #TCL-HELP and shared their ideas and suggestions.
              - Website: wWw.TclScriptS.NeT
-           o As well, many thanks to psycho & WildMan for the interest shown in testing & searching
-             for errors.
-           o Many thanks to undernet.org (IRC Network). Without hosting 24/7 our support channel
-             on their stable servers we would not be able to continue in this 'mission'.
              - #TCL-HELP (BlackTools TCL Project Official Channel)
 -----------------------------------------------------------------------------------------------------------
