@@ -1,102 +1,102 @@
-==================================================================================
-                  BlackTools - The Ultimate Channel Control Script
-                            One TCL. One smart Eggdrop
-==================================================================================
+===========================================================================================================
+                                -= BLaCkShaDoW Production Presents =-
+                         BlackTools - The Ultimate Channel Control Script
+                                     One TCL. One smart Eggdrop
+===========================================================================================================
 
-+++ Change Log 2.5.2 (summary)
--------------------------------------------------------------
+   BlackTools is the most complete channel management script who can manage channels from all the IRC networks, 
+   although some modules are specifically designed only for Undernet network.
 
-**** GENERAL CHANGES
-- Major coding changes for better and faster performance.
--- Added a helpful information system to show, after each info request from BlackTools manual, some important TIPS about how to use this script.
---- All major protections supports now addition of exceptions and customization of the ban method on each word.
------ The bot now understands some cidr notation bans.
------- All protections and ban methods recognize webirc hostmask like: mibbit.com, kiwiirc.com, irccloud.com.
+                                      -----------------------
 
-**** IDLE
-- Code fixes and enhancements.
--- Minor bugs fixed.
+   BlackTools  : http://blacktools.tclscripts.net
+   Bugs report : http://www.tclscripts.net/
+   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script
+   Online help : irc://irc.undernet.org/tcl-help 
+                  #TCL-HELP / UnderNet
+                  You can ask in english or romanian
 
-**** SECUREMODE
-- Added multiple random code messages for a better security.
+   Ideas, suggestions, comments ?
 
-**** ANTIJOINFLOOD
-- Recoded and combined antijoinflood with antijoinpartquit in only one protection.
+      This script is free of charge but I accept donations, old computers, free shells :))
+      In any case, if you have any comment (good or bad) go to http://tclscripts.net.
 
-**** TOPWORDS
-- Upgraded to show more statistical informations about: smiles, actions, questions, etc.
+Minimum requirements:
+     o Eggdrop 1.6.x
+     o Tcl 8.4 or higher.
 
-**** NOTES
-- Automated abuse system to report directly to the BOSS OWNER.
--- Possibility for owners to decide whether they want to receive notes or not.
- 
-**** SILENCE
-- Added a personal protection for the bot against ctcp, notice, msg & ctcr using the server silence command.
+Most important features:
 
-**** AWAYACTION
-- warn-ban-kick
--- Changed the output method of showing the adverts.
+    o Multi-channels support: intelligent IRC channel management, every owner(s)/manager(s) can
+      customise this script and its component settings for each channel to his liking.
+      (add/remove users, activate or disable desired protections, modules or commands)
+    o Global boss owner(s) now have the possibility of being able to modify, directly into, their
+      eggdrop config file (eggdrop.conf) without having to log on to the shell machine to do that. 
+      (i.e. nickname, realname, homechan, chanserv, chanserv username, chanserv password, etc.)
+    o Designed for flexibility and ease of use: BlackTools is now 100% flexible to be configured
+      via channel, you can set different settings for each channel.
+    o Owner(s) timer module system which allows to start timers to execute certain processes (proc)
+      and in case you want to kill/stop a timer you can do this through this module too. 
+      Also provides and a list of active timers running.
+    o Allows you to upload files that match the pattern *.tcl from a url inside your
+      eggdrop's scripts directory.
+    o Note module system where users can send messages to each other or save personal notes. 
+      Also, eggdrop will send notes to global owner(s) to inform them every time is abused
+      (banned/can't join a channel).
+    o All commands works through private message (PRIVMSG) and possibility that all users, who have
+      access to eggdrop, can set their own cmdchar such as '!'.
+    o All the warn/kick/ban reasons are highly customizable. 
+      Every channel manager can add or remove anything as want easily.
+    o The new BlackTools version brings also a new and very well-implemented ban system which performs
+      accurate and efficient searches through global banlist and every channel banlists for a better
+      management and an easier removal/unban.
+    o Perfect navigational system through the pages of every module which has this option and a 
+      quote support system module.
+    o Protection against botnet (mass) and private floods.
+    o And lots of cool features for your eggdrop :)
 
-**** BANLIST CLEANER
-- Implementated an automatic banlist clean system to remove a certain number of bans when the channel banlist is full.
+Important:
 
-**** BANS DISTICTIONS
-- Added (global) to distinguish local bans from global ones.
+     Read BlackTools MANUAL (.man command) for more info about configuration.
+     Read INSTALL file to know how to install it.
+     Read FAQ file for the most frequently asked questions.
 
-**** CONSECUTIVE LETTERS PROTECT
-- Added a new protection againts chars/consecutive repeated letters.
+Credits:
 
-**** REPORT SYSTEM
-- Added a flood protection settings against those who abuse the use of command.
--- Added the possibility that the report to be sent in eggdrop's PRIVMSG.
+    o Settore for hosting the tclscripts.net project website.
+      settore@tclscripts.net [ www.codegeenie.world ]
+         
+    o Florian (most craziest imagination guy) for spotting some major and important issues, also for
+      provinding all the required and necessary materials needed for this script to be ready.
+      florian@tclscripts.net [ www.tntradio.ro ]
 
-**** BADCHAN
-- Code fixes and enhancements.
--- Added extra option ShowBadChan-bwait and words to be exempted.
---- Minor bugs fixed.
+Utenti italiani:
+---------------------
+      Nessuna traduzione ufficiale ancora (puo essere fatto su richiesta).
 
-**** BADNICK
-- Added extra an option badnick-bmethod.
--- You can now add words to be exempted.
+Usuarios espanoles:
+---------------------
+      Sin traduccion oficial todavia (se puede hacer a peticion).
 
-**** BADIDENT
-- Added possibility of being able to modify the banmask method.
---- You can now add words to be exempted.
-
-**** INVITEBAN 
-- Added exception for Undernet Official Bot *X*.
-
-**** QUOTE
-- Minor text fixes: spelling and grammar mistakes.
--- Minor bugs fixed.
-
-**** CP SYSTEM
-- Some major bugs fixed.
-
-**** SEEN
-- Minor bugs fixed.
-
-**** XTOOLS
-- Minor bugs fixed.
-
-**** LINK SYSTEM
-- Minor bugs fixed.
-
-**** BADREALNAME
-- Minor bugs fixed.
-
-**** ADD/ADDUSER/USERLIST
-- Minor bugs fixed.
--- Removed the adduser command and included all it's functions to the add command.
-
-**** COUNT
-- Reintroduced count module, but only as informative thing and how to use it.
-
-**** ANTISPAM
-- Added exception from on-join message for all users with access.
-
-**** ANTISPAM
-- Minor bugs fixed.
-
-**** STATS
-- Reintroduced the statistics for ban commands used by each user with access.
+-----------------------------------------------------------------------------------------------------------
+Copyright (c) 2008-2018 Daniel Voipan (aka BLaCkShaDoW).
+-----------------------------------------------------------------------------------------------------------
+AUTHOR   : Daniel Voipan
+NICK     : BLaCkShaDoW
+MEET ME  : On *UnderNet.org: #TCL-HELP, #UnBan, #TNTRadio
+EMAIL    : blackshadow@tclscripts.net
+URL      : https://github.com/DanielVoipan/
+GREETS   : o Special thanks to QueenElsa and Florian for testing, suggesting fixes and new features
+             inspiration for many parts of BlackTools.tcl that led to the improvement of this script. 
+           o Thanks also to Time2Go > Ionut (retired..) without whom this script would not have gone
+             so far.
+             - admin of #TCL-HELP Channel
+           o Thank you to all those people who found bugs in the script and reported them and to all
+             the users who joined #TCL-HELP and shared their ideas and suggestions.
+             - Website: wWw.TclScriptS.NeT
+           o As well, many thanks to psycho & WildMan for the interest shown in testing & searching
+             for errors.
+           o Many thanks to undernet.org (IRC Network). Without hosting 24/7 our support channel
+             on their stable servers we would not be able to continue in this 'mission'.
+             - #TCL-HELP (BlackTools TCL Project Official Channel)
+-----------------------------------------------------------------------------------------------------------
