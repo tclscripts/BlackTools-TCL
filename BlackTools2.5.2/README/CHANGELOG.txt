@@ -38,7 +38,7 @@
 -- Changed the output method of showing the adverts.
 
 **** BANLIST CLEANER
-- Implementated an automatic banlist clean system to remove a certain number of bans when the channel banlist is full.
+- Implemented an automatic banlist clean system to remove a certain number of bans when the channel banlist is full.
 
 **** BANS DISTICTIONS
 - Added (global) to distinguish local bans from global ones.
