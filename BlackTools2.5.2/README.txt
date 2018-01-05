@@ -85,11 +85,11 @@ Credits:
 
 Utenti italiani:
 ---------------------
-      Italian Languge: Inclusa nell'archivio.
+      Italian Language: Inclusa nell'archivio.
 
 Usuarios espanoles:
 ---------------------
-      Spanish Languge: Sin traduccion oficial todavia (se puede hacer a peticion).
+      Spanish Language: Sin traduccion oficial todavia (se puede hacer a peticion).
 
 -----------------------------------------------------------------------------------------------------------
 Copyright (c) 2008-2018 Daniel Voipan (aka BLaCkShaDoW).
