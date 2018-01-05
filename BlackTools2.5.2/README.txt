@@ -89,7 +89,7 @@ Utenti italiani:
 
 Usuarios espanoles:
 ---------------------
-      Spanish Language: Sin traduccion oficial todavia (se puede hacer a peticion).
+      Spanish Language: Sin traduccion oficial todavia (se puede realizar a peticion).
 
 -----------------------------------------------------------------------------------------------------------
 Copyright (c) 2008-2018 Daniel Voipan (aka BLaCkShaDoW).
