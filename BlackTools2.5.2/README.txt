@@ -56,6 +56,7 @@ Most important features:
     o Note module system where users can send messages to each other or save personal notes. 
       Also, eggdrop will send notes to global owner(s) to inform them every time is abused
       (banned/can't join a channel).
+    o CIDR support, dnslookup support and webirc hosts support.
     o All commands works through private message (PRIVMSG) and possibility that all users, who have
       access to eggdrop, can set their own cmdchar such as '!'.
     o All the warn/kick/ban reasons are highly customizable. 
@@ -85,7 +86,7 @@ Credits:
 
 Utenti italiani:
 ---------------------
-      Italian Language: Inclusa nell'archivio.
+      Italian Language: Nessuna traduzione ufficiale ancora (puo essere fatta su richiesta).
 
 Usuarios espanoles:
 ---------------------
