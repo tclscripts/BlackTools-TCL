@@ -84,6 +84,7 @@ set black(say.en.gl.fullbans) "\005\[BT\]\005 \002WARNING\002: \002%chan%\002's 
 set black(say.en.gl.noxonly) "\005\[BT\]\005 FAILED: I'm not logged to \002*X*\002."
 set black(say.en.gl.banblack) "\005\[BT\]\005 FAILED: Cannot execute, user is in BLACKLIST."
 set black(say.en.gl.protexcept) "\002except\002"
+set black(say.en.gl.nobanlevel) "\005\[BT\]\005 Sorry, you have insufficient access to place the ban \002%msg.1%\002."
 
 #############################################################################################################################
 #                                                                                                                           #
