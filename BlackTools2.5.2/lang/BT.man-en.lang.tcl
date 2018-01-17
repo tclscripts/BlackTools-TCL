@@ -458,7 +458,7 @@ set black(say.en.man.263) "\[MAN\] \002%char%set\002 (+/-)autovoice ; \002%botni
 
 #AntiJoinFlood
 
-set black(say.en.man.264) "\[MAN\] \002AntiJoinFlood\002 sets certain channel modes and bans users who undertake \002massjoin\002 actions."
+set black(say.en.man.264) "\[MAN\] \002AntiJoinFlood\002 sets certain channel modes and bans users who undertake \002massjoin\002 actions. Also bans users who joins and part/quit too fast."
 set black(say.en.man.265) "\[MAN\] USAGE SYNTAX:"
 set black(say.en.man.266) "\[MAN\] \002%char%set\002 (+/-)antijoinflood ; \002%botnick% set\002 (+/-)antijoinflood ; \002(PRIVMSG) set\002 <#chan> (+/-)antijoinflood"
 set black(say.en.man.267) "\[MAN\] Optional settings: \002joinflood\002 (<number joins>:<seconds>)"
@@ -1463,7 +1463,7 @@ set black(say.en.man.1254) "View options settings: \002%char%show\002 <setting> 
 
 #QuitPartMsgFlood
 
-set black(say.en.man.1255) "\[MAN\] \002QuitPartMsgFlood\002 is an extra option for the \002AntiBadQuitPart\002 module that makes the eggdrop to take action against users who use *flood messages* when part a channel."
+set black(say.en.man.1255) "\[MAN\] \002QuitPartMsgFlood\002 is an extra option for the \002AntiBadQuitPart\002 module that makes the eggdrop to take action against users who use *flood messages* when part/quit from channel."
 set black(say.en.man.1256) "\[MAN\] USAGE SYNTAX:"
 set black(say.en.man.1257) "\[MAN\] \002%char%set (+/-)quitpartmsgflood\002 ; %botnick% set (+/-)quitpartmsgflood ; \002(PRIVMSG) set <#chan> (+/-)quitpartmsgflood\002"
 set black(say.en.man.1258) "\[MAN\] Optional settings: \002quitpartmsgflood-char\002"
