@@ -85,7 +85,7 @@ Credits:
 
 Utenti italiani:
 ---------------------
-      Italian Language: Inclusa nell'archivio.
+      Italian Language: Nessuna traduzione ufficiale ancora (puo essere fatta su richiesta).
 
 Usuarios espanoles:
 ---------------------
