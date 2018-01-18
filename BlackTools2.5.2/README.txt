@@ -35,8 +35,8 @@
       In any case, if you have any comment (good or bad) go to www.tclscripts.net.
 
 Minimum requirements:
-     o Eggdrop 1.6.x
-     o Tcl 8.4 or higher.
+     o Eggdrop 1.8.x
+     o Tcl 8.5 or higher.
 
 Most important features:
 
