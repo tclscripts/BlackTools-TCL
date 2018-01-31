@@ -480,7 +480,7 @@ if {[string equal -nocase $read_type "LASTSRC"] && [string equal -nocase $chan $
 	set read_who_h [lindex [split $line] 3]
 	set read_time [lindex [split $line] 4]
 	set read_time [clock format $read_time -format %D-%H:%M:%S]
-	blacktools:tell $nick "prv" "" $chan $chan1 seen.39 "$read_who $read_who_h $read_time"
+	blacktools:tell $nick "prv" "" $chan $chan1 seen.39 "$read_who!$read_who_h $read_time $nick"
 	seen:reply:remove $read_src $chan
 		}	
 	}
@@ -602,7 +602,7 @@ if {$n != ""} {
 	set seensort($tm) $line_num
 	}
 }
-	foreach line [lsort -integer -decreasing -unique [array names seensort]] {
+foreach line [lsort -integer -decreasing -unique [array names seensort]] {
 	lappend top_seenlist $seensort($line)
 }
 	set split_seenlist [split $top_seenlist " "]
