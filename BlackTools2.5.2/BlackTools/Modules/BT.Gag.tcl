@@ -17,7 +17,7 @@
 proc gag:process {gagger time reason nick hand host chan chan1 type} {
 global botnick black
 	set cmd_status [btcmd:status $chan $hand "gag" 0]
-if {$cmd_status == "1"} { 
+if {$cmd_status == "1"} {
 	return 
 }	
 	set split_hand [split $hand ":"]
@@ -298,10 +298,11 @@ proc gag:reban {nick host hand chan args} {
 global black
 	set bans [lindex $args 1]
 if {![botisop $chan]} { return }
+	set check_gag [blacktools:isgag $bans $chan]
+if {$check_gag == "1"} {
 foreach user [chanlist $chan] {
-	set gethost "$user![getchanhost $user $chan]"
-if {[string match -nocase $bans $gethost]} {
-if {[blacktools:isgag $bans $chan] == "1"} {
+	set gethost "$nick![getchanhost $user $chan]"
+if {[string match -nocase $gethost $bans] || [string match -nocase $bans $gethost]} {
 	pushmode $chan +b $bans
 			}
 		}
