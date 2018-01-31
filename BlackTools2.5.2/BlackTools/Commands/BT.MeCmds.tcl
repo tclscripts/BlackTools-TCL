@@ -629,6 +629,7 @@ if {$return_time == "-1"} {
 		}
 	}
 }
+
 if {($return_time > "20160" || $return_time == "0")  && [matchattr $hand -|OS $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 b.6 none
 	return
