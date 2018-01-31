@@ -680,6 +680,10 @@ if {[string match -nocase "*badchan,*" $hand]} {
 }
 	set hand [lindex $split_hand 0]
 	set bantime [setting:get $chan $hand-bantime]
+	set getlang [string tolower [setting:get $chan lang]]
+if {$getlang == ""} {
+	set getlang [string tolower $black(default_lang)]
+}
 if {$bantime == ""} { 
 	set bantime [setting:get $chan general-bantime]
 }
@@ -698,8 +702,7 @@ if {[string equal -nocase $hand "NEXT"]} {
 } else {
 	set getreason [setting:get $chan $hand-reason]
 }
-if {$getreason == ""} { 
-	set getlang [string tolower [setting:get $chan lang]]
+if {$getreason == ""} {
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 if {[string equal -nocase $hand "NEXT"]} {
 	set getreason $black(say.$getlang.$hand.5)
@@ -717,7 +720,11 @@ if {[setting:get $chan $hand-reason] != ""} {
 	set getreason $black(say.$getlang.badchan.5)
 	}
 } else {
+if {[setting:get $chan $hand-reason] != ""} {
+	set getreason [join [setting:get $chan $hand-reason]]
+} else {
 	set getreason [join $badchan($banmask:$chan)]
+		}
 	}
 }
 	set replace(%chan%) $chan
@@ -838,14 +845,14 @@ if {$thereason == ""} { set thereason "N/A" }
 	set expire [return_time_2 $getlang $bantime]
 	set replace(%banmask%) $banmask
 	set replace(%bantime%) $expire
-	set replace(%reason%) $thereason
+	set replace(%reason%) $show_reason
 	set replace(%chan%) $chan
 	set replace(%nick%) $botnick
 	set text [black:color:set "" $black(say.$getlang.reportchan.1)]
 	set reply [join $text]
 	set reply [string map [array get replace] $reply]
 	puthelp "PRIVMSG $backchan :$reply"
-if {![string equal -nocase $hand "CLONESCAN"] && ![string equal -nocase $hand "BADCHAN"]} {
+if {[info exists black($chan:anounce)]} {
 	utimer 5 [list unset black($chan:anounce)]
 		}
 	}
@@ -1025,15 +1032,16 @@ if {$backchan == ""} {
 if {!([validchan $backchan]) || !([onchan $botnick $backchan])} {
 	return
 }
-	set reason [blacktools:rem_comment_ban $reason]
+	set reason [blacktools:rem_comment_ban $thereason]
+	set show_reason [blacktools:setreason $chan $reason $cmd $bantime $getcount "0" $num]
 if {$reason == ""} { set reason "N/A" }
 	set bantime [time_return_minute $bantime]
 	set bantime [expr $bantime * 60]
 	set expire [return_time_2 $getlang $bantime]
-	
+	set black($chan:anounce) 1
 	set replace(%banmask%) $mask
 	set replace(%bantime%) $expire
-	set replace(%reason%) $reason
+	set replace(%reason%) $show_reason
 	set replace(%chan%) $chan
 	set replace(%nick%) $gethand
 	set text [black:color:set "" $black(say.$getlang.reportchan.1)]
@@ -1661,13 +1669,12 @@ if {[info exists black($chan:anounce)]} {
 	set getlang [string tolower [setting:get $chan lang]]
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 if {$reason == ""} { set reason "N/A" }
-	set thereason [blacktools:rem_comment_ban $thereason]
 	set bantime [time_return_minute $bantime]
 	set bantime [expr $bantime * 60]
 	set expire [return_time_2 $getlang $bantime]
 	set replace(%banmask%) $host
 	set replace(%bantime%) $expire
-	set replace(%reason%) $thereason
+	set replace(%reason%) $reason
 	set replace(%chan%) $chan
 	set replace(%nick%) $botnick
 	set text [black:color:set "" $black(say.$getlang.reportchan.1)]
@@ -2849,6 +2856,8 @@ proc bancmds:process {user mask nick hand host chan chan1 type bantime cmd rs gl
 if {$cmd_status == "1"} { 
 	return
 }
+	set getlang [string tolower [setting:get $chan lang]]
+if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 	set show_user $user
 	set handle [nick2hand $user]
 if {[matchattr $gethand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.glsuspend none
@@ -2898,10 +2907,7 @@ if {$rs != ""} {
 }
 
 if {$getreason == ""} {
-	set getlang [string tolower [setting:get $chan lang]]
-if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 	set getreason $black(say.$getlang.$cmd.5)
-	
 if {$cmd == "b"} {
 	set len [llength $getreason] 
     set random [expr int(rand()*$len)] 
@@ -2985,7 +2991,6 @@ if {$cmd == "troll"} {
 	return
 	}
 if {$cmd == "bot" && [onchan $user $chan]} {
-	set getlang [string tolower [setting:get $chan lang]]
 	set getreason "$getreason - $black(say.$getlang.$cmd.8)"
 	blacktools:banner:3 $mask $hand $chan $chan1 $getreason $getbantime BANS($chan) "3" $cmd $nick $user $host
 	return
@@ -3186,7 +3191,7 @@ if {[onchan $black(chanserv) $chan] && $xban == "1"} {
 foreach b [blacktools:gaglist $chan] {
 	set read_host [lindex [split $b] 3]
 	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
-if {[string match -nocase $host $real_read_host] || [string match -nocase $real_read_host $host]} {
+if {([string match -nocase $fulldns $real_read_host] || [string match -nocase $real_read_host $fulldns]) || ([string match -nocase $fullhost $real_read_host] || [string match -nocase $real_read_host $fullhost])} {
 if {[ischanban $read_host $chan]} {
 	continue
 }
@@ -3201,7 +3206,10 @@ if {[isop $nick $chan]} {
 if {[isvoice $nick $chan]} {
 	pushmode $chan -v $nick
 }
-	putserv "PRIVMSG $chan :[string map [array get replace] $black(say.$getlang.gag.1)]"
+	set text [black:color:set "" $black(say.$getlang.gag.1)]
+	set reply [join $text]
+	set reply [string map [array get replace] $reply]
+	putserv "PRIVMSG $chan :$reply"
 	break
 	}
 }
@@ -3408,7 +3416,7 @@ proc blacktools:isgag {host chan} {
 	set size [file size $black(bans_file)]
 	set data [split [read $file $size] \n]
 	close $file
-	set bancheck [lsearch -all -inline $data "GAG * [string tolower $chan] [string tolower $host] *"]
+	set bancheck [lsearch -all -inline $data "GAG * $chan $host *"]
 if {$bancheck != ""} {
 	return 1
 	} else {
@@ -3542,7 +3550,8 @@ if {$getxlevel == ""} {
 	}
 }
 if {[onchan $black(chanserv) $chan] && $xban == "1"} {
-	putquick "PRIVMSG $black(chanserv) :ban $chan $host $getxtime $getxlevel $show_reason"
+	set reason [blacktools:rem_comment_ban $show_reason]
+	putquick "PRIVMSG $black(chanserv) :ban $chan $host $getxtime $getxlevel $reason"
 		} else {
 	putserv "MODE $chan +b $host"
 	}
@@ -3594,17 +3603,17 @@ proc blacktools:ban:put {nick host hand chan bantime type sticky global reason i
 	global black
 	set is_comment 0
 	set file [open $black(bans_file) "a"]
-if {[regexp {(-comment)} $reason]} {
+if {[lsearch -exact -nocase $reason "-comment"] > -1} {
 	set is_comment 1
 	set split_it [wsplit $reason "-comment"]
 	set comment [concat [lindex $split_it 1]]
 	set reason [concat [lindex $split_it 0]]
-} elseif {[regexp {(-com)} $reason]} {
+} elseif {[lsearch -exact -nocase $reason "-com"] > -1} {
 	set is_comment 1
 	set split_it [wsplit $reason "-com"]
 	set comment [concat [lindex $split_it 1]]
 	set reason [concat [lindex $split_it 0]]
-} elseif {[regexp {(-c)} $reason]} {
+} elseif {[lsearch -exact -nocase $reason "-c"] > -1} {
 	set is_comment 1
 	set split_it [wsplit $reason "-c"]
 	set comment [concat [lindex $split_it 1]]
@@ -4081,9 +4090,16 @@ if {[setting:get $chan showid]} {
 
 proc blacktools:check:levelban {hand chan level} {
 	global black
+if {[lsearch -exact -nocase $level "-c"] > -1} {
+	return ""
+} elseif {[lsearch -exact -nocase $level "-com"] > -1} {
+	return ""
+} elseif {[lsearch -exact -nocase $level "-comment"] > -1} {
+	return ""
+}
 	set level [string map {"-" ""} $level]
 	set levels ""
-
+	
 if {[matchattr $hand o]} {
 	set levels "[string tolower [blacktools:getlevelname 3 $hand]] [string tolower [blacktools:getlevelname 4 $hand]] [string tolower [blacktools:getlevelname 5 $hand]] [string tolower [blacktools:getlevelname 8 $hand]]"	
 	set split_levels [split $levels " "]
