@@ -531,7 +531,7 @@ set black(say.en.seen.35) "\005\[BT\]\005 Found more than (\002%num%\002) result
 set black(say.en.seen.36) "\005\[BT\]\005 Found more than (\002%num%\002) results. Most recently \002%latest%\002 (%host%) left in *.net *.split about %output% ago %date%, %staymsg%"
 set black(say.en.seen.37) "\005\[BT\]\005 Found more than (\002%num%\002) results. Most recently \002%latest%\002 (%host%) was kicked out from %chan% about %output% ago %date% with reason: \"%reason%\", %staymsg%"
 set black(say.en.seen.38) "\005\[BT\]\005 Found more than (\002%num%\002) results. Most recently \002%latest%\002 (%host%) changed his/her nickname in %newnick% about %output% ago %date%. %nowon%"
-set black(say.en.seen.39) "Heya %msg.1%, you need to know that \002%msg.2%\002 was looking for you with \002seen\002 on \002%chan%\002 about \002%msg.3%\002 ago."
+set black(say.en.seen.39) "Heya %msg.3%, you need to know that \002%msg.1%\002 was looking for you with \002seen\002 on \002%chan%\002 about \002%msg.2%\002 ago."
 
 ################################# Greet ######################################
 
@@ -1228,7 +1228,7 @@ set black(say.en.hchaninfo.4) "\002Str BT\002"
 set black(say.en.hegg.1) "\005\[BT\]\005 %msg%"
 set black(say.en.hegg.2) "\005\[BT\]\005 To see the \002BlackToolS Manual\002 for a specific option, use: \001%char%man <option>\001"
 set black(say.en.hegg.3) "\005\[BT\]\005 To see the \002BlackToolS Manual\002 for a specific option, use: \001%botnick% man <option>\001"
-set black(say.en.hegg.4) "\005\[BT\]\005 To see the \002lackToolS Manual\002 for a specific option, use: \001man <option>\001"
+set black(say.en.hegg.4) "\005\[BT\]\005 To see the \002BlackToolS Manual\002 for a specific option, use: \001man <option>\001"
 
 ############################### GREETING #######################################
 
