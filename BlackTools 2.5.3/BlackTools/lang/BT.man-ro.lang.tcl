@@ -185,8 +185,9 @@ set black(say.ro.man.94) "\[MAN\] Setari optionale: \002dr-reason\002 (setare mo
 set black(say.ro.man.95) "\[MAN\] \002b\002 este o comanda prin care se poate da ban unui user cu un motiv si un ban-time predefinit. Daca specificati durata \0020\002 banul devine permanent (blacklisted)."
 set black(say.ro.man.96) "\[MAN\] Format durata: <x>\002m\002 = minute, <x>\002h\002 = ore, \002d\002 = zile, \0020\002 = permanent"
 set black(say.ro.man.97) "\[MAN\] SINTAXE FOLOSIRE:"
-set black(say.ro.man.98) "\[MAN\] \002%char%b\002 <nick|host> \[-nivel\] \[durata\] \[motiv\] ; \002%botnick% b\002 <nick|host> \[-nivel\] \[durata\] \[motiv\] ; \002(PRIVMSG) b\002 <#canal> <nick|host> \[-nivel\] \[durata\] \[motiv\]"
-set black(say.ro.man.99) "\[MAN\] \002%char%b\002 <nick|host> \[-nivel\] \[durata\] \[global|link\] \[motiv\] ; \002%botnick% b\002 <nick|host> \[-nivel\] \[durata|link\] \[global\] \[motiv\] ; \002(PRIVMSG) b\002 <#canal> <nick|host> \[-nivel\] \[durata\] \[global|link\] \[motiv\]"
+set black(say.ro.man.98) "\[MAN\] \002%char%b\002 <nick|host> \[-nivel\] \[durata\] \[motiv\] \[-c/comment\] ; \002%botnick% b\002 <nick|host> \[-nivel\] \[durata\] \[motiv\] \[-c/comment\] ; \002(PRIVMSG) b\002 <#canal> <nick|host> \[-nivel\] \[durata\] \[motiv\] \[-c/comment\]"
+set black(say.ro.man.98_1) "\[MAN\] ** Nota: Folosind optiunea \[-c/comment\] va face ca eggdropul sa arate o a doua linie cu informatii referitoare la acel ban incluzand si acel comentariu. **"
+set black(say.ro.man.99) "\[MAN\] \002%char%b\002 <nick|host> \[-nivel\] \[durata\] \[global|link\] \[motiv\] \[-c/comment\] ; \002%botnick% b\002 <nick|host> \[-nivel\] \[durata|link\] \[global\] \[motiv\] \[-c/comment\] ; \002(PRIVMSG) b\002 <#canal> <nick|host> \[-nivel\] \[durata\] \[global|link\] \[motiv\] \[-c/comment\]"
 set black(say.ro.man.100) "\[MAN\] Setari optionale: \002b-reason\002 (setare motiv predefinit); \002b-bantime\002 (setare timp ban in minute); \002b-banmask\002 (setare banmask predefinit)"
 
 #ub
@@ -215,7 +216,8 @@ set black(say.ro.man.113) "\[MAN\] Setari optionale: \002bw-reason\002 (setare m
 
 set black(say.ro.man.114) "\[MAN\] \002Black\002 este o comanda prin care se poate da ban unui user cu un motiv dat pe o durata \002NELIMITATA\002 (ban permanent)."
 set black(say.ro.man.115) "\[MAN\] SINTAXA FOLOSIRE:"
-set black(say.ro.man.116) "\[MAN\] \002%char%black\002 <nick|host> \[motiv\] ; \002%botnick% black\002 <nick|host> \[motiv\] ; \002(PRIVMSG) black\002 <#canal> <nick|host> \[motiv\]\002"
+set black(say.ro.man.116) "\[MAN\] \002%char%black\002 <nick|host> \[motiv\] \[-c/comment\] ; \002%botnick% black\002 <nick|host> \[motiv\] \[-c/comment\] ; \002(PRIVMSG) black\002 <#canal> <nick|host> \[motiv\] \[-c/comment\]\002"
+set black(say.ro.man.116_1) "\[MAN\] ** Nota: Folosind optiunea \[-c/comment\] va face ca eggdropul sa arate o a doua linie cu informatii referitoare la acel ban incluzand si acel comentariu. **"
 set black(say.ro.man.117) "\[MAN\] Setari optionale: \002black-reason\002 (setare motiv predefinit); \002black-banmask\002 (setare banmask predefinit)"
 
 #Stick 
@@ -223,7 +225,8 @@ set black(say.ro.man.117) "\[MAN\] Setari optionale: \002black-reason\002 (setar
 set black(say.ro.man.118) "\[MAN\] \002Stick\002 este o comanda prin care se poate da ban de tip \sticky\ unuia sau mai multor useri cu anumit motiv si durata. Acest ban va fi mentinut mereu in lista de ban-uri a canalului."
 set black(say.ro.man.118_1) "\[MAN\] Format durata: <x>\002m\002 = minute, <x>\002h\002 = ore, \002d\002 = zile, \0020\002 = permanent"
 set black(say.ro.man.119) "\[MAN\] SINTAXA FOLOSIRE:"
-set black(say.ro.man.120) "\[MAN\] \002%char%stick\002 <nick|host> \[durata\] \[motiv\] ; %botnick% stick\002 <nick|host> \[durata\] \[motiv\] ; \002(PRIVMSG) stick\002 <#canal> <nick|host> \[durata\] \[motiv\]"
+set black(say.ro.man.120) "\[MAN\] \002%char%stick\002 <nick|host> \[durata\] \[motiv\] \[-c/comment\] ; %botnick% stick\002 <nick|host> \[durata\] \[motiv\] \[-c/comment\] ; \002(PRIVMSG) stick\002 <#canal> <nick|host> \[durata\] \[motiv\] \[-c/comment\]"
+set black(say.ro.man.120_1) "\[MAN\] ** Nota: Folosind optiunea \[-c/comment\] va face ca eggdropul sa arate o a doua linie cu informatii referitoare la acel ban incluzand si acel comentariu. **"
 set black(say.ro.man.121) "\[MAN\] Setari optionale: \002stick-reason\002 (setare motiv predefinit); \002stick-bantime\002 (setare timp ban in minute); \002stick-banmask\002 (setare banmask predefinit)"
 
 #Gag
@@ -565,7 +568,7 @@ set black(say.ro.man.416) "\[MAN\] Setari optionale: \002badchan-reason\002, bad
 
 #Anunt
 
-set black(say.ro.man.417) "\[MAN\] \002Anunt\002 este un modul care va avea rolul de a afisa anunturi pe %chan% la un anumit interval de timp si in functie de activitatea de pe canal (suporta %chan% and %botnick%)."
+set black(say.ro.man.417) "\[MAN\] \002Anunt\002 este un modul care va avea rolul de a afisa anunturi pe %chan% la un anumit interval de timp si in functie de activitatea de pe canal (suporta !%chan% and !%botnick%)."
 set black(say.ro.man.417_1) "\[MAN\] ** Note: Aceste mesaje vor fi expuse unul cate unul si NUMAI daca pe acel canal exista activitate. In caz contrar eggdropul intra in stand by pana la primul semn de activitate (join, part, chat, etc.). **"
 set black(say.ro.man.418) "\[MAN\] SINTAXE FOLOSIRE:"
 set black(say.ro.man.419) "\[MAN\] \002%char%anunt <ON|OFF>\002 ; %botnick% anunt <ON|OFF> ; \002(PRIVMSG) anunt <#canal> <ON|OFF>\002"
@@ -1535,7 +1538,8 @@ set black(say.ro.man.showtip) {
  "\[TIP\] \002WwW.TclScripts.Net\002 ofera spre download o gama variata de TcL-uri pentru eggdrop-ul tau (BlackIP.tcl, YoutubeTitle.tcl, BlackCountry.tcl, CSC.tcl si multe altele), pentru a avea un BOT profesional si de ultima generatie."
  "\[TIP\] Stiai ca acum poti folosi comanda \002for\002 pe mai multi eggdropi pentru a \002executa simultan\002 aceeasi comanda? ex: \002for\002 <botnick1>,<botnick2>.. <comanda> <optiune>\002 | for Bot1,Bot2,Bot3 say bla bla"
  "\[TIP\] \002(\$)\002 Vrei un \002TCL script personalizat\002 pentru eggdropul tau? Nimic mai simplu, doar \002spune-ne ce ai dori\002! Putem crea \002aproape orice TCL\002 pe baza ideilor si donatiilor tale. Email \002blackshadow@tclscripts.net\002 or \002info@tclscripts.net\002 cu informatiile solicitate si va vom contacta \002cat mai curand posibil\002."
- "\[TIP\] Stiai ca acum poti adauga \002exceptii pentru anumite cuvinte\002 de la protectiile scriptului \002pentru a evita kick-ul sau banarea utilizatorilor\002 atunci cand nu este intradevar necesar?"
+ "\[TIP\] Stiai ca acum poti adauga \002exceptii pentru anumite cuvinte\002 de la protectiile scriptului \002pentru a evita kick-ul sau banarea utilizatorilor\002 atunci cand nu este intradevar necesar? Vezi \002%char%man exempt\002"
+ "\[TIP\] Stiai ca acum poti adauga \002un comentariu\002 la cateva comenzi de ban\002, pe care ceilalti useri cu acces la eggdrop sa il vada,\002 atunci cand solicita informatii despre acel ban?? eq: \002%char%b nick just a test -c do not remove\002 | \[BT\] Motiv: just a test | \[BT\] \002\[COMENTARIU BAN\]\002 do not remove"
 }
 
 
