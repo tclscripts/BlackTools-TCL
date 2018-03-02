@@ -1,0 +1,349 @@
+==================================================================================
+                  BlackTools - The Ultimate Channel Control Script
+                            One TCL. One smart Eggdrop
+==================================================================================
+
++++ Change Log 2.5.3 (summary)
+-------------------------------------------------------------
+
+**** GENERAL CHANGES
+- All protections supports now addition of exceptions and customization of the ban method on each word.
+- More major code changes for better and faster performance.
+--- Other new commands have been added.
+---- Fixed some ipv6 bugs.
+
+**** SEEN
+- Code fixes and enhancements.
+-- Upgraded with a global seen search method.
+
+**** EXEMPT
+- Adds a ban exempt to the list of exempts, with optional comment and exempt period of time.
+
+**** FOR
+- This is a new command that will allow multiple eggdrops to execute simultaneously the same command.
+
+**** NICKSERV
+- Implementated a new login method that will allow the eggdrop identifying with Nickserv.
+
+**** ANTISPAM
+- You can now add/list/del words to be exempted.
+
+**** BAN/UNBAN
+- Minor bugs fixed.
+
+**** SECUREMODE
+- Minor bugs fixed.
+
+**** BLACK COMMAND
+- Minor bugs fixed.
+
+**** BACKCHAN
+- Minor bugs fixed.
+
+**** BADCHAN
+- Added a badchan scan flood protection setting with role of protecting the eggdrop from massjoin actions by stopping the on join scan of users for a period of time.
+
+
++++ Change Log 2.5.2 (summary)
+-------------------------------------------------------------
+
+**** GENERAL CHANGES
+- Major coding changes for better and faster performance.
+-- Added a helpful information system to show, after each info request from BlackTools manual, some important TIPS about how to use this script.
+--- All major protections supports now addition of exceptions and customization of the ban method on each word.
+----- The bot now understands some CIDR notation and dnslookup bans.
+------ All protections and ban methods recognize webirc hostmask like: mibbit.com, kiwiirc.com, irccloud.com.
+
+**** IDLE
+- Code fixes and enhancements.
+-- Minor bugs fixed.
+
+**** SECUREMODE
+- Added multiple random code messages for a better security.
+
+**** ANTIJOINFLOOD
+- Recoded and combined antijoinflood with antijoinpartquit in only one protection.
+
+**** TOPWORDS
+- Upgraded to show more statistical informations about: smiles, actions, questions, etc.
+
+**** NOTES
+- Automated abuse system to report directly to the BOSS OWNER.
+-- Possibility for owners to decide whether they want to receive notes or not.
+ 
+**** SILENCE
+- Added a personal protection for the bot against ctcp, notice, msg & ctcr using the server silence command.
+
+**** AWAYACTION
+- warn-ban-kick
+-- Changed the output method of showing the adverts.
+
+**** BANLIST CLEANER
+- Implementated an automatic banlist clean system to remove a certain number of bans when the channel banlist is full.
+
+**** BANS DISTICTIONS
+- Added (global) to distinguish local bans from global ones.
+
+**** CONSECUTIVE LETTERS PROTECT
+- Added a new protection againts chars/consecutive repeated letters.
+
+**** REPORT SYSTEM
+- Added a flood protection settings against those who abuse the use of command.
+-- Added the possibility that the report to be sent in eggdrop's PRIVMSG.
+
+**** BADCHAN
+- Code fixes and enhancements.
+-- Added extra option ShowBadChan-bwait and words to be exempted.
+--- Minor bugs fixed.
+
+**** BADNICK
+- Added extra an option badnick-bmethod.
+-- You can now add words to be exempted.
+
+**** BADIDENT
+- Added possibility of being able to modify the banmask method.
+--- You can now add words to be exempted.
+
+**** INVITEBAN 
+- Added exception for Undernet Official Bot *X*.
+
+**** QUOTE
+- Minor text fixes: spelling and grammar mistakes.
+-- Minor bugs fixed.
+
+**** CP SYSTEM
+- Some major bugs fixed.
+
+**** SEEN
+- Minor bugs fixed.
+
+**** XTOOLS
+- Minor bugs fixed.
+
+**** LINK SYSTEM
+- Minor bugs fixed.
+
+**** BADREALNAME
+- Minor bugs fixed.
+
+**** ADD/ADDUSER/USERLIST
+- Minor bugs fixed.
+-- Removed the adduser command and included all it's functions to the add command.
+
+**** COUNT
+- Reintroduced count module, but only as informative thing and how to use it.
+
+**** ANTISPAM
+- Added exception from on-join message for all users with access.
+
+**** ANTISPAM
+- Minor bugs fixed.
+
+**** STATS
+- Reintroduced the statistics for ban commands used by each user with access.
+
+
++++ Change Log 2.5.1 (summary)
+-------------------------------------------------------------
+
+**** MULTI-CHANNEL SUPPORT
+-- Fixed some differences of eggdrop bantimes.
+-- All options/settings are now case sensitive.
+
+**** ANUNT
+--- Changed the output method of showing the adverts.
+
+**** BACKCHAN
+-- Minor text fixes: spelling and grammar mistakes and some differences of bantimes.
+--- Removed nextback-chan option.
+
+**** BADCHAN
+-- Added extra option 'ShowBadChan' - who sends a message to all users with OP (@/&)
+   about the banned user and the forbidden channels on which that was found.
+
+**** BADIDENT
+-- Added possibility of being able to modify the banmask method.
+
+**** IDLE 
+-- Added anti-idle option for halfop users.
+
+**** INVITEBAN 
+-- Added exception for Undernet Official Bot *X*.
+
+**** LIMIT 
+-- Fixed some error regarding the way on how the eggdrop sets the channel limit.
+
+**** OMSG 
+-- This is a new command that will allow you to send specified messages to all
+   users with OP (@/&) from a channel..
+
+**** QUOTE
+-- Minor text fixes: spelling and grammar mistakes.
+--- Changed the output method of showing the quotes.
+
+**** TROLL
+-- Minor text fixes: spelling and grammar mistakes.
+--- Added extra option 'ShowTroll' - once activated, makes the eggdrop to display a
+    notice message list of current trolls of the day, when users with access joins
+    the channel (the list is reset everyday at midnight).
+
+**** VOICEME
+-- Added extra option 'NoLogged' - once activated, will allow the command
+  /msg botnick voiceme <#chan> to be used and by users without a CService Username.
+
+
++++ Change Log 2.5 (summary)
+-------------------------------------------------------------
+
+**** MULTI-CHANNEL SUPPORT
+-- Intelligent IRC channel management, every channel manager can now customise this 
+   script and its component settings to his liking (add/remove users, activate or 
+   disable desired commands, protections or modules).
+
+**** FLEXIBILE AND EASY OF USE
+-- Now 100% flexible to be configured via channel.
+---- Possibility of being able to modify, directly into the eggdrop config file
+     (eggdrop.conf) without having to log on to the shell machine to do that.
+     (i.e. nickname, realname, homechan, chanserv, chanserv username, chanserv
+     password, etc.)
+---- All the warn/kick/ban reasons are highly customizable. 
+---- Every channel manager can set different settings for each channel, add or 
+     remove anything as want easily.
+
+**** ANUNT
+-- A new and better version of ANUNT/ADVERT module that will display, one by one
+   in order, announcements/ads on a channel over a certain amount of time, but ONLY
+   if the channel is active.
+
+**** AUTOINVITE 
+-- This new autoinvite, is a new personal channel setting, the first of it's kind. 
+---- When turned on and banned, this engine makes the eggdrop to remove your ban and
+     invite you to that channel, saving you the trouble of doing by yourself.
+
+**** AUTOTOPIC
+-- This new autotopic makes your eggdrop to reset the topic to the channel TOPIC and
+   URL every time is changed by someone.
+---- If the channel is idle, the topic will not be reset during that time
+     (idle = no users joining).
+---- The old topic module was removed from this version with all system functions,
+     except the '.r' command for refreshing topic manually.
+
+**** BACKCHAN 
+-- This system is the old well-known ChanReport system but now renamed in BackChan
+   and in a new and better version.
+---- When enabled, will give the option for every channel to have a back-channel,
+     in which eggdrop will say the bans given by him to the mainchannel..                 
+
+**** BADCHAN 
+-- The new badchan system will perform scans not only on users are joining channels,
+   but also while they are still on the channel where badchan is enabled. 
+---- Now the badchans list supports wildcards.
+
+**** BADHOST
+-- This is a new protection module that bans users who use IPs/vhosts containing
+   specified bad words. 
+---- This new system module supports wildcards.
+
+**** BAN/UNBAN SYSTEM
+-- The new BlackTools version brings also a new and very well-implemented ban system 
+   which performs accurate and efficient searches through global banlist and every
+   channel banlists for a better management and an easier removal/unban.
+
+**** BANSTATS
+-- A new system module that will allow the eggdrop to keep statistics of each kick
+   and ban given on a specified channel.
+
+**** CHANLINK
+-- This new system allows synchronization of all protections modules on 2 or more
+   channels at the same time.
+---- Once enabled, the eggdrop will add the same ban from a given channel
+     simultaneously to all other channels and vice versa.
+---- Works only between linked channels, not the others.
+
+*** GAG
+-- A new and better version of gag module that will silence/mute a user for a period
+   of time (cannot write on channel). 
+---- If you do not specify a period will be used a default value.
+
+**** GUESTNICK
+-- A system module that, once activated, sends a predefined message to all users
+   who join a channel and whose nick contains words defined in the eggdrop's database.
+
+**** IDLE
+-- A new and better version of the well-known IDLE module that will not allow users
+   with op (@) or voice (+v) to idle.
+
+**** NICKFLOOD
+-- A new protection module that bans users for changing their nicknames too often
+   within a certain period of time.
+
+**** NOTE
+-- Note module system where users can send messages to each other or save personal notes. 
+---- Also, eggdrop will send notes to global owner(s) to inform them every time is abused 
+     (banned or can't join a channel).
+
+**** QUOTE
+-- Perfect navigational system through the pages of every module which has this option
+   and a quote support system module.
+
+**** SECUREMODE
+-- This is a protection module made to prevent join/part flood from botnets (users with
+   access are ignored in this checks). This module is made specifically for Undernet.
+-- It only works with channel modes +Dm and based on a system that generates a unique
+   code for each user who joins the channel, which needs to be confirmed only once
+   (first time join) if they wish to be allowed to join in the channel.
+---- This system comes packed with an extra option that, once enabled, will generate
+     the unique code for each user who joins the channel and every time re-joins, which
+     needs to be confirmed every time.
+
+**** SEENLASTMSG
+-- This new engine is a seen module extra info, who shows the specified nick what 
+   their last message was to that channel.
+
+**** SEENREPLY
+-- This new engine is a seen module extra info that will make the eggdrop send a info
+   message to user who has just been searched with .seen command.
+---- The message includes information about the person who searched for them, as well
+     as the date, time or channel where the .seen command was used.
+
+**** SHOWURL 
+-- Will append the channel URL to the ban reason.
+
+**** SHOWID
+-- Will append a ID number of each ban from the eggdrop banlist to the ban reason.
+---- Also now the bans can be removed using this ID number too.
+
+**** TIMER
+-- Timer module system which allows owners to start timers to execute certain processes 
+   (proc) and in case you want to kill/stop a timer you can do this through this module too. 
+---- Also provides and a list of active timers running.
+
+**** TOPWORDS
+-- This is a new system module which will record users activity from a channel, like: 
+   number of written words, lines, letters, etc.
+---- This new engine comes packed with AccessOnly, an extra option that restricts its
+     operation only to users who owns access to eggdrop."
+---- If this extra option is not enabled, the TopWords module will work for all channel
+     users (both for those with access and for others)."
+
+**** VOICEME
+-- A new system module which, once activated, will give users without access to the
+   eggdrop, but logged with *X* the Undernet Service Bot, the ability to have voice
+   (+v) simply sending a command to the eggdrop.
+--- This system comes packed with an extra option that, once activated, will allow
+    the command to be used ONLY when mode +m is set on the channel.
+
+**** WGET TCL
+-- Now you can you to upload files that match the pattern *.tcl from a url inside your 
+   eggdrop's scripts directory.
+
+**** XONLY
+-- A new system module that allows a complete channel administration via Undernet's
+   official bot.
+---- The eggdrop will perform all BlackToolS commands through *X*, even if is not an op (@).
+
+
+------------------------------------------------------------------------------------   
+BlackTools - The Ultimate Channel Control Script.
+Copyright (c) 2008-2018 Daniel Voipan (aka BLaCkShaDoW).
+------------------------------------------------------------------------------------
