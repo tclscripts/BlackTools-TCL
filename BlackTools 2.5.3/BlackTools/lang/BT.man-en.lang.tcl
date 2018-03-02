@@ -185,8 +185,9 @@ set black(say.en.man.94) "\[MAN\] Optional settings: \002dr-reason\002 (default 
 set black(say.en.man.95) "\[MAN\] \002b\002 bans a user from a channel for a specified ban-time. If you do not specify a \001\[duration\]\001 will be used default value, but if you specify \0020\002 will become a permanent ban (blacklisted)."
 set black(say.en.man.96) "\[MAN\] Format duration: <X>\002m\002 = minutes, <X>\002h\002 = hours, <X>\002d\002 = days, \0020\002 = permanent"
 set black(say.en.man.97) "\[MAN\] USAGE SYNTAXES:"
-set black(say.en.man.98) "\[MAN\] \002%char%b\002 <nick|mask> \[-level\] \[duration\] \[reason\] ; \002%botnick% b\002 <nick|mask> \[-level\] \[duration\] \[reason\] ; \002(PRIVMSG) b\002 <#chan> <nick|mask> \[-level\] \[duration\] \[reason\]"
-set black(say.en.man.99) "\[MAN\] \002%char%b\002 <nick|mask>  \[-level\] \[duration\] \[global|link\] \[reason\] ; \002%botnick% b\002 <nick|mask> \[-level\] \[duration\] \[global|link\] \[reason\] ; \002(PRIVMSG) b\002 <#chan> <nick|mask> \[-level\] \[duration\] \[global|link\] \[reason\]"
+set black(say.en.man.98) "\[MAN\] \002%char%b\002 <nick|mask> \[-level\] \[duration\] \[reason\] \[-c/comment\] ; \002%botnick% b\002 <nick|mask> \[-level\] \[duration\] \[reason\] \[-c/comment\] ; \002(PRIVMSG) b\002 <#chan> <nick|mask> \[-level\] \[duration\] \[reason\] \[-c/comment\]"
+set black(say.en.man.98_1) "\[MAN\] ** Note: Using the optional \[-c/comment\] option will make eggdrop shows a second informations line of the ban entry with that comment. **"
+set black(say.en.man.99) "\[MAN\] \002%char%b\002 <nick|mask>  \[-level\] \[duration\] \[global|link\] \[reason\] \[-c/comment\] ; \002%botnick% b\002 <nick|mask> \[-level\] \[duration\] \[global|link\] \[reason\] \[-c/comment\] ; \002(PRIVMSG) b\002 <#chan> <nick|mask> \[-level\] \[duration\] \[global|link\] \[reason\] \[-c/comment\]"
 set black(say.en.man.100) "\[MAN\] Optional settings: \002b-reason\002 (default reason); \002b-bantime\002 (default ban time); \002b-banmask\002 (default banmask)"
 
 #ub
@@ -215,7 +216,8 @@ set black(say.en.man.113) "\[MAN\] Optional settings: \002bw-reason\002 (default
 
 set black(say.en.man.114) "\[MAN\] \002Black\002 bans a user for \001UNLIMITED time\001 (permanent ban)."
 set black(say.en.man.115) "\[MAN\] USAGE SYNTAX:"
-set black(say.en.man.116) "\[MAN\] \002%char%black\002 <nick|mask> \[reason\] ; \002%botnick% black\002 <nick|mask> \[reason\] ; \002(PRIVMSG) black\002 <#chan> <nick|mask> \[reason\]\002"
+set black(say.en.man.116) "\[MAN\] \002%char%black\002 <nick|mask> \[reason\] \[-c/comment\] ; \002%botnick% black\002 <nick|mask> \[reason\] \[-c/comment\] ; \002(PRIVMSG) black\002 <#chan> <nick|mask> \[reason\] \[-c/comment\]\002"
+set black(say.en.man.116_1) "\[MAN\] ** Note: Using the optional \[-c/comment\] option will make eggdrop shows a second informations line of the ban entry with that comment. **"
 set black(say.en.man.117) "\[MAN\] Optional settings: \002black-reason\002 (default reason); \002black-banmask\002 (default banmask)"
 
 #Stick 
@@ -223,7 +225,8 @@ set black(say.en.man.117) "\[MAN\] Optional settings: \002black-reason\002 (defa
 set black(say.en.man.118) "\[MAN\] \002Stick\002 bans a user with a given reason and ban-time, but with a \001sticky\001 character. A sticky ban will be reactivated by the bot if anyone removes it from the channel."
 set black(say.en.man.118_1) "\[MAN\] Format duration: <X>\002m\002 = minutes, <X>\002h\002 = hours, <X>\002d\002 = days, \0020\002 = permanent"
 set black(say.en.man.119) "\[MAN\] USAGE SYNTAX:"
-set black(say.en.man.120) "\[MAN\] \002%char%stick\002 <nick|mask> \[duration\] \[reason\] ; %botnick% stick\002 <nick|mask> \[duration\] \[reason\] ; \002(PRIVMSG) stick\002 <#chan> <nick|mask> \[duration\] \[reason\]"
+set black(say.en.man.120) "\[MAN\] \002%char%stick\002 <nick|mask> \[duration\] \[reason\] \[-c/comment\] ; %botnick% stick\002 <nick|mask> \[duration\] \[reason\] \[-c/comment\] ; \002(PRIVMSG) stick\002 <#chan> <nick|mask> \[duration\] \[reason\] \[-c/comment\]"
+set black(say.en.man.120_1) "\[MAN\] ** Note: Using the optional \[-c/comment\] option will make eggdrop shows a second informations line of the ban entry with that comment. **"
 set black(say.en.man.121) "\[MAN\] Optional settings: \002stick-reason\002 (default reason); \002stick-bantime\002 (default ban time); \002stick-banmask\002 (default banmask)"
 
 #Gag
@@ -565,7 +568,7 @@ set black(say.en.man.416) "\[MAN\] Optional settings: \002badchan-reason\002, ba
 
 #Anunt
 
-set black(say.en.man.417) "\[MAN\] \002Anunt/Advert\002 displays announcements/ads on a channel over a certain amount of time and depending on the channel activity (supports %chan% and %botnick%)."
+set black(say.en.man.417) "\[MAN\] \002Anunt/Advert\002 displays announcements/ads on a channel over a certain amount of time and depending on the channel activity (supports !%chan% and !%botnick%)."
 set black(say.en.man.417_1) "\[MAN\] ** Note: These messages will be displayed one by one and ONLY if there's activity on that channel. Otherwise the eggdrop waits in stand by until the first sign of channel activity (join, part, chat, etc.). **"
 set black(say.en.man.418) "\[MAN\] USAGE SYNTAXES:"
 set black(say.en.man.419) "\[MAN\] \002%char%anunt <ON|OFF>\002 ; %botnick% anunt <ON|OFF> ; \002(PRIVMSG) anunt <#chan> <ON|OFF>\002"
@@ -1533,7 +1536,8 @@ set black(say.en.man.showtip) {
  "\[TIP\] Use tcl scripts you really need on your eggdrop. All the nice & funny scripts you find around may be buggy and unsecure. Look for functionality instead of fun in your eggdrop."
  "\[TIP\] Did you know that now you can use \002for\002 command on multiple eggdrops \002to execute simultaneously\002 the same command? eq: \002for\002 <botnick1>,<botnick2>.. <command> <option>\002 | for Bot1,Bot2,Bot3 say bla bla"
  "\[TIP\] \002WwW.TclScripts.Net\002 offers for download a wide range of TCL's for your eggdrop (Blackip.tcl, YoutbeTitle.tcl, BlackCountry.tcl, CSC.tcl and many more), so you can run a professional and last generation bot."
- "\[TIP\] Did you know that now you can add \002exceptions for particular words\002 from all protections \002to avoid kicking and banning users\002 when it is not really necessary?"
+ "\[TIP\] Did you know that now you can add \002exceptions for particular words\002 from all protections \002to avoid kicking and banning users\002 when it is not really necessary? See \002%char%man exempt\002"
+ "\[TIP\] Did you know that you can add \002a comment\002 to almost all ban commands\002, and other users with access at the eggdrop can see it,\002 when request informations of that ban entry?? eq: \002%char%b nick just a test -c do not remove\002 | \[BT\] Reason: just a test | \[BT\] \002\[BAN COMMENT\]\002 do not remove"
 }
 
 
