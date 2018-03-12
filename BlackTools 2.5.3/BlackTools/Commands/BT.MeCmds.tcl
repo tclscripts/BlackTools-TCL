@@ -1182,7 +1182,7 @@ if {[matchattr $hand nmo|MA $chan]} {
 	set user [lindex [split $arg] 2]
 	set type 1
 	set chan1 "$chan"
-	set hosts [join [lrange [split $arg] 3 end]]
+	set hosts [lindex [split $arg] 3]
 	delhost:process $nick $host $hand $chan $chan1 $user $hosts $type
 	}
 }
@@ -1192,7 +1192,7 @@ if {[matchattr $hand nmo|MA $chan]} {
 	set type 1
 	set chan1 "$chan"
 	set user [lindex [split $arg] 2]
-	set hosts [join [lrange [split $arg] 3 end]]
+	set hosts [lindex [split $arg] 3]
 	addhost:process $nick $host $hand $chan $chan1 $user $hosts $type
 	}
 }

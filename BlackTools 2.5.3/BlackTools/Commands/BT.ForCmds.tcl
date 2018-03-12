@@ -1184,7 +1184,7 @@ if {[matchattr $hand nmo|MA $chan]} {
 	set user [lindex [split $arg] 3]
 	set type 1
 	set chan1 "$chan"
-	set hosts [join [lrange [split $arg] 4 end]]
+	set hosts [lindex [split $arg] 4]
 	delhost:process $nick $host $hand $chan $chan1 $user $hosts $type
 	}
 }
@@ -1194,7 +1194,7 @@ if {[matchattr $hand nmo|MA $chan]} {
 	set type 1
 	set chan1 "$chan"
 	set user [lindex [split $arg] 3]
-	set hosts [join [lrange [split $arg] 4 end]]
+	set hosts [lindex [split $arg] 4]
 	addhost:process $nick $host $hand $chan $chan1 $user $hosts $type
 	}
 }

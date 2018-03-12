@@ -4,14 +4,14 @@
 #########################################################################
 ############################   ADDCMDS TCL   ############################
 #########################################################################
-##						                       ##
-##   BlackTools  : http://blacktools.tclscripts.net	     	       ##
+##						                       						   ##
+##   BlackTools  : http://blacktools.tclscripts.net	     	           ##
 ##   Bugs report : http://www.tclscripts.net/	                       ##
 ##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script ##
-##   Online Help : irc://irc.undernet.org/tcl-help 	 	       ##
+##   Online Help : irc://irc.undernet.org/tcl-help 	 	               ##
 ##                 #TCL-HELP / UnderNet                                ##
 ##                 You can ask in english or romanian                  ##
-##					                               ##
+##					                            					   ##
 #########################################################################
 
 
@@ -74,7 +74,7 @@ if {[userlist] != ""} {
 foreach usr [userlist] {
 	set hst [getuser $usr hosts]
 foreach hhost $hst {
-if {[string match -nocase $hhost $uhost] && (![string match -nocase $usr $user])} {
+if {[string match -nocase $hhost $uhost] && (![string equal -nocase $usr $user])} {
 	blacktools:tell $nick $host $hand $chan $chan1 add.5 $usr
 	set user $usr
 	set show_user $usr
@@ -151,7 +151,6 @@ if {[matchattr $user o|- $chan] && [matchattr $hand o|- $chan]} {
 } else {
 	adduser $user $uhost
 	set user [check:handle $user $nick $host $hand $chan $chan1]
-	chattr $user -|-SOHAMV $chan
 	chattr $user $flags $chan
 	setuser $user XTRA CHANMODIF($chan) $time:$hand
 	blacktools:tell $nick $host $hand $chan $chan1 add.10 "$show_user $uhost"
@@ -177,7 +176,6 @@ if {$get_status_access == "1"} {
 } else {
 	adduser $user $uhost
 	set user [check:handle $user $nick $host $hand $chan $chan1]
-	chattr $user -|-qolSHOAMV $chan
 	chattr $user $flags $chan 
 	setuser $user XTRA CHANMODIF($chan) $time:$hand
 	blacktools:tell $nick $host $hand $chan $chan1 add.10 "$show_user $uhost"
@@ -192,14 +190,18 @@ if {$get_status_access == "1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 gl.nomodif none
 	return
 }
-	chattr $user -omjlptxq|-qolSHOAMV $chan
+foreach c [channels] {
+	if {[matchattr $user $black(exceptflags) $c]} {
+	chattr $user -|-qgaolSHOAMV $c
+	}
+}
+	chattr $user -omjlptxq
 	chattr $user $flags
 	setuser $user XTRA CHANMODIF(GLOBAL) $time:$hand
 	blacktools:tell $nick $host $hand $chan $chan1 add.20 "$show_user [blacktools:getlevelname 2 $hand]"
 } else {
 	adduser $user $uhost
 	set user [check:handle $user $nick $host $hand $chan $chan1]
-	chattr $user -|-qolSHOAMV $chan
 	chattr $user $flags 
 	setuser $user XTRA CHANMODIF(GLOBAL) $time:$hand
 	blacktools:tell $nick $host $hand $chan $chan1 add.10 "$show_user $uhost"
@@ -231,7 +233,6 @@ foreach c [channels] {
 } else {
 	adduser $user $uhost
 	set user [check:handle $user $nick $host $hand $chan $chan1]
-	chattr $user -omjlptxq
 	chattr $user $flags 
 	setuser $user XTRA CHANMODIF(GLOBAL) $time:$hand
 	setuser $user XTRA BLACK_REASON $getreason
@@ -249,14 +250,18 @@ if {$get_status_access == "1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 gl.nomodif none
 	return
 }
-	chattr $user -omjlptxq|-qolSHOAMV $chan
+foreach c [channels] {
+	if {[matchattr $user $black(exceptflags) $c]} {
+	chattr $user -|-qgaolSHOAMV $c
+	}
+}
+	chattr $user -omjlptxq
 	chattr $user $flags
 	setuser $user XTRA CHANMODIF(GLOBAL) $time:$hand
 	blacktools:tell $nick $host $hand $chan $chan1 add.20 "$show_user [blacktools:getlevelname 8 $hand]"
 } else {
 	adduser $user $uhost
 	set user [check:handle $user $nick $host $hand $chan $chan1]
-	chattr $user -|-qolSHOAMV $chan
 	chattr $user $flags 
 	setuser $user XTRA CHANMODIF(GLOBAL) $time:$hand
 	blacktools:tell $nick $host $hand $chan $chan1 add.10 "$show_user $uhost"
@@ -283,7 +288,6 @@ if {$get_status_access == "1"} {
 } else {
 	adduser $user $uhost
 	set user [check:handle $user $nick $host $hand $chan $chan1]
-	chattr $user -|-qolSHOAMV $chan
 	chattr $user $flags $chan 
 	setuser $user XTRA CHANMODIF($chan) $time:$hand
 	blacktools:tell $nick $host $hand $chan $chan1 add.10 "$show_user $uhost"
@@ -309,7 +313,6 @@ if {$get_status_access == "1"} {
 } else {
 	adduser $user $uhost
 	set user [check:handle $user $nick $host $hand $chan $chan1]
-	chattr $user -|-qolHSOAMV $chan
 	chattr $user $flags $chan 
 	setuser $user XTRA CHANMODIF($chan) $time:$hand
 	blacktools:tell $nick $host $hand $chan $chan1 add.10 "$show_user $uhost"
@@ -335,7 +338,6 @@ if {$get_status_access == "1"} {
 } else {
 	adduser $user $uhost
 	set user [check:handle $user $nick $host $hand $chan $chan1]
-	chattr $user -|-qolSHOAMV $chan
 	chattr $user $flags $chan 
 	setuser $user XTRA CHANMODIF($chan) $time:$hand
 

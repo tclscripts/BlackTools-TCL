@@ -1947,7 +1947,7 @@ if {[matchattr $hand nm|- $chan]} {
 	}
 }
 
-floodmsgprot {
+userfloodmsgprot {
 if {[matchattr $hand nm|- $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.1123 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.1124 none
