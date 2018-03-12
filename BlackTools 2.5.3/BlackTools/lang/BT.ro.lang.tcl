@@ -14,7 +14,7 @@
 #                                                   *** The Future is Here ***                                                   #
 #                                                                                     Copyright 2008 - 2018 @ www.tclscripts.net #
 ##################################################################################################################################
-#                                                                                                                         Â®      #
+#                                                                                                                         ®      #
 #     ######  #          #     #####  #    # ####### ####### ####### #        #####        #          #    #     #  #####        #
 #     #     # #         # #   #     # #   #     #    #     # #     # #       #     #       #         # #   ##    # #     #       #
 #     #     # #        #   #  #       #  #      #    #     # #     # #       #             #        #   #  # #   # #             #
@@ -541,6 +541,7 @@ set black(say.ro.seen.37) "\005\[BT\]\005 Am gasit mai mult de (%num%) rezultate
 set black(say.ro.seen.38) "\005\[BT\]\005 Am gasit mai mult de (%num%) rezultate. Cel mai recent \002%latest%\002 (%host%) si-a schimbat nick-ul in %newnick% acum %output% %date%. %nowon%"
 set black(say.ro.seen.39) "\005\[BT\]\005 Salut \002%msg.1%\002, ar trebui sa stii ca \001%msg.2%\001 te-a cautat cu \002seen\002 pe \002%chan%\002 in data de \002%msg.3%\002."
 set black(say.ro.seen.40) "\005\[BT\]\005 Am gasit mai mult de (%num%) rezultate. Cel mai recent \002%latest%\002 (%host%) a fost vazut ultima oara pe %chan%.%nowon%"
+set black(say.ro.seen.41) "\005\[BT\]\005 Am gasit mai mult de (100) rezultate. Te rog restructureaza cautarea."
 
 ################################# Greet ######################################
 
@@ -599,7 +600,7 @@ set black(say.ro.next.4) "\002%current%\002 acum ca ai fost ajutat te rog sa dai
 set black(say.ro.next.5) "Nu ai voie sa faci idle aici! Te rog sa revii pe %chan% atunci cand ai nevoie de ajutor"
 set black(say.ro.next.6) "\005\[BT\]\005 ATENTIE: %nick% are nevoie de ajutor pe %chan%. Acesta este numarul \002%counter%\002 la rand."
 set black(say.ro.next.7) "\005\[BT\]\005 Lista celor care asteapta ajutor este:"
-set black(say.ro.next.8) "\005\[BT\]\005 Nimeni nu are nevoie de ajutor Ã®n acest moment."
+set black(say.ro.next.8) "\005\[BT\]\005 Nimeni nu are nevoie de ajutor în acest moment."
 set black(say.ro.next.9) "%msg%"
 set black(say.ro.next.11) "\005\[BT\]\005 Atentie: \002%current%\002 a fost preluat de \002%nick%\002 (\001%hand%\001)."
 set black(say.ro.next.13) "\005\[BT\]\005 Eroare! \002%msg.1%\002 este in lista de help, dar nu a fost ajutat inca."
@@ -1308,7 +1309,7 @@ set black(say.ro.omsg.1) "\005\[BT\]\005 Mesaj trimis catre toti @ de pe: \002%m
 
 #################################### forward ###################################
 
-set black(say.ro.forward.1) "\005\[BT\]\005 \004\[MESAJ PRIVAT\]\004 de la -- <\002%msg.1%\002> Â»Â»Â» \001%msg.8%\001"
+set black(say.ro.forward.1) "\005\[BT\]\005 \004\[MESAJ PRIVAT\]\004 de la -- <\002%msg.1%\002> »»» \001%msg.8%\001"
 
 ##################################### mb #######################################
 

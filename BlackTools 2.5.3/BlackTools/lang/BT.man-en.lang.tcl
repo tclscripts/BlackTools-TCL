@@ -15,7 +15,7 @@
 #                                                                                            Copyright 2008 - 2018 @ www.tclscripts.net #
 #########################################################################################################################################
 #                                                                                                                                       #
-#   ENGLISH LANGUAGE                                                                                                            Â®       #
+#   ENGLISH LANGUAGE                                                                                                            ®       #
 #   ######  #          #     #####  #    # ####### ####### ####### #        #####     #     #    #    #     # #     #    #    #         #
 #   #     # #         # #   #     # #   #     #    #     # #     # #       #     #    ##   ##   # #   ##    # #     #   # #   #         #
 #   #     # #        #   #  #       #  #      #    #     # #     # #       #          # # # #  #   #  # #   # #     #  #   #  #         #
@@ -1291,9 +1291,9 @@ set black(say.en.man.1119) "\[MAN\] \002FloodMenuProt\002 protects the eggdrop f
 set black(say.en.man.1120) "\[MAN\] USAGE SYNTAX:"
 set black(say.en.man.1121) "\[MAN\] \002%char%set floodmenuprot\002 <no. commands:seconds> ; \002%botnick% set floodmenuprot\002 <no. commands:seconds> ; \002(PRIVMSG) set floodmenuprot\002 <no. commands:seconds>"
 
-#Egg FloodMsgProt
+#Egg UserFloodMsgProt
 
-set black(say.en.man.1123) "\[MAN\] \002FloodMsgProt\002 protects the eggdrop from \002PRIVMSG flood\002. Determines how many PRIVMSG messages/seconds the eggdrop will accept before it is considered a flood and ignores all messages from that user for a short period of time."
+set black(say.en.man.1123) "\[MAN\] \002UserFloodMsgProt\002 protects the eggdrop from \002PRIVMSG flood\002. Determines how many PRIVMSG messages/seconds the eggdrop will accept before it is considered a flood and ignores all messages from that user for a short period of time."
 set black(say.en.man.1124) "\[MAN\] USAGE SYNTAX:"
 set black(say.en.man.1125) "\[MAN\] \002%char%set floodmsgprot\002 <no. messages:seconds> ; \002%botnick% set floodmsgprot\002 <no. messages:seconds> ; \002(PRIVMSG) set floodmsgprot\002 <no. messages:seconds>"
 
@@ -1530,13 +1530,13 @@ set black(say.en.man.showtip) {
  "\[TIP\] \002(\$)\002 You want a \002customised TCL Script\002 for your eggdrop? Easy-peasy, just \002tell us what you need\002! We can create \002almost anything in TCL\002 based on your ideas and donations. Email \002blackshadow@tclscripts.net\002 or \002info@tclscripts.net\002 with your request informations and we'll contact you \002as soon as possible\002."
  "\[TIP\] Did you know that you can add multi line ads? eq:\002 %char%anunt add <advert1>~<advert2>~<advert3>\002 | %char%anunt add Welcome to %chan%~Have fun~The Next Generation TCL"
  "\[TIP\] \002ATTENTION!!\002 Users who use both \002a&a\002 and \002BlackTools\002 scripts \002together\002 should know that this works in theory. So \002DO NOT ask\002 about help for this script if you use it together with \002a&a script\002.."
- "\[TIP\] Did you know that you copy settings and the banlist or users access list from one channel to another? eq:\002 %char%cp userlist <#chan1> <#chan2>\002 | For more info about check:\002 %char%man cp\002"
+ "\[TIP\] Did you know that you copy settings and the banlist or users access list from one channel to another? eq:\002 %char%cp userlist <#chan1> <#chan2>\002 | For more info: \002%char%man cp\002"
  "\[TIP\] Check our forum at\002 http://tclscripts.net\002 for the latest updates & informations."
- "\[TIP\] Did you know that now you can upload files matching the pattern\002 *.tcl\002 from a url inside your eggdrop's \002scripts directory\002? eq:\002 %char%tcl wget <link/name.tcl>\002 | For more info about check:\002 %char%man tcl\002"
+ "\[TIP\] Did you know that now you can upload files matching the pattern\002 *.tcl\002 from a url inside your eggdrop's \002scripts directory\002? eq:\002 %char%tcl wget <link/name.tcl>\002 | For more info: \002%char%man tcl\002"
  "\[TIP\] Use tcl scripts you really need on your eggdrop. All the nice & funny scripts you find around may be buggy and unsecure. Look for functionality instead of fun in your eggdrop."
- "\[TIP\] Did you know that now you can use \002for\002 command on multiple eggdrops \002to execute simultaneously\002 the same command? eq: \002for\002 <botnick1>,<botnick2>.. <command> <option>\002 | for Bot1,Bot2,Bot3 say bla bla"
+ "\[TIP\] Did you know that now you can use \002for\002 command on multiple eggdrops \002to execute simultaneously\002 the same command? eq: for Bot1,Bot2,Bot3 say bla bla | For more info: \002%char%man for\002"
  "\[TIP\] \002WwW.TclScripts.Net\002 offers for download a wide range of TCL's for your eggdrop (Blackip.tcl, YoutbeTitle.tcl, BlackCountry.tcl, CSC.tcl and many more), so you can run a professional and last generation bot."
- "\[TIP\] Did you know that now you can add \002exceptions for particular words\002 from all protections \002to avoid kicking and banning users\002 when it is not really necessary? See \002%char%man exempt\002"
+ "\[TIP\] Did you know that now you can add \002exceptions for particular words\002 from all protections \002to avoid kicking and banning users\002 when it is not really necessary? For more info: \002%char%man exempt\002"
  "\[TIP\] Did you know that you can add \002a comment\002 to almost all ban commands\002, and other users with access at the eggdrop can see it,\002 when request informations of that ban entry?? eq: \002%char%b nick just a test -c do not remove\002 | \[BT\] Reason: just a test | \[BT\] \002\[BAN COMMENT\]\002 do not remove"
 }
 

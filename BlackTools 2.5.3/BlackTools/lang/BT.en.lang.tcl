@@ -14,7 +14,7 @@
 #                                                  *** The Future is Here ***                                                    #
 #                                                                                     Copyright 2008 - 2018 @ www.tclscripts.net #
 ##################################################################################################################################
-#                                                                                                                         Â®      #
+#                                                                                                                         ®      #
 #     ######  #          #     #####  #    # ####### ####### ####### #        #####        #          #    #     #  #####        #
 #     #     # #         # #   #     # #   #     #    #     # #     # #       #     #       #         # #   ##    # #     #       #
 #     #     # #        #   #  #       #  #      #    #     # #     # #       #             #        #   #  # #   # #             #
@@ -541,6 +541,7 @@ set black(say.en.seen.37) "\005\[BT\]\005 Found more than (\002%num%\002) result
 set black(say.en.seen.38) "\005\[BT\]\005 Found more than (\002%num%\002) results. Most recently \002%latest%\002 (%host%) changed his/her nickname in %newnick% about %output% ago %date%. %nowon%"
 set black(say.en.seen.39) "\005\[BT\]\005 Heya %msg.1%, you need to know that \002%msg.2%\002 was looking for you with \002seen\002 on \002%chan%\002 about \002%msg.3%\002 ago."
 set black(say.en.seen.40) "\005\[BT\]\005 Found more than (\002%num%\002) results. Most recently \002%latest%\002 (%host%) was last seen on %chan%.%nowon%"
+set black(say.en.seen.41) "\005\[BT\]\005 Found more than (\002%num%\002) results. Please be more explicit."
 
 ################################# Greet ######################################
 
@@ -1309,7 +1310,7 @@ set black(say.en.omsg.1) "\005\[BT\]\005 Message sent to all @'s from: \002%msg%
 
 #################################### forward ###################################
 
-set black(say.en.forward.1) "\005\[PRIVATE MSG\]\005 from -- <\002%msg.1%\002> Â»Â»Â» \001%msg.8%\001"
+set black(say.en.forward.1) "\005\[PRIVATE MSG\]\005 from -- <\002%msg.1%\002> »»» \001%msg.8%\001"
 
 ##################################### mb #######################################
 

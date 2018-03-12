@@ -1293,9 +1293,9 @@ set black(say.ro.man.1119) "\[MAN\] \002FloodMenuProt\002 este o comanda menita 
 set black(say.ro.man.1120) "\[MAN\] SINTAXA FOLOSIRE:"
 set black(say.ro.man.1121) "\[MAN\] \002%char%set floodmenuprot\002 <nr. comenzi:secunde> ; \002%botnick% set floodmenuprot\002 <nr. comenzi:secunde> ; \002(PRIVMSG) set floodmenuprot\002 <nr. comenzi:secunde>"
 
-#Egg FloodMsgProt
+#Egg UserFloodMsgProt
 
-set black(say.ro.man.1123) "\[MAN\] \002FloodMsgProt\002 este o comanda menita sa protejeze eggdrop-ul de \002PRIVMSG flood\002. Stabileste cate mesage/secunde va accepta eggdrop-ul in privat inainte de a fi considerat un flood, urmand ca sa ignore toate mesajele de la acel user pentru o perioada scurta de timp."
+set black(say.ro.man.1123) "\[MAN\] \002UserFloodMsgProt\002 este o comanda menita sa protejeze eggdrop-ul de \002PRIVMSG flood\002. Stabileste cate mesage/secunde va accepta eggdrop-ul in privat inainte de a fi considerat un flood, urmand ca sa ignore toate mesajele de la acel user pentru o perioada scurta de timp."
 set black(say.ro.man.1124) "\[MAN\] SINTAXA FOLOSIRE:"
 set black(say.ro.man.1125) "\[MAN\] \002%char%set floodmsgprot\002 <nr. mesaje:secunde> ; \002%botnick% set floodmsgprot\002 <nr. mesaje:secunde> ; \002(PRIVMSG) set floodmsgprot\002 <nr. mesaje:secunde>"
 
@@ -1532,13 +1532,13 @@ set black(say.ro.man.showtip) {
  "\[TIP\] \002ATENTIE!!\002 Cei care folosesc \002impreuna\002 atat \002a&a\002, cat si \002Blacktools\002, ar trebui sa stii ca acest lucru functioneaza, dar in teorie. Deci, \002nu cereti ajutor\002 pentru acest script, daca il utilizati impreuna cu \002a&a script\002.."
  "\[TIP\] Stiai ca poti adauga \002mai mult de 1 propozitie\002 intr-un anunt? ex:\002 %char%anunt add <anunt1>~<anunt2>~<anunt3>\002 | %char%anunt add Bine ai venit pe %chan%~Distractie placuta~The Next Generation TCL"
  "\[TIP\] Verificati forumul nostru la\002 http://tclscripts.net\002 pentru cele mai recente actualizari si informatii."
- "\[TIP\] Stiai ca poti copia atat setarile, cat si lista de banuri sau cea de useri cu access de pe un canal pe altul? ex:\002 %char%cp userlist <#canal1> <#canal2>\002 | Pentru mai multe informatii vezi:\002 %char%man cp\002"
+ "\[TIP\] Stiai ca poti copia atat setarile, cat si lista de banuri sau cea de useri cu access de pe un canal pe altul? ex:\002 %char%cp userlist <#canal1> <#canal2>\002 | Pentru mai multe detalii: \002%char%man cp\002"
  "\[TIP\] Utilizati script-uri TCL de care chiar aveti nevoie pentru eggdropul dvs. Toate aceste script-uri dragute si amuzante pe care le gasesti pe net pot fi stricate si nesigure. Gandeste-te la functionalitatea eggdrop-ului tau!" 
- "\[TIP\] Stiai ca acum poti descarca fisiere de tip\002 *.tcl\002 de pe un URL direct in \002fisierul scripts\002 al eggdropului? eq:\002 %char%tcl wget <link/nume.tcl>\002 | Pentru mai multe informatii vezi:\002 %char%man tcl\002"
+ "\[TIP\] Stiai ca acum poti descarca fisiere de tip\002 *.tcl\002 de pe un URL direct in \002fisierul scripts\002 al eggdropului? eq:\002 %char%tcl wget <link/nume.tcl>\002 | Pentru mai multe detalii: \002%char%man tcl\002"
  "\[TIP\] \002WwW.TclScripts.Net\002 ofera spre download o gama variata de TcL-uri pentru eggdrop-ul tau (BlackIP.tcl, YoutubeTitle.tcl, BlackCountry.tcl, CSC.tcl si multe altele), pentru a avea un BOT profesional si de ultima generatie."
- "\[TIP\] Stiai ca acum poti folosi comanda \002for\002 pe mai multi eggdropi pentru a \002executa simultan\002 aceeasi comanda? ex: \002for\002 <botnick1>,<botnick2>.. <comanda> <optiune>\002 | for Bot1,Bot2,Bot3 say bla bla"
+ "\[TIP\] Stiai ca acum poti folosi comanda \002for\002 pe mai multi eggdropi pentru a \002executa simultan\002 aceeasi comanda? ex: for Bot1,Bot2,Bot3 say bla bla | Pentru mai multe detalii: \002%char%man for\002"
  "\[TIP\] \002(\$)\002 Vrei un \002TCL script personalizat\002 pentru eggdropul tau? Nimic mai simplu, doar \002spune-ne ce ai dori\002! Putem crea \002aproape orice TCL\002 pe baza ideilor si donatiilor tale. Email \002blackshadow@tclscripts.net\002 or \002info@tclscripts.net\002 cu informatiile solicitate si va vom contacta \002cat mai curand posibil\002."
- "\[TIP\] Stiai ca acum poti adauga \002exceptii pentru anumite cuvinte\002 de la protectiile scriptului \002pentru a evita kick-ul sau banarea utilizatorilor\002 atunci cand nu este intradevar necesar? Vezi \002%char%man exempt\002"
+ "\[TIP\] Stiai ca acum poti adauga \002exceptii pentru anumite cuvinte\002 de la protectiile scriptului \002pentru a evita kick-ul sau banarea utilizatorilor\002 atunci cand nu este intradevar necesar? Pentru mai multe detalii: \002%char%man exempt\002"
  "\[TIP\] Stiai ca acum poti adauga \002un comentariu\002 la cateva comenzi de ban\002, pe care ceilalti useri cu acces la eggdrop sa il vada,\002 atunci cand solicita informatii despre acel ban?? eq: \002%char%b nick just a test -c do not remove\002 | \[BT\] Motiv: just a test | \[BT\] \002\[COMENTARIU BAN\]\002 do not remove"
 }
 
