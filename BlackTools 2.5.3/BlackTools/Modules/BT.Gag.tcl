@@ -266,7 +266,7 @@ if {![validchan $chan]} {
 	return
 }
 if {[onchan $gagger $chan]} {
-	 set mask [return_mask [return_host_num "gag" $chan] [getchanhost $gagger $chan] $gagger] 
+	 set mask [return_mask [return_host_num "gag" $chan [getchanhost $gagger $chan]] [getchanhost $gagger $chan] $gagger] 
 } else {
 	blacktools:tell $nick $host $hand $chan $chan1 gl.usernotonchan $show_gagger
 	return

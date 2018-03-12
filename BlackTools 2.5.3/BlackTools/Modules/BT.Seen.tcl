@@ -122,6 +122,12 @@ if {$gl == "1"} {
 } else {
 	set find [lsearch -all [string tolower $data] [string tolower "* $chan $what *"]]
 }
+
+if {[llength $find] > 99} {
+	blacktools:tell $nick $host $hand $chan $chan1 seen.41 none
+	return
+}
+
 if {[llength $find] > 0} {
 foreach i $find {
 	set line [lindex $data $i]
@@ -163,6 +169,12 @@ if {$gl == "1"} {
 } else {
 	set find_other [lsearch -all [string tolower $data] [string tolower "* $chan * $first_host *"]]
 }
+
+if {[llength $find_other] > 99} {
+	blacktools:tell $nick $host $hand $chan $chan1 seen.41 none
+	return
+}
+
 foreach k $find_other {
 	set line [lindex $data $k]
 	set userentry [lindex [split $line] 2]
@@ -253,6 +265,8 @@ foreach e $entry {
 	set chanentry [lindex [split $line] 1]
 	set jointime [lindex [split $line] 5]
 	set newnick [lindex [split $line] 6]
+	set split_newnick [wsplit $newnick "%MSG%"]
+	set newnick [concat [lindex $split_newnick 0]]
 	set extra [join [lrange [split $line] 6 end]]
 	set host [lindex [split $line] 3]
 	set host [string trim $host "*!~"]
@@ -288,6 +302,9 @@ if {$staytime == "0"} { set nojointime 1 }
 if {$num_results > 1} { set more_entry 1 }
 if {$message != ""} { set lastmessage 1 }
 if {[onchan $latest_entry $chanentry]} { set isonchan 1 }
+if {$type == "NICKCHANGE"} {
+	if {[onchan $newnick $chanentry]} { set isonchan 1 }
+}
 if {$more_entry == "1"} {
 	switch $type {
 	JOIN {

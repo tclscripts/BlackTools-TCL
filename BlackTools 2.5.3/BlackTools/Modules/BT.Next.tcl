@@ -22,7 +22,7 @@ proc black:next:join {nick host hand chan} {
 		set lang [setting:get $chan lang]
 if {$lang == ""} { set lang [string tolower $black(default_lang)] }
 if {[setting:get $chan next]} {
-if {[matchattr $handle $black(exceptflags) $chan]} { 
+if {[matchattr $hand $black(exceptflags) $chan]} { 
 	pushmode $chan +v $nick
 	return
 }
