@@ -3466,7 +3466,13 @@ proc blacktools:isgag {host chan} {
 	close $file
 	set bancheck [lsearch -all -inline $data "GAG * $chan $host *"]
 if {$bancheck != ""} {
+	set expire [lindex [split $bancheck] 5]
+	set dif [expr $expire - [unixtime]]
+if {$dif > 0} {
 	return 1
+} else {
+	return 0
+		}
 	} else {
 	return 0
 	}
@@ -4031,7 +4037,7 @@ proc blacktools:autounban {} {
 foreach b [blacktools:banlist:all] {
 	set read_time [lindex [split $b] 5]
 if {$read_time == "0"} { continue }
-if {[expr $read_time - [unixtime]] < 0} {
+if {[expr $read_time - [unixtime]] <= 0} {
 	set read_host [lindex [split $b] 3]
 	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 	set read_type [lindex [split $b] 0]
