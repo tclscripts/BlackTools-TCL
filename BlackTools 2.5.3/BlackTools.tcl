@@ -19,6 +19,7 @@
 #									  #
 #		   			  One TCL. One smart Eggdrop.     #
 ###########################################################################
+#                                      + Last Updated: 11.03.2018 22:10PM #
 #                                                                         #
 #                       #####    ######     #####                         #
 #                           #    #              #                         #
@@ -73,7 +74,8 @@
 #   History     : http://www.tclscripts.net/release-notes                 #
 #   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script     #
 #   Online help : irc://irc.undernet.org/tcl-help                         #
-#                                                                         #
+#                  #TCL-HELP / UnderNet        	                          #
+#                  You can ask in english or romanian                     #
 ###########################################################################
 #                                                                         #
 #        You want a customised TCL Script for your eggdrop?               #
@@ -99,7 +101,7 @@ set black(homechan) "#no_home_chan"
 ###									###
 #First Char (use "none" for no chars)
 
-set black(cmdchar) "! . `"
+set black(cmdchar) "! . ` \^"
 
 ###########################################################################
 #-------------------------- Default Language -----------------------------#
@@ -144,7 +146,7 @@ set black(default_colors) "bold underline none underline"
 ###									###
 #Default away (you can change'it online ofcourse.)
 
-set black(default_away) "BlackTools 2.5.3 - The Next Generation TCL"
+set black(default_away) "BlackTools 2.5.3 - The Next Generation TCL - www.TCLScripts.Net"
 
 ###########################################################################
 #------------------------- Default BanTime -------------------------------#
@@ -278,7 +280,7 @@ set black(banmethod_memory_time) "60m"
 
 #-------------------------- Automaticaly Login ---------------------------#
 # 1 - yes ; 0 - no
-set black(autologin) "1"
+set black(autologin) "0"
 
 #---------------------------- Chanserv Name ------------------------------#
 
@@ -420,7 +422,7 @@ set black(antipubexcept) {
 
 #Ban-Mode
 
-set black(antipubmode) ""
+set black(antipubmode) "m"
 
 #Ban-mode Time (Seconds)
 
@@ -769,7 +771,7 @@ set black(antirepeat:banmethod) "7"
 
 #Ban-Mode
 
-set black(antirepeatmode) ""
+set black(antirepeatmode) "m"
 
 #Ban-mode Time (Seconds)
 
@@ -1039,7 +1041,7 @@ set black(nomodetime) "45"
 
 #Op ALERT (1 - ON ; 0 - OFF)
 
-set black(fjoinhow) "0"
+set black(fjoinhow) "1"
 
 #Number of joins per user in seconds (joins:seconds)
 
@@ -1291,7 +1293,7 @@ set black(anunthow) "0"
 
 #Show-Time (<x>m (minutes), <x>h (hours), <x>d (days)
 
-set black(bttime) "15m"
+set black(bttime) "56m"
 
 #MSg Type ( 1 - ACTION ; 0 - PRIVMSG )
 
