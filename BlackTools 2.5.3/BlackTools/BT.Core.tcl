@@ -6355,11 +6355,10 @@ if {[isignore $black(chanserv:ignore_host)]} {
 
 proc blacktools:getlastaction:join {nick host hand chan} {
 	global black
-if {[isbotnick $nick]} {
-	return
-}
+if {![isbotnick $nick]} {
 	set gettime [unixtime]
 	set black(lastaction:$chan) $gettime
+	}
 }
 
 proc blacktools:getlastaction:part {nick host hand chan arg} {
@@ -6378,8 +6377,17 @@ proc blacktools:getlastaction:kick {nick host hand chan kicked reason} {
 }
 
 proc blacktools:getlastaction:text {nick host hand chan arg} {
+	global black botnick
+if {![isbotnick $nick]} {
+if {[validchan $chan]} {
+	utimer 1 [list black:setlastaction $chan]
+		}
+	}
+}
+
+proc black:setlastaction {chan} {
 	global black
-	blacktools:getlastaction:join $nick $host $hand $chan
+	set black(lastaction:$chan) [unixtime]
 }
 
 proc blacktools:getlastaction:me {nick host hand chan keyword arg} {
