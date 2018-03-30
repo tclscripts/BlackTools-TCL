@@ -1189,6 +1189,7 @@ if {[matchattr $hand nmo|MA $chan]} {
 
 addhost {
 if {[matchattr $hand nmo|MA $chan]} {
+	set arg [strip:all $arg]
 	set type 1
 	set chan1 "$chan"
 	set user [lindex [split $arg] 2]
@@ -1225,6 +1226,7 @@ foreach user $args {
 
 add {
 if {[matchattr $hand nmo|MA $chan]} {
+	set arg [strip:all $arg]
 	set level [lindex [split $arg] 2]
 	set type 1
 	set chan1 "$chan"
@@ -2002,6 +2004,7 @@ if {[matchattr $hand nmo|MAOV $next]} {
 
 myset {
 if {[matchattr $hand nmo|VAOM $chan]} {
+	set arg [strip:all $arg]
 	set type 1
 	set chan1 "$chan"	
 	set flags [lindex [split $arg] 2]

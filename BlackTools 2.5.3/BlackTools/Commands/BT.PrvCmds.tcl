@@ -1024,7 +1024,7 @@ if {[matchattr $hand nmo|MAOV $chan]} {
 if {$mychan_use == "1"} {
 	set level [lindex [split $arg] 1]
 }
-if {[string equal -nocase $chan "owner"] && [matchattr $hand nmo]} {
+if {([string equal -nocase $chan [blacktools:getlevelname 2 $hand]] || [string equal -nocase $chan [blacktools:getlevelname 8 $hand]]) && [matchattr $hand nmo]} {
 	userlist:execute $hand "prv" $chan $chan $chan1 $nick $type
 	return
 }
@@ -1070,6 +1070,7 @@ if {[matchattr $hand nmo|MA $chan]} {
 
 addhost {
 if {[matchattr $hand nmo|MA $chan]} {
+	set arg [strip:all $arg]
 	set type 2
 	set chan1 "$chan"
 	set user [lindex [split $arg] 1]
@@ -1104,6 +1105,7 @@ foreach user $args {
 
 add {
 if {[matchattr $hand nmo|MA $chan]} {
+	set arg [strip:all $arg]
 	set level [lindex [split $arg] 2]
 	set type 2
 	set args [lrange [split $arg] 3 end]
@@ -1422,6 +1424,9 @@ if {[matchattr $hand nmo|M $chan]} {
 if {$mychan_use == "1"} {
 	set flags [lindex [split $arg] 1]
 	set type [join [lrange [split $arg] 2 end]]
+} elseif {![regexp {[&#]} $chan]} {
+	set flags [lindex [split $arg] 1]
+	set type [join [lrange [split $arg] 2 end]]
 }
 	set type1 2
 	set chan1 "$chan"
@@ -1437,7 +1442,6 @@ if {[string equal -nocase "global" $chan]} {
 	set:process $nick "prv" $hand $chan $chan1 $flags $type $type1
 	}
 }
-
 
 mode {
 if {[matchattr $hand nmo|OMA $chan]} {
@@ -1572,6 +1576,7 @@ if {[matchattr $hand nmo|AOMV $c]} {
 
 if {[regexp {^[&#]} $chan] && [validuser $hand]} {
 	set type 2
+	set arg [strip:all $arg]
 	set chan1 "$chan"	
 	set flags [lindex [split $arg] 1]
 	set typez [lindex [split $arg] 2]

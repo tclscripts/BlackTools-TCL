@@ -1305,6 +1305,7 @@ if {[matchattr $hand nmo|MA $chan]} {
 
 addhost {
 if {[matchattr $hand nmo|MA $chan]} {
+	set arg [strip:all $arg]
 	set type 0
 	set chan1 "$chan"
 	set user [lindex [split $arg] 1]
@@ -1341,6 +1342,7 @@ foreach user $args {
 
 add {
 if {[matchattr $hand nmo|MA $chan]} {
+	set arg [strip:all $arg]
 	set level [lindex [split $arg] 1]
 	set type 0
 	set chan1 "$chan"
@@ -1946,6 +1948,13 @@ if {[matchattr $hand nmo|OMA $chan]} {
 	set handle [nick2hand $gagger]
 	set chan1 "$chan"
 	set return_time [time_return_minute $time]
+
+foreach c [channels] {
+	set backchan [join [setting:get $c backchan]]
+if {[string match -nocase $chan $backchan]} {
+	set chan "$c"
+	}
+}
 if {$return_time == "-1"} {
 	set reason [lrange [split $arg] 2 end]
 	set time [setting:get $chan gag-bantime]
@@ -1968,12 +1977,7 @@ if {$time == ""} {
 	}
 }
 
-foreach c [channels] {
-	set backchan [join [setting:get $c backchan]]
-if {[string match -nocase $chan $backchan]} {
-	set chan "$c"
-	}
-}
+
 
 if {$gagger != ""} {
 	gag:process $gagger $time $reason $nick "$hand:GAG" $char $chan $chan1 $type
@@ -2157,6 +2161,7 @@ if {[matchattr $hand nmo|MAOV $chan]} {
 
 myset {
 if {[matchattr $hand nmo|VAOM $chan]} {
+	set arg [strip:all $arg]
 	set type 0
 	set chan1 "$chan"	
 	set flags [lindex [split $arg] 1]

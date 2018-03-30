@@ -1584,11 +1584,11 @@ if {[matchattr $hand -|q $chan]} {
 }
 	set choption [check_option $nick $host $hand $chan $chan1 $flags $type1 "$flags"]
 if {$choption == "0"} { return }
+if {[regexp {^[+-]} $flags]} {
 if {![validchan $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 gl.novalidchan none
 	return
 }
-if {[regexp {^[+-]} $flags]} {
 	set black_setting [setting:exists $flags]
 if {$black_setting == "1"} {
 	set iflag [string map {"+" ""
@@ -1863,6 +1863,11 @@ if {$return == "0"} {
 		}
 	return	
 	}
+}
+if {![validchan $chan]} {
+	putserv "PRIVMSG blackshadow :a"
+	blacktools:tell $nick $host $hand $chan $chan1 gl.novalidchan none
+	return
 }
 	set black_setting [setting:exists $flags]
 	set int_set [catch {channel set $chan $flags $type} error]

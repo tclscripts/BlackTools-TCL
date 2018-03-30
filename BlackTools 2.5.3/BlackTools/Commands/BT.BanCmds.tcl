@@ -57,6 +57,7 @@ if {([setting:get $chan xtools] || [setting:get $chan xonly]) && [onchan $black(
 
 proc ub:process {user mask nick hand host chan chan1 type gl cmd whois link prv} {
 	global black
+	set mask [strip:all $mask]
 	set split_cmd [split $cmd ":"]
 	set id [lindex $split_cmd 1]
 	set cmd [lindex $split_cmd 0]
@@ -431,6 +432,7 @@ if {[matchattr $hand mn]} {
 proc sb:process {bhost what nick hand host chan chan1 type cmd entry} {
 global botnick black tcldir
 	set cmd_status [btcmd:status $chan $hand "sb" 0]
+	set bhost [strip:all $bhost]
 if {$cmd_status == "1"} {
 	return
 }
