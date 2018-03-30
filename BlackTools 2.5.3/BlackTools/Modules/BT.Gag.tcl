@@ -233,7 +233,7 @@ if {[string match -nocase $read_host $host]} {
 ################################# ungag ###############################
 
 proc ungag:process {gagger nick hand host chan chan1 type} {
-	global black
+	global black botnick
 	set cmd_status [btcmd:status $chan $hand "ungag" 0]
 if {$cmd_status == "1"} { 
 	return 
@@ -291,6 +291,19 @@ if {[ischanban $mask $chan]} {
 
 	putserv "PRIVMSG $gagger :$ungag_user_message"
 	putserv "PRIVMSG $chan :$ungag_chan_message"
+	set backchan [join [setting:get $chan backchan]]
+if {$backchan == ""} { 
+	return
+}
+if {!([validchan $backchan]) || !([onchan $botnick $backchan])} {
+	return
+}
+	set replace(%banmask%) $mask
+	set replace(%chan%) $chan
+	set replace(%nick%) $hand
+	set text [black:color:set "" $black(say.$getlang.reportchan.4)]
+	set reply [join $text]
+	puthelp "PRIVMSG $backchan :[string map [array get replace] $reply]"
 	}
 }
 

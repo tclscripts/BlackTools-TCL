@@ -290,13 +290,13 @@ if {[matchattr $handle $black(exceptflags) $chan]} {
 if {$user == ""} {
 switch $type {
 	0 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr "helped"
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr "next"
 	}
 	1 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_nick "helped"
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_nick "next"
 	}
 	2 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_priv "helped"
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_priv "next"
 		}
 	}
 	return
@@ -366,13 +366,13 @@ if {[matchattr $handle $black(exceptflags) $chan]} {
 if {$user == ""} {
 switch $type {
 	0 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr "noidle"
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr "next"
 	}
 	1 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_nick "noidle"
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_nick "next"
 	}
 	2 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_priv "noidle"
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_priv "next"
 		}
 	}
 	return
@@ -411,13 +411,13 @@ if {$cmd_status == "1"} {
 if {$user == ""} {
 switch $type {
 	0 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr "skip"
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr "next"
 	}
 	1 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_nick "skip"
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_nick "next"
 	}
 	2 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_priv "skip"
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_priv "next"
 		}
 	}
 	return

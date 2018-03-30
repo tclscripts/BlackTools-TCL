@@ -181,7 +181,7 @@ if {$found_it == 0} {
 	puts $file [join $delete "\n"]
 	close $file
 	rehash
-	blacktools:tell $nick $host $hand $chan $chan1 tcl.8 $the_script
+	blacktools:tell $nick $host $hand $chan $chan1 tcl.8 [split $the_script]
 }
 
 list {
