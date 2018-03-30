@@ -19,7 +19,9 @@
 #									  #
 #		   			  One TCL. One smart Eggdrop.     #
 ###########################################################################
-#                                      + Last Updated: 11.03.2018 22:10PM #
+#              + Script released: 03.03.2018 09:10 AM (Romanian TimeZone) #
+#              + Script updated : 30.03.2018 11:57 AM (Romanian TimeZone) #
+###########################################################################
 #                                                                         #
 #                       #####    ######     #####                         #
 #                           #    #              #                         #
@@ -34,7 +36,8 @@
 #                                                                         #
 #                      - #TCL-HELP @ UNDERNET -     	                  #
 #                                                                         #
-#			      Copyright 2008 - 2018 @ WwW.TCLScripts.NET  #	
+#			      Copyright 2008 - 2018 @ WwW.TCLScripts.NET  #
+#                                                                         #
 ###########################################################################
 #                                                                         #
 #  BlackTools:                                                            #
@@ -60,11 +63,11 @@
 #  Special thanks to:                                                     #
 #                   o Time2Go [ #Tcl-Help Admin ]                         #
 #		    o Florian [ florian@tclscripts.net ]                  #
-#                                                                         #
 #                     without whom this script would not have gone so far.#
-#                                                                         #
-#  Thanks also to all those people who found bugs and reported them and   #
-# to all users who joined #TCL-HELP and shared ideas and suggestions.     #
+# -------                                                         ------- #
+#  Thanks to the many people who have contributed over the years, in a    #
+#  variety of ways. Also to all those users who joined #TCL-HELP to report# 
+#  bugs or to share their ideas, tips and suggestions.                    #
 #                                                                         #
 ###########################################################################
 #                                                                         #
@@ -74,8 +77,7 @@
 #   History     : http://www.tclscripts.net/release-notes                 #
 #   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script     #
 #   Online help : irc://irc.undernet.org/tcl-help                         #
-#                  #TCL-HELP / UnderNet        	                          #
-#                  You can ask in english or romanian                     #
+#                                                                         #
 ###########################################################################
 #                                                                         #
 #        You want a customised TCL Script for your eggdrop?               #
@@ -90,11 +92,26 @@
 set black(dirname) "scripts"
 
 ###########################################################################
+#--------------------------- Dns Host Excepts ----------------------------#
+###								        ###
+#This host excepts will not receive DNS onjoin, onban etc to improve the
+#performance of the eggdrop.
+
+set black(dns:host_excepts) {
+"*.users.undernet.org"
+"undernet.org"
+"192.168.*"
+"10.0.*"
+"10.1.*"
+"10.101.*"
+"172.29.7.*"
+}
+###########################################################################
 #------------------------ Home Chan (Optional) ---------------------------#
 # Here you set your eggdrop's homechan. If you modify here the eggdrop    #
 #will join homechan. If not leave it "#no_home_chan" or "" (empty)        #
 ###									###
-set black(homechan) "#no_home_chan"
+set black(homechan) "#black-shadow"
 
 ###########################################################################
 #---------------------------- First Char ---------------------------------#
@@ -146,7 +163,7 @@ set black(default_colors) "bold underline none underline"
 ###									###
 #Default away (you can change'it online ofcourse.)
 
-set black(default_away) "BlackTools 2.5.3 - The Next Generation TCL - www.TCLScripts.Net"
+set black(default_away) "BlackTools 2.5.3 - The Next Generation TCL - www.TCLScripts.Net"
 
 ###########################################################################
 #------------------------- Default BanTime -------------------------------#
@@ -338,23 +355,21 @@ set black(webchat_hosts) {
 "*.mibbit.com"
 "*.kiwiirc.com"
 "*.irccloud.com"
+"*!*@64.62.228.82"
+"*!*@78.129.202.38"
+"*!*@87.98.219.117"
 "*!*@107.161.19.53"
 "*!*@107.161.19.109"
 "*!*@109.169.31.4"
 "*!*@109.169.29.95"
-"*!*@78.129.202.38"
-"*!*@64.62.228.82"
+"*!*@192.184.8.73"
+"*!*@192.184.9.110"
+"*!*@192.184.10.9"
+"*!*@192.184.10.118"
 "*!*@195.154.53.5"
-"*!*@212.83.148.225"
 "*!*@195.154.52.250"
 "*!*@207.192.75.252"
-"*!*@107.161.19.53"
-"*!*@192.184.10.9"
-"*!*@192.184.9.110"
-"*!*@tooting.irccloud.com"
-"*!*@192.184.8.73"
-"*!*@hathersage.irccloud.com"
-"*!*@ealing.irccloud.com"
+"*!*@212.83.148.225"
 }
 
 ###########################################################################
@@ -416,13 +431,15 @@ set black(antipubword) {
 
 set black(antipubexcept) {
 "*tclscripts.net"
+"*youtube.com*"
+"*youtu.be*"
 "http://yoursite.co"
 "#name_channel"
 }
 
 #Ban-Mode
 
-set black(antipubmode) "m"
+set black(antipubmode) ""
 
 #Ban-mode Time (Seconds)
 
@@ -624,7 +641,7 @@ set black(antilongtext:bantime) "30m"
 
 #Char length
 
-set black(longchar) "200"
+set black(longchar) "215"
 
 #Ban Mode
 
@@ -689,7 +706,7 @@ set black(badquitpartmode) "m"
 
 #Ban-mode Time (Seconds)
 
-set black(badquitpartsecunde) "45"
+set black(badquitpartsecunde) "20"
 
 #Default banmask
 
@@ -771,7 +788,7 @@ set black(antirepeat:banmethod) "7"
 
 #Ban-Mode
 
-set black(antirepeatmode) "m"
+set black(antirepeatmode) ""
 
 #Ban-mode Time (Seconds)
 
@@ -1041,7 +1058,7 @@ set black(nomodetime) "45"
 
 #Op ALERT (1 - ON ; 0 - OFF)
 
-set black(fjoinhow) "1"
+set black(fjoinhow) "0"
 
 #Number of joins per user in seconds (joins:seconds)
 
@@ -1262,7 +1279,7 @@ set black(badchan:banmask) "1"
 
 #Badchan scantime (<x>m (minutes), <x>h (hours), <x>d (days)
 
-set black(badchan:scantime) "35m"
+set black(badchan:scantime) "5m"
 
 #Act-Method ( 1 - message, after 30 sec ban; 2 - ban)
 
@@ -1293,7 +1310,7 @@ set black(anunthow) "0"
 
 #Show-Time (<x>m (minutes), <x>h (hours), <x>d (days)
 
-set black(bttime) "56m"
+set black(bttime) "15m"
 
 #MSg Type ( 1 - ACTION ; 0 - PRIVMSG )
 
