@@ -568,7 +568,7 @@ set black(say.en.man.416) "\[MAN\] Optional settings: \002badchan-reason\002, ba
 
 #Anunt
 
-set black(say.en.man.417) "\[MAN\] \002Anunt/Advert\002 displays announcements/ads on a channel over a certain amount of time and depending on the channel activity (supports !%chan% and !%botnick%)."
+set black(say.en.man.417) "\[MAN\] \002Anunt/Advert\002 displays announcements/ads on a channel over a certain amount of time and depending on the channel activity (see also \002%char%man anunt-showtime\002 & supports !%chan% and !%botnick%)."
 set black(say.en.man.417_1) "\[MAN\] ** Note: These messages will be displayed one by one and ONLY if there's activity on that channel. Otherwise the eggdrop waits in stand by until the first sign of channel activity (join, part, chat, etc.). **"
 set black(say.en.man.418) "\[MAN\] USAGE SYNTAXES:"
 set black(say.en.man.419) "\[MAN\] \002%char%anunt <ON|OFF>\002 ; %botnick% anunt <ON|OFF> ; \002(PRIVMSG) anunt <#chan> <ON|OFF>\002"
@@ -893,6 +893,7 @@ set black(say.en.man.784) "\[MAN\] \002BadHost\002 bans users who use IPs/vhosts
 set black(say.en.man.785) "\[MAN\] USAGE SYNTAXES:"
 set black(say.en.man.786) "\[MAN\] \002%char%set\002 (+/-)badhost ; \002%botnick% set\002 (+/-)badhost ; \002(PRIVMSG) set\002 <#chan> (+/-)badhost"
 set black(say.en.man.787) "\[MAN\] \002%char%badhost\002 \[#chan\] add <ip|mask> ; \002%char%badhost \[#chan\] list\002 ; \002%char%badhost \[#chan\] del <no. list>\002"
+set black(say.en.man.787_1) "\[MAN\] \002%char%badhost \[#chan\] add <+word> (add exception) ; \002%char%badhost\002 \[#chan\] del <no. list> (delete a badhost from list)"
 set black(say.en.man.788) "\[MAN\] Optional settings: \002badhost-reason\002; badhost-bantime; \002badhost-bmethod\002"
 
 #NickFlood

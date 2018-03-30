@@ -399,6 +399,7 @@ set black(say.en.reportchan.1) "\005\[BT\]\005 \[\002%nick%\002\] added ban on \
 set black(say.en.backchan.1) "\005\[BT\]\005 Found \002%msg.1%\002 in \002%chan%\002's BanList matching \002%msg.2%\002."
 set black(say.en.reportchan.2) "\005\[BT\]\005 \[\002%nick%\002\] added Gag on \002%chan%\002 for host \002%banmask%\002 with reason: \002%reason%\002. Expires after: \002%bantime%\002."
 set black(say.en.reportchan.3) "\005\[BT\]\005 \[\002%nick%\002\] removed \002%msg.1%\002 bans (\002%msg.2%\002 found) from %chan% that matched %msg.3%" 
+set black(say.en.reportchan.4) "\005\[BT\]\005 \[\002%nick%\002\] removed Gag on \002%chan%\002 for host \002%banmask%\002"
 
 ################################ CloneScan ###################################
 

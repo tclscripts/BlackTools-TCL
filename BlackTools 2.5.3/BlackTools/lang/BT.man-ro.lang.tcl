@@ -568,7 +568,7 @@ set black(say.ro.man.416) "\[MAN\] Setari optionale: \002badchan-reason\002, bad
 
 #Anunt
 
-set black(say.ro.man.417) "\[MAN\] \002Anunt\002 este un modul care va avea rolul de a afisa anunturi pe %chan% la un anumit interval de timp si in functie de activitatea de pe canal (suporta !%chan% and !%botnick%)."
+set black(say.ro.man.417) "\[MAN\] \002Anunt\002 este un modul care va avea rolul de a afisa anunturi pe %chan% la un anumit interval de timp si in functie de activitatea de pe canal (vezi si \002%char%man anunt-showtime & suporta !%chan% sau !%botnick%)."
 set black(say.ro.man.417_1) "\[MAN\] ** Note: Aceste mesaje vor fi expuse unul cate unul si NUMAI daca pe acel canal exista activitate. In caz contrar eggdropul intra in stand by pana la primul semn de activitate (join, part, chat, etc.). **"
 set black(say.ro.man.418) "\[MAN\] SINTAXE FOLOSIRE:"
 set black(say.ro.man.419) "\[MAN\] \002%char%anunt <ON|OFF>\002 ; %botnick% anunt <ON|OFF> ; \002(PRIVMSG) anunt <#canal> <ON|OFF>\002"
@@ -894,7 +894,7 @@ set black(say.ro.man.784) "\[MAN\] \002BadHost\002 este un modul de protectie im
 set black(say.ro.man.785) "\[MAN\] SINTAXE FOLOSIRE:"
 set black(say.ro.man.786) "\[MAN\] \002%char%set\002 (+/-)badhost ; \002%botnick% set\002 (+/-)badhost ; \002(PRIVMSG) set\002 <#canal> (+/-)badhost"
 set black(say.ro.man.787) "\[MAN\] \002%char%badhost\002 \[#canal\] add <ip|host>\002 ; \002%char%badhost \[#canal\] list\002"
-set black(say.ro.man.787_1) "\[MAN\] \002%char%badhost\002 \[#canal\] add <+word> (adauga exceptie) ; \002%char%badhost\002 \[#canal\] del <nr. lista> (sterge badhost din lista)"
+set black(say.ro.man.787_1) "\[MAN\] \002%char%badhost\002 \[#canal\] add <+cuvant> (adauga exceptie) ; \002%char%badhost\002 \[#canal\] del <nr. lista> (sterge badhost din lista)"
 set black(say.ro.man.788) "\[MAN\] Setari optionale: \002badhost-reason\002; badhost-bantime; \002badhost-bmethod\002"
 
 #NickFlood

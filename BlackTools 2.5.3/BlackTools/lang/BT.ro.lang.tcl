@@ -399,6 +399,7 @@ set black(say.ro.reportchan.1) "\005\[BT\]\005 \[\002%nick%\002\] a adaugat ban 
 set black(say.ro.backchan.1) "\005\[BT\]\005 \001%msg.1%\001 a fost gasit in lista de banuri pe \002%chan%\002 cu host-ul \002%msg.2%\002"
 set black(say.ro.reportchan.2) "\005\[BT\]\005 \[\002%nick%\002\] a adaugat Gag pe \002%chan%\002 pe hostul \001%banmask%\001 cu motivul: \002%reason%\002. Expira in: \001%bantime%\001."
 set black(say.ro.reportchan.3) "\005\[BT\]\005 \[\002%nick%\002\] a scos \001%msg.1%\001 banuri (%msg.2% gasite) de pe \002%chan%\002 legat de %msg.3%"
+set black(say.ro.reportchan.4) "\005\[BT\]\005 \[\002%nick%\002\] a scos Gag de pe \002%chan%\002 de la hostul \001%banmask%\001"
 
 ################################ CloneScan ###################################
 
