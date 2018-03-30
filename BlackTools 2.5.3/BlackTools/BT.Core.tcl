@@ -1014,16 +1014,28 @@ if {$type == "gl"} {
 } else {
 if {$sticky == "1"} {
 	blacktools:addban $nick $mask $hand $chan $chan1 $bantime "BAN" "1" "0" $thereason $found $cmd $type $banned $prv $num
+if {[regexp -- {^[a-zA-Z\|\[\]`^\{\}][a-zA-Z0-9\-_\|\[\]`^\{\}\\]*$} $banned]} {
+	blacktools:auto:ban $banned "$banned![getchanhost $banned $chan]" $chan
+}
 	who:chan $chan
 } elseif {$sticky == "2"} {
 	blacktools:addban $nick $mask $hand $chan $chan1 $bantime "BAN" "2" "0" $thereason $found $cmd $type $banned $prv $num
 	troll:add $banned $mask $chan
+if {[regexp -- {^[a-zA-Z\|\[\]`^\{\}][a-zA-Z0-9\-_\|\[\]`^\{\}\\]*$} $banned]} {
+	blacktools:auto:ban $banned "$banned![getchanhost $banned $chan]" $chan
+}
 	who:chan $chan
 } elseif {$sticky == "3"} {
 	blacktools:addban $nick $mask $hand $chan $chan1 $bantime "BAN" "3" "0" $thereason $found $cmd $type $banned $prv $num
+if {[regexp -- {^[a-zA-Z\|\[\]`^\{\}][a-zA-Z0-9\-_\|\[\]`^\{\}\\]*$} $banned]} {
+	blacktools:auto:ban $banned "$banned![getchanhost $banned $chan]" $chan
+}
 	who:chan $chan
 } else {
 	blacktools:addban $nick $mask $hand $chan $chan1 $bantime "BAN" "0" "0" $thereason $found $cmd $type $banned $prv $num
+if {[regexp -- {^[a-zA-Z\|\[\]`^\{\}][a-zA-Z0-9\-_\|\[\]`^\{\}\\]*$} $banned]} {	
+	blacktools:auto:ban $banned "$banned![getchanhost $banned $chan]" $chan
+		} 
 	who:chan $chan
 	}
 }
@@ -2744,6 +2756,7 @@ proc userhost:act {why nick hand host chan chan1 type bantime cmd rs gl} {
 	set gethand [lindex $split_hand 0]
 	set cmd_status [btcmd:status $chan $gethand $cmd 0]
 	set yes_whois 0
+	set why [strip:all $why]
 if {$cmd_status == "1"} { 
 	return 
 }
@@ -3346,6 +3359,7 @@ if {$gag == "1"} {
 	set data [split [read $file $size] \n]
 	close $file
 foreach line $data {
+if {$line != ""} {
 	set read_type [lindex [split $line] 0]
 	set read_chan [lindex [split $line] 2]
 	set read_host [lindex [split $line] 3]
@@ -3355,9 +3369,10 @@ if {[string match -nocase $host $read_host] && [string equal -nocase $chan $read
 	puts $tempwrite $line
 		}	 
     }
+}
 	close $tempwrite
     file rename -force $temp $black(bans_file)
-return
+	return
 }
 	set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
 	set temp "$black(bans_file).new.$timestamp"
@@ -3367,6 +3382,7 @@ return
 	set data [split [read $file $size] \n]
 	close $file
 foreach line $data {
+if {$line != ""} {
 	set read_chan [lindex [split $line] 2]
 	set read_host [lindex [split $line] 3]
 	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
@@ -3376,6 +3392,7 @@ if {([string match -nocase $host $real_read_host] || [string match -nocase $real
 	puts $tempwrite $line
 		}	 
     }
+}
 	close $tempwrite
     file rename -force $temp $black(bans_file)
 }
@@ -3488,11 +3505,13 @@ if {$bantime != "0"} {
 }
 	set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
 	set temp "$black(bans_file).new.$timestamp"
-	set tempwrite [open $temp w]
 	set file [open $black(bans_file) r]
 	set size [file size $black(bans_file)]
 	set data [split [read $file $size] \n]
 	close $file
+	set lsearch [lsearch -glob [string tolower $data] [string tolower "* GLOBAL $host *"]]
+if {$lsearch > -1} {	
+	set tempwrite [open $temp w]
 foreach line $data {
 if {$line != ""} {
 	set read_gl [lindex [split $line] 2]
@@ -3506,6 +3525,7 @@ if {[string match -nocase $host $read_host] && [string equal -nocase "GLOBAL" $r
 }
 	close $tempwrite
     file rename -force $temp $black(bans_file)
+}
 	blacktools:ban:put $nick $host $hand $chan $bantime $type $sticky $global $reason $id
 }
 
@@ -3538,11 +3558,13 @@ if {![string equal -nocase $gethand "BADCHAN"] && ![string equal -nocase $gethan
 }
 	set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
 	set temp "$black(bans_file).new.$timestamp"
-	set tempwrite [open $temp w]
 	set file [open $black(bans_file) r]
 	set size [file size $black(bans_file)]
 	set data [split [read $file $size] \n]
 	close $file
+	set lsearch [lsearch -glob [string tolower $data] [string tolower "* *#* $host *"]]
+if {$lsearch > -1} {
+	set tempwrite [open $temp w]
 foreach line $data {
 if {$line != ""} {
 	set read_chan [lindex [split $line] 2]
@@ -3581,6 +3603,7 @@ if {[matchattr $gethand -|OAS $chan] && ($read_stick == "1")} {
 }
 	close $tempwrite
     file rename -force $temp $black(bans_file)
+}
 if {$accdenied == "0"} {
 if {$cmd == "b" && $type != "gl"} {
 if {![setting:get $chan xonly]} {
@@ -4025,7 +4048,7 @@ if {![ischanban $read_host $chan]} {
 
 proc blacktools:chnick:ban {nick host hand chan newnick} {
 	global botnick black
-if {[onchan $botnick $chan]} {
+if {[validchan $chan]} {
 	set bhost "$newnick![getchanhost $newnick $chan]"
 	blacktools:auto:ban $newnick $bhost $chan
 	}
@@ -4862,7 +4885,7 @@ if {[string equal -nocase $modul "topic"]} {
 if {$msg == ""} {
 if {$url != ""} {
 	set gettopic [string map [list "([color:filter $url])" ""] [color:filter  $thetopic]]
-}
+} else { set gettopic $thetopic }
 	set msg $gettopic
 }
 if {$msg == ""} {
@@ -6380,9 +6403,10 @@ proc blacktools:getlastaction:text {nick host hand chan arg} {
 	global black botnick
 if {![isbotnick $nick]} {
 if {[validchan $chan]} {
-	utimer 1 [list black:setlastaction $chan]
+	black:setlastaction $chan
 		}
 	}
+	return 0
 }
 
 proc black:setlastaction {chan} {
@@ -6921,14 +6945,13 @@ if {${cidr-support} == "1"} {
 								
  proc blacktools:dns:auto_ban {nick host vhost chan} {
 	global black
-	set user_logged [string map { "%user%" "*"} $black(hostadd)]
-if {[string match -nocase $user_logged $host]} {
+	set check_dns [dns:checkexcept $host]
+if {$check_dns == "1"} {
 	blacktools:auto:ban_act $nick $host "" $chan
 	return
 }
 	dnslookup $vhost dns:resolve:auto_ban $vhost $nick $host $chan
 }
-
 
 proc dns:resolve:auto_ban {ip host status hostip nick fullhost chan} {
       if {!$status} {
@@ -6943,8 +6966,8 @@ proc dns:resolve:auto_ban {ip host status hostip nick fullhost chan} {
  
  proc blacktools:dns:join {nick host vhost hand chan} {
 	global black
-	set user_logged [string map { "%user%" "*"} $black(hostadd)]
-if {[string match -nocase $user_logged $host]} {
+	set check_dns [dns:checkexcept $host]
+if {$check_dns == "1"} {
 	blacktools:join:autoban $nick "" "" $hand $chan $host
 	return
 }
@@ -6957,8 +6980,8 @@ if {[regexp {[/]} $host]} {
 
 proc blacktools:dns:sb {bhost what nick hand host vhost chan chan1 type cmd entry} {
 	global black
-	set user_logged [string map { "%user%" "*"} $black(hostadd)]
-if {[string match -nocase $user_logged $host]} {
+	set check_dns [dns:checkexcept $bhost]
+if {$check_dns == "1"} {
 	sb:act $bhost $what $nick $hand $host "" $chan $chan1 $type $cmd $entry
 	return
 }	
@@ -6979,11 +7002,11 @@ proc dns:resolve:sb {ip host status hostip what nick hand fullhost vhost chan ch
 
 proc blacktools:dns:ub {user mask nick hand host vhost chan chan1 type gl cmd whois link id prv} {
 	global black
-	set user_logged [string map { "%user%" "*"} $black(hostadd)]
-if {[string match -nocase $user_logged $host]} {
+	set check_dns [dns:checkexcept $mask]
+if {$check_dns == "1"} {
 	ub:act $user $mask $nick $hand "" "" $chan $chan1 $type $gl $cmd $whois $link $id $prv
 	return
-}	
+}
 if {$id == "id"} {
 	ub:act $user $mask $nick $hand "" "" $chan $chan1 $type $gl $cmd $whois $link $id $prv
 	return
@@ -7013,6 +7036,18 @@ proc dns:resolve:join {ip host status hostip nick fullhost hand chan} {
     }
       return 0
  }
+ 
+proc dns:checkexcept {host} {
+	global black
+	set valid_except 0
+	set host [lindex [split $host "@"] 1]
+foreach h $black(dns:host_excepts) {
+if {[string match -nocase $h $host]} {
+	set valid_except 1
+		}
+	}
+	return $valid_except
+}
  
 ################################ Balist FULL ##############################
 

@@ -19,6 +19,16 @@ if {[info exists black(notlogged)]} {
 }
 
 bind pubm - * blacktools:protect:pub
+bind pubm - * voiceonmsg:public
+bind pubm - * topwords:module
+bind pubm - * seen:lastmsg
+bind pubm - * notes:announce:pub
+bind pubm - "**" comand:pubme
+bind pubm - "**" comand:pubme:for
+bind pubm - "***" comand:chan
+
+bind msgm - * forward:redirect
+bind msgm - "*" command:pubpriv
 bind ctcp - ACTION blacktools:protect:me
 bind ctcp - ACTION voiceonmsg:public:me
 bind ctcp - ACTION topwords:module:me
@@ -27,8 +37,7 @@ bind notc - * notc:flood:protection
 bind time - "* * * * *" maxuptime
 bind time - "* * * * *" blacktools:expirebans
 bind time - "* * * * *" seen:save_file
-bind pubm - * voiceonmsg:public
-bind pubm - * topwords:module
+
 bind notc - * antinotice:protect
 bind ctcp - * antictcp:protect
 bind part - * badquitpart:protect
@@ -61,7 +70,6 @@ bind sign - * seen:sign
 bind kick - * seen:kick
 bind splt - * seen:split
 bind nick - * seen:changenick
-bind pubm - * seen:lastmsg
 bind join - * greetpublic:join
 bind part - * leavepublic:part
 bind evnt - init-server setaway
@@ -111,7 +119,7 @@ bind kick - * autoinvite:kick
 bind mode - * voiceme:mode
 bind join - * voiceme:join
 bind join - * notes:announce
-bind pubm - * notes:announce:pub
+
 
 bind kick - * securemode:kickremove
 bind mode - * securemode:reply
@@ -161,12 +169,6 @@ bind sign - * blacktools:getlastaction:sign
 bind mode - *+b* blacktools:getlastaction:ban
 bind ctcp - ACTION blacktools:getlastaction:me
 bind part - * blacktools:getlastaction:part
-
-bind pubm - "**" comand:pubme
-bind pubm - "**" comand:pubme:for
-bind msgm - "*" command:pubpriv
-bind pubm - "***" comand:chan
-bind msgm - * forward:redirect
 
 unbind msg - hello *msg:hello
 unbind msg - pass *msg:pass

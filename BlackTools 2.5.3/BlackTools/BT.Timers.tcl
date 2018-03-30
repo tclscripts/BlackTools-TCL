@@ -172,7 +172,6 @@ proc blacktools:timers:runtime {} {
 	set topwords_channels ""
 foreach chan [channels] {
 
-
 #badchan
 
 if {[info exists black(badchan:$chan:timer_start)]} {
@@ -402,7 +401,8 @@ if {$black(idle:counter:$chan) > $black(idle:$chan:timer_start)} {
 		}
 	}
 #end
-	}
+
+}
 	
 #banmethod remove
 
