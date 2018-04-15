@@ -631,12 +631,7 @@ if {![botisop $chan] && ![setting:get $chan xonly]} {
 	setting:set $chan kickcount $kcount
 	
 	set xban 0
-while {$temp_num == 0} {
-	set get [blacktools:ban:find_id $num]
-if {$get == "$num"} {
-	set num [expr $num + 1]
-	} else { set temp_num 1 }
-}
+	set num [blacktools:ban:find_id]
 	set xonly [blacktools:getxonly $chan]
 	set bantime [blacktools:getbantime $chan $hand]
 	set show_reason [blacktools:getreason $chan $hand 0 $num]
@@ -791,13 +786,7 @@ if {$getxlevel == ""} {
 	set getxlevel $black(chanserv:banlevel)
 	}
 }
-
-while {$temp_num == 0} {
-	set get [blacktools:ban:find_id $num]
-if {$get == "$num"} {
-	set num [expr $num + 1]
-	} else { set temp_num 1 }
-}
+	set num [blacktools:ban:find_id]
 	set getcount [setting:get $chan kickcount]
 	set kcount [expr $getcount +1]
 	setting:set $chan kickcount $kcount
@@ -959,14 +948,7 @@ if {$prv == "prv"} {
 	blacktools:tell $nick "" $hand $chan $chan1 b.8 none
 	}
 }
-
-while {$temp_num == 0} {
-	set get [blacktools:ban:find_id $num]
-if {$get == "$num"} {
-	set num [expr $num + 1]
-	} else { set temp_num 1 }
-}
-
+	set num [blacktools:ban:find_id]
 	set current_time [unixtime]
 if {$bantime != "0"} {
 	set reason_time [expr $current_time + [expr $bantime * 60]]
@@ -1014,28 +996,16 @@ if {$type == "gl"} {
 } else {
 if {$sticky == "1"} {
 	blacktools:addban $nick $mask $hand $chan $chan1 $bantime "BAN" "1" "0" $thereason $found $cmd $type $banned $prv $num
-if {[regexp -- {^[a-zA-Z\|\[\]`^\{\}][a-zA-Z0-9\-_\|\[\]`^\{\}\\]*$} $banned]} {
-	blacktools:auto:ban $banned "$banned![getchanhost $banned $chan]" $chan
-}
 	who:chan $chan
 } elseif {$sticky == "2"} {
 	blacktools:addban $nick $mask $hand $chan $chan1 $bantime "BAN" "2" "0" $thereason $found $cmd $type $banned $prv $num
 	troll:add $banned $mask $chan
-if {[regexp -- {^[a-zA-Z\|\[\]`^\{\}][a-zA-Z0-9\-_\|\[\]`^\{\}\\]*$} $banned]} {
-	blacktools:auto:ban $banned "$banned![getchanhost $banned $chan]" $chan
-}
 	who:chan $chan
 } elseif {$sticky == "3"} {
 	blacktools:addban $nick $mask $hand $chan $chan1 $bantime "BAN" "3" "0" $thereason $found $cmd $type $banned $prv $num
-if {[regexp -- {^[a-zA-Z\|\[\]`^\{\}][a-zA-Z0-9\-_\|\[\]`^\{\}\\]*$} $banned]} {
-	blacktools:auto:ban $banned "$banned![getchanhost $banned $chan]" $chan
-}
 	who:chan $chan
 } else {
-	blacktools:addban $nick $mask $hand $chan $chan1 $bantime "BAN" "0" "0" $thereason $found $cmd $type $banned $prv $num
-if {[regexp -- {^[a-zA-Z\|\[\]`^\{\}][a-zA-Z0-9\-_\|\[\]`^\{\}\\]*$} $banned]} {	
-	blacktools:auto:ban $banned "$banned![getchanhost $banned $chan]" $chan
-		} 
+	blacktools:addban $nick $mask $hand $chan $chan1 $bantime "BAN" "0" "0" $thereason $found $cmd $type $banned $prv $num 
 	who:chan $chan
 	}
 }
@@ -1324,12 +1294,7 @@ if {$xonly == "1"} {
 	blacktools:addban $nick $host "$type:$said" $chan "" $bantime "BAN" "0" "0" $thereason "0" "" "" "" 0 $id
 if {$linkchans != ""} {
 foreach c $linkchans {
-	while {$temp_num == 0} {
-	set get [blacktools:ban:find_id $num]
-if {$get == "$num"} {
-	set num [expr $num + 1]
-	} else { set temp_num 1 }
-}
+	set num [blacktools:ban:find_id]
 	set getcount [setting:get $c kickcount]
 	set kcount [expr $getcount +1]
 	setting:set $c kickcount $kcount
@@ -1390,12 +1355,7 @@ if {$get_count >= "2"} {
 	blacktools:addban $nick $host "$type:$said" $chan "" $bantime "BAN" "0" "0" $thereason "0" "" "" "" 0 $id
 if {$linkchans != ""} {
 foreach c $linkchans {
-	while {$temp_num == 0} {
-	set get [blacktools:ban:find_id $num]
-if {$get == "$num"} {
-	set num [expr $num + 1]
-	} else { set temp_num 1 }
-}
+	set num [blacktools:ban:find_id]
 	set getcount [setting:get $c kickcount]
 	set kcount [expr $getcount +1]
 	setting:set $c kickcount $kcount
@@ -1437,12 +1397,7 @@ if {$xonly == "1"} {
 	blacktools:addban $nick $host "$type:$said" $chan "" $bantime "BAN" "0" "0" $thereason "0" "" "" "" 0 $id
 if {$linkchans != ""} {
 foreach c $linkchans {
-	while {$temp_num == 0} {
-	set get [blacktools:ban:find_id $num]
-if {$get == "$num"} {
-	set num [expr $num + 1]
-	} else { set temp_num 1 }
-}
+	set num [blacktools:ban:find_id]
 	set getcount [setting:get $c kickcount]
 	set kcount [expr $getcount +1]
 	setting:set $c kickcount $kcount
@@ -1483,12 +1438,7 @@ if {[onchan $nick $chan]} {
 	blacktools:addban $nick $host "$type:$said" $chan "" $bantime "BAN" "0" "0" $thereason "0" "" "" "" 0 $id
 if {$linkchans != ""} {
 foreach c $linkchans {
-	while {$temp_num == 0} {
-	set get [blacktools:ban:find_id $num]
-if {$get == "$num"} {
-	set num [expr $num + 1]
-	} else { set temp_num 1 }
-}
+	set num [blacktools:ban:find_id]
 	set getcount [setting:get $c kickcount]
 	set kcount [expr $getcount +1]
 	setting:set $c kickcount $kcount
@@ -2603,6 +2553,7 @@ if {![file exists $black(uptime_file)]} {
 	set read_uptime [expr [unixtime] - $uptime]
 	set file [open $black(uptime_file) "r"]
 	set data [read -nonewline $file]
+	close $file
 	set get_uptime 0
 	set get_online 0
 	close $file
@@ -3414,7 +3365,8 @@ proc blacktools:banlist:ban {chan} {
 	set data [split [read $file $size] \n]
 	close $file
 	set banlist [lsearch -all -inline $data "BAN * [string tolower $chan] *"]
-	return $banlist
+	set sort [lsort -integer -decreasing -index 6 $banlist]
+	return $sort
 }
 
 proc blacktools:gaglist {chan} {
@@ -3448,13 +3400,28 @@ proc blacktools:banlist:all {} {
 	return $banlist
 }
 
+proc blacktools:banlist:lastid {} {
+	global black
+	set file [open $black(bans_file) r]
+	set size [file size $black(bans_file)]
+	set data [split [read $file $size] \n]
+	close $file
+	set banlist [lsearch -all -inline $data "* * * * * *"]
+if {$banlist != ""} {
+	set sort [lsort -integer -decreasing -index 1 $banlist]
+	return [lindex $sort 0]
+	} else {
+	return 0
+	}
+}
+
 proc blacktools:sticky {host chan} {
 	global black
 	set file [open $black(bans_file) r]
 	set size [file size $black(bans_file)]
 	set data [split [read $file $size] \n]
 	close $file
-	set bancheck [lsearch -all -inline $data "* [string tolower $chan] [string tolower $host] *"]
+	set bancheck [lsearch -all -inline $data "* [string tolower $chan] $host *"]
 if {$bancheck != ""} {
 	return [lindex [split $bancheck] 7]
 	}
@@ -3467,7 +3434,7 @@ proc blacktools:isban {host chan} {
 	set size [file size $black(bans_file)]
 	set data [split [read $file $size] \n]
 	close $file
-	set bancheck [lsearch -all -inline $data "BAN * [string tolower $chan] [string tolower $host] *"]
+	set bancheck [lsearch -all -inline $data "BAN * [string tolower $chan] $host *"]
 if {$bancheck != ""} {
 	return 1
 	} else {
@@ -3481,7 +3448,7 @@ proc blacktools:isgag {host chan} {
 	set size [file size $black(bans_file)]
 	set data [split [read $file $size] \n]
 	close $file
-	set bancheck [lsearch -all -inline $data "GAG * $chan $host *"]
+	set bancheck [lsearch -all -inline $data "GAG * [string tolower $chan] $host *"]
 if {$bancheck != ""} {
 	set expire [lindex [split $bancheck] 5]
 	set dif [expr $expire - [unixtime]]
@@ -3532,6 +3499,7 @@ if {[string match -nocase $host $read_host] && [string equal -nocase "GLOBAL" $r
 proc blacktools:addban {nick host hand chan chan1 bantime type sticky global reason notfound cmd type banned prv id} {
 	global black botnick
 	chanserv:ignore_remove
+	set read_num 0
 	set split_hand [split $hand ":"]
 	set gethand [lindex $split_hand 0]
 	set gettype [lindex $split_hand 1]
@@ -3562,8 +3530,8 @@ if {![string equal -nocase $gethand "BADCHAN"] && ![string equal -nocase $gethan
 	set size [file size $black(bans_file)]
 	set data [split [read $file $size] \n]
 	close $file
-	set lsearch [lsearch -glob [string tolower $data] [string tolower "* *#* $host *"]]
-if {$lsearch > -1} {
+	set lsearch [lsearch -all $data "* $chan $host *"]
+if {$lsearch != ""} {
 	set tempwrite [open $temp w]
 foreach line $data {
 if {$line != ""} {
@@ -3571,6 +3539,7 @@ if {$line != ""} {
 	set read_host [lindex [split $line] 3]
 	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {([string match -nocase $host $real_read_host] || [string match -nocase $real_read_host $host]) && [string equal -nocase $chan $read_chan]} { 
+	set read_num [lindex [split $line] 1]
 	set read_time [lindex [split $line] 5]
 	set read_stick [lindex [split $line] 7]
 	set bywho [lindex [split $line] 4]
@@ -3636,8 +3605,11 @@ if {$cmd == "stick"} {
 	putserv "MODE $chan +b $host"
 	}
 }
+if {$read_num != "0"} {
+	set id $read_num
+}
 	blacktools:ban:put $nick $host $hand $chan $bantime $type $sticky $global $reason $id
-} else {
+	} else {
 	blacktools:tell $nick $host $hand $chan $chan1 gl.nobanlevel none
 	}
 }
@@ -3746,6 +3718,9 @@ if {![botisop $chan] && ![setting:get $chan xonly]} {
 }
 	putquick "WHO :$chan"
 	set ::thechan $chan
+	set ::banlist [blacktools:banlist:ban $chan]
+	set ::glbanlist [blacktools:banlist:gl]
+	set ::gaglist [blacktools:gaglist $chan]
 	bind RAW - 352 get:chanlist
 	bind RAW - 315 end:chanlist
 }
@@ -3754,6 +3729,9 @@ proc mode:who:chan {chan} {
 	global black
 	putquick "WHO :$chan"
 	set ::thechan $chan
+	set ::banlist [blacktools:banlist:ban $chan]
+	set ::glbanlist [blacktools:banlist:gl]
+	set ::gaglist [blacktools:gaglist $chan]
 	bind RAW - 352 get:chanlist
 	bind RAW - 315 end:chanlist
 }
@@ -3765,9 +3743,12 @@ proc get:chanlist {from keyword arguments} {
 	set host [lindex [split $arguments] 3]
 	set nick [lindex [split $arguments] 5]
 	set thechan $::thechan
+	set banlist $::banlist
+	set glbanlist $::glbanlist
+	set gaglist $::gaglist
 	set uhost "$nick!$ident@$host"
 if {[string equal -nocase $thechan $chan]} {
-	blacktools:auto:ban $nick $uhost $thechan
+	blacktools:auto:ban $nick $uhost $thechan $banlist $glbanlist $gaglist
 	}
 }
 
@@ -3775,12 +3756,15 @@ proc end:chanlist {from keyword arguments} {
 	global black
 	unbind RAW - 352 get:chanlist
 	unbind RAW - 315 end:chanlist
+	unset ::banlist
+	unset ::glbanlist
+	unset ::gaglist
 }
 
-proc blacktools:auto:ban {nick uhost chan} {
+proc blacktools:auto:ban {nick uhost chan banlist glbanlist gaglist} {
 	global black
 	set vhost [lindex [split $uhost @] 1]
-	blacktools:dns:auto_ban $nick $uhost $vhost $chan
+	blacktools:dns:auto_ban $nick $uhost $vhost $chan $banlist $glbanlist $gaglist
 }
 
 proc blacktools:rem_comment {reason} {
@@ -3824,9 +3808,13 @@ if {$comment != ""} {
 	} else { return -1 }
 }
 
-proc blacktools:auto:ban_act {nick uhost vhost chan} {
+proc blacktools:auto:ban_act {nick uhost vhost chan banlist glbanlist gaglist} {
 	global black botnick
 	set rest_host [lindex [split $uhost @] 0]
+	set llength_banlist [llength $banlist]
+	set llength_glbanlist [llength $glbanlist]
+	set llength_gaglist [llength $gaglist]
+	set found_ban 0
 	set fulldns "$rest_host@$vhost"
 if {$vhost == ""} { set fulldns $uhost}
 	set xban 0
@@ -3871,6 +3859,7 @@ if {[string match -nocase $h $uhost] || [string match -nocase $h $fulldns] || $c
 	set check_except [blacktools:ban:chanexempt $uhost $fulldns $chan]
 if {$check_except == "0"} {
 	add:ban $h [join [getuser $handle XTRA BLACK_REASON]]
+	set found_ban 1
 					}
 				}
 			}
@@ -3878,7 +3867,9 @@ if {$check_except == "0"} {
 	}
 }
 
-foreach b [blacktools:banlist:ban $chan] {
+if {$found_ban == "0"} {
+for {set i $llength_banlist} { $i >= 0 } { decr i } {
+	set b [lindex $banlist $i]
 	set cidr 0
 	set type [lindex [split $b] 0]
 	set read_chan [lindex [split $b] 2]
@@ -3931,11 +3922,14 @@ if {[onchan $black(chanserv) $chan] && $xban == "1"} {
 	putserv "MODE $chan +b $read_host"
 	putserv "KICK $chan $nick :$show_reason"
 		}
+		set found_ban 1
 		break
+		}
 	}
 }
 
-foreach b [blacktools:banlist:gl] {
+if {$found_ban == "0"} {
+foreach b $glbanlist {
 	set cidr 0
 	set read_host [lindex [split $b] 3]
 	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
@@ -3983,10 +3977,13 @@ if {[onchan $black(chanserv) $chan] && $xban == "1"} {
 	putserv "MODE $chan +b $read_host"
 	putserv "KICK $chan $nick :$show_reason"
 			}
+			set found_ban 1
 			break
 		}
 	}
-foreach b [blacktools:gaglist $chan] {
+}
+if {$found_ban == "0"} {
+foreach b $gaglist {
 	set read_host [lindex [split $b] 3]
 	set real_read_host [string map [list \[ {\[} \] {\]} \\ {\\}] $read_host]
 if {[string match -nocase $real_read_host $uhost]} {
@@ -4009,8 +4006,18 @@ if {[isvoice $nick $chan]} {
 	set reply [join $text]
 	puthelp "PRIVMSG $chan :[string map [array get replace] $reply]"
 	break
+			}
 		}
 	}
+}
+
+proc decr { int { n 1 } } {
+    if { [ catch {
+        uplevel incr $int -$n
+    } err ] } {
+        return -code error "decr: $err"
+    }
+    return [ uplevel set $int ]
 }
 
 proc blacktools:mode:ban {nick host hand chan mod who} {
@@ -4049,8 +4056,11 @@ if {![ischanban $read_host $chan]} {
 proc blacktools:chnick:ban {nick host hand chan newnick} {
 	global botnick black
 if {[validchan $chan]} {
+	set banlist [blacktools:banlist:ban $chan]
+	set glbanlist [blacktools:banlist:gl]
+	set gaglist [blacktools:gaglist $chan]
 	set bhost "$newnick![getchanhost $newnick $chan]"
-	blacktools:auto:ban $newnick $bhost $chan
+	blacktools:auto:ban $newnick $bhost $chan $banlist $glbanlist $gaglist
 	}
 }
 
@@ -5676,16 +5686,12 @@ if {$read_num == "$num"} {
 	return $ret
 }
 
-proc blacktools:ban:find_id {id} {
+proc blacktools:ban:find_id {} {
 	global black
-	set ret 0
-foreach b [blacktools:banlist:all] {	
-	set read_num [lindex [split $b] 1]	
-if {$read_num == "$id"} {
-	set ret $read_num
-	}
-}
-	return $ret
+	set lastid [blacktools:banlist:lastid]
+	set get_id [lindex $lastid 1]
+	set current [expr $get_id + 1]
+	return $current
 }
 
 proc check:file:word {chan text type} {
@@ -6382,6 +6388,7 @@ if {![isbotnick $nick]} {
 	set gettime [unixtime]
 	set black(lastaction:$chan) $gettime
 	}
+	return 0
 }
 
 proc blacktools:getlastaction:part {nick host hand chan arg} {
@@ -6417,16 +6424,19 @@ proc black:setlastaction {chan} {
 proc blacktools:getlastaction:me {nick host hand chan keyword arg} {
 	global black
 	blacktools:getlastaction:join $nick $host $hand $chan
+	return
 }
 
 proc blacktools:getlastaction:split {nick host hand chan args} {
 	global black
 	blacktools:getlastaction:join $nick $host $hand $chan
+	return 0
 }
 
 proc blacktools:getlastaction:ban {nick host hand chan args} {
 	global black
 	blacktools:getlastaction:join $nick $host $hand $chan
+	return 0
 }
 
 
@@ -6943,23 +6953,23 @@ if {${cidr-support} == "1"} {
  
 ######################### dns search ##############################
 								
- proc blacktools:dns:auto_ban {nick host vhost chan} {
+ proc blacktools:dns:auto_ban {nick host vhost chan banlist glbanlist gaglist} {
 	global black
 	set check_dns [dns:checkexcept $host]
 if {$check_dns == "1"} {
-	blacktools:auto:ban_act $nick $host "" $chan
+	blacktools:auto:ban_act $nick $host "" $chan $banlist $glbanlist $gaglist
 	return
 }
-	dnslookup $vhost dns:resolve:auto_ban $vhost $nick $host $chan
+	dnslookup $vhost dns:resolve:auto_ban $vhost $nick $host $chan $banlist $glbanlist $gaglist
 }
 
-proc dns:resolve:auto_ban {ip host status hostip nick fullhost chan} {
+proc dns:resolve:auto_ban {ip host status hostip nick fullhost chan banlist glbanlist gaglist} {
       if {!$status} {
-        blacktools:auto:ban_act $nick $fullhost "" $chan
+        blacktools:auto:ban_act $nick $fullhost "" $chan $banlist $glbanlist $gaglist
       } elseif {[string tolower $ip] == [string tolower $hostip]} {
-		blacktools:auto:ban_act $nick $fullhost $hostip $chan 
+		blacktools:auto:ban_act $nick $fullhost $hostip $chan $banlist $glbanlist $gaglist
       } else {
-        blacktools:auto:ban_act $nick $fullhost $ip $chan
+        blacktools:auto:ban_act $nick $fullhost $ip $chan $banlist $glbanlist $gaglist
     }
       return 0
  }
