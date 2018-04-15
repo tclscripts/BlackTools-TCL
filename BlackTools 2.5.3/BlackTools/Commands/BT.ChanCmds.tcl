@@ -825,7 +825,6 @@ if {$link == "1"} {
 	}
 }
 
-
 stick {
 if {[matchattr $hand nmo|M $chan]} {
 	set stickb [lindex [split $arg] 1]

@@ -1865,7 +1865,6 @@ if {$return == "0"} {
 	}
 }
 if {![validchan $chan]} {
-	putserv "PRIVMSG blackshadow :a"
 	blacktools:tell $nick $host $hand $chan $chan1 gl.novalidchan none
 	return
 }

@@ -733,10 +733,8 @@ if {$level != ""} {
 	userhost:act $b $nick "$hand:$level" $host $chan $chan1 $type $return_time "b" $reason $gl
 } else {
 if {$link == "1"} {
-	foreach c [link:chan:get $chan] {
-	userhost:act $b $nick "$hand" $host $c $chan1 $type $return_time "b" $reason "2"
-	}
 	userhost:act $b $nick "$hand" $host $chan $chan1 $type $return_time "b" $reason "2"
+	utimer 5 [list blacktools:link_ban [link:chan:get $chan] 0 $b $nick $hand $host $chan $chan1 $type $return_time "b" $reason 2]
 	return
 }
 	userhost:act $b $nick "$hand" $host $chan $chan1 $type $return_time "b" $reason $gl
