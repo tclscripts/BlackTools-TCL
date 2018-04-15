@@ -404,7 +404,7 @@ set black(say.en.reportchan.4) "\005\[BT\]\005 \[\002%nick%\002\] removed Gag on
 ################################ CloneScan ###################################
 
 set black(say.en.clonescan.1) "Excessive connections from \002*@%clone%\002. Clones are prohibited!"
-set black(say.en.clonescan.2) "\005\[BT\]\005 No clones on \001%chan\001."
+set black(say.en.clonescan.2) "\005\[BT\]\005 No clones on \001%chan%\001."
 set black(say.en.clonescan.3) "*** END Clones Exceptions List ***"
 set black(say.en.clonescan.4) "\005\[BT\]\005 FAILED: No entries matching for no. \001%msg.1%\001 in \002Clones Exceptions List\002."
 set black(say.en.clonescan.5) "\005\[BT\]\005 Removed \002exception\002 with no. \001%msg.1%\001 from \002%chan%\002."
