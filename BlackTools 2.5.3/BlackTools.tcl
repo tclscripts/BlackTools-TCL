@@ -20,7 +20,7 @@
 #		   			  One TCL. One smart Eggdrop.     #
 ###########################################################################
 #              + Script released: 03.03.2018 09:10 AM (Romanian TimeZone) #
-#              + Script updated : 30.03.2018 11:57 AM (Romanian TimeZone) #
+#              + Script updated : 13.04.2018 11:57 AM (Romanian TimeZone) #
 ###########################################################################
 #                                                                         #
 #                       #####    ######     #####                         #
@@ -706,7 +706,7 @@ set black(badquitpartmode) "m"
 
 #Ban-mode Time (Seconds)
 
-set black(badquitpartsecunde) "20"
+set black(badquitpartsecunde) "45"
 
 #Default banmask
 
@@ -908,7 +908,7 @@ set black(anticaps:bantime) "10m"
 
 #Caps Char Length
 
-set black(anticapscount) "40"
+set black(anticapscount) "50"
 
 #Action-Method
 
@@ -1279,7 +1279,7 @@ set black(badchan:banmask) "1"
 
 #Badchan scantime (<x>m (minutes), <x>h (hours), <x>d (days)
 
-set black(badchan:scantime) "5m"
+set black(badchan:scantime) "45m"
 
 #Act-Method ( 1 - message, after 30 sec ban; 2 - ban)
 
@@ -1310,7 +1310,7 @@ set black(anunthow) "0"
 
 #Show-Time (<x>m (minutes), <x>h (hours), <x>d (days)
 
-set black(bttime) "15m"
+set black(bttime) "55m"
 
 #MSg Type ( 1 - ACTION ; 0 - PRIVMSG )
 
