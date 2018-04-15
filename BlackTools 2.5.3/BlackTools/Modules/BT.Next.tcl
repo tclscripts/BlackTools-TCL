@@ -37,6 +37,8 @@ if {[info exists black(next:$chan:list)]} {
 if {[lsearch -exact [string tolower [split $black(next:$chan:list)]]  [string tolower $nick]] == -1} {
 	set black(next:$chan:list) "$black(next:$chan:list) $nick"
 	set black(next:$chan:$nick:time) $time
+	} else {
+	set black(next:$chan:$nick:time) $time
 	}
 } else {
 	set black(next:$chan:list) $nick

@@ -161,12 +161,7 @@ if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 	putserv "PRIVMSG $chan :$gag_chan_message"
 	putserv "PRIVMSG $gagger :$gag_user_message"
 	pushmode $chan +b $mask
-while {$temp_num == 0} {
-	set get [blacktools:ban:find_id $num]
-if {$get == "$num"} {
-	set num [expr $num + 1]
-	} else { set temp_num 1 }
-}
+	set num [blacktools:ban:find_id]
 	blacktools:addban $nick $mask $hand $chan $chan1 $return_time "GAG" "0" "0" $show_reason "0" "" "" "" 0 $num
 
 	set backchan [join [setting:get $chan backchan]]
