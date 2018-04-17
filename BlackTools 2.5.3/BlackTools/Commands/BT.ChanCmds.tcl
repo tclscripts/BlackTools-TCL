@@ -496,11 +496,13 @@ if {[regexp {^[&#]} $who] && [matchattr $hand nmo|M $who]} {
 vr {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set vr [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 	set chan1 "$chan"
 	set type 0
 if {[regexp {^[&#]} $vr] && [matchattr $hand nmo|MAO $vr]} {
 	set chan "$vr"
 	set vr [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 }
 foreach c [channels] {
 	set backchan [join [setting:get $c backchan]]
@@ -508,18 +510,20 @@ if {[string match -nocase $chan $backchan]} {
 	set chan "$c"
 	}
 }
-	userhost:act $vr $nick $hand $char $chan $chan1 $type $black(vr:bantime) "vr" "" "0"
+	userhost:act $vr $nick $hand $char $chan $chan1 $type $black(vr:bantime) "vr" "$com" "0"
 	}
 }
 
 dr {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set drone [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 	set type 0
 	set chan1 "$chan"
 if {[regexp {^[&#]} $drone] && [matchattr $hand nmo|OMA $drone]} {
 	set chan "$drone"
 	set drone [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 }
 foreach c [channels] {
 	set backchan [join [setting:get $c backchan]]
@@ -527,18 +531,20 @@ if {[string match -nocase $chan $backchan]} {
 	set chan "$c"
 	}
 }
-	userhost:act $drone $nick $hand $char $chan $chan1 $type $black(dr:bantime) "dr" "" "0"
+	userhost:act $drone $nick $hand $char $chan $chan1 $type $black(dr:bantime) "dr" "$com" "0"
 	}
 }
 
 bot {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set bot [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 	set type 0
 	set chan1 "$chan"
 if {[regexp {^[&#]} $bot] && [matchattr $hand nmo|OMA $bot]} {
 	set chan "$bot"
 	set bot [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 }
 foreach c [channels] {
 	set backchan [join [setting:get $c backchan]]
@@ -546,18 +552,20 @@ if {[string match -nocase $chan $backchan]} {
 	set chan "$c"
 	}
 }
-	userhost:act $bot $nick "$hand:bot" $char $chan $chan1 $type $black(bot:bantime) "bot" "" "0"
+	userhost:act $bot $nick "$hand:bot" $char $chan $chan1 $type $black(bot:bantime) "bot" "$com" "0"
 	}
 }
 
 n {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set badnick [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 	set type 0
 	set chan1 "$chan"
 if {[regexp {^[&#]} $badnick] && [matchattr $hand nmo|MAO $badnick]} {
 	set chan "$badnick"
 	set badnick [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 }
 if {[setting:get $chan nextshortcmd]} {
 	nextpublic:process $nick $char $hand $chan $chan1 $badnick
@@ -577,19 +585,21 @@ if {[string match -nocase $chan $backchan]} {
 	set chan "$c"
 	}
 }
-	bancmds:process $badnick $badnick $nick $hand $char $chan $chan1 $type $black(n:bantime) "n" "" "0"
+	bancmds:process $badnick $badnick $nick $hand $char $chan $chan1 $type $black(n:bantime) "n" "$com" "0"
 	}
 }
 
 id {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set badident [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 	set handle [nick2hand $badident]
 	set type 0
 	set chan1 "$chan"
 if {[regexp {^[&#]} $badident] && [matchattr $hand nmo|OMA $badident]} {
 	set chan "$badident"
 	set badident [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 }
 foreach c [channels] {
 	set backchan [join [setting:get $c backchan]]
@@ -597,18 +607,20 @@ if {[string match -nocase $chan $backchan]} {
 	set chan "$c"
 	}
 }
-	userhost:act $badident $nick $hand $char $chan $chan1 $type $black(id:bantime) "id" "" "0"
+	userhost:act $badident $nick $hand $char $chan $chan1 $type $black(id:bantime) "id" "$com" "0"
 	}
 }
 
 spam {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set spammer [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 	set type 0
 	set chan1 "$chan"
 if {[regexp {^[&#]} $spammer] && [matchattr $hand nmo|OMA $spammer]} {
 	set chan "$spammer"
 	set spammer [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 }
 foreach c [channels] {
 	set backchan [join [setting:get $c backchan]]
@@ -616,18 +628,20 @@ if {[string match -nocase $chan $backchan]} {
 	set chan "$c"
 	}
 }
-	userhost:act $spammer $nick $hand $char $chan $chan1 $type $black(spam:bantime) "spam" "" "0"
+	userhost:act $spammer $nick $hand $char $chan $chan1 $type $black(spam:bantime) "spam" "$com" "0"
 	}
 }
 
 bw {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set badw [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 	set type 0
 	set chan1 "$chan"
 if {[regexp {^[&#]} $badw] && [matchattr $hand nmo|OMA $badw]} {
 	set chan "$badw"
 	set badw [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 }
 foreach c [channels] {
 	set backchan [join [setting:get $c backchan]]
@@ -635,7 +649,7 @@ if {[string match -nocase $chan $backchan]} {
 	set chan "$c"
 	}
 }
-	userhost:act $badw $nick $hand $char $chan $chan1 $type $black(bw:bantime) "bw" "" "0"
+	userhost:act $badw $nick $hand $char $chan $chan1 $type $black(bw:bantime) "bw" "$com" "0"
 	}
 }
 

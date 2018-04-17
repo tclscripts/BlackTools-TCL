@@ -433,32 +433,38 @@ if {$mychan_use == "1"} {
 dr {
 if {[matchattr $hand nmo|OSMA $chan]} {
 	set drone [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 if {$mychan_use == "1"} {
 	set drone [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 }
 	set type 2
 	set chan1 "$chan"
-	userhost:act $drone $nick $hand "prv" $chan $chan1 $type $black(dr:bantime) "dr" "" "0"
+	userhost:act $drone $nick $hand "prv" $chan $chan1 $type $black(dr:bantime) "dr" "$com" "0"
 	}
 }
 
 bot {
 if {[matchattr $hand nmo|OSMA $chan]} {
 	set bot [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 if {$mychan_use == "1"} {
 	set bot [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 }
 	set type 2
 	set chan1 "$chan"
-	userhost:act $bot $nick "$hand:bot" "prv" $chan $chan1 $type $black(bot:bantime) "bot" "" "0"
+	userhost:act $bot $nick "$hand:bot" "prv" $chan $chan1 $type $black(bot:bantime) "bot" "$com" "0"
 	}
 }
 
 n {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set badnick [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 if {$mychan_use == "1"} {
 	set badnick [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 }
 	set type 0
 	set chan1 "$chan"
@@ -476,32 +482,36 @@ if {$badnick == ""} {
 	blacktools:tell $nick "prv" $hand $chan $chan1 gl.instr_priv "n"
 	return
 		}
-	bancmds:process $badnick $badnick $nick $hand "prv" $chan $chan1 $type $black(n:bantime) "n" "" "0"
+	bancmds:process $badnick $badnick $nick $hand "prv" $chan $chan1 $type $black(n:bantime) "n" "$com" "0"
 	}
 }
 
 id {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set badident [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 if {$mychan_use == "1"} {
 	set badident [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 }
 	set handle [nick2hand $badident]
 	set type 2
 	set chan1 "$chan"
-	userhost:act $badident $nick $hand "prv" $chan $chan1 $type $black(id:bantime) "id" "" "0"
+	userhost:act $badident $nick $hand "prv" $chan $chan1 $type $black(id:bantime) "id" "$com" "0"
 	}
 }
 
 spam {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set spammer [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 if {$mychan_use == "1"} {
 	set spammer [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 }
 	set type 2
 	set chan1 "$chan"
-	userhost:act $spammer $nick $hand "prv" $chan $chan1 $type $black(spam:bantime) "spam" "" "0"
+	userhost:act $spammer $nick $hand "prv" $chan $chan1 $type $black(spam:bantime) "spam" "$com" "0"
 	}
 }
 
@@ -509,12 +519,14 @@ if {$mychan_use == "1"} {
 bw {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set badw [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 if {$mychan_use == "1"} {
 	set badw [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 }
 	set type 2
 	set chan1 "$chan"
-	userhost:act $badw $nick $hand "prv" $chan $chan1 $type $black(bw:bantime) "bw" "" "0"
+	userhost:act $badw $nick $hand "prv" $chan $chan1 $type $black(bw:bantime) "bw" "$com" "0"
 	}
 }
 
@@ -2035,12 +2047,14 @@ if {$mychan_use == "1"} {
 vr {
 if {[matchattr $hand nmo|OMA $chan]} {
 	set vr [lindex [split $arg] 2]
+	set com [join [lrange [split $arg] 3 end]]
 	set chan1 "$chan"
 	set type 2
 if {$mychan_use == "1"} {
 	set vr [lindex [split $arg] 1]
+	set com [join [lrange [split $arg] 2 end]]
 }
-	userhost:act $vr $nick $hand "prv" $chan $chan1 $type $black(vr:bantime) "vr" "" "0"
+	userhost:act $vr $nick $hand "prv" $chan $chan1 $type $black(vr:bantime) "vr" "$com" "0"
 	}
 }
 

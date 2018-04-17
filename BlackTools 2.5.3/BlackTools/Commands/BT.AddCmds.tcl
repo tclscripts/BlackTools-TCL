@@ -906,7 +906,7 @@ if {![info exists the_usernames]} {
 	set the_usernames ""
 }
 
-foreach user [split $usernames] {
+foreach user $usernames {
 if {$host != "prv"} {
 	foreach n [chanlist $chan] {
 	set id [nick2hand $n]
@@ -1299,9 +1299,9 @@ if {[matchattr $user -|q $chan]} {
 }
 	set getflags [getflags $user $chan]
 if {![string equal -nocase $show_user $user]} {
-	blacktools:tell $nick $host $hand $chan $chan1 info.1 "$show_user\[[black:color 1 $hand $user]\] $flags"
+	blacktools:tell $nick $host $hand $chan $chan1 info.1 "$user\[[black:color 1 $hand $user]\] $flags"
 } else {
-	blacktools:tell $nick $host $hand $chan $chan1 info.1 "$show_user $flags"
+	blacktools:tell $nick $host $hand $chan $chan1 info.1 "$user $flags"
 }
 if {![matchattr $user B]} {
 if {$automode_gl != "N/A"} {
