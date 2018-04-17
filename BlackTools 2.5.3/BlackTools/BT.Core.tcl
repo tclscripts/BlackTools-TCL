@@ -917,7 +917,7 @@ if {$checkbantime == "-1"} {
 }
 	set getlang [string tolower [setting:get $chan lang]]
 	set getmethod [getuser $gethand XTRA OUTPUT_TYPE]
-	set userlang [getuser $gethand XTRA OUTPUT_LANG]
+	set userlang [string tolower [getuser $gethand XTRA OUTPUT_LANG]]
 if {$userlang == ""} { set userlang "[string tolower $black(default_lang)]" }
 if {$getmethod == ""} { set getmethod "0" }
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
@@ -1604,6 +1604,7 @@ if {([matchaddr $b $host] && $whois == "1") || [matchaddr $host $b]} {
 proc banmethod_action:ban {nick chan host reason xban xonly bantime truehost thereason} {
 	global black botnick
 		chanserv:ignore_remove
+	set reason [blacktools:rem_comment_ban $reason]
 if {$xonly == "1"} {
 	set getxtime [setting:get $chan xbantime]
 	set getxlevel [setting:get $chan xbanlevel]
@@ -2556,8 +2557,6 @@ if {![file exists $black(uptime_file)]} {
 	close $file
 	set get_uptime 0
 	set get_online 0
-	close $file
-	
 	set get_uptime [lindex $data 0]
 	set get_online [lindex $data 1]
 
@@ -2830,6 +2829,7 @@ proc bancmds:process {user mask nick hand host chan chan1 type bantime cmd rs gl
 	global black botnick
 	set split_hand [split $hand ":"]
 	set gethand [lindex $split_hand 0]
+	set comment ""
 	set cmd_status [btcmd:status $chan $gethand $cmd 0]
 if {$cmd_status == "1"} { 
 	return
@@ -2877,10 +2877,20 @@ if {[matchattr $handle $black(exceptflags) $chan]} {
 	return
 	}
 }
-
-if {$rs != ""} {
+	set reason_cmds "b stick black mb"
+if {$rs != "" && [lsearch -exact $reason_cmds $cmd] > -1} {
 	set getreason $rs
 } else {
+if {$rs != ""} {
+if {[regexp {(-comment)} $rs]} {
+	set split_it [wsplit $rs "-comment"]
+} elseif {[regexp {(-com)} $rs]} {
+	set split_it [wsplit $rs "-com"]
+} elseif {[regexp {(-c)} $rs]} {
+	set split_it [wsplit $rs "-c"]
+	}
+	set comment [concat [lindex $split_it 1]]
+}
 	set getreason [setting:get $chan $cmd-reason]
 }
 
@@ -2893,6 +2903,9 @@ if {$cmd == "b"} {
 	}
 }
 
+if {$comment != ""} {
+	set getreason "$getreason -c $comment"
+}
 if {![string equal -nocase "$cmd" "black"] && ![string equal -nocase "$cmd" "bl"] && ![string equal -nocase "$cmd" "troll"] && ![string equal -nocase "$cmd" "b"]} {
 	set getbantime [setting:get $chan $cmd-bantime]
 } else { set getbantime 0 }
@@ -6576,7 +6589,7 @@ if {[string equal -nocase $type1 "BADWORD"]} {
 
 list {
 	array set protlist [list]
-	set userlang [getuser $hand XTRA OUTPUT_LANG]
+	set userlang [string tolower [getuser $hand XTRA OUTPUT_LANG]]
 if {$userlang == ""} { set userlang "[string tolower $black(default_lang)]" }
 	set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
 	set temp "$black(tempdir)/prot_temp.$timestamp"
