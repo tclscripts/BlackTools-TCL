@@ -66,6 +66,7 @@ proc anticaps:protect {nick host hand chan arg} {
 global black botnick
 	set handle [nick2hand $nick]
 	set found_caps 0
+	set argz [split $arg]
 if {![validchan $chan]} { return }
 if {![botisop $chan] && ![setting:get $chan xonly]} { return }
 if {[matchattr $handle $black(exceptflags) $chan]} { return }
@@ -73,7 +74,13 @@ if {[matchattr $handle $black(exceptflags) $chan]} { return }
 if {$bl_protect == "1"} { return }
 if {[isbotnick $nick]} { return }
 	set caps($nick:$host) 0
-foreach word [split $arg {}] {
+foreach a [split $arg] {
+if {[onchan $a $chan]} {
+	set search [lsearch -exact $argz $a]
+	set argz [lreplace $argz $search $search]
+	}
+}
+foreach word [split $argz {}] {
 if [string match \[A-Z\] $word] {
 	incr caps($nick:$host)
 	}
@@ -83,8 +90,8 @@ if {$caps($nick:$host) == 0} {
   return
 }
 
-if {[string length $arg] < 20} {return}
-	set capchar [string length $arg]
+if {[string length $argz] < 20} {return}
+	set capchar [string length $argz]
 if {[expr 100 * $caps($nick:$host) / $capchar] > $black(anticapscount)} {
 	set found_caps 1
 }
