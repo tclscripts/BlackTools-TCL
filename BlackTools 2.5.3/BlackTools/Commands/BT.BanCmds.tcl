@@ -222,7 +222,7 @@ if {$nounban == "1"} {
 if {$return == "1"} {
 	set bans [returnchanbans_ub $show_mask $chan $whois]
 foreach b $bans {
-if {([setting:get $chan xtools] || [setting:get $chan xonly]) && [onchan $black(chanserv) $chan]} {
+if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 	putserv "PRIVMSG $black(chanserv) :unban $chan $b"
 } else {
 	pushmode $chan -b $b
