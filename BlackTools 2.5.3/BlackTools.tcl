@@ -20,7 +20,7 @@
 #		   			  One TCL. One smart Eggdrop.     #
 ###########################################################################
 #              + Script released: 03.03.2018 09:10 AM (Romanian TimeZone) #
-#              + Script updated : 13.04.2018 11:57 AM (Romanian TimeZone) #
+#              + Script updated : 22.04.2018 15:50 PM (Romanian TimeZone) #
 ###########################################################################
 #                                                                         #
 #                       #####    ######     #####                         #
@@ -1218,7 +1218,7 @@ set black(voiceme:msgtime) "25m"
 #4 - nick!*@*
 #5 - *!user@*
 
-set black(topwords:mask) "3"
+set black(topwords:mask) "2"
 
 #######################################################################
 #------------------------------ GuestNick ----------------------------#
