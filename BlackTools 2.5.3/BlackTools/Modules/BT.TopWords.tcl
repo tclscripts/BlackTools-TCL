@@ -541,9 +541,8 @@ if {[info exists black(topwords:$chan:$mask)]} {
 while {[gets $file line] != -1} {
 	set read_chan [lindex [split $line] 0]
 	set read_host [lindex [split $line] 2]
-	set real_read_host [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $read_host]
 	set enc_chan [encoding convertfrom utf-8 $read_chan]
-if {[string equal -nocase $enc_chan $chan] && [string equal -nocase $real_read_host $mask]} {
+if {[string equal -nocase $enc_chan $chan] && [string equal -nocase $mask $read_host]} {
 	set found_mask 1
 	set get_lines [lrange [split $line] 3 5]
 	set get_words [lrange [split $line] 6 8]
