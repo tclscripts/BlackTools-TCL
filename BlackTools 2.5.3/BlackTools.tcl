@@ -20,7 +20,7 @@
 #		   			  One TCL. One smart Eggdrop.     #
 ###########################################################################
 #              + Script released: 03.03.2018 09:10 AM (Romanian TimeZone) #
-#              + Script updated : 22.04.2018 15:50 PM (Romanian TimeZone) #
+#              + Script updated : 08.05.2018 22:13 PM (Romanian TimeZone) #
 ###########################################################################
 #                                                                         #
 #                       #####    ######     #####                         #
@@ -77,6 +77,8 @@
 #   History     : http://www.tclscripts.net/release-notes                 #
 #   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script     #
 #   Online help : irc://irc.undernet.org/tcl-help                         #
+#                                                                         #
+#     paypal.me/DanielVoipan = Please consider a donation. Thanks!        #
 #                                                                         #
 ###########################################################################
 #                                                                         #
