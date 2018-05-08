@@ -39,22 +39,6 @@ if {[info exists black(notlogged)] || [info exists black(notlogged:failed)] || [
 
 ################################## cp #######################################
 
-proc cp:getnum {} {
-	global black
-	set temp_num 0
-	set num 0
-	set counter 0	
-while {$temp_num == 0} {
-	set get [blacktools:ban:find_id $num]
-if {$get == "$num"} {
-	set num [expr $num + 1]
-	} else { 
-	set temp_num 1
-		}
-	}
-	return $num
-}
-
 proc cp:process {nick host hand chan chan1 type what from to} {
 	global black
 	set cmd_status [btcmd:status $chan $hand "cp" 0]
@@ -99,7 +83,7 @@ if {[llength [blacktools:banlist $from]] < 1} {
 }
 foreach b [blacktools:banlist $from] {
 	set file [open $black(bans_file) "a"]
-	set num [cp:getnum]
+	set num [blacktools:ban:find_id]
 	set enc_chan [encoding convertto utf-8 $to]
 	set read_type [lindex [split $b] 0]
 	set read_host [lindex [split $b] 3]
