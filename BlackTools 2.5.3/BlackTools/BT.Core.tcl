@@ -1112,6 +1112,7 @@ if {$getxlevel == ""} {
 	set getxlevel $black(chanserv:banlevel)
 	}
 }
+	set reason [blacktools:rem_comment_ban $reason]
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 if {[setting:get $chan showhandle] && ![string equal -nocase $gethand "handleban"]} {
 if {$bl == "1"} {
@@ -3106,11 +3107,12 @@ if {$check_except == "1"} {
 	set read_reason [join [lrange [split $b] 9 end]]
 	set read_reason [encoding convertfrom utf-8 $read_reason]
 	set expire [lindex [split $b] 5]
-	set read_handle [lindex [split $b] 4]
+	set read_handle [split [lindex [split $b] 4] ":"]
 	set gethand [lindex [split $read_handle] 0]
 
 	set show_reason [blacktools:setreason $chan $read_reason $read_handle $expire $getcount "0" $num]
 if {$expire == "0"} {
+	set show_reason [blacktools:bl:setreason $chan $read_reason $read_handle $expire $getcount "0" $num]
 if {[setting:get $chan showhandle]} {
 if {![string equal -nocase $gethand "BADCHAN"] && ![string equal -nocase $gethand "badident"] && ![string equal -nocase $gethand "badnick"] && ![string equal -nocase $gethand "antibadquitpart"] && ![string equal -nocase $gethand "antichanflood"] && ![string equal -nocase $gethand "badrealname"] && ![string equal -nocase $gethand "antispam"] && ![string equal -nocase $gethand "badhost"] && ![string equal -nocase $gethand "antipub"] && ![string equal -nocase $gethand "antijoinflood"] && ![string equal -nocase $gethand "antinotice"] && ![string equal -nocase $gethand "antictcp"] && ![string equal -nocase $gethand "antirepeat"] && ![string equal -nocase $gethand "antibold"] && ![string equal -nocase $gethand "anticolor"] && ![string equal -nocase $gethand "antiunderline"] && ![string equal -nocase $gethand "antilongtext"] && ![string equal -nocase $gethand "antibadword"] && ![string equal -nocase $gethand "anticaps"] && ![string equal -nocase $gethand "nickflood"] && ![string equal -nocase $gethand "inviteban"] && ![string equal -nocase $gethand "private"] && ![string equal -nocase $gethand "clonescan"] && ![string equal -nocase $gethand "repetitivechars"]} {
 	set show_reason "\[BT\] ($gethand) blacklisted -- ($black(say.$getlang.gl.reason): $show_reason)" 
@@ -3119,9 +3121,6 @@ if {![string equal -nocase $gethand "BADCHAN"] && ![string equal -nocase $gethan
 	}
 } else {
 	set show_reason "\[BT\] blacklisted -- ($black(say.$getlang.gl.reason): $show_reason)"
-	}
-if {[setting:get $chan showid]} {
-	set show_reason "$show_reason \[id: $num\]"	
 	}
 }
 if {[onchan $black(chanserv) $chan] && $xban == "1"} {
@@ -3165,13 +3164,11 @@ if {$check_except == "1"} {
 	set read_handle [lindex [split $b] 4]
 	set show_reason [blacktools:setreason $chan $read_reason $read_handle $expire "" "1" $num]
 if {$expire == "0"} {
+	set show_reason [blacktools:bl:setreason $chan $read_reason $read_handle $expire $getcount "0" $num]
 if {[setting:get $chan showhandle]} {
 	set show_reason "\[BT\] ($read_handle) (GLOBAL) blacklisted -- ($black(say.$getlang.gl.reason): $show_reason)" 
 } else {
 	set show_reason "\[BT\] (GLOBAL) blacklisted -- ($black(say.$getlang.gl.reason): $show_reason)"
-	}
-if {[setting:get $chan showid]} {
-	set show_reason "$show_reason \[id: $num\]"	
 	}
 }
 if {[onchan $black(chanserv) $chan] && $xban == "1"} {
@@ -3900,21 +3897,19 @@ if {$check_except == "1"} {
 	set read_reason [blacktools:rem_comment $read_reason]
 	set read_reason [encoding convertfrom utf-8 $read_reason]
 	set expire [lindex [split $b] 5]
-	set read_handle [lindex [split $b] 4]
+	set read_handle [split [lindex [split $b] 4] ":"]
 	set gethand [lindex [split $read_handle] 0]
 	set show_reason [blacktools:setreason $chan $read_reason $read_handle $expire $getcount "0" $num]
 if {$expire == "0"} {
+	set show_reason [blacktools:bl:setreason $chan $read_reason $read_handle $expire $getcount "0" $num]
 if {[setting:get $chan showhandle]} {
 if {![string equal -nocase $gethand "BADCHAN"] && ![string equal -nocase $gethand "badident"] && ![string equal -nocase $gethand "badnick"] && ![string equal -nocase $gethand "antibadquitpart"] && ![string equal -nocase $gethand "antichanflood"] && ![string equal -nocase $gethand "badrealname"] && ![string equal -nocase $gethand "antispam"] && ![string equal -nocase $gethand "badhost"] && ![string equal -nocase $gethand "antipub"] && ![string equal -nocase $gethand "antijoinflood"] && ![string equal -nocase $gethand "antinotice"] && ![string equal -nocase $gethand "antictcp"] && ![string equal -nocase $gethand "antirepeat"] && ![string equal -nocase $gethand "antibold"] && ![string equal -nocase $gethand "anticolor"] && ![string equal -nocase $gethand "antiunderline"] && ![string equal -nocase $gethand "antilongtext"] && ![string equal -nocase $gethand "antibadword"] && ![string equal -nocase $gethand "anticaps"] && ![string equal -nocase $gethand "nickflood"] && ![string equal -nocase $gethand "inviteban"] && ![string equal -nocase $gethand "private"] && ![string equal -nocase $gethand "clonescan"] && ![string equal -nocase $gethand "repetitivechars"]} {
-	set show_reason "\[BT\] ($gethand) blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)"
+	set show_reason "\[BT\] ($gethand) blacklisted -- ($black(say.$getlang.gl.reason): $show_reason)"
 } else {
-		set show_reason "\[BT\] blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)"
+		set show_reason "\[BT\] blacklisted -- ($black(say.$getlang.gl.reason): $show_reason)"
 	}
 } else {
-	set show_reason "\[BT\] blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)"
-	}
-if {[setting:get $chan showid]} {
-	set show_reason "$show_reason \[id: $num\]"	
+	set show_reason "\[BT\] blacklisted -- ($black(say.$getlang.gl.reason): $show_reason)"
 	}
 }
 if {[onchan $black(chanserv) $chan] && $xban == "1"} {
@@ -3963,13 +3958,11 @@ if {$check_except == "1"} {
 	set gethand [lindex [split $read_handle] 0]
 	set show_reason [blacktools:setreason $chan $read_reason $read_handle $expire "" "1" $num]
 if {$expire == "0"} {
+	set show_reason [blacktools:bl:setreason $chan $read_reason $read_handle $expire $getcount "0" $num]
 if {[setting:get $chan showhandle]} {
 	set show_reason "\[BT\] ($gethand) (GLOBAL) blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)" 
 } else {
 	set show_reason "\[BT\] (GLOBAL) blacklisted -- ($black(say.$getlang.gl.reason): $read_reason)"
-	}
-if {[setting:get $chan showid]} {
-	set show_reason "$show_reason \[id: $num\]"	
 	}
 }
 if {[onchan $black(chanserv) $chan] && $xban == "1"} {
@@ -4131,6 +4124,43 @@ if {[string match "*blacktools:autounban*" [join [lindex $tmr 1]]]} {
 	}
 }
 	utimer $black(lastban) [list blacktools:autounban]
+}
+
+proc blacktools:bl:setreason {chan reason bywho expire kcount gl id} {
+	global black
+	set split_hand [split $bywho ":"]
+	set cmd [lindex $split_hand 1]
+	set reason [blacktools:rem_comment $reason]
+if {$expire != "0"} {
+	set expire [return_reason_time [expr $expire - [unixtime]]]
+}
+	set show_reason "$reason"
+if {$gl == "0"} {
+
+if {[setting:get $chan showid] && ($cmd != "bot")} {
+	set show_reason "$show_reason \[id: $id\]"
+}	
+
+if {[setting:get $chan showtime] && ($expire != "0") && ($cmd != "bot")} {
+	set show_reason "$show_reason \[bantime: $expire\]"
+}
+
+if {[setting:get $chan showurl] && ([setting:get $chan url] != "") && ($cmd != "bot")} {
+		set show_reason "$show_reason - [join [setting:get $chan url]]"
+}
+if {[setting:get $chan showcount] && ($cmd != "bot")} {
+	set show_reason "$show_reason - $kcount -"
+}
+	} else {
+if {[setting:get $chan showhandle]} {
+	set show_reason "($bywho) (GLOBAL) $reason"
+} else { set show_reason "(GLOBAL) $reason" }
+
+if {[setting:get $chan showid]} {
+	set show_reason "$show_reason \[id: $id\]"
+		}		
+	}
+	return $show_reason
 }
 
 proc blacktools:setreason {chan reason bywho expire kcount gl id} {
