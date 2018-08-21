@@ -321,7 +321,7 @@ if {![info exists black(badchan_floodcontrol:$chan)]} {
 	
 if {$black(badchan_floodcontrol:$chan) >= "$num_control"} {
 	set black(floodcontrol:act:$chan) 1
-	utimer 30 [list unset black(floodcontrol:act:$chan)]
+	utimer 30 [list badchan:joinflood:unset:act $chan]
 	return
 }
 	utimer 5 [list putserv "WHOIS $nick"]
@@ -333,6 +333,13 @@ proc badchan:joinflood:unset {chan} {
 	global black
 if {[info exists black(badchan_floodcontrol:$chan)]} {
 	unset black(badchan_floodcontrol:$chan)
+	}
+}
+
+proc badchan:joinflood:unset:act {chan} {
+	global black
+if {[info exists black(floodcontrol:act:$chan)]} {
+	unset black(floodcontrol:act:$chan)
 	}
 }
 
