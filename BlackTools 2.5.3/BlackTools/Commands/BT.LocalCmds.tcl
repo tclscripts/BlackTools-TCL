@@ -445,6 +445,7 @@ if {[info exists black(say.$getlang.i.7)]} {
 if {$inick != ""} {
 if {[onchan $inick $chan]} {
 	blacktools:tell $anick $host $hand $chan $chan1 i.1 $show_inick
+	check:if:bind "i:online:check" "302"
 	return
 }
 	putserv "INVITE $inick $chan"
