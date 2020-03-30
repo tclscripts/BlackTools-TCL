@@ -6764,7 +6764,13 @@ proc blacktools:expire:chan {channels num} {
 if {$gettime == ""} {
 	set gettime $black(default:bantime)
 }
-if {$gettime == "0"} { continue }
+if {$gettime == "0"} {
+	set nextc [expr $num + 1]
+if {[lindex $channels $nextc] != ""} {
+	blacktools:expire:chan $channels $nextc
+	}
+	return
+}
 	set gettime [time_return_minute $gettime]
 	set seconds [expr $gettime * 60]
 	set unixtime [unixtime]
