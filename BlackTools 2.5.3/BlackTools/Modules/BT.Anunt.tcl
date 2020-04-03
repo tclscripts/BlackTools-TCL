@@ -258,7 +258,7 @@ if {$line == ""} {
 	set black(anuntshow:$chan) [expr $black(anuntshow:$chan) + 1]
 foreach mes $split_line {
 	set mes [string map [array get replace] $mes]
-	set encoded [encoding convertto utf-8 $mes]
+	set encoded [encoding convertfrom utf-8 $mes]
 	
 if {$black(anunthow) == "1"} {
 	puthelp "PRIVMSG $chan :\001ACTION \[$black(anuntshow:$chan)/$total_anunt\] [join $encoded]\001"
