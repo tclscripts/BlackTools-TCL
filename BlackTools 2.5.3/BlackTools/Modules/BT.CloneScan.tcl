@@ -110,7 +110,7 @@ if {$type == "1"} {
 	set message [string map [array get replace] $text]
 	putserv "NOTICE @$chan :$message"
 foreach m $found_mask {
-	set mask "*!*@$found_mask"
+	set mask "*!*@$m"
 	blacktools:banner:2 $nick "CLONESCAN" $chan $chan1 $mask "0"
 }
 	who:chan $chan
