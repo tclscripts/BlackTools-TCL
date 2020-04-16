@@ -266,7 +266,7 @@ if {$idlehalfoptime == ""} { set idlehalfoptime "$black(idlehalfopmax)" }
 	set idlehalfoptime [time_return_minute $idlehalfoptime]
 if {![info exists black(voiceonmsg:$nick:$chan)]} {
 if {[setting:get $chan idlevoice]} {
-if {![matchattr $handle "-|gf" $chan]} {
+if {(![matchattr $handle "-|gf" $chan]) && [isvoice $nick $chan]} {
 if {$minutesidle > $idlevoicetime} {
 if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 	putserv "PRIVMSG $black(chanserv) :devoice $chan $nick"
@@ -278,7 +278,7 @@ if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 }
 
 if {[setting:get $chan idleop]} {
-if {![matchattr $handle "-|af" $chan]} {
+if {(![matchattr $handle "-|af" $chan]) && [isop $nick $chan]} {
 if {$minutesidle > $idleoptime} {
 if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 	putserv "PRIVMSG $black(chanserv) :deop $chan $nick"
@@ -289,7 +289,7 @@ if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 				}
 			}
 if {[setting:get $chan idlehalfop]} {
-if {![matchattr $handle "-|f" $chan]} {
+if {(![matchattr $handle "-|f" $chan]) && [ishalfop $nick $chan]} {
 if {$minutesidle > $idlehalfoptime} {
 if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 	return
