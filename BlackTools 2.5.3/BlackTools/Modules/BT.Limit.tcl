@@ -121,8 +121,8 @@ proc limit:act {channels counter} {
 if {$chan != ""} {
 	set usersnum [llength [chanlist $chan]]
 	set setnum [setting:get $chan limit-default]
-	set limitcount [expr $usersnum + $setnum]
 if {$setnum == "0" || $setnum == ""} { set setnum $black(limit:default) }
+	set limitcount [expr $usersnum + $setnum]
 if {![botisop $chan]} { return }
 	set chanmode [getchanmode $chan]
 if {[string match "*l*" "$chanmode"]} {
