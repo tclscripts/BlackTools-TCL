@@ -123,7 +123,7 @@ if {[matchattr $hand -|q $chan]} { blacktools:tell $nick $host $hand $chan $chan
 	set getlang [string tolower [setting:get $chan lang]]
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 
-switch $why {
+switch [string tolower $why] {
 	on {
 	setting:set $chan +antibadchan ""
 	blacktools:tell $nick $host $hand $chan $chan1 badchan.6 none
