@@ -52,7 +52,7 @@ if {![onchan $botnick $chan]} {
 }
 	set usersnum [llength [chanlist $chan]]
 	
-    switch $why {
+    switch [string tolower $why] {
 
 on {
 	set limt [setting:get $chan limit-default]
