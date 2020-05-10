@@ -46,7 +46,7 @@ if {![validchan $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 gl.novalidchan none
 	return
 }
-	switch $who {
+	switch [string tolower $who] {
 on {
 	setting:set $chan +anunt ""
 	blacktools:tell $nick $host $hand $chan $chan1 anunt.3 none
