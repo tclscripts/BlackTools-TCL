@@ -4,8 +4,8 @@
                                      One TCL. One smart Eggdrop
 ===========================================================================================================
 
-   BlackTools is the most complete channel management script who can manage channels from all the 
-   IRC networks, although some modules are specifically designed only for Undernet network.
+   BlackTools is the most complete channel management script who can manage channels from all 
+   the IRC networks, although some modules are specifically designed only for Undernet network.
 
                                       -----------------------
 
@@ -14,8 +14,8 @@
    History     : http://www.tclscripts.net/release-notes
    GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script
    Online help : irc://irc.undernet.org/tcl-help 
-                #TCL-HELP / UnderNet
-                You can ask in english or romanian
+                 #TCL-HELP / UnderNet
+                 You can ask in english or romanian
 
                      / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \
                     ( T | C | L | S | C | R | I | P | T | S | . | N | E | T )
@@ -28,11 +28,11 @@
                             and we'll contact you as soon as possible.
 
                                       -----------------------
-                                      
+
    Ideas, suggestions, comments ?
 
       This script is free of charge but I accept donations, old computers, free shells :))
-      In any case, if you have any comment (good or bad) go to http://tclscripts.net.
+      In any case, if you have any comment (good or bad) go to www.tclscripts.net.
 
 Minimum requirements:
      o Eggdrop 1.8.x
@@ -56,6 +56,7 @@ Most important features:
     o Note module system where users can send messages to each other or save personal notes. 
       Also, eggdrop will send notes to global owner(s) to inform them every time is abused
       (banned/can't join a channel).
+    o CIDR support, dnslookup support and webirc hosts support.
     o All commands works through private message (PRIVMSG) and possibility that all users, who have
       access to eggdrop, can set their own cmdchar such as '!'.
     o All the warn/kick/ban reasons are highly customizable. 
@@ -70,7 +71,7 @@ Most important features:
 
 Important:
 
-     Read BlackTools MANUAL (.man command) for more info about configuration.
+     Read BlackTools MANUAL (.man command) for help and information about configuration.
      Read INSTALL file to know how to install it.
      Read FAQ file for the most frequently asked questions.
 
@@ -85,11 +86,11 @@ Credits:
 
 Utenti italiani:
 ---------------------
-      Nessuna traduzione ufficiale ancora (puo essere fatto su richiesta).
+      Italian Language: Nessuna traduzione ufficiale ancora (puo essere fatta su richiesta).
 
 Usuarios espanoles:
 ---------------------
-      Sin traduccion oficial todavia (se puede hacer a peticion).
+      Spanish Language: Sin traduccion oficial todavia (se puede realizar a peticion).
 
 -----------------------------------------------------------------------------------------------------------
 Copyright (c) 2008-2018 Daniel Voipan (aka BLaCkShaDoW).

@@ -1,9 +1,0 @@
-###################-------------------------------------------------$ rev.02 Date: 09.09.2012#
-- added to show idleopmax & idlevoicemax settings in lang files (MAN # idle #) - RO/EN
-- corrected a small issue during antispam protection, bot wasn't cycling - reported by Bandyt
-----------------------------------------------------------------------------------------------
-###################-------------------------------------------------$ rev.01 Date: 30.08.2012#
-- corrected display message in lang files (# stats / info #) - RO/EN
-- added to show the 2 options at Antitake module (DONTOP - DONTDEOP)
-- added to show owner option in <botnick> add & <botnick> adduser , for BOSS OWNER
-----------------------------------------------------------------------------------------------
