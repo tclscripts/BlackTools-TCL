@@ -1,0 +1,37 @@
+Connected to %B, running %V powered by   
+
+   
+  ##\       ##\                     ##\         ##\                         ##\           
+  ## |      ## |                    ## |        ## |                        ## |          
+  #######\  ## | ######\   #######\ ## |  ##\ ######\    ######\   ######\  ## | #######\ 
+  ##  __##\ ## | \____##\ ##  _____|## | ##  |\_##  _|  ##  __##\ ##  __##\ ## |##  _____|
+  ## |  ## |## | ####### |## /      ######  /   ## |    ## /  ## |## /  ## |## |\######\  
+  ## |  ## |## |##  __## |## |      ##  _##<    ## |##\ ## |  ## |## |  ## |## | \____##\ 
+  #######  |## |\####### |\#######\ ## | \##\   \####  |\######  |\######  |## |#######  |
+  \_______/ \__| \_______| \_______|\__|  \__|   \____/  \______/  \______/ \__|\_______/ 
+                                                                                        
+
+                      www.TclScriptS.NeT ® The Next Generation TCL
+                               Copyright © 2008 - 2018 
+
+Hey %b%N!%b My name is %b%B%b and I am running the %bBlackToolS 2.5.3%b Channel Control Script.
+
++++ 'One TCL. One smart Eggdrop'
+
+Local time is now %b%T%b %{+nmo|MAOV}
+
+** DCC commands start with '.' (like '.quit' or '.help')
+
++++ Use %b.help%b for basic help.
++++ Use %b.help all%b to get a full command list.
++++ Use %b.help *somestring*%b to list any help texts containing "somestring".
+
+Don't Fuck anything up!
+
++++ Remember, you can use %b!h%b in any channel that the bot is in to view the %bhelp manual%b from the BlackTools script.
+
+** Support:
+            wWw.TclScriptS.NeT or %bjoin #Tcl-Help%b on irc://irc.undernet.org/
+
+** Have fun _\|/_
+
