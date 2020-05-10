@@ -36,7 +36,7 @@
 #                                                                         #
 #                      - #TCL-HELP @ UNDERNET -     	                  #
 #                                                                         #
-#			      Copyright 2008 - 2018 @ WwW.TCLScripts.NET  #
+#			      Copyright 2008 - 2020 @ WwW.TCLScripts.NET  #
 #                                                                         #
 ###########################################################################
 #                                                                         #
