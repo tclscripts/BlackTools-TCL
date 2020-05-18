@@ -9,7 +9,7 @@
 
                                       -----------------------
 
-   Download    : http://blacktools.tclscripts.net
+   Download    : http://tclscripts.net/BlackTools2.5.3.tar.gz
    Bugs report : http://www.tclscripts.net
    History     : http://www.tclscripts.net/release-notes
    GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script
