@@ -721,6 +721,7 @@ if {[string equal -nocase $arg "-"]} {
 	foreach opnick [chanlist $chan] {
 if {![isop $opnick $chan]} { continue }
 if {[isbotnick $opnick]} { continue }
+if {[string equal -nocase $opnick $nick]} { continue }
 if {[onchan $black(chanserv) $chan] && ![setting:get $chan xonly]} {
 	blacktools:tell $nick $host $hand $chan $chan1 o.1 $black(chanserv)
 	return
