@@ -6300,6 +6300,7 @@ if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 
 proc ctcpvers {nickname hostname handle dest key arg} {
 global black
+if {![info exists ::versnick]} {return}
 	set text [split $arg]
 	set chan $::verschan
 	set chan1 $chan
