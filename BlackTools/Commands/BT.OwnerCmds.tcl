@@ -20,7 +20,7 @@
 ################################## login ####################################
 
 proc login:process {nick host hand chan chan1} {
-	global black
+	global black botnick
 	set cmd_status [btcmd:status $chan $hand "login" 0]
 if {$cmd_status == "1"} { 
 	return 
