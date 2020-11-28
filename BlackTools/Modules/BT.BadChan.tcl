@@ -4,14 +4,14 @@
 #########################################################################
 ###########################   BADCHAN TCL   #############################
 #########################################################################
-##						                       ##
-##   BlackTools  : http://blacktools.tclscripts.net	               ##
-##   Bugs report : http://www.tclscripts.net/	                       ##
+##						                                                         ##
+##   BlackTools  : http://blacktools.tclscripts.net	                   ##
+##   Bugs report : http://www.tclscripts.net/	                         ##
 ##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script ##
-##   Online Help : irc://irc.undernet.org/tcl-help 	               ##
+##   Online Help : irc://irc.undernet.org/tcl-help 	                   ##
 ##                 #TCL-HELP / UnderNet                                ##
 ##                 You can ask in english or romanian                  ##
-##					                               ##
+##					                               														 ##
 #########################################################################
 
 proc badchan:getlist {nick host hand chan chan1 type next} {
@@ -34,7 +34,7 @@ if {[string match -nocase $enc_chan $chan] && [string match -nocase $read_type "
 	set bdchan [lindex [split $line] 3]
 if {[regexp {^[+]} $bdchan]} {
 	set text [black:color:set $hand $black(say.$userlang.gl.protexcept)]
-	lappend badchanlist($msg_num) [string map {"+" ""} $bdchan] \[$text\]	
+	lappend badchanlist($msg_num) [string map {"+" ""} $bdchan] \[$text\]
 } else {
 	lappend badchanlist($msg_num) $bdchan
 		}
@@ -59,18 +59,18 @@ if {[string equal -nocase $chan "GLOBAL"]} {
 
 proc badchan:delchan {nick host hand chan chan1 number} {
 	global black
-	
+
 if {![regexp {^[0-9]} $number]} {
-	if {$type == "0"} {	
+	if {$type == "0"} {
 	blacktools:tell $nick $host $hand $chan $chan1 gl.instr "badchan"
 }
 if {$type == "1"} {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_nick "badchan"	
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_nick "badchan"
 }
 	return
 }
 	set ret [find:num $number $chan "BADCHAN"]
-if {$ret == 0} { 
+if {$ret == 0} {
 	blacktools:tell $nick $host $hand $chan $chan1 badchan.17 $number
 	return
 }
@@ -91,13 +91,13 @@ if {[string equal $number $read_num] && [string equal -nocase $chan $enc_chan] &
 	continue
 } else {
 	puts $tempwrite $line
-		}	 
+		}
     }
 }
 	close $tempwrite
     file rename -force $temp $black(add_file)
 if {[string equal -nocase $chan "GLOBAL"]} {
-	blacktools:tell $nick $host $hand $chan $chan1 badchan.19 $number	
+	blacktools:tell $nick $host $hand $chan $chan1 badchan.19 $number
 } else {
 	blacktools:tell $nick $host $hand $chan $chan1 badchan.18 $number
 	}
@@ -106,8 +106,8 @@ if {[string equal -nocase $chan "GLOBAL"]} {
 proc badchan:process {nick host hand chan chan1 why bdchan type1 type reason} {
 	global botnick black
 	set cmd_status [btcmd:status $chan $hand "badchan" 0]
-if {$cmd_status == "1"} { 
-	return 
+if {$cmd_status == "1"} {
+	return
 }
 if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.glsuspend none
 	return
@@ -123,7 +123,7 @@ if {[matchattr $hand -|q $chan]} { blacktools:tell $nick $host $hand $chan $chan
 	set getlang [string tolower [setting:get $chan lang]]
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 
-switch [string tolower $why] {
+switch $why {
 	on {
 	setting:set $chan +antibadchan ""
 	blacktools:tell $nick $host $hand $chan $chan1 badchan.6 none
@@ -187,14 +187,14 @@ if {$findchan == "1"} {
 if {$get == "$num"} {
 	set num [expr $num + 1]
 	} else { set temp_num 1 }
-}	
+}
 	set file [open $black(add_file) a]
 	puts $file "GLOBAL BADCHAN $num $bdchan $reason"
 	close $file
 	set gl 1
 	blacktools:tell $nick $host $hand $chan $chan1 badchan.11  "$show_bdchan $num"
 	return
-} 
+}
 	while {$temp_num == 0} {
 	set get [find:num $num $chan "BADCHAN"]
 if {$get == "$num"} {
@@ -285,7 +285,7 @@ foreach line $data {
 if {[string match -nocase $enc_chan $chan] && [string match -nocase $read_type "BADCHAN"] && [string equal -nocase $word $enc_bchan] && ![regexp {^[+]} $read_chan] && ![regexp {^[+]} $word]} {
 	set found_it 1
 		} elseif {[string match -nocase $enc_chan $chan] && [string match -nocase $read_type "BADCHAN"] && [string equal -nocase $word $enc_bchan] && [regexp {^[+]} $read_chan] && [regexp {^[+]} $word]} {
-	set found_it 1	
+	set found_it 1
 		}
 	}
 	return $found_it
@@ -306,7 +306,13 @@ if {$getset == ""} { set getset $black(badchan:join:seconds) }
 	set num_control [scan $getset %\[^:\]]
 	set time_control [scan $getset %*\[^:\]:%s]
 if {[info exists black(floodcontrol:act:$chan)]} {
+	set current_time [unixtime]
+	set dif [expr $current_time - $black(floodcontrol:act:$chan)]
+if {$dif >= 30} {
+	badchan:joinflood:unset:act $chan
+	} else {
 	return
+	}
 }
 foreach tmr [utimers] {
 if {[string match "*badchan:joinflood:unset $chan*" [join [lindex $tmr 1]]]} {
@@ -318,10 +324,9 @@ if {![info exists black(badchan_floodcontrol:$chan)]} {
 }
 	incr black(badchan_floodcontrol:$chan)
 	utimer $time_control [list badchan:joinflood:unset $chan]
-	
+
 if {$black(badchan_floodcontrol:$chan) >= "$num_control"} {
-	set black(floodcontrol:act:$chan) 1
-	utimer 30 [list badchan:joinflood:unset:act $chan]
+	set black(floodcontrol:act:$chan) [unixtime]
 	return
 }
 	utimer 5 [list putserv "WHOIS $nick"]
@@ -361,7 +366,7 @@ if {$position < 0} {
 	lappend badchanscan_list "$nick:$chan"
 				}
 			}
-		}	
+		}
 	}
 if {$badchanscan_list != ""} {
 	badchan:scan $badchanscan_list
@@ -371,7 +376,7 @@ if {$badchanscan_list != ""} {
 proc badchan:scan {badchanlist} {
 	global black
 if {![info exists black(badchan:scan:counter)]} {
-	set black(badchan:scan:counter) 0 
+	set black(badchan:scan:counter) 0
 }
 	set person [lindex $badchanlist $black(badchan:scan:counter)]
 if {$person == ""} {
@@ -419,14 +424,14 @@ if {([string equal -nocase $chan $mainchan] || [string equal -nocase "GLOBAL" $m
 		set readchan [lindex [split $line] 3]
 		set encoded [encoding convertfrom utf-8 $readchan]
 foreach c $text {
-	set ch [string trimleft $c ":@+"]
+	set ch [string trimleft $c ":~@+"]
 if {[string match -nocase $encoded $ch]} {
 	set file_found 1
 	set reason [lrange [split $line] 4 end]
 	set badchan($banmask:$chan) $reason
 	set badchan(channels:$banmask:$chan) $ch
 	break
-			}			
+			}
 		}
 	}
 }
@@ -456,7 +461,7 @@ if {[setting:get $chan badchan-reason] != ""} {
 } else {
 	set getreason [join $badchan($banmask:$chan)]
 }
-	
+
 if {[info exists badchan(checkagain:$banmask:$chan)]} {
 if {[info exists badchan($banmask:$chan)]} {
 	blacktools:banner:2 $nick "BADCHAN,[encoding convertto utf-8 $badchan(channels:$banmask:$chan)]" $chan $chan1 [getchanhost $nick $chan] "0"
@@ -532,7 +537,7 @@ proc badchan:check:again {nick chan} {
 	bind RAW - 319 badchan:execute
 }
 
-proc badchan:nickchange {nick host hand chan newnick} { 
+proc badchan:nickchange {nick host hand chan newnick} {
 	global badchan
 	set found_time 0
 	set current_time ""
@@ -544,24 +549,24 @@ killutimer [lindex $tmr 2]
 	}
 }
 if {$found_time == "1"} {
-	utimer $current_time [list badchan:check:again $newnick $chan] 
+	utimer $current_time [list badchan:check:again $newnick $chan]
 	}
 }
 
 proc badchan:split {nick host hand chan args} {
-	global badchan	
+	global badchan
 	badchan:part $nick $host $hand $chan "none"
 }
 
 proc badchan:kick {nick host hand chan kicked reason} {
 	global badchan
-	badchan:part $kicked $host $hand $chan "none"	
+	badchan:part $kicked $host $hand $chan "none"
 }
 
 proc badchan:part {nick host hand chan arg} {
 	global badchan
 if {![validchan $chan]} { return }
-	set banmask *!*@[lindex [split [getchanhost $nick $chan] "@"] 1]	
+	set banmask *!*@[lindex [split [getchanhost $nick $chan] "@"] 1]
 foreach tmr [utimers] {
 if {[string match -nocase "*badchan:check:again $nick $chan*" [join [lindex $tmr 1]]]} {
 	killutimer [lindex $tmr 2]
@@ -578,7 +583,7 @@ if {[info exists badchan($banmask:$chan)]} {
 
 if {[info exists badchan(channels:$banmask:$chan)]} {
 	unset badchan(channels:$banmask:$chan)
-	}	
+	}
 }
 
 proc get:timer:time {nick chan} {
@@ -607,7 +612,7 @@ if {$position > -1} {
 	set text [lreplace $text $position $position]
 			}
 		}
-	}	
+	}
 }
 	set file [open $black(add_file) r]
 	set size [file size $black(add_file)]
