@@ -315,8 +315,8 @@ set black(say.ro.man.171) "\[MAN\] \002Auto\002 schimba valoarea \002automode\00
 set black(say.ro.man.172) "\[MAN\] SINTAXE FOLOSIRE:"
 set black(say.ro.man.173) "\[MAN\] AutoVOICE: \002%char%auto (+/-)v\002 <handle> ; %botnick% auto (+/-)v <handle> ; \002(PRIVMSG) auto\002 <#canal> (+/-)v <handle>"
 set black(say.ro.man.174) "\[MAN\] AutoOP: \002%char%auto (+/-)o\002 <handle> ; %botnick% auto (+/-)o <handle> ; \002(PRIVMSG) auto\002 <#canal> (+/-)o <handle>"
-set black(say.ro.man.175) "\[MAN\] AutoVOICE: \002%char%auto (+/-)v\002 <handle> \[-global\] ; %botnick% auto\002 (+/-)v <handle> \[-global\] ; \002(PRIVMSG) auto\002 <#canal> (+/-)v <handle> \[-global\]"
-set black(say.ro.man.176) "\[MAN\] AutoOP: \002%char%auto (+/-)o\002 <handle> \[-global\] ; %botnick% auto\002 (+/-)o <handle> \[-global\] ; \002(PRIVMSG) auto\002 <#canal> (+/-)o <handle> \[-global\]"
+set black(say.ro.man.175) "\[MAN\] AutoVOICE: \002%char%auto (+/-)v\002 <handle> \[global\] ; %botnick% auto\002 (+/-)v <handle> \[global\] ; \002(PRIVMSG) auto\002 <#canal> (+/-)v <handle> \[global\]"
+set black(say.ro.man.176) "\[MAN\] AutoOP: \002%char%auto (+/-)o\002 <handle> \[global\] ; %botnick% auto\002 (+/-)o <handle> \[global\] ; \002(PRIVMSG) auto\002 <#canal> (+/-)o <handle> \[global\]"
 
 
 ################################################# MAN PROTECTII #####################################################
