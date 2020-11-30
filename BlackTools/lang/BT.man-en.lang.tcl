@@ -15,7 +15,7 @@
 #                                                                                            Copyright 2008 - 2018 @ www.tclscripts.net #
 #########################################################################################################################################
 #                                                                                                                                       #
-#   ENGLISH LANGUAGE                                                                                                            ®       #
+#   ENGLISH LANGUAGE                                                                                                            Â®       #
 #   ######  #          #     #####  #    # ####### ####### ####### #        #####     #     #    #    #     # #     #    #    #         #
 #   #     # #         # #   #     # #   #     #    #     # #     # #       #     #    ##   ##   # #   ##    # #     #   # #   #         #
 #   #     # #        #   #  #       #  #      #    #     # #     # #       #          # # # #  #   #  # #   # #     #  #   #  #         #
@@ -315,8 +315,8 @@ set black(say.en.man.171) "\[MAN\] \002Auto\002 changes the automode of a specif
 set black(say.en.man.172) "\[MAN\] USAGE SYNTAXES:"
 set black(say.en.man.173) "\[MAN\] AutoVOICE: \002%char%auto (+/-)v\002 <nick|handle> ; %botnick% auto (+/-)v <nick|handle> ; \002(PRIVMSG) auto\002 <#chan> (+/-)v <nick|handle>"
 set black(say.en.man.174) "\[MAN\] AutoOP: \002%char%auto (+/-)o\002 <nick|handle> ; %botnick% auto (+/-)o <nick|handle> ; \002(PRIVMSG) auto\002 <#chan> (+/-)o <nick|handle>"
-set black(say.en.man.175) "\[MAN\] AutoVOICE: \002%char%auto (+/-)v\002 <nick|handle> \[-global\] ; %botnick% auto\002 (+/-)v <nick|handle> \[-global\] ; \002(PRIVMSG) auto\002 <#chan> (+/-)v <nick|handle> \[-global\]"
-set black(say.en.man.176) "\[MAN\] AutoOP: \002%char%auto (+/-)o\002 <nick|handle> \[-global\] ; %botnick% auto\002 (+/-)o <nick|handle> \[-global\] ; \002(PRIVMSG) auto\002 <#chan> (+/-)o <nick|handle> \[-global\]"
+set black(say.en.man.175) "\[MAN\] AutoVOICE: \002%char%auto (+/-)v\002 <nick|handle> \[global\] ; %botnick% auto\002 (+/-)v <nick|handle> \[global\] ; \002(PRIVMSG) auto\002 <#chan> (+/-)v <nick|handle> \[global\]"
+set black(say.en.man.176) "\[MAN\] AutoOP: \002%char%auto (+/-)o\002 <nick|handle> \[global\] ; %botnick% auto\002 (+/-)o <nick|handle> \[global\] ; \002(PRIVMSG) auto\002 <#chan> (+/-)o <nick|handle> \[global\]"
 
 
 ################################################# MAN PROTECTIONS #####################################################
