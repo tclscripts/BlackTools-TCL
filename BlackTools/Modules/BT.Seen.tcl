@@ -706,7 +706,7 @@ proc seen:save_chan {channels num} {
 	set chan [lindex $channels $num]
 	set x 0
 if {[info exists black(seen_list:$chan)]} {
-while {$x <= [llength $black(seen_list:$chan)]} {
+while {$x <= [llength [split $black(seen_list:$chan)]]} {
 	set entry [lindex $black(seen_list:$chan) $x]
 if {[info exists black(seen:entry:$entry:$chan)]} {
 	seen:save_remove $entry $chan
