@@ -23,8 +23,8 @@ global black botnick
 	set host_search 0
 	set find_host ""
 	set isonchan 0
-if {$cmd_status == "1"} { 
-	return 
+if {$cmd_status == "1"} {
+	return
 }
 	set split_host [split $host ":"]
 	set the_host [lindex $split_host 1]
@@ -41,10 +41,10 @@ if {![setting:get $chan seen]} {
 	return
 	}
 }
-	
+
 	set first_host ""
 	set seenlist_all ""
-	
+
 if {$what == ""} {
 	switch $type {
 	0 {
@@ -67,8 +67,8 @@ if {[string match "*remove:seenflood:host $the_host $chan*" [join [lindex $tmr 1
 	}
 }
 
-if {![info exists black(flood:$the_host:$chan)]} { 
-	set black(flood:$the_host:$chan) 0 
+if {![info exists black(flood:$the_host:$chan)]} {
+	set black(flood:$the_host:$chan) 0
 }
 	incr black(flood:$the_host:$chan)
 	utimer $timer [list remove:seenflood:host $the_host $chan]
@@ -107,7 +107,7 @@ if {[regexp {\!} $what]} {
 	set first_host $what
 	set host_search 1
 	} else {
-	set addsearch [join $what]
+	set addsearch [join [split $what]]
 if {[regexp -- {^[a-zA-Z\|\[\]`^\{\}][a-zA-Z0-9\-_\|\[\]`^\{\}\\]*$} $addsearch]} {
 if {$gl == "0"} {
 if {[setting:get $chan seenreply]} {
@@ -137,7 +137,7 @@ if {$line != ""} {
 	set chanentry [lindex [split $line] 1]
 	set time [lindex [split $line] 4]
 if {[info exists entry]} {
-if {[lsearch -exact [string tolower "$i%$userentry%$readhost%$time"] [string tolower $entry]] == "-1"} {	
+if {[lsearch -exact [string tolower "$i%$userentry%$readhost%$time"] [string tolower $entry]] == "-1"} {
 	lappend entry "$i%$userentry%$readhost%$time"
 					}
 				} else { lappend entry "$i%$userentry%$readhost%$time" }
@@ -183,15 +183,15 @@ foreach k $find_other {
 if {[info exists entry]} {
 if {[lsearch -exact [string tolower "$k%$userentry%$readhost%$time"] [string tolower $entry]] == "-1"} {
 	lappend entry "$k%$userentry%$readhost%$time"
-				}					
-		} else { lappend entry "$k%$userentry%$readhost%$time" }	
+				}
+		} else { lappend entry "$k%$userentry%$readhost%$time" }
 	}
 
 if {![info exists entry] && $host_search == "1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 seen.18 "$what"
 	return
 }
-	
+
 if {$find_other != ""} {
 	foreach e $entry {
 	set split_e [split $e "%"]
@@ -280,7 +280,7 @@ if {[regexp {[0-9]} $jointime]} {
 	set staytime [return_time $getlang [expr $tm - $jointime]]
 } else { set staytime 0 }
 	set time [clock format $tm -format %D-%H:%M:%S]
-	
+
 	set replace(%latest%) $latest_entry
 	set replace(%num%) $num_results
 	set replace(%entry%) "[join $results]"
@@ -311,7 +311,7 @@ if {$more_entry == "1"} {
 if {$isonchan == "1"} {
 	set nowon "[string map [array get replace] $black(say.$getlang.seen.19)]"
 	set replace(%nowon%) "$nowon"
-} else { 
+} else {
 	set nowon "[string map [array get replace] $black(say.$getlang.seen.20)]"
 	set replace(%nowon%) "$nowon"
 }
@@ -321,7 +321,7 @@ if {$num_results >= 10} {
 	set reply "[string map [array get replace] $black(say.$getlang.seen.23)]"
 	}
 }
-	
+
 	SPLIT {
 if {$num_results >= 10} {
 	set reply "[string map [array get replace] $black(say.$getlang.seen.36)]"
@@ -329,7 +329,7 @@ if {$num_results >= 10} {
 	set reply "[string map [array get replace] $black(say.$getlang.seen.24)]"
 	}
 }
-	
+
 	PART {
 if {$num_results >= 10} {
 	set reply "[string map [array get replace] $black(say.$getlang.seen.33)]"
@@ -337,7 +337,7 @@ if {$num_results >= 10} {
 	set reply "[string map [array get replace] $black(say.$getlang.seen.21)]"
 	}
 }
-	
+
 	KICK {
 if {$num_results >= 10} {
 	set reply "[string map [array get replace] $black(say.$getlang.seen.37)]"
@@ -368,12 +368,12 @@ if {$num_results >= 10} {
 	set reply "[string map [array get replace] $black(say.$getlang.seen.26)]"
 	}
 }
-	
+
 	LASTMSG {
 if {$isonchan == "1"} {
 	set nowon "[string map [array get replace] $black(say.$getlang.seen.19)]"
 	set replace(%nowon%) "$nowon"
-} else { 
+} else {
 	set nowon "[string map [array get replace] $black(say.$getlang.seen.20)]"
 	set replace(%nowon%) "$nowon"
 }
@@ -394,7 +394,7 @@ if {$isonchan == "1"} {
 	set nowon "[string map [array get replace] $black(say.$getlang.seen.20)]"
 	set replace(%nowon%) "$nowon"
 	}
-	set reply "[string map [array get replace] $black(say.$getlang.seen.14)]"	
+	set reply "[string map [array get replace] $black(say.$getlang.seen.14)]"
 }
 	SPLIT {
 	set reply "[string map [array get replace] $black(say.$getlang.seen.15)]"
@@ -402,7 +402,7 @@ if {$isonchan == "1"} {
 	PART {
 	set reply "[string map [array get replace] $black(say.$getlang.seen.12)]"
 	}
-	
+
 	SIGN {
 	set reply "[string map [array get replace] $black(say.$getlang.seen.13)]"
 }
@@ -443,7 +443,7 @@ if {$lastmessage == "1"} {
 	blacktools:tell $nick $thehost $hand $chan $chan1 seen.27 $lastmsg
 }
 
-	
+
 proc seen:join {nick host hand chan} {
 global botnick black
 if {![validchan $chan]} { return }
@@ -499,7 +499,7 @@ global botnick black
 if {![validchan $chan]} { return }
 if {![setting:get $chan seen]} {
 	return
-}	
+}
 	set time [unixtime]
 	set host [getchanhost $kicked $chan]
 	set host "*!$host"
@@ -516,9 +516,9 @@ if {![validchan $chan]} { return }
 if {![setting:get $chan seen]} {
 	return
 }
-	set time [unixtime]	
+	set time [unixtime]
 	set type "SPLIT"
-	set host "*!$host"	
+	set host "*!$host"
 	set reason [join [lrange [split $args] 0 end]]
 if {[isbotnick $nick]} { return }
 	seen:save $nick $chan $host $type $time "NONE"
@@ -572,7 +572,7 @@ if {[regexp {[0-9]} $staytimer]} {
 	set black(seen:entry:$nick:$chan) "$type $host $time 0 $extra"
 			}
 		} else {
-	set black(seen:entry:$nick:$chan) "$type $host $time 0 $extra"	
+	set black(seen:entry:$nick:$chan) "$type $host $time 0 $extra"
 		}
 	} else {
 	set black(seen:entry:$nick:$chan) "$type $host $time 0 $extra"
@@ -607,11 +607,11 @@ if {$message != ""} {
 }
 if {[info exists black(seen_list:$chan)]} {
 if {$black(seen_list:$chan) != ""} {
-	set find_entry [lsearch -exact -nocase $black(seen_list:$chan) $nick]
+	set find_entry [lsearch -exact -nocase [split $black(seen_list:$chan)] $nick]
 if {$find_entry > -1} {
 	return
 			}
-	lappend black(seen_list:$chan) $nick
+			set black(seen_list:$chan) "$black(seen_list:$chan) $nick"
 		} else {
 	set black(seen_list:$chan) $nick
 		}
@@ -707,7 +707,7 @@ proc seen:save_chan {channels num} {
 	set x 0
 if {[info exists black(seen_list:$chan)]} {
 while {$x <= [llength [split $black(seen_list:$chan)]]} {
-	set entry [lindex $black(seen_list:$chan) $x]
+	set entry [lindex [split $black(seen_list:$chan)] $x]
 if {[info exists black(seen:entry:$entry:$chan)]} {
 	seen:save_remove $entry $chan
 		}
@@ -742,12 +742,12 @@ if {$read_days >= $black(seen:expire:time)} {
 	continue
 		} else {
 		puts $tempwrite $line
-		} 
+		}
 	}
 	close $tempwrite
 	close $file
     file rename -force $temp $black(seen_file)
-	
+
 foreach chan [channels] {
 if {![info exists black(seen:searched:$chan)]} { continue }
 if {$black(seen:searched:$chan) == ""} {
@@ -759,7 +759,7 @@ foreach entry $black(seen:searched:$chan) {
 	set time [lindex $split_entry 3]
 	set read_days [expr [expr [expr [expr [unixtime] - $time] / 60]] / 1440]
 if {$read_days >= $black(seen:expire:seenreply)} {
-	set search_it [lsearch -all $black(seen:searched:$chan) $entry]
+	set search_it [lsearch -all [split $black(seen:searched:$chan)] $entry]
 if {$search_it > -1} {
 	set black(seen:searched:$chan) [lreplace $black(seen:searched:$chan) $search_it $search_it]
 				}
