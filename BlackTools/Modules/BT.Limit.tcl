@@ -11,14 +11,14 @@
 ##   Online Help : irc://irc.undernet.org/tcl-help 	               ##
 ##                 #TCL-HELP / UnderNet                                ##
 ##                 You can ask in english or romanian                  ##
-##					                               ##
+##					                               														 ##
 #########################################################################
 
 proc limit:process {nick host hand chan chan1 why lm type} {
 global botnick black
 	set cmd_status [btcmd:status $chan $hand "limit" 0]
-if {$cmd_status == "1"} { 
-	return 
+if {$cmd_status == "1"} {
+	return
 }
 if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.glsuspend none
 	return
@@ -51,14 +51,14 @@ if {![onchan $botnick $chan]} {
 	return
 }
 	set usersnum [llength [chanlist $chan]]
-	
+
     switch [string tolower $why] {
 
 on {
 	set limt [setting:get $chan limit-default]
 	setting:set $chan +limit ""
 	blacktools:tell $nick $host $hand $chan $chan1 limit.5 none
-if {[regexp {^[0-9]} $limt] && ($limt != "0")} { 
+if {[regexp {^[0-9]+$} $limt] && ($limt != "0")} {
 	putserv "MODE $chan +l [expr $usersnum + $limt]"
 } else {
 	putserv "MODE $chan +l [expr $usersnum + $black(limit:default)]"
@@ -117,33 +117,24 @@ if {$channels != ""} {
 proc limit:act {channels counter} {
 	global black
 	set chan [lindex $channels $counter]
-	set cc [expr $counter + 1]
-if {$chan != ""} {
+if {[botisop $chan]} {
 	set usersnum [llength [chanlist $chan]]
 	set setnum [setting:get $chan limit-default]
 if {$setnum == "0" || $setnum == ""} { set setnum $black(limit:default) }
 	set limitcount [expr $usersnum + $setnum]
-if {![botisop $chan]} { return }
 	set chanmode [getchanmode $chan]
 if {[string match "*l*" "$chanmode"]} {
 	set lim [lindex $chanmode 1]
-if {$lim == $limitcount} {
-	if {[lindex $channels $cc] == ""} {
-	return
-	} else {
-	utimer 5 [list limit:act $channels $cc]
-	return
-		}
-	}
-} else { set lim "0" }
+} else { set lim 0}
+if {$lim != $limitcount} {
 if {$usersnum > $lim} { set dif [expr $usersnum - $lim] } else { set dif [expr $lim - $usersnum] }
 if {($dif >= $setnum) || ($dif <= $setnum)} {
-	puthelp "MODE $chan +l $limitcount"	
+	puthelp "MODE $chan +l $limitcount"
+		}
 	}
 }
-if {[lindex $channels $cc] == ""} {
-	return
-	} else {
+	set cc [expr $counter + 1]
+if {[lindex $channels $cc] != ""} {
 	utimer 5 [list limit:act $channels $cc]
 	}
 }
