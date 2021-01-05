@@ -34,17 +34,17 @@ if {[string match "*black(flood:activ:$host)*" [join [lindex $tmr 1]]]} {
 	return
 }
 	foreach tmr [utimers] {
-if {[string match "*count(floodcmd:$host:$chan)*" [join [lindex $tmr 1]]]} {
+if {[string match "*black(floodcmd:$host:$chan)*" [join [lindex $tmr 1]]]} {
 	killutimer [lindex $tmr 2]
 	}
 }
-if {![info exists count(floodcmd:$host:$chan)]} { 
-	set count(floodcmd:$host:$chan) 0 
+if {![info exists black(floodcmd:$host:$chan)]} { 
+	set black(floodcmd:$host:$chan) 0 
 }
-	incr count(floodcmd:$host:$chan)
+	incr black(floodcmd:$host:$chan)
 	utimer $timer [list unset:floodcmd $host $chan]
 
-if {$count(floodcmd:$host:$chan) == "$number"} {
+if {$black(floodcmd:$host:$chan) == "$number"} {
 	blacktools:tell $nick $host $hand $chan $chan1 h.16 "30 man"
 	set black(flood:activ:$host) 1
 	utimer 30 [list unset black(flood:activ:$host)]
