@@ -6328,8 +6328,8 @@ pushmode $chan +o $nick
 
 proc unset:floodcmd {host chan} {
 global count
-if {[info exists count(floodcmd:$host:$chan)]} {
-	unset count(floodcmd:$host:$chan)
+if {[info exists black(floodcmd:$host:$chan)]} {
+	unset black(floodcmd:$host:$chan)
 	}
 }
 
