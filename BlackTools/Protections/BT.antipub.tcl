@@ -4,14 +4,14 @@
 #########################################################################
 ##########################   ANTIPUB TCL   ##############################
 #########################################################################
-##						                      						   ##
-##   BlackTools  : http://blacktools.tclscripts.net		               ##
+##						                       ##
+##   BlackTools  : http://blacktools.tclscripts.net		       ##
 ##   Bugs report : http://www.tclscripts.net/	                       ##
-##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script ##
-##   Online Help : irc://irc.undernet.org/tcl-help 	  	               ##
+##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL	       ##
+##   Online Help : irc://irc.undernet.org/tcl-help 	  	       ##
 ##                 #TCL-HELP / UnderNet                                ##
 ##                 You can ask in english or romanian                  ##
-##					                              					   ##
+##					                               ##
 #########################################################################
 
 proc antipub:protect {nick host hand chan arg} {
