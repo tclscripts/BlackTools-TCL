@@ -1767,7 +1767,7 @@ loginpublic:start
 #Save settings from BlackTools.tcl
 blacktools:settings:autosave
 
-putlog "\002\[BT\]\002 \002$black(name)\002 ($black(site)): Initialised.."
+putlog "\002\[BT\]\002 \002$black(name)\002 (Last update: [ctime $black(current_modif)]) ($black(site)): Initialised.."
 putlog "*** The Future is Here *** One TCL. One Smart Eggdrop ***"
 putlog "\002\[BT\]\002 Language files loaded:\002 [join [string toupper $black(current_lang)] "\002, "]"
 putlog "\002\[BT\]\002 \002$black(name) v$black(vers)\002 coded by \002$black(author)\002: Loaded."
