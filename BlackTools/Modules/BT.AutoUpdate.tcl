@@ -175,7 +175,6 @@ proc blacktools:update_backup {} {
     blacktools:update_put "" "" 14 ""
     blacktools:update_put $hand $chan 15 [list $new_version [ctime $last_modify]]
     blacktools:backup_run
-    set black(update_old_data) [blacktools:update_data 0 ""]
     utimer 5 [list blacktools:update_start_download $hand $chan $new_version $last_modify]
     unset ::update_version
     unset ::update_last_modify
@@ -186,6 +185,7 @@ proc blacktools:update_backup {} {
 ###
 proc blacktools:backup_run {} {
     global black config
+    set black(update_old_data) [blacktools:update_data 0 ""]
     set bt_file "$black(dirname)/BlackTools.tcl"
     set file [open $bt_file r]
     set data [read -nonewline $file]
