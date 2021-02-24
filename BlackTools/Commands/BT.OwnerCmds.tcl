@@ -23,6 +23,8 @@ proc update:process {nick host hand chan chan1 what type} {
 	global black
 	set cmd_status [btcmd:status $chan $hand "update" 0]
 	set chan1 $chan
+	set option [lindex $what 1]
+	set what [lindex $what 0]
 if {$cmd_status == "1"} { 
 	return 
 }
@@ -42,6 +44,24 @@ if {$out == 0} {
 } elseif {$out == 2} {
 	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.38 ""
 }
+	}
+	time {
+if {$option == ""} {
+	set set_time [blacktools:update_set_time 0 0]
+	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.41 $set_time
+	return
+}
+	set num [time_return_minute $option]
+if {$num == -1} {set num 60}
+	blacktools:update_set_time $num 1
+	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.42 "$option $num"
+	rehash
+	foreach tmr [timers] {
+if {[string match "*blacktools:update:timer*" [join [lindex $tmr 1]]]} {
+	killtimer [lindex $tmr 2]
+	}
+}
+	timer $num blacktools:update:timer
 	}
 	start {
 if {[info exists black(update_disabled)]} {
