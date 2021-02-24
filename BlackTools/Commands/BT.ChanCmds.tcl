@@ -27,7 +27,7 @@ if {[isbotnick $nick]} { return }
 if {$return == "0"} {
 		return
 }
-switch -exact -- [string tolower $cmd] {
+switch [string tolower $cmd] {
 
 exempt {
 if {[matchattr $hand mno|M $chan]} {
@@ -1648,8 +1648,9 @@ if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.gls
 	return
 }
 	set what [lindex [split $arg] 1]
+	set option [lindex [split $arg] 2]
 	set type 0
-	update:process $nick $char $hand $chan $chan $what $type
+	update:process $nick $char $hand $chan $chan [list $what $option] $type
 	}
 }
 

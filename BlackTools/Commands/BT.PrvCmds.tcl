@@ -40,8 +40,9 @@ if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.gls
 	return
 }
 	set what [lindex [split $arg] 2]
+	set option [lindex [split $arg] 3]
 	set type 2
-	update:process $nick "prv" $hand $chan $chan $what $type
+	update:process $nick "prv" $hand $chan $chan [list $what $option] $type
 	}
 }
 
