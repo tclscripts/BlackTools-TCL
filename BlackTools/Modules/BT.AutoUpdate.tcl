@@ -264,7 +264,7 @@ proc blacktools:update_start_restore {} {
 }
     set end_download [unixtime]
     set dif [expr $end_download - $black(start_update)]
-    blacktools:update_put $hand $chan 17 [list [duration $dif]]
+    blacktools:update_put "" "" 17 [list [duration $dif]]
     set newdata [blacktools:update_data 0 ""]
     blacktools:update_put $hand $chan 18 ""
     set restore_config [blacktools:update_restore $black(update_old_data) $newdata]
