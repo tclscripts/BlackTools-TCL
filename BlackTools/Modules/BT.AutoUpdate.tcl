@@ -445,7 +445,7 @@ if {$type == 0} {
 ###
 proc blacktools:update_verify {} {
     global black
-    set link "https://raw.githubusercontent.com/tclscripts/BlackTools-TCL/blob/master/VERSION"
+    set link "https://raw.githubusercontent.com/tclscripts/BlackTools-TCL/master/VERSION"
     set ipq [http::config -useragent "lynx"]
 	set error [catch {set ipq [::http::geturl $link -timeout 10000]} eror]
 	set status [::http::status $ipq]
