@@ -93,7 +93,7 @@ Usuarios espanoles:
       Spanish Language: Sin traduccion oficial todavia (se puede realizar a peticion).
 
 -----------------------------------------------------------------------------------------------------------
-Copyright (c) 2008-2018 Daniel Voipan (aka BLaCkShaDoW).
+Copyright (c) 2008-2021 Daniel Voipan (aka BLaCkShaDoW).
 -----------------------------------------------------------------------------------------------------------
 AUTHOR   : Daniel Voipan
 NICK     : BLaCkShaDoW
