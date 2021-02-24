@@ -21,9 +21,15 @@
 #                                                 ###############
 #################################################################
 
+if {[info exists black(backup_update)]} {
+	set black(backdir) $black(backup_dir)
+} else {
+	set black(backdir) $black(dirname)
+}
+
 #load language
 
-	set get_lang_files [glob -directory "$black(dirname)/BlackTools/lang" "*.??.lang.tcl"]
+	set get_lang_files [glob -directory "$black(backdir)/BlackTools/lang" "*.??.lang.tcl"]
 foreach lang $get_lang_files {
 	set black(lang_error_$lang) [catch {source $lang} black(lang_error_stats_$lang)]
 if {$black(lang_error_$lang) == "1"} {
@@ -40,7 +46,7 @@ if {![info exists black(current_lang) ]} {set black(current_lang) "N/A"}
 
 #load manual
 
-set get_man_files [glob -directory "$black(dirname)/BlackTools/lang" "*.???-??.lang.tcl"]
+set get_man_files [glob -directory "$black(backdir)/BlackTools/lang" "*.???-??.lang.tcl"]
 foreach lang $get_man_files {
 	set black(man_error_$lang) [catch {source $lang} black(man_error_stats_$lang)]
 if {$black(man_error_$lang) == "1"} {

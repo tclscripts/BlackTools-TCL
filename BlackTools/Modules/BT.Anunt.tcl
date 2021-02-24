@@ -4,14 +4,14 @@
 #########################################################################
 ########################   ANUNT/ADVERT TCL   ###########################
 #########################################################################
-##						                       ##
-##   BlackTools  : http://blacktools.tclscripts.net	               ##
+##						                       						   ##
+##   BlackTools  : http://blacktools.tclscripts.net	               	   ##
 ##   Bugs report : http://www.tclscripts.net/	                       ##
 ##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script ##
-##   Online Help : irc://irc.undernet.org/tcl-help 	               ##
+##   Online Help : irc://irc.undernet.org/tcl-help 	               	   ##
 ##                 #TCL-HELP / UnderNet                                ##
 ##                 You can ask in english or romanian                  ##
-##					                               ##
+##					                               					   ##
 #########################################################################
 
 proc anunt:process {nick host hand chan chan1 who message number type} {

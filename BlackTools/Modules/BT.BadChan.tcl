@@ -4,14 +4,14 @@
 #########################################################################
 ###########################   BADCHAN TCL   #############################
 #########################################################################
-##						                                                         ##
+##						                                               ##
 ##   BlackTools  : http://blacktools.tclscripts.net	                   ##
-##   Bugs report : http://www.tclscripts.net/	                         ##
+##   Bugs report : http://www.tclscripts.net/	                       ##
 ##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script ##
 ##   Online Help : irc://irc.undernet.org/tcl-help 	                   ##
 ##                 #TCL-HELP / UnderNet                                ##
 ##                 You can ask in english or romanian                  ##
-##					                               														 ##
+##					                               					   ##
 #########################################################################
 
 proc badchan:getlist {nick host hand chan chan1 type next} {
@@ -301,34 +301,6 @@ if {[matchattr $hand $black(exceptflags) $chan]} {
 }
 if {[isbotnick $nick]} { return }
 if {(![botisop $chan]) && (![setting:get $chan xonly])} { return }
-	set getset [setting:get $chan badchan-floodcontrol]
-if {$getset == ""} { set getset $black(badchan:join:seconds) }
-	set num_control [scan $getset %\[^:\]]
-	set time_control [scan $getset %*\[^:\]:%s]
-if {[info exists black(floodcontrol:act:$chan)]} {
-	set current_time [unixtime]
-	set dif [expr $current_time - $black(floodcontrol:act:$chan)]
-if {$dif >= 30} {
-	badchan:joinflood:unset:act $chan
-	} else {
-	return
-	}
-}
-foreach tmr [utimers] {
-if {[string match "*badchan:joinflood:unset $chan*" [join [lindex $tmr 1]]]} {
-	killutimer [lindex $tmr 2]
-	}
-}
-if {![info exists black(badchan_floodcontrol:$chan)]} {
-	set black(badchan_floodcontrol:$chan) 0
-}
-	incr black(badchan_floodcontrol:$chan)
-	utimer $time_control [list badchan:joinflood:unset $chan]
-
-if {$black(badchan_floodcontrol:$chan) >= "$num_control"} {
-	set black(floodcontrol:act:$chan) [unixtime]
-	return
-}
 	utimer 5 [list putserv "WHOIS $nick"]
 	bind RAW - 319 badchan:execute
 	}
@@ -464,7 +436,8 @@ if {[setting:get $chan badchan-reason] != ""} {
 
 if {[info exists badchan(checkagain:$banmask:$chan)]} {
 if {[info exists badchan($banmask:$chan)]} {
-	blacktools:banner:2 $nick "BADCHAN,[encoding convertto utf-8 $badchan(channels:$banmask:$chan)]" $chan $chan1 [getchanhost $nick $chan] "0"
+	#blacktools:banner:2 $nick "BADCHAN,[encoding convertto utf-8 $badchan(channels:$banmask:$chan)]" $chan $chan1 [getchanhost $nick $chan] "0"
+	putlog "ban $nick"
 	who:chan $chan
 if {[setting:get $chan showbadchan]} {
 	set replace(%nick%) $show_nick

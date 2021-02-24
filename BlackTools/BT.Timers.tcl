@@ -4,16 +4,15 @@
 #########################################################################
 ###########################  LOCAL TIMERS  ##############################
 #########################################################################
-##						                       ##
-##   BlackTools  : http://blacktools.tclscripts.net	               ##
+##						                       						   ##
+##   BlackTools  : http://blacktools.tclscripts.net	               	   ##
 ##   Bugs report : http://www.tclscripts.net/	                       ##
 ##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script ##
-##   Online Help : irc://irc.undernet.org/tcl-help 	               ##
+##   Online Help : irc://irc.undernet.org/tcl-help 	               	   ##
 ##                 #TCL-HELP / UnderNet                                ##
 ##                 You can ask in english or romanian                  ##
-##					                               ##
+##					                               					   ##
 #########################################################################
-
 
 proc blacktools:timers:load {chan} {
 	global black
@@ -154,6 +153,12 @@ if {![info exists black(broadcast:timer_start)]} {
 		}
 	}
 #end
+}
+
+#AutoUpdate Check
+if {![info exists black(update_check_start)]} {
+	timer $black(update_time_check) blacktools:update:timer
+	set black(update_check_start) 1
 }
 
 #run by minute

@@ -15,7 +15,7 @@
 #########################################################################
 
 proc man:process {nick host hand chan chan1 type command} {
-	global black count
+	global black
 	set cmd_status [btcmd:status $chan $hand "man" 0]
 if {$cmd_status == "1"} { 
 	return
@@ -42,7 +42,7 @@ if {![info exists black(floodcmd:$host:$chan)]} {
 	set black(floodcmd:$host:$chan) 0 
 }
 	incr black(floodcmd:$host:$chan)
-	utimer $timer [list unset:floodcmd $host $chan]
+	utimer $timer [list unset black(floodcmd:$host:$chan)]
 
 if {$black(floodcmd:$host:$chan) == "$number"} {
 	blacktools:tell $nick $host $hand $chan $chan1 h.16 "30 man"
@@ -71,7 +71,7 @@ if {[regexp {[+-]} $command]} {
 		set command [string map {"+" ""
 								 "-" ""	} $command]
 }
-switch $command {
+switch [string tolower $command] {
 
 man {
 if {[matchattr $hand nmo|MAOV $chan]} {

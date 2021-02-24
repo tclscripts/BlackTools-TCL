@@ -23,7 +23,18 @@ global botnick wordsdir sdir black seendir count server uptime {server-online} v
 	set chan1 $chan
 if {[isbotnick $nick]} { return }
 if {[string equal -nocase $for "for"] && ([lsearch -exact -nocase $split_bots $botnick] > -1)} {
-switch -exact -- [string tolower $the_cmd] {
+switch [string tolower $the_cmd] {
+
+update {
+if {[matchattr $hand n]} {
+if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.glsuspend none
+	return
+}
+	set what [lindex [split $arg] 3]
+	set type 1
+	update:process $nick $host $hand $chan $chan $what $type
+	}
+}
 
 exempt {
 if {[matchattr $hand mno|M $chan]} {
@@ -101,7 +112,7 @@ if {[matchattr $hand mn]} {
 }
 
 report {
-	set type "1"
+	set type 1
 	set w [lindex [split $arg] 3]
 	set message [join [lrange [split $arg] 4 end]]
 	set chan1 $chan
@@ -208,8 +219,8 @@ enable {
 if {[matchattr $hand nmo|M $chan]} {
 	set what [lindex [split $arg] 3]
 	set user [lindex [split $arg] 4]
-	set chan1 "$chan"
-	set type "1"
+	set chan1 $chan
+	set type 1
 if {[regexp {^[&#]} $what] && [matchattr $hand nmo|M $what]} {
 	set chan "$what"
 	set what [lindex [split $arg] 4]

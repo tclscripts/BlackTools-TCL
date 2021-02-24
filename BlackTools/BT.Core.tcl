@@ -4,14 +4,14 @@
 ###########################################################################
 ############################   CORE TCL   #################################
 ###########################################################################
-##						       		         ##
-##   BlackTools  : http://blacktools.tclscripts.net	   	         ##
+##						       		         							 ##
+##   BlackTools  : http://blacktools.tclscripts.net	   	         		 ##
 ##   Bugs report : http://www.tclscripts.net/	                         ##
-##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script   ##
-##   Online Help : irc://irc.undernet.org/tcl-help 	       	         ##
+##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL		     ##
+##   Online Help : irc://irc.undernet.org/tcl-help 	       	         	 ##
 ##                 #TCL-HELP / UnderNet        	                         ##
 ##                 You can ask in english or romanian                    ##
-##					                                 ##	
+##					                                 					 ##	
 ###########################################################################
 ########################## Default protection flags #######################
 
@@ -31,23 +31,24 @@ if {![file exists $black(files_file)]} {
 	file mkdir $black(files_file)
 }
 
-if {![file exists $black(tempdir)]} {
-	file mkdir $black(tempdir)
+if {![file exists $black(backdir)]} {
+	file mkdir $black(backdir)
 }
 
-set black(s_file) "$black(dirname)/BlackTools/FILES/$username.suspend.txt"
-set black(status_file) "$black(dirname)/BlackTools/FILES/$username.status.txt"
-set black(seen_file) "$black(dirname)/BlackTools/FILES/$username.seen_db.txt"
-set black(old_seen) "$black(dirname)/BlackTools/FILES/$username.Seen.db"
-set black(uptime_file) "$black(dirname)/BlackTools/FILES/$username.uptime.txt"
-set black(bans_file) "$black(dirname)/BlackTools/FILES/$username.bans.txt"
-set black(join_file) "$black(dirname)/BlackTools/FILES/$username.othermodule.txt"
-set black(extra_file) "$black(dirname)/BlackTools/FILES/$username.flags.txt"
-set black(add_file) "$black(dirname)/BlackTools/FILES/$username.extra.txt"
-set black(quote_file) "$black(dirname)/BlackTools/FILES/$username.quote.txt"
-set black(notes_file) "$black(dirname)/BlackTools/FILES/$username.notes.txt"
-set black(temp_banner) "$black(dirname)/BlackTools/temp/banner"
-set black(temp_motd) "$black(dirname)/BlackTools/temp/motd"
+set black(files_file) "$black(backdir)/BlackTools/FILES"
+set black(s_file) "$black(backdir)/BlackTools/FILES/$username.suspend.txt"
+set black(status_file) "$black(backdir)/BlackTools/FILES/$username.status.txt"
+set black(seen_file) "$black(backdir)/BlackTools/FILES/$username.seen_db.txt"
+set black(old_seen) "$black(backdir)/BlackTools/FILES/$username.Seen.db"
+set black(uptime_file) "$black(backdir)/BlackTools/FILES/$username.uptime.txt"
+set black(bans_file) "$black(backdir)/BlackTools/FILES/$username.bans.txt"
+set black(join_file) "$black(backdir)/BlackTools/FILES/$username.othermodule.txt"
+set black(extra_file) "$black(backdir)/BlackTools/FILES/$username.flags.txt"
+set black(add_file) "$black(backdir)/BlackTools/FILES/$username.extra.txt"
+set black(quote_file) "$black(backdir)/BlackTools/FILES/$username.quote.txt"
+set black(notes_file) "$black(backdir)/BlackTools/FILES/$username.notes.txt"
+set black(temp_banner) "$black(backdir)/BlackTools/temp/banner"
+set black(temp_motd) "$black(backdir)/BlackTools/temp/motd"
 
 set black(files) "$black(s_file) $black(status_file) $black(seen_file) $black(uptime_file) $black(bans_file) $black(join_file) $black(extra_file) $black(add_file) $black(quote_file) $black(notes_file)"
 
@@ -58,7 +59,6 @@ if {[file exists $black(temp_banner)] && [file exists $black(temp_motd)]} {
 	file rename -force $black(temp_motd) "text/motd"
 	file delete -force $black(temp_banner)
 	file delete -force $black(temp_motd)
-	
 		}
 	}
 }
@@ -278,7 +278,7 @@ set black(extra_flag) {
 	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink
 }
 
-set black(validcmds) "o omsg v ho man version mode cycle say act i stats t myset h r msg add set userlist info delacc del auto chuser s us addhost delhost b black stick dr bot n id spam bw mb vr gag ungag troll ub sb banlist k w purge set unset show ignore enable disable addchan delchan suspend unsuspend channels die jump save rehash nick uptime status cp chat next noidle skip helped anunt bt idle limit seen clonescan badchan securemode private tcl guestnick greet broadcast leave topic timer topwords next q note login"
+set black(validcmds) "o omsg v ho man version mode cycle say act i stats t myset h r msg add set userlist info delacc del auto chuser s us addhost delhost b black stick dr bot n id spam bw mb vr gag ungag troll ub sb banlist k w purge set unset show ignore enable disable addchan delchan suspend unsuspend channels die jump save rehash nick uptime status cp chat next noidle skip helped anunt bt idle limit seen clonescan badchan securemode private tcl guestnick greet broadcast leave topic timer topwords next q note login update"
 
 ########################## BackChan ############################
 
@@ -1667,6 +1667,16 @@ if {![botisop $chan] && ![setting:get $chan xonly]} {
 if {$bans == "*!*@*"} { putserv "MODE $chan -b $bans"
 	return
 }
+if {$black(logged) == 1} {
+	set massban [check:massban $bans $chan]
+if {$massban == 1} {
+if {![info exists black(massban_start:$chan)]} {
+	set black(massban_start:$chan) [unixtime]
+	putquick "PRIVMSG $black(chanserv) :unban $chan $bans"
+	utimer 60 [list massban:kick_unset $chan]
+		}
+	}
+}
 	set list [userlist $black(exceptflags) $chan]
 foreach user $list {
 	set hosts [getuser $user hosts]
@@ -1677,8 +1687,32 @@ if {[onchan $black(chanserv) $chan] && ([setting:get $chan xtools] || [setting:g
 				} else {
 	putserv "MODE $chan -b $bans"
 				}
+	break
 			}
 		}
+	}
+}
+
+proc massban:kick {nick host hand chan kicked reason} {
+	global black
+if {[info exists black(massban_start:$chan)]} {
+if {[string equal -nocase $nick $black(chanserv)]} {
+		set lang [setting:get $chan lang]
+if {$lang == ""} { set lang [string tolower $black(default_lang)] }
+	set reason_k $black(say.$lang.b.9)
+	regexp {\((.+)\) (.*)} $reason string user reason
+if {$user != ""} {
+	putquick "PRIVMSG $black(chanserv) :suspend $chan $user $black(chanserv:suspend_time) $black(chanserv:suspend_level) $reason_k - [ctime $black(massban_start:$chan)]"
+	massban:kick_unset $chan
+			}
+		}
+	}
+}
+
+proc massban:kick_unset {chan} {
+	global black
+if {[info exists black(massban_start:$chan)]} {
+	unset black(massban_start:$chan)
 	}
 }
 
@@ -3005,7 +3039,7 @@ if {[string match -nocase $host $gethost]} {
 	set counter [expr $counter + 1]
 	}
 }
-if {[expr 100 * $counter / $totuser] > 80} {
+if {[expr 100 * $counter / $totuser] > $black(chanserv:percent_ban)} {
 	return 1
 }
 	return 0
@@ -5973,7 +6007,6 @@ for {set i 0} { $i < 1 } { incr i} {
 
 proc bans:day:reset {minute hour day month year} {
 	global black
-
 foreach user [userlist] {
 	foreach chan [channels] {
 	set cmds_today [getuser $user XTRA CMD_STATS_TODAY($chan)]
@@ -6321,15 +6354,6 @@ pushmode $chan +v $nick
 proc autoponjoin {nick host hand chan} {
 if {[setting:get $chan autoop]} {
 pushmode $chan +o $nick
-	}
-}
-
-######################## h flood #######################
-
-proc unset:floodcmd {host chan} {
-global black
-if {[info exists black(floodcmd:$host:$chan)]} {
-	unset black(floodcmd:$host:$chan)
 	}
 }
 
@@ -7085,6 +7109,9 @@ proc dns:resolve:join {ip host status hostip nick fullhost hand chan} {
 proc dns:checkexcept {host} {
 	global black
 	set valid_except 0
+if {$black(dns_onjoin) == 0} {
+	return 0
+}
 	set host [lindex [split $host "@"] 1]
 foreach h $black(dns:host_excepts) {
 if {[string match -nocase $h $host]} {

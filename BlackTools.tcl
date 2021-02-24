@@ -23,20 +23,20 @@
 #              + Script updated : 08.05.2018 22:13 PM (Romanian TimeZone) #
 ###########################################################################
 #                                                                         #
-#                       #####    ######     #####                         #
-#                           #    #              #                         #
-#                           #    #              #                         #
+#                       #####    ######     #                             #
+#                           #    #          #                             #
+#                           #    #          #                             #
 #                       ####     ######     #####                         #
 #                       #             #         #                         #
 #                       #             #         #                         #
-#                       #####  # ######  #  #####                         #
+#                       #####  # ######  #      #                         #
 #                                                                         #
 #                                                                         #
 #                   THE    NEXT    GENERATION    TCL                      #
 #                                                                         #
 #                      - #TCL-HELP @ UNDERNET -     	                  #
 #                                                                         #
-#			      Copyright 2008 - 2020 @ WwW.TCLScripts.NET  #
+#			      Copyright 2008 - 2021 @ WwW.TCLScripts.NET 			  #
 #                                                                         #
 ###########################################################################
 #                                                                         #
@@ -62,7 +62,7 @@
 #                                                                         #
 #  Special thanks to:                                                     #
 #                   o Time2Go [ #Tcl-Help Admin ]                         #
-#		    o Florian [ florian@tclscripts.net ]                  #
+#		  		    o Florian [ florian@tclscripts.net ]               	  #
 #                     without whom this script would not have gone so far.#
 # -------                                                         ------- #
 #  Thanks to the many people who have contributed over the years, in a    #
@@ -94,8 +94,38 @@
 set black(dirname) "scripts"
 
 ###########################################################################
-#--------------------------- Dns Host Excepts ----------------------------#
-###								        ###
+#-------------------------- AutoUpdate Module ----------------------------#
+###																		###
+
+###
+#How do you want for the update to be made
+# 0 - autoupdate on TIME interval and by command
+# 1 - update ONLY on command
+
+set black(update_type) "1"
+
+###
+#Do you want the eggdrop to send NOTE to OWNERS if a new update is found?
+# 0 - no
+# 1 - yes
+
+set black(update_note) "1"
+
+###
+#Time interval check (<x>m (minutes), <x>h (hours), <x>d (days))
+
+set black(update_time_check) "60"
+
+###########################################################################
+#-------------------------------- Dns Host  ------------------------------#
+###								        								###
+
+###
+#Enable DNS-onjoin ? 0 - no ; 1 - yes (please be advised that it will make 
+#the bot a bit slower on big channels with lot of joins)
+
+set black(dns_onjoin) "0"
+
 #This host excepts will not receive DNS onjoin, onban etc to improve the
 #performance of the eggdrop.
 
@@ -108,12 +138,13 @@ set black(dns:host_excepts) {
 "10.101.*"
 "172.29.7.*"
 }
+
 ###########################################################################
 #------------------------ Home Chan (Optional) ---------------------------#
 # Here you set your eggdrop's homechan. If you modify here the eggdrop    #
 #will join homechan. If not leave it "#no_home_chan" or "" (empty)        #
 ###									###
-set black(homechan) "#no_home_chan"
+set black(homechan) "#bt"
 
 ###########################################################################
 #---------------------------- First Char ---------------------------------#
@@ -127,7 +158,7 @@ set black(cmdchar) "! . ` \^"
 ###									###
 #Default language of the script ( RO / EN )
 
-set black(default_lang) "RO"
+set black(default_lang) "EN"
 
 ###########################################################################
 #-------------------------- Default host ---------------------------------#
@@ -140,7 +171,7 @@ set black(default_lang) "RO"
 #4 - nick!*@*
 #5 - *!user@*
 
-set black(hello:mask) "2"
+set black(hello:mask) "1"
 
 ###########################################################################
 #------------------------ Default Output Method --------------------------#
@@ -228,6 +259,21 @@ set black(notice:flood) "3:5"
 set black(notice:flood:notc_time) "10"
 
 ###########################################################################
+#-------------------------- Chanserv MASSBAN -----------------------------#
+#Time to execute chanserv suspend (must have +400 access)
+
+set black(chanserv:suspend_time) "1d"
+
+#Level to execute chanserv suspend (must have +400 access)
+
+set black(chanserv:suspend_level) "400"
+
+#How many percent from channel users the ban should cover in order for
+#eggdrop to identify as being a massban
+
+set black(chanserv:percent_ban) "20%"
+
+###########################################################################
 #--------------------------- Join Flood ----------------------------------#
 ###									###
 #JoinFlood Protect (commands:seconds)
@@ -311,11 +357,11 @@ set black(hostchanserv) "x@channels.undernet.org"
 
 #--------------------------- Chanserv User -------------------------------#
 
-set black(username) "Xusername"
+set black(username) "noxcape"
 
 #--------------------------- Chanserv Pass -------------------------------#
 
-set black(password) "Xpassword"
+set black(password) "191926"
 
 #----------------------------- Login Mode --------------------------------#
 
@@ -372,6 +418,7 @@ set black(webchat_hosts) {
 "*!*@195.154.52.250"
 "*!*@207.192.75.252"
 "*!*@212.83.148.225"
+"*!*@aaa"
 }
 
 ###########################################################################
@@ -1687,13 +1734,20 @@ set black(exempt:default_time) "0"
 
 set black(name) "BlackToolS"
 set black(author) "BLaCkShaDoW"
-set black(vers) "2.5.3"
+set black(vers) "2.5.4"
 set black(site) "wWw.TclScriptS.NeT"
+set black(current_modif) "1613241542"
 
 	bind evnt - init-server loginpublic
 	bind time - "* * * * *" timer:login:check
  
- set black(loader_error) [catch {source $black(dirname)/BlackTools/BT.Loader.tcl} black(loader_error_stats)]
+if {[info exists black(backup_update)]} {
+	set black(backdir) $black(backup_dir)
+} else {
+	set black(backdir) $black(dirname)
+}
+
+ set black(loader_error) [catch {source $black(backdir)/BlackTools/BT.Loader.tcl} black(loader_error_stats)]
 
 if {$black(loader_error) == "1"} {
 	die "\[BT\] Error. Couldn't load the \"BT Loader\". Reason: \"$black(loader_error_stats)\""
@@ -1743,3 +1797,5 @@ if {[info exists black(current_lang)]} {
 ###########################################################################
 ##       Copyright (c) 2008-2018 Daniel Voipan (aka BLaCkShaDoW)         ##
 ###########################################################################
+
+

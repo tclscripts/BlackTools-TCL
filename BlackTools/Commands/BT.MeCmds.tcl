@@ -21,7 +21,18 @@ global botnick wordsdir sdir black seendir count server uptime {server-online} v
 	set chan1 $chan
 if {[isbotnick $nick]} { return }
 if {[isbotnick $bnick]} {
-switch -exact -- [string tolower $what] {
+switch [string tolower $what] {
+
+update {
+if {[matchattr $hand n]} {
+if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.glsuspend none
+	return
+}
+	set what [lindex [split $arg] 2]
+	set type 1
+	update:process $nick $host $hand $chan $chan $what $type
+	}
+}
 
 exempt {
 if {[matchattr $hand mno|M $chan]} {

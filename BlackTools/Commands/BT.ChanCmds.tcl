@@ -1642,6 +1642,17 @@ if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.gls
 	}
 }
 
+update {
+if {[matchattr $hand n]} {
+if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.glsuspend none
+	return
+}
+	set what [lindex [split $arg] 1]
+	set type 0
+	update:process $nick $char $hand $chan $chan $what $type
+	}
+}
+
 nick {
 if {[matchattr $hand nm]} {
 	set thenick [lindex [split $arg] 1]

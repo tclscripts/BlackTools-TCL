@@ -14,6 +14,13 @@
 ##					                               ##
 #########################################################################
 
+
+if {[info exists black(backup_update)]} {
+	set black(backdir) $black(backup_dir)
+} else {
+	set black(backdir) $black(dirname)
+}
+
 proc topwords:delexcept {user nick host hand chan chan1} {
 	global black
 	set user [join $user]
@@ -84,7 +91,7 @@ if {[matchattr $user -|w $chan]} {
 
 proc topwords:process {nick host hand chan chan1 cmd type next} {
 global botnick black username
-	set topwords_file "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
+	set topwords_file "$black(backdir)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
 	set cmd_status [btcmd:status $chan $hand "topwords" 0]
 if {$cmd_status == "1"} { 
 	return 
@@ -103,7 +110,7 @@ if {![validchan $chan]} {
 	return
 }
 
-if {![file isdirectory "$black(dirname)/BlackTools/FILES/TOPWORDS"]} {
+if {![file isdirectory "$black(backdir)/BlackTools/FILES/TOPWORDS"]} {
 	blacktools:tell $nick $host $hand $chan $chan1 topwords.7 none
 	return
 }
@@ -242,7 +249,7 @@ proc topwords:user {nick host hand chan chan1 user mask type1} {
 	set split_user [split $user ":"]
 	set theuser [lindex $split_user 1]
 	set type [lindex $split_user 0]
-	set topwords_file "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
+	set topwords_file "$black(backdir)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
 switch $type {
 	reset {
 	set reset [topwords:user:reset $theuser $chan]
@@ -297,7 +304,7 @@ if {$found_it == "0"} {
 
 proc topwords:user:reset {user chan} {
 	global black username
-	set topwords_file "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
+	set topwords_file "$black(backdir)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
 	set found_it 0
 	set file [open $topwords_file r]
 	set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
@@ -360,7 +367,7 @@ user {
 
 proc getactivplace {host chan type} {
 	global black username
-	set topwords_file "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
+	set topwords_file "$black(backdir)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
 	array set activlist [list]
 	set counter 0
 	set all_count 0
@@ -396,13 +403,13 @@ if {$place == "0"} { set place $counter }
 proc topwords:module {nick host hand chan arg} {
 	global black username
 	set arg [split $arg]
-	set topwords_file "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
+	set topwords_file "$black(backdir)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
 	set mask [return_mask [return_host_num "topwords" $chan $host] $host $nick]
 	set handle [nick2hand $nick]
 	set topwords_run 0
 if {[setting:get $chan topwords]} {
-if {![file isdirectory "$black(dirname)/BlackTools/FILES/TOPWORDS/"]} {
-	file mkdir "$black(dirname)/BlackTools/FILES/TOPWORDS/"
+if {![file isdirectory "$black(backdir)/BlackTools/FILES/TOPWORDS/"]} {
+	file mkdir "$black(backdir)/BlackTools/FILES/TOPWORDS/"
 }
 if {![file exists $topwords_file]} {
 	set file [open $topwords_file w]
@@ -510,7 +517,7 @@ if {![info exists black(topwords:$chan:list)]} {
 if {$black(topwords:$chan:list) == ""} {
 	return
 }
-	set topwords_file "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
+	set topwords_file "$black(backdir)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
 if {![file exists $topwords_file]} {
 	return
 }
@@ -588,9 +595,9 @@ if {[string equal -nocase $keyword "ACTION"]} {
 proc topwords:reset {chan} {
 	global black username
 	set found_entry 0
-if {[file exists "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"]} {
+if {[file exists "$black(backdir)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"]} {
 	set found_entry 1
-	set file [open "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt" w]
+	set file [open "$black(backdir)/BlackTools/FILES/TOPWORDS/$username.$chan.txt" w]
 	close $file
 }
 	return $found_entry
@@ -601,8 +608,8 @@ proc topwords:delete {chan} {
 if {$black(chanremove_all) == "0"} {
 	return
 		}
-if {[file exists "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"]} {
-	file delete "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
+if {[file exists "$black(backdir)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"]} {
+	file delete "$black(backdir)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
 	}	
 }
 
@@ -613,7 +620,7 @@ if {[clock format [clock seconds] -format "%w"] == 0} {
 	set week_reset 1
 }
 foreach chan [channels] {
-	set tpfile "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
+	set tpfile "$black(backdir)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
 if {[setting:get $chan topwords]} {
 if {![file exists $tpfile]} {
 	continue

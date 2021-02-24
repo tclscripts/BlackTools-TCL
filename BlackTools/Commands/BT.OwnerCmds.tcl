@@ -7,8 +7,8 @@
 ##						                      						   ##
 ##   BlackTools  : http://blacktools.tclscripts.net	            	   ##
 ##   Bugs report : http://www.tclscripts.net/	                       ##
-##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script ##
-##   Online Help : irc://irc.undernet.org/tcl-help 	               ##
+##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL        ##
+##   Online Help : irc://irc.undernet.org/tcl-help 	               	   ##
 ##                 #TCL-HELP / UnderNet                                ##
 ##                 You can ask in english or romanian                  ##
 ##					                              					   ##
@@ -16,6 +16,71 @@
 
 
 ################################ Commands ###################################
+
+################################## update ###################################
+
+proc update:process {nick host hand chan chan1 what type} {
+	global black
+	set cmd_status [btcmd:status $chan $hand "update" 0]
+	set chan1 $chan
+if {$cmd_status == "1"} { 
+	return 
+}
+switch $what {
+	on {
+	set out [blacktools:update_on_off 1]
+if {$out == 1} {
+	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.35 ""
+} elseif {$out == 3} {
+	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.36 ""
+}
+	}
+	off {
+	set out [blacktools:update_on_off 0]
+if {$out == 0} {
+	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.37 ""
+} elseif {$out == 2} {
+	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.38 ""
+}
+	}
+	start {
+if {[info exists black(update_disabled)]} {
+	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.34 "$black(update_disabled)"
+	return
+}
+if {[info exists black(backup_update)]} {
+	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.39 ""
+	return
+}
+	blacktools:update $nick $host $chan
+}
+	check {
+if {[info exists black(update_disabled)]} {
+	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.34 "$black(update_disabled)"
+	return
+}
+if {[info exists black(backup_update)]} {
+	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.39 ""
+	return
+}
+	blacktools:update_check $nick $hand $host $chan
+}
+	default {
+switch $type {
+	0 {
+	blacktools:tell $nick $host $hand $chan $chan gl.instr "update"
+	}
+	1 {
+	blacktools:tell $nick $host $hand $chan $chan gl.instr_nick "update"
+	}
+	2 {
+	blacktools:tell $nick $host $hand $chan $chan gl.instr_priv "update"
+		}
+	}
+	return		
+		}
+	}
+}
 
 ################################## login ####################################
 
