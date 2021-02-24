@@ -1755,7 +1755,7 @@ set black(say.en.man.2205) "View options settings: \002%char%show\002 <setting> 
 
 set black(say.en.man.2206) "\[MAN\] \002AutoUpdate\002 gives the ability for the script to \001update\001 itself (if new version of BT or bugfix available) by command or \002AUTO\002 (by timer). The BT files and the variables set in \001BlackTools.tcl\001 are saved and restored."
 set black(say.en.man.2207) "\[MAN\] USAGE SYNTAX:"
-set black(say.en.man.2208) "\[MAN\] \002%char%update <on>\002 (enable autoupdate); \002%char%update off\002 <disable autoupdate>; \002%char%update check\002 (check for new updates); \002%char%update start\002 (start update); \002%char%update time\002 [time] (set update time interval, can use X\001m\001,X\001h\001,X\001d\001 ; if \001[time]\001 isn't specified, it shows the current set time)"
+set black(say.en.man.2208) "\[MAN\] \002%char%update <on>\002 (enable autoupdate); \002%char%update off\002 <disable autoupdate>; \002%char%update check\002 (check for new updates); \002%char%update start\002 (start update); \002%char%update time\002 \[time\] (set update time interval, can use X\001m\001,X\001h\001,X\001d\001 ; if \001\[time\]\001 isn't specified, it shows the current set time)"
 
 
 ##############################

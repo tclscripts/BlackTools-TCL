@@ -1755,7 +1755,7 @@ set black(say.ro.man.2205) "Vizualizare setari optiuni: \002%char%show\002 <seta
 
 set black(say.ro.man.2206) "\[MAN\] \002AutoUpdate\002 este un modul ce ii confera capacitatea de a-si da \001update\001 singur (daca exista versiune noua sau un bugfix pentru BT) prin intermediul unei comenzi sau \002AUTOMAT\002 (prin timer). Fisierele BT si variabilele setate in \001BlackTools.tcl\001 sunt salvate si restaurate."
 set black(say.ro.man.2207) "\[MAN\] SINTAXA FOLOSIRE:"
-set black(say.ro.man.2208) "\[MAN\] \002%char%update <on>\002 (activare autoupdate); \002%char%update off\002 <dezactivare autoupdate>; \002%char%update check\002 (verificare de noi update-uri); \002%char%update start\002 (pornire update); \002%char%update time\002 [timp] (se seteaza intervalul de verificare update, se poate folosi X\001m\001, X\001h\001, X\001d\001 ; daca \001[timp]\001 nu este specificat, se afiseaza timpul curent setat)"
+set black(say.ro.man.2208) "\[MAN\] \002%char%update <on>\002 (activare autoupdate); \002%char%update off\002 <dezactivare autoupdate>; \002%char%update check\002 (verificare de noi update-uri); \002%char%update start\002 (pornire update); \002%char%update time\002 \[timp\] (se seteaza intervalul de verificare update, se poate folosi X\001m\001, X\001h\001, X\001d\001 ; daca \001\[timp\]\001 nu este specificat, se afiseaza timpul curent setat)"
 
 ##############################
 ############################################################################################################
