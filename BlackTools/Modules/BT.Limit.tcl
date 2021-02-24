@@ -133,7 +133,7 @@ if {($dif >= $setnum) || ($dif <= $setnum)} {
 		}
 	}
 }
-	set cc [expr $counter + 1]
+		set cc [expr $counter + 1]
 if {[lindex $channels $cc] != ""} {
 	utimer 5 [list limit:act $channels $cc]
 	}

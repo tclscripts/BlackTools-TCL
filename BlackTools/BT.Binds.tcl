@@ -4,14 +4,14 @@
 #########################################################################
 ###########################   BINDS TCL   ###############################
 #########################################################################
-##						                       ##
-##   BlackTools  : http://blacktools.tclscripts.net	    	       ##
+##						                       						   ##
+##   BlackTools  : http://blacktools.tclscripts.net	    	       	   ##
 ##   Bugs report : http://www.tclscripts.net/	                       ##
-##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script ##
-##   Online Help : irc://irc.undernet.org/tcl-help 	 	       ##
+##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL		   ##
+##   Online Help : irc://irc.undernet.org/tcl-help 	 	       		   ##
 ##                 #TCL-HELP / UnderNet                                ##
 ##                 You can ask in english or romanian                  ##
-##					                               ##
+##					                               					   ##
 #########################################################################
 
 if {[info exists black(notlogged)]} {
@@ -89,6 +89,8 @@ bind sign - * badchan:part
 bind splt - * badchan:split
 bind kick - * badchan:kick
 bind nick - * badchan:nickchange
+
+bind kick - * massban:kick
 
 bind join - * flood:join:protection
 bind join - * join:count

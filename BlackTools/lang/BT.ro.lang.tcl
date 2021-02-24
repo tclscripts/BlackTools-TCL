@@ -14,7 +14,7 @@
 #                                                   *** The Future is Here ***                                                   #
 #                                                                                     Copyright 2008 - 2018 @ www.tclscripts.net #
 ##################################################################################################################################
-#                                                                                                                         ®      #
+#                                                                                                                         ï¿½      #
 #     ######  #          #     #####  #    # ####### ####### ####### #        #####        #          #    #     #  #####        #
 #     #     # #         # #   #     # #   #     #    #     # #     # #       #     #       #         # #   ##    # #     #       #
 #     #     # #        #   #  #       #  #      #    #     # #     # #       #             #        #   #  # #   # #             #
@@ -601,7 +601,7 @@ set black(say.ro.next.4) "\002%current%\002 acum ca ai fost ajutat te rog sa dai
 set black(say.ro.next.5) "Nu ai voie sa faci idle aici! Te rog sa revii pe %chan% atunci cand ai nevoie de ajutor"
 set black(say.ro.next.6) "\005\[BT\]\005 ATENTIE: %nick% are nevoie de ajutor pe %chan%. Acesta este numarul \002%counter%\002 la rand."
 set black(say.ro.next.7) "\005\[BT\]\005 Lista celor care asteapta ajutor este:"
-set black(say.ro.next.8) "\005\[BT\]\005 Nimeni nu are nevoie de ajutor în acest moment."
+set black(say.ro.next.8) "\005\[BT\]\005 Nimeni nu are nevoie de ajutor ï¿½n acest moment."
 set black(say.ro.next.9) "%msg%"
 set black(say.ro.next.11) "\005\[BT\]\005 Atentie: \002%current%\002 a fost preluat de \002%nick%\002 (\001%hand%\001)."
 set black(say.ro.next.13) "\005\[BT\]\005 Eroare! \002%msg.1%\002 este in lista de help, dar nu a fost ajutat inca."
@@ -1310,7 +1310,7 @@ set black(say.ro.omsg.1) "\005\[BT\]\005 Mesaj trimis catre toti @ de pe: \002%m
 
 #################################### forward ###################################
 
-set black(say.ro.forward.1) "\005\[BT\]\005 \004\[MESAJ PRIVAT\]\004 de la -- <\002%msg.1%\002> »»» \001%msg.8%\001"
+set black(say.ro.forward.1) "\005\[BT\]\005 \004\[MESAJ PRIVAT\]\004 de la -- <\002%msg.1%\002> ï¿½ï¿½ï¿½ \001%msg.8%\001"
 
 ##################################### mb #######################################
 
@@ -1338,6 +1338,49 @@ set black(say.ro.exempt.9) "\005\[BT\]\005 Am sters exceptia la ban pentru host 
 set black(say.ro.exempt.12) "\005\[BT\]\005 Am sters exceptia la ban pentru host \002%msg.1%\002 pe toate canalele"
 set black(say.ro.exempt.15) "\005\[BT\]\005 Nu exista exceptie la ban pentru host \002%msg.1%\002 pe %chan%"
 set black(say.ro.exempt.16) "\005\[BT\]\005 Nu exista exceptie la ban pentru host \002%msg.1%\002 pentru toate canalele"
+
+###################################### AutoUpdate ################################
+
+set black(say.ro.autoupdate.1) "Nu am putut porni \001UPDATE\001 : Pachetul TLS nu este instalat."
+set black(say.ro.autoupdate.2) "Update-ul a esuat, nu am putut verifica daca exista noi update-uri."
+set black(say.ro.autoupdate.3) "Am gasit versiune \001NOUA\001 de BlackTools \002%msg.1%\002, pornesc descarcarea.."
+set black(say.ro.autoupdate.4) "Am gasit noi bugfix-uri pentru versiunea de \002BlackTools %msg.1%\002 instalata, pornesc descarcarea.."
+set black(say.ro.autoupdate.5) "Nu am gasit noi update-uri."
+set black(say.ro.autoupdate.6) "Update-ul a esuat : \002%msg.1%\002"
+set black(say.ro.autoupdate.7) "Sterg backup facut de la ultimul update realizat..."
+set black(say.ro.autoupdate.8) "Salvez copie de rezerva pentru director \001BlackTools\001 .."
+set black(say.ro.autoupdate.9) "Salvare copie de rezerva la \001BlackTools\001 esuata : \002%msg.1%\002"
+set black(say.ro.autoupdate.10) "Update esuat, nu am putut face copie de rezerva la \001BlackTools.tcl\001."
+set black(say.ro.autoupdate.11) "Salvare copie de rezerva la \001BlackTools.tcl\001 .. realizata"
+set black(say.ro.autoupdate.12) "Copie de rezerva finalizata."
+set black(say.ro.autoupdate.13) "Salvez informatii din vechiul \001BlackTools.tcl\001 ..."
+set black(say.ro.autoupdate.14) "Sterg vechiul \001BlackTools\001 in totalitate ..."
+set black(say.ro.autoupdate.15) "Descarcare BlackTools \002%msg.1%\002. Ultimul bugfix realizat: \002%msg.2%\002"
+set black(say.ro.autoupdate.16) "Update esuat, nu am putut descarca \001BlackTools\001."
+set black(say.ro.autoupdate.17) "\001BlackTools\001 descarcat in \002%msg.1%\002"
+set black(say.ro.autoupdate.18) "Readuc informatiile din vechiul \001BlackTools.tcl\001 ..."
+set black(say.ro.autoupdate.19) "Restaurat \002%msg.1%\002 variabile din vechiul \001BlackTools.tcl\001."
+set black(say.ro.autoupdate.20) "Nicio variabila restaurata din vechiul \001BlackTools.tcl\001."
+set black(say.ro.autoupdate.21) "Readuc setari, banuri si alte informatii ..."
+set black(say.ro.autoupdate.22) "Nu am gasit niciun fisier care sa contina setari, banuri sau alte informatii ..."
+set black(say.ro.autoupdate.23) "Restaurat (\002%msg.1%\002) fisiere care contin setari, banuri si alte informatii."
+set black(say.ro.autoupdate.24) "\005\[BT\]\005 Update pentru \001BlackTools\001 finalizat in \002%msg.1%\002"
+set black(say.ro.autoupdate.25) "Daca ceva nu a mers cum trebuie, copia de rezerva o gasiti in \001\"%msg.1%\"\001 pana la urmatorul update. Puteti vizualiza si LOG-ul de de update in \001\"%msg.2%\"\001"
+set black(say.ro.autoupdate.26) "Tineti minte, pentru informatii si anuntare bug-uri pentru BT --- \002WwW.TclScripts.Net\002"
+set black(say.ro.autoupdate.27) "\005\[BT\]\005 Update pornit la \001%msg.1%\001"
+set black(say.ro.autoupdate.28) "Verific de noi update-uri .."
+set black(say.ro.autoupdate.29) "Este deja pornit.."
+set black(say.ro.autoupdate.30) "Nu am putut porni update. Motiv: \002%msg%\002"
+set black(say.ro.autoupdate.31) "Nu am putut verifica daca exista update-uri noi. Te rog incearca mai tarziu."
+set black(say.ro.autoupdate.32) "Am gasit versiune noua de \001BlackTools\001 : \002%msg%\002. Foloseste \001%char%update start\001 pentru a porni update."
+set black(say.ro.autoupdate.33) "Nu am gasit versiune noua de \001BlackTools\001 dar in schimb am gasit un bugfix (\002%msg%\002) pentru versiunea curenta. Foloseste \001%char%update start\001 pentru a porni update."
+set black(say.ro.autoupdate.34) "\001AutoUpdate\001 este dezactivat. Motiv: \002%msg%\002"
+set black(say.ro.autoupdate.35) "\001AutoUpdate\001 este deja \002pornit\002.."
+set black(say.ro.autoupdate.36) "Ai \002pornit\002 modulul de \001AutoUpdate\001."
+set black(say.ro.autoupdate.37) "\001AutoUpdate\001 este deja \002oprit\002.."
+set black(say.ro.autoupdate.38) "Ai \002oprit\002 modulul de \001AutoUpdate\001."
+set black(say.ro.autoupdate.39) "\001AutoUpdate\001 ruleaza in acest moment.."
+set black(say.ro.autoupdate.40) "\001AutoUpdate\001 sarit momentan. Motiv: \002Update manual activat\002."
 
 ##############################
 ############################################################################################################
