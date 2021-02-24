@@ -2558,6 +2558,24 @@ if {[matchattr $hand nmo|MAOV $chan]} {
 	}
 }
 
+autoupdate {
+if {[matchattr $hand n]} {
+	blacktools:tell $nick $host $hand $chan $chan1 man.2206 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2207 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2208 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
+	}	
+}
+
+update {
+if {[matchattr $hand n]} {
+	blacktools:tell $nick $host $hand $chan $chan1 man.2206 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2207 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2208 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
+	}	
+}
+
 default {
 	blacktools:tell $nick $host $hand $chan $chan1 man.1_1 $nick
 		}
