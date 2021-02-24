@@ -4,14 +4,14 @@
 #########################################################################
 #############################   HCMDS TCL   #############################
 #########################################################################
-##						                       ##
-##   BlackTools  : http://blacktools.tclscripts.net	               ##
+##						                      						   ##
+##   BlackTools  : http://blacktools.tclscripts.net	               	   ##
 ##   Bugs report : http://www.tclscripts.net/	                       ##
-##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script ##
+##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL		   ##
 ##   Online Help : irc://irc.undernet.org/tcl-help 	          	       ##
 ##                 #TCL-HELP / UnderNet                                ##
 ##                 You can ask in english or romanian                  ##
-##					                               ##
+##					                               					   ##
 #########################################################################
 
 proc h:process {nick host hand chan chan1 command type} {
@@ -803,7 +803,7 @@ switch $type {
 
 module {
 
-set allmodules "Anunt AutoBroadcast BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private GuestNick Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language"
+set allmodules "Anunt AutoBroadcast BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private GuestNick Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language AutoUpdate"
 set manager_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Guestnick Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language"
 set owner_modules "Anunt AutoBroadcast BadChan Idle Limit CloneScan XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private GuestNick Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language"
 set module_output ""
@@ -859,33 +859,33 @@ if {[string equal -nocase $read_modul "greet"] && [string equal -nocase $chan $e
 }
 	close $file
 if {[lsearch -exact [color:filter $read_msg] "%count%"] > -1} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}
-	} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}
+	} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}
 }
 
 anunt {
 if {[setting:get $chan anunt]} {
 	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}
 }
 
 quote {
 if {[setting:get $chan quote]} {
 	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}
 }
 
 note {
 if {[setting:get $chan note]} {
 	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}
 }
 
 chanlink {
 if {[link:status $chan] == "1"} {
 	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"
 	}
 }
 
@@ -893,19 +893,19 @@ autobroadcast {
 	set found_module 0
 	foreach tmr [timers] {
 if {[string match "*broadcastpublic:show*" [join [lindex $tmr 1]]]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
 	set found_module 1
 	}
 }
 if {$found_module == "0"} {
-	lappend module_output "[black:color 4 $hand $m]\[-\] ;"
+	lappend module_output "[black:color 4 $hand $m]\[-\]"
 	}
 }
 
 badchan {
 if {[setting:get $chan antibadchan]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 idle {
@@ -922,140 +922,144 @@ if {[setting:get $chan idlehalfop]} {
 if {$idle_type == ""} {
 	set idle_type ""
 }
-	lappend module_output "[black:color 1 $hand $m]\[$idle_type\] ;"
+	lappend module_output "[black:color 1 $hand $m]\[$idle_type\]"
 }
 
 limit {
 if {[setting:get $chan limit]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 clonescan {
 if {[setting:get $chan clonescan]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 xtools {
 if {[setting:get $chan xtools]} {
 	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}
 }
 
 xonly {
 if {[setting:get $chan xonly]} {
 	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}
 }
 
 seen {
 if {[setting:get $chan seen]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}
 }
 
 voiceme {
 if {[setting:get $chan voiceme]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}
 }
 
 voiceonmsg {
 if {[setting:get $chan voiceonmsg]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}
 }
 
 egg {
-	lappend module_output "[black:color 1 $hand $m]\[\] ;"
+	lappend module_output "[black:color 1 $hand $m]\[\]"
+}
+
+autoupdate {
+	lappend module_output "[black:color 1 $hand $m]\[\]"
 }
 
 note {
 if {[setting:get $chan note]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}
 }
 
 securemode {
 if {[setting:get $chan securemode]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;" }	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]" }	
 }
 
 private {
 if {[setting:get $chan private]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;" }	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]" }	
 }
 
 
 guestnick {
 if {[setting:get $chan guestnick]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 greet {
 if {[setting:get $chan greet]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 leave {
 if {[setting:get $chan leave]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 autotopic {
 if {[setting:get $chan autotopic]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 timer {
-	lappend module_output "[black:color 1 $hand $m]\[\] ;"
+	lappend module_output "[black:color 1 $hand $m]\[\]"
 }
 
 topwords {
 if {[setting:get $chan topwords]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 next {
 if {[setting:get $chan next]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 quote {
 if {[setting:get $chan quoteofday]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 backchan {
 if {[setting:get $chan backchan] != ""} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 reportnick {
 if {[setting:get $chan reportnick]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\] ;"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\] ;"}	
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 language {
 	set lang [string toupper [setting:get $chan lang]]
 if {$getlang == ""} { set getlang "[string toupper $black(default_lang)]" }
-	lappend module_output "[black:color 1 $hand $m]\[$lang\] ;"
+	lappend module_output "[black:color 1 $hand $m]\[$lang\]"
 					}
 				}
-			}					
-	blacktools:tell:h $nick $host $hand $chan $chan1 h.15 "[join $module_output]"
+			}
+	blacktools:tell:h $nick $host $hand $chan $chan1 h.15 "[join $module_output " ; "]"
 	switch $type {
 	0 {
 	blacktools:tell $nick $host $hand $chan $chan1 hcommand.7 none
