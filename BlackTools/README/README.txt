@@ -12,7 +12,7 @@
    Download    : http://blacktools.tclscripts.net
    Bugs report : http://www.tclscripts.net
    History     : http://www.tclscripts.net/release-notes
-   GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script
+   GitHub page : https://github.com/tclscripts/BlackToolS-TCL
    Online help : irc://irc.undernet.org/tcl-help 
                  #TCL-HELP / UnderNet
                  You can ask in english or romanian
