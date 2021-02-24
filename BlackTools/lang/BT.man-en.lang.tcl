@@ -12,7 +12,7 @@
 #########################################################################################################################################
 #                                                                                                                                       #
 #                                                      *** The Future is Here ***                                                       #
-#                                                                                            Copyright 2008 - 2018 @ www.tclscripts.net #
+#                                                                                            Copyright 2008 - 2021 @ www.tclscripts.net #
 #########################################################################################################################################
 #                                                                                                                                       #
 #   ENGLISH LANGUAGE                                                                                                            �       #
@@ -697,6 +697,7 @@ set black(say.en.man.489_1) "\[MAN\] \002%char%myset\002 lang <language> ; \002%
 set black(say.en.man.490) "\[MAN\] \002TCL\002 supports uploading, loading and unloading Tcl scripts directly through your eggdrop (uploading is restricted to \002.tcl\002 files ONLY)."
 set black(say.en.man.491) "\[MAN\] USAGE SYNTAX:"
 set black(say.en.man.492) "\[MAN\] \002%char%tcl <list>\002 (see scripts); \002%char%tcl wget\002 <link/name.tcl>; \002%char%tcl load\002 <name.tcl> (load a tcl script); \002%char%tcl unload\002 <name.tcl> (unload a tcl script); \002%char%tcl info\002 <name.tcl> (information about a tcl) "
+
 
 #NeXt
 
@@ -1748,6 +1749,13 @@ set black(say.en.man.2202) "\[MAN\] \002Flood-Chan\002 this is an internal eggdr
 set black(say.en.man.2203) "\[MAN\] USAGE SYNTAX:"
 set black(say.en.man.2204) "\[MAN\] \002%char%set\002 flood-chan <lines:seconds> ; \002%botnick% set\002 flood-chan <lines:seconds> ; \002(PRIVMSG) set\002 <#chan> flood-chan <lines:seconds>"
 set black(say.en.man.2205) "View options settings: \002%char%show\002 <setting> ; \002%botnick% show\002 <setting> ; \002(PRIVMSG) show\002 <#chan> <setting>"
+
+
+#AutoUpdate
+
+set black(say.en.man.2206) "\[MAN\] \002AutoUpdate\002 gives the ability for the script to \001update\001 itself (if new version of BT or bugfix available) by command or \002AUTO\002 (by timer). The BT files and the variables set in \001BlackTools.tcl\001 are saved and restored."
+set black(say.en.man.2207) "\[MAN\] USAGE SYNTAX:"
+set black(say.en.man.2208) "\[MAN\] \002%char%update <on>\002 (enable autoupdate); \002%char%update off\002 <disable autoupdate>; \002%char%update check\002 (check for new updates); \002%char%update start\002 (start update); \002%char%update time\002 [time] (set update time interval, can use X\001m\001,X\001h\001,X\001d\001 ; if \001[time]\001 isn't specified, it shows the current set time)"
 
 
 ##############################
