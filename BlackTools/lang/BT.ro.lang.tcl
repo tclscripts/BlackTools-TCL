@@ -1381,6 +1381,8 @@ set black(say.ro.autoupdate.37) "\001AutoUpdate\001 este deja \002oprit\002.."
 set black(say.ro.autoupdate.38) "Ai \002oprit\002 modulul de \001AutoUpdate\001."
 set black(say.ro.autoupdate.39) "\001AutoUpdate\001 ruleaza in acest moment.."
 set black(say.ro.autoupdate.40) "\001AutoUpdate\001 sarit momentan. Motiv: \002Update manual activat\002."
+set black(say.ro.autoupdate.41) "Timpul de \001AutoUpdate\001 este setat la: \002%msg.1%\002 minute"
+set black(say.ro.autoupdate.42) "Am setat timpul pentru \001AutoUpdate\001 la: \002%msg.1%\002 (%msg.2% minute)"
 
 ##############################
 ############################################################################################################

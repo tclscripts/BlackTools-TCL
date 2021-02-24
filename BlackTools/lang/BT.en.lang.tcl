@@ -1382,6 +1382,8 @@ set black(say.en.autoupdate.37) "\001AutoUpdate\001 is already turned \001off\00
 set black(say.en.autoupdate.38) "\001AutoUpdate\001 module is turned \001OFF\001."
 set black(say.en.autoupdate.39) "\001AutoUpdate\001 is running at the moment .."
 set black(say.en.autoupdate.40) "\001AutoUpdate\001 skipped for the moment. Reason: \002Manual update started\002."
+set black(say.en.autoupdate.41) "Time for \001AutoUpdate\001 is set to: \002%msg.1%\002 minutes"
+set black(say.en.autoupdate.42) "Set time for \001AutoUpdate\001 to: \002%msg.1%\002 (%msg.2% minutes)"
 
 ##############################
 ############################################################################################################
