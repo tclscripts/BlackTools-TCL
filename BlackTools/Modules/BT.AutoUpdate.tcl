@@ -251,6 +251,7 @@ proc blacktools:update_start_restore {} {
     global black
     set hand $::update_hand
     set chan $::update_chan
+    set userlang [blacktools:update_userlang $hand]
     if {![file isdirectory "$black(actdir)/BlackTools"]} {
     blacktools:update_put $hand $chan 16 ""
     file delete -force $black(backup_dir)
@@ -264,7 +265,7 @@ proc blacktools:update_start_restore {} {
 }
     set end_download [unixtime]
     set dif [expr $end_download - $black(start_update)]
-    blacktools:update_put "" "" 17 [list [duration $dif]]
+    blacktools:update_put "" "" 17 [list [return_time $userlang $dif]]
     set newdata [blacktools:update_data 0 ""]
     blacktools:update_put $hand $chan 18 ""
     set restore_config [blacktools:update_restore $black(update_old_data) $newdata]
@@ -295,6 +296,7 @@ proc blacktools:update_end {num} {
     global black config
     set hand $::update_hand
     set chan $::update_chan
+    set userlang [blacktools:update_userlang $hand]
     set end_update [unixtime]
     set dif [expr $end_update - $black(start_update)]
     unset black(start_update)
@@ -319,7 +321,7 @@ if {[info exists ::update_chan]} {
     unset ::update_chan
 }
     blacktools:update_unsetflag
-    blacktools:update_put $hand $chan 24 [list [duration $dif]]
+    blacktools:update_put $hand $chan 24 [list [return_time $userlang $dif]]
     blacktools:update_put $hand $chan 25 [list $black(backup_dir) $black(log_file)]
     blacktools:update_put $hand $chan 26 ""
     unset black(update_file_saved)
@@ -476,6 +478,16 @@ if {$status != "ok"} {
 	set getipq [::http::data $ipq]
 	::http::cleanup $ipq
 	return $getipq
+}
+
+###
+proc blacktools:update_userlang {nick} {
+    global black
+if {$nick == ""} {return [string tolower $black(default_lang)]}
+    set hand [nick2hand $nick]
+    set userlang [string tolower [getuser $hand XTRA OUTPUT_LANG]]
+if {$userlang == ""} { set userlang "[string tolower $black(default_lang)]" }
+    return $userlang
 }
 
 ###
