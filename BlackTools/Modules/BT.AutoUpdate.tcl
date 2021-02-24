@@ -344,6 +344,26 @@ foreach f $files {
 }
 
 ###
+proc blacktools:update_set_time {num type} {
+    global black
+    set bt_file "$black(dirname)/BlackTools.tcl"
+    set file [open $bt_file r]
+    set data [read -nonewline $file]
+    close $file
+    set regexp_var2 "set black\\(update_time_check\\) \"(.*?)\""
+    regexp -nocase $regexp_var2 $data -> found
+if {$type == 0} {
+    return $found
+} else {
+    regexp -nocase $regexp_var2 $data found_line
+    set found_line [string map [list $found $num] $found_line]
+    regsub $regexp_var2 $data $found_line data
+    blacktools:update_data 1 $data
+    }
+}
+
+
+###
 proc blacktools:update_on_off {type} {
     global black
     set regexp_var2 "set black\\(update_type\\) \"(.*?)\""
