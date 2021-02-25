@@ -98,7 +98,7 @@ set black(dirname) "scripts"
 # 0 - autoupdate on TIME interval and by command
 # 1 - update ONLY on command
 
-set black(update_type) "0"
+set black(update_type) "1"
 
 ###
 #Do you want the eggdrop to send NOTE to BOSS OWNER if a new update is found?
