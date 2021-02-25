@@ -101,7 +101,8 @@ set black(dirname) "scripts"
 set black(update_type) "1"
 
 ###
-#Do you want the eggdrop to send NOTE to OWNERS if a new update is found?
+#Do you want the eggdrop to send NOTE to BOSS OWNERS if a new update is found?
+# (only when autoupdate is turned off)
 # 0 - no
 # 1 - yes
 
