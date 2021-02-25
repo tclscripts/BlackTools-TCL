@@ -1385,7 +1385,6 @@ set black(say.en.autoupdate.40) "\001AutoUpdate\001 skipped for the moment. Reas
 set black(say.en.autoupdate.41) "Time for \001AutoUpdate\001 is set to: \002%msg.1%\002 minutes"
 set black(say.en.autoupdate.42) "Set time for \001AutoUpdate\001 to: \002%msg.1%\002 (%msg.2% minutes)"
 set black(say.en.autoupdate.43) "\005\[BT\]\005 AutoUpdate found new \001update\001 for: BlackTools \002%msg.1%\002 (Last Update: \001%msg.2%\001)."
-set black(say.en.autoupdate.44) "\005\[BT\]\005 AutoUpdate run \001update\001 for BT to version: BlackTools \002%msg.1%\002 (Last Update: \001%msg.2%\001)."
 
 ##############################
 ############################################################################################################

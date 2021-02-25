@@ -1384,7 +1384,6 @@ set black(say.ro.autoupdate.40) "\001AutoUpdate\001 sarit momentan. Motiv: \002U
 set black(say.ro.autoupdate.41) "Timpul de \001AutoUpdate\001 este setat la: \002%msg.1%\002 minute"
 set black(say.ro.autoupdate.42) "Am setat timpul pentru \001AutoUpdate\001 la: \002%msg.1%\002 (%msg.2% minute)"
 set black(say.ro.autoupdate.43) "\005\[BT\]\005 AutoUpdate a gasit un \001update\001 nou: BlackTools \002%msg.1%\002 (Ultimul update: \001%msg.2%\001)."
-set black(say.ro.autoupdate.44) "\005\[BT\]\005 AutoUpdate a facut \001update\001 pentru BT la versiunea: BlackTools \002%msg.1%\002 (Ultimul update: \001%msg.2%\001)."
 
 ##############################
 ############################################################################################################
