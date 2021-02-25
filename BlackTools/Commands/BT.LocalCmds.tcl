@@ -858,7 +858,7 @@ if {$cmd_status == "1"} {
 	return
 }
 if {$arg != ""} { return }
-	blacktools:tell $nick $host $hand $chan $chan1 version.1 $black(vers)
+	blacktools:tell $nick $host $hand $chan $chan1 version.1 "$black(vers) [ctime $black(current_modif)]"
 }
 
 ############################### cycle #################################
