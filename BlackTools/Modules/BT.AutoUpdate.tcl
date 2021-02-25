@@ -236,6 +236,10 @@ proc blacktools:update_backup {} {
     set black(backup_update) 1
     set black(start_update) [unixtime]
     set black(update_file_saved) [llength [glob -nocomplain -directory "$black(dirname)/BlackTools/FILES" "*.txt"]]
+if {[file isdirectory "$black(dirname)/BlackTools/FILES/TOPWORDS"]} {
+    set black(update_topwords_files) 1
+    set black(update_file_saved) [expr [llength [glob -nocomplain -directory "$black(dirname)/BlackTools/FILES/TOPWORDS" "*.txt"]] + $black(update_file_saved)]
+}
     blacktools:update_put "" "" 12 ""
     blacktools:update_put "" "" 13 ""
     blacktools:update_put "" "" 14 ""
@@ -350,6 +354,9 @@ if {$num_var > 0} {
     set ::update_chan $::update_chan 
 every 1000 {
     set info_files_num [llength [glob -nocomplain -directory "$black(actdir)/BlackTools/FILES" "*.txt"]]
+if {[file isdirectory "$black(actdir)/BlackTools/FILES/TOPWORDS"]} {
+    set info_files_num [expr [llength [glob -nocomplain -directory "$black(actdir)/BlackTools/FILES/TOPWORDS" "*.txt"]] + $info_files_num]
+}
 if {$info_files_num == $black(update_file_saved)} {
     blacktools:update_end $info_files_num
     break
@@ -391,6 +398,9 @@ if {[info exists ::update_chan]} {
     blacktools:update_put $hand $chan 25 [list $black(backup_dir) $black(log_file)]
     blacktools:update_put $hand $chan 26 ""
     unset black(update_file_saved)
+if {[info exists black(update_topwords_files)]} {
+    unset black(update_topwords_files)
+}
     file delete -force "$black(actdir)/BlackTools.old.tcl"
 }
 
@@ -399,10 +409,21 @@ proc blacktools:update_restore_files {} {
     global black
     set files ""
     set files [glob -nocomplain -directory "$black(backup_dir)/BlackTools/FILES" "*.txt"]
+    set counter 0
 if {![file isdirectory "$black(actdir)/BlackTools/FILES"]} {
     file mkdir "$black(actdir)/BlackTools/FILES"
 }
-    set counter 0
+if {[info exists black(update_topwords_files)]} {
+if {![file isdirectory "$black(actdir)/BlackTools/FILES/TOPWORDS"]} {
+    file mkdir "$black(actdir)/BlackTools/FILES/TOPWORDS"
+}
+    set top_files [glob -nocomplain -directory "$black(backup_dir)/BlackTools/FILES/TOPWORDS" "*.txt"]
+foreach f $top_files {
+    incr counter
+    set filename [file tail $f]
+    file copy -force $f "$black(actdir)/BlackTools/FILES/TOPWORDS/$filename"
+    }
+}
 foreach f $files {
     incr counter
     set filename [file tail $f]
