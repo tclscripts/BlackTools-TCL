@@ -39,46 +39,123 @@ if {[catch {package require github} no_github] != 0} {
 }
 
 ###
-proc blacktools:update_check {nick hand host chan} {
+proc blacktools:update_check {nick hand host chan type} {
     global black
     set check_addons [blacktools:check_addons $hand $chan]
     set status [blacktools:update_verify]
 if {$status == -1} {
     blacktools:update_put $hand $chan 31 ""
     blacktools:tell $nick $host $hand $chan $chan autoupdate.31 ""
-    return
-    }
+    return 0
+}
     set data [split $status "\n"]
     set new_version [lindex [lindex $data 0] 1]
     set last_modify [lindex [lindex $data 1] 2]
     set status [lindex [lindex $data 2] 1]
 
 if {$black(vers) != $new_version} {
+if {$type == 0} {
     blacktools:tell $nick $host $hand $chan $chan autoupdate.32 "$new_version"
-} elseif {$last_modify != $black(current_modif)} {
-    blacktools:tell $nick $host $hand $chan $chan autoupdate.33 [ctime $last_modify]
 } else {
+    return [list $new_version $last_modify]
+}
+} elseif {$last_modify != $black(current_modif)} {
+if {$type == 0} {
+    blacktools:tell $nick $host $hand $chan $chan autoupdate.33 [ctime $last_modify]
+}
+    return [list $new_version $last_modify]
+} else {
+if {$type == 0} {
     blacktools:tell $nick $host $hand $chan $chan autoupdate.5 ""
-    return
+        }
+    return 0
     }
 }
 
 ###
 proc blacktools:update:timer {} {
     global black
-if {$black(update_type) == 1} {
+if {$black(update_type) == 0} {
 if {![info exists black(update_disabled)]} {
 if {![info exists black(backup_update)]} {
-    set update [catch {blacktools:update "" "" ""} error]
-    } else {
+    set update [catch {set status_update [blacktools:update "" "" ""]} error]
+if {$status_update != 0} {
+    set found_version [lindex $status_update 0]
+    set last_modif [lindex $status_update 1]
+if {$black(update_note) == 1} {
+    blacktools:update:note 1 $last_modif $found_version
+        }
+    }
+} else {
     blacktools:update_put "" "" 40 ""  
     }
 } else {
     blacktools:update_put "" "" 27 [list [ctime [unixtime]]]
     blacktools:update_put "" "" 30 [list $black(update_disabled)]
     }
+} else {
+if {$black(update_note) == 1} {
+if {![info exists black(update_disabled)]} {
+    set check [blacktools:update_check "" "" "" "" 1]
+if {$check != 0} {
+    set found_version [lindex $check 0]
+    set last_modif [lindex $check 1]
+    blacktools:update:note 0 $last_modif $found_version
+            }
+        }
+    }
 }
     timer [time_return_minute $black(update_time_check)] blacktools:update:timer 
+}
+
+###
+proc blacktools:update:note {type num version} {
+    global black botnick
+ 	set time [unixtime]
+foreach user [userlist n] {
+	set nonotes [getuser $user XTRA NO_NOTES]
+if {$nonotes == ""} {
+    set check_note [blacktools:update_note_check $user $num]
+if {$check_note == 1} {continue}
+	set getlang [string tolower [getuser $user XTRA OUTPUT_LANG]]
+if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
+	set black(notes:announce:$user) 1
+    set replace(%msg.1%) $version
+	set replace(%msg.2%) [ctime $num]
+if {$type == 0} {
+	set text [black:color:set $botnick $black(say.$getlang.autoupdate.43)]
+} else {
+    set text [black:color:set $botnick $black(say.$getlang.autoupdate.44)]
+}
+    set text [string map [array get replace] $text]
+	notes:add $botnick "" $user "DB" "INBOX" $text "AUTOUPDATE:$num" 0
+	    }
+    }
+}
+
+###
+proc blacktools:update_note_check {hand num} {
+    global black
+    set found_it 0
+    set file [open $black(notes_file) "r"]
+	set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
+	set temp "$black(tempdir)/notes_temp.$timestamp"
+	set tempwrite [open $temp w]
+while {[gets $file line] != -1} {
+    set handle [lindex [split $line] 4]
+if {[string equal -nocase $handle $hand]} {
+    set sender [lindex [split $line] 6]
+    set split_send [split $sender ":"]
+    set last_update [lindex $split_send 1]
+    set sender [lindex $split_send 0]
+if {[string equal -nocase $sender "AUTOUPDATE"] && [string equal -nocase $num $last_update]} {
+    set found_it 1
+    break
+            }
+        }
+    }
+    close $file
+    return $found_it
 }
 
 ###
@@ -86,7 +163,7 @@ proc blacktools:update {hand host chan} {
     global black
 if {[info exists black(backup_update)]} {
     blacktools:update_put $hand $chan 29 ""
-    return
+    return 0
 }
     set error_b ""
     set file [open $black(log_file) w]
@@ -101,7 +178,7 @@ if {$check_addons == 0} {
     set status [blacktools:update_verify]
 if {$status == -1} {
     blacktools:update_put $hand $chan 2 ""
-    return
+    return 0
 }
     set data [split $status "\n"]
     set new_version [lindex [lindex $data 0] 1]
@@ -114,13 +191,13 @@ if {$black(vers) != $new_version} {
     blacktools:update_put $hand $chan 4 [list $black(vers)]
 } else {
     blacktools:update_put $hand $chan 5 ""
-    return
+    return 0
 }
 
 if {![file isdirectory $black(backup_dir)]} {
 if {[catch {file mkdir $black(backup_dir)} error] != 0} {
     blacktools:update_put $hand $chan 6 [list $error]
-     return
+     return 0
     }
 }
 
@@ -134,13 +211,13 @@ if {[catch {file copy -force "$black(dirname)/BlackTools" $black(backup_dir)} er
 } else {
     blacktools:update_put $hand $chan 9 [list $error_b]
     file delete -force $black(backup_dir)
-    return
+    return 0
 }
 
 if {[catch {file copy -force $black(tclconfig) $black(backup_dir)} error_b] != 0} {
     blacktools:update_put $hand $chan 10 ""
     file delete -force $black(backup_dir)
-    return
+    return 0
 } else {
     blacktools:update_put "" "" 11 ""
 }
@@ -148,7 +225,7 @@ if {[catch {file copy -force $black(tclconfig) $black(backup_dir)} error_b] != 0
     set ::update_version $new_version
     set ::update_last_modify $last_modify
     set ::update_chan $chan
-every 1000 {
+blacktools:every 1000 {
 if {[file isdirectory "$black(backup_dir)/BlackTools"]} {
     set after_file_num [llength [glob-r "$black(backup_dir)/BlackTools"]]
     set current_file_num [llength [glob-r "$black(actdir)/BlackTools"]]
@@ -157,7 +234,8 @@ if {$current_file_num == $after_file_num} {
     break
             }
         }
-    }   
+    }
+    return [list $new_version $last_modify]
 }
 
 ###
@@ -532,7 +610,7 @@ if {$getmethod == ""} { set getmethod "0" }
 
 ###
 #https://wiki.tcl-lang.org/page/every
-proc every {interval script} {
+proc blacktools:every {interval script} {
     global everyIds
     if {$interval eq {cancel}} {
         after cancel $everyIds($script)
