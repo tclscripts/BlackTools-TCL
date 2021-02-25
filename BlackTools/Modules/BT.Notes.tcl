@@ -172,6 +172,9 @@ if {[string equal -nocase $handle $hand] && [string equal -nocase $number $num]}
 	set time [lindex [split $line] 5]
 	set time [clock format $time -format %D]
 	set sender [lindex [split $line] 6]
+if {[regexp {:} $sender]} {
+	set sender [lindex [split $sender ":"] 0]
+}
 if {$readtype == "LIST"} {
 	set readnote [lrange [split $line] 6 end]
 } else {
