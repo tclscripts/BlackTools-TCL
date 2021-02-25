@@ -78,14 +78,7 @@ proc blacktools:update:timer {} {
 if {$black(update_type) == 0} {
 if {![info exists black(update_disabled)]} {
 if {![info exists black(backup_update)]} {
-    set update [catch {set status_update [blacktools:update "" "" ""]} error]
-if {$status_update != 0} {
-    set found_version [lindex $status_update 0]
-    set last_modif [lindex $status_update 1]
-if {$black(update_note) == 1} {
-    blacktools:update:note 1 $last_modif $found_version
-        }
-    }
+    set update [catch {blacktools:update "" "" ""} error]
 } else {
     blacktools:update_put "" "" 40 ""  
     }
@@ -100,7 +93,7 @@ if {![info exists black(update_disabled)]} {
 if {$check != 0} {
     set found_version [lindex $check 0]
     set last_modif [lindex $check 1]
-    blacktools:update:note 0 $last_modif $found_version
+    blacktools:update:note $last_modif $found_version
             }
         }
     }
@@ -109,7 +102,7 @@ if {$check != 0} {
 }
 
 ###
-proc blacktools:update:note {type num version} {
+proc blacktools:update:note {num version} {
     global black botnick
  	set time [unixtime]
 foreach user [userlist n] {
@@ -122,11 +115,7 @@ if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 	set black(notes:announce:$user) 1
     set replace(%msg.1%) $version
 	set replace(%msg.2%) [ctime $num]
-if {$type == 0} {
 	set text [black:color:set $botnick $black(say.$getlang.autoupdate.43)]
-} else {
-    set text [black:color:set $botnick $black(say.$getlang.autoupdate.44)]
-}
     set text [string map [array get replace] $text]
 	notes:add $botnick "" $user "DB" "INBOX" $text "AUTOUPDATE:$num" 0
 	    }
@@ -235,7 +224,6 @@ if {$current_file_num == $after_file_num} {
             }
         }
     }
-    return [list $new_version $last_modify]
 }
 
 ###
