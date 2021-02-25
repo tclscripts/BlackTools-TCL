@@ -874,7 +874,7 @@ set black(say.ro.chat.2) "\005\[BT\]\005 Trebuie sa ai setata, mai intai, o paro
 
 ################################## Version ##################################
 
-set black(say.ro.version.1) "\005\[BT\]\005 VERSIUNE SCRIPT: \002BlackTools %msg.1%\002 creat de \002BLaCkShaDoW\002. Pentru alte informatii ---= \002WwW.TclScripts.Net\002 or #TCL-HELP @ UNDERNET"
+set black(say.ro.version.1) "\005\[BT\]\005 VERSIUNE SCRIPT: \002BlackTools %msg.1%\002 (Ultimul update: %msg.8%) creat de \002BLaCkShaDoW\002. Pentru alte informatii ---= \002WwW.TclScripts.Net\002 or #TCL-HELP @ UNDERNET"
 
 ################################# ub ######################################
 

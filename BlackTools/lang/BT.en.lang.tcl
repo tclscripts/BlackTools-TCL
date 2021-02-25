@@ -874,7 +874,7 @@ set black(say.en.chat.2) "\005\[BT\]\005 You have not set a password, please do 
 
 ################################## Version ##################################
 
-set black(say.en.version.1) "\005\[BT\]\005 SCRIPT VERSION: \001BlackTools %msg.1%\001 coded by \002BLaCkShaDoW\002. For other details ---= \002WwW.TclScripts.Net\002 or #TCL-HELP @ UNDERNET"
+set black(say.en.version.1) "\005\[BT\]\005 SCRIPT VERSION: \001BlackTools %msg.1%\001 (Last update: %msg.8%) coded by \002BLaCkShaDoW\002. For other details ---= \002WwW.TclScripts.Net\002 or #TCL-HELP @ UNDERNET"
 
 ################################# ub ######################################
 
