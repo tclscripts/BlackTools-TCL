@@ -83,7 +83,7 @@ if {[info exists black(backup_update)]} {
 	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.39 ""
 	return
 }
-	blacktools:update_check $nick $hand $host $chan
+	blacktools:update_check $nick $hand $host $chan 0
 }
 	default {
 switch $type {
