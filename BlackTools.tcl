@@ -17,7 +17,7 @@
 #   #  #       #    #   #       #  #     #   #     #  #     #  #          #
 ####   #####   #    #   #####   #   #    #    #####    #####   #####  #####
 #									  #
-#		   			  One TCL. One smart Eggdrop.     #
+#		   			 					  One TCL. One smart Eggdrop.     #
 #                                                                         #
 #                       #####    ######     #                             #
 #                           #    #          #                             #
@@ -98,10 +98,10 @@ set black(dirname) "scripts"
 # 0 - autoupdate on TIME interval and by command
 # 1 - update ONLY on command
 
-set black(update_type) "1"
+set black(update_type) "0"
 
 ###
-#Do you want the eggdrop to send NOTE to BOSS OWNERS if a new update is found?
+#Do you want the eggdrop to send NOTE to BOSS OWNER if a new update is found?
 # (only when autoupdate is turned off)
 # 0 - no
 # 1 - yes
@@ -354,11 +354,11 @@ set black(hostchanserv) "x@channels.undernet.org"
 
 #--------------------------- Chanserv User -------------------------------#
 
-set black(username) "noxcape"
+set black(username) "xusername"
 
 #--------------------------- Chanserv Pass -------------------------------#
 
-set black(password) "191926"
+set black(password) "xpassword"
 
 #----------------------------- Login Mode --------------------------------#
 
