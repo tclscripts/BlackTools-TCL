@@ -210,10 +210,10 @@ if {[catch {file copy -force $black(tclconfig) $black(backup_dir)} error_b] != 0
 } else {
     blacktools:update_put "" "" 11 ""
 }
-    set ::update_hand $hand
-    set ::update_version $new_version
-    set ::update_last_modify $last_modify
-    set ::update_chan $chan
+    set black(update_hand) $hand
+    set black(update_version) $new_version
+    set black(update_last_modify) $last_modify
+    set black(update_chan) $chan
 blacktools:every 1000 {
 if {[file isdirectory "$black(backup_dir)/BlackTools"]} {
     set after_file_num [llength [glob-r "$black(backup_dir)/BlackTools"]]
@@ -229,27 +229,30 @@ if {$current_file_num == $after_file_num} {
 ###
 proc blacktools:update_backup {} {
     global black
-    set hand $::update_hand
-    set new_version $::update_version
-    set last_modify $::update_last_modify
-    set chan $::update_chan
+    set hand $black(update_hand)
+    set new_version $black(update_version)
+    set last_modify $black(update_last_modify)
+    set chan $black(update_chan)
     set black(backup_update) 1
     set black(start_update) [unixtime]
     set black(update_file_saved) [llength [glob -nocomplain -directory "$black(dirname)/BlackTools/FILES" "*.txt"]]
+if {[file isdirectory "$black(dirname)/BlackTools/FILES/TOPWORDS"]} {
+    set black(update_file_topwords) 1
+    set black(update_file_saved) [expr $black(update_file_saved) + [llength [glob -nocomplain -directory "$black(dirname)/BlackTools/FILES/TOPWORDS" "*.txt"]]]
+}
     blacktools:update_put "" "" 12 ""
     blacktools:update_put "" "" 13 ""
     blacktools:update_put "" "" 14 ""
     blacktools:update_put $hand $chan 15 [list $new_version [ctime $last_modify]]
-    blacktools:backup_run
-    utimer 5 [list blacktools:update_start_download $hand $chan $new_version $last_modify]
-    unset ::update_version
-    unset ::update_last_modify
-    unset ::update_hand
-    unset ::update_chan
+    blacktools:backup_run $hand $chan $new_version $last_modify
+    unset black(update_version)
+    unset black(update_last_modify)
+    unset black(update_hand)
+    unset black(update_chan)
 }
 
 ###
-proc blacktools:backup_run {} {
+proc blacktools:backup_run {hand chan new_version last_modify} {
     global black config
     set black(update_old_data) [blacktools:update_data 0 ""]
     set bt_file "$black(dirname)/BlackTools.tcl"
@@ -272,14 +275,15 @@ proc blacktools:backup_run {} {
     puts $file $data
     close $file
     file rename -force "$black(dirname)/BlackTools.tcl" "$black(dirname)/BlackTools.old.tcl"
+    utimer 5 [list blacktools:update_start_download $hand $chan $new_version $last_modify]
 }
 
 ###
 proc blacktools:update_start_download {hand chan new_version last_modify} {
     global black
     rehash
-    set ::update_hand $hand
-    set ::update_chan $chan
+    set black(update_hand) $hand
+    set black(update_chan) $chan
     file delete -force "$black(actdir)/BlackTools"
     ::github::github update tclscripts BlackTools-TCL $black(actdir)
     blacktools:every 1000 {
@@ -315,8 +319,8 @@ if {[info exists black(backup_update)]} {
 ###
 proc blacktools:update_start_restore {} {
     global black
-    set hand $::update_hand
-    set chan $::update_chan
+    set hand $black(update_hand)
+    set chan $black(update_chan)
     set userlang [blacktools:update_userlang $hand]
     if {![file isdirectory "$black(actdir)/BlackTools"]} {
     blacktools:update_put $hand $chan 16 ""
@@ -346,10 +350,12 @@ if {$num_var > 0} {
 }
     blacktools:update_put $hand $chan 21 ""
     blacktools:update_restore_files
-    set ::update_hand $::update_hand
-    set ::update_chan $::update_chan 
 blacktools:every 1000 {
     set info_files_num [llength [glob -nocomplain -directory "$black(actdir)/BlackTools/FILES" "*.txt"]]
+if {[file isdirectory "$black(actdir)/BlackTools/FILES/TOPWORDS"]} {
+    set info_files_topwords [llength [glob -nocomplain -directory "$black(actdir)/BlackTools/FILES/TOPWORDS" "*.txt"]]
+    set info_files_num [expr $info_files_num + $info_files_topwords]
+}
 if {$info_files_num == $black(update_file_saved)} {
     blacktools:update_end $info_files_num
     break
@@ -360,8 +366,8 @@ if {$info_files_num == $black(update_file_saved)} {
 ###
 proc blacktools:update_end {num} {
     global black config
-    set hand $::update_hand
-    set chan $::update_chan
+    set hand $black(update_hand)
+    set chan $black(update_chan)
     set userlang [blacktools:update_userlang $hand]
     set end_update [unixtime]
     set dif [expr $end_update - $black(start_update)]
@@ -380,12 +386,8 @@ if {$num == 0} {
     puts $file $data
     close $file
     rehash
-if {[info exists ::update_hand]} {
-    unset ::update_hand
-}
-if {[info exists ::update_chan]} {
-    unset ::update_chan
-}
+    unset black(update_hand)
+    unset black(update_chan)
     blacktools:update_unsetflag
     blacktools:update_put $hand $chan 24 [list [return_time $userlang $dif]]
     blacktools:update_put $hand $chan 25 [list $black(backup_dir) $black(log_file)]
@@ -398,16 +400,29 @@ if {[info exists ::update_chan]} {
 proc blacktools:update_restore_files {} {
     global black
     set files ""
+    set counter 0
     set files [glob -nocomplain -directory "$black(backup_dir)/BlackTools/FILES" "*.txt"]
 if {![file isdirectory "$black(actdir)/BlackTools/FILES"]} {
     file mkdir "$black(actdir)/BlackTools/FILES"
 }
-    set counter 0
 foreach f $files {
     incr counter
     set filename [file tail $f]
     file copy -force $f "$black(actdir)/BlackTools/FILES/$filename"
+}
+
+if {[info exists black(update_file_topwords)]} {
+if {![file isdirectory "$black(actdir)/BlackTools/FILES/TOPWORDS"]} {
+    file mkdir "$black(actdir)/BlackTools/FILES/TOPWORDS"
+}
+    set topwords_files [glob -nocomplain -directory "$black(backup_dir)/BlackTools/FILES/TOPWORDS" "*.txt"]
+foreach f $topwords_files {
+    incr counter
+    set filename [file tail $f]
+    file copy -force $f "$black(actdir)/BlackTools/FILES/TOPWORDS/$filename"
     }
+}
+    unset black(update_file_topwords)
     return $counter
 }
 
