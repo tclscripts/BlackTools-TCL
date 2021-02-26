@@ -282,7 +282,7 @@ proc blacktools:update_start_download {hand chan new_version last_modify} {
     set ::update_chan $chan
     file delete -force "$black(actdir)/BlackTools"
     ::github::github update tclscripts BlackTools-TCL $black(actdir)
-    every 1000 {
+    blacktools:every 1000 {
 if {[file isdirectory $black(actdir)/BlackTools]} {
     blacktools:update_start_restore
     break
@@ -348,7 +348,7 @@ if {$num_var > 0} {
     blacktools:update_restore_files
     set ::update_hand $::update_hand
     set ::update_chan $::update_chan 
-every 1000 {
+blacktools:every 1000 {
     set info_files_num [llength [glob -nocomplain -directory "$black(actdir)/BlackTools/FILES" "*.txt"]]
 if {$info_files_num == $black(update_file_saved)} {
     blacktools:update_end $info_files_num
