@@ -193,7 +193,7 @@ set black(default_colors) "bold underline none underline"
 ###									###
 #Default away (you can change'it online ofcourse.)
 
-set black(default_away) "BlackTools 2.5.3 - The Next Generation TCL - www.TCLScripts.Net"
+set black(default_away) "BlackTools 2.5.4 - The Next Generation TCL - www.TCLScripts.Net"
 
 ###########################################################################
 #------------------------- Default BanTime -------------------------------#
