@@ -1667,7 +1667,7 @@ if {![botisop $chan] && ![setting:get $chan xonly]} {
 if {$bans == "*!*@*"} { putserv "MODE $chan -b $bans"
 	return
 }
-if {$black(logged) == 1} {
+if {[info exists black(logged)]} {
 	set massban [check:massban $bans $chan]
 if {$massban == 1} {
 if {![info exists black(massban_start:$chan)]} {
