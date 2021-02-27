@@ -1757,6 +1757,13 @@ set black(say.en.man.2206) "\[MAN\] \002AutoUpdate\002 gives the ability for the
 set black(say.en.man.2207) "\[MAN\] USAGE SYNTAX:"
 set black(say.en.man.2208) "\[MAN\] \002%char%update <on>\002 (enable autoupdate); \002%char%update off\002 <disable autoupdate>; \002%char%update check\002 (check for new updates); \002%char%update start\002 (start update); \002%char%update time\002 \[time\] (set update time interval, can use X\001m\001,X\001h\001,X\001d\001 ; if \001\[time\]\001 isn't specified, it shows the current set time)"
 
+#Alias
+
+set black(say.en.man.2209) "\[MAN\] \002ALIAS\002 allows users to create their own commands based on the BT commands. All commands are available"
+set black(say.en.man.2210) "\[MAN\] USAGE SYNTAX:"
+set black(say.en.man.2211) "\[MAN\] \002%char%alias add\002 <command> <BT command> \[arguments\] ; \002%char%alias del\002 <command>"
+set black(say.en.man.2212) "\[MAN\] Example 1 : \002%char%alias add\002 lamer \001b\001 %1% 0 Your are a lamer !! \[%1% - nick or host\]"
+set black(say.en.man.2213) "\[MAN\] Example 2 : \002%char%alias add\002 idiot \001b\001 %1% %2% You are an idiot ! \[%1% - nick or host ;  %2% - time ban\]"
 
 ##############################
 ############################################################################################################
