@@ -1763,7 +1763,7 @@ set black(say.ro.man.2209) "\[MAN\] \002ALIAS\002 este un modul ce va ofera opor
 set black(say.ro.man.2210) "\[MAN\] SINTAXA FOLOSIRE:"
 set black(say.ro.man.2211) "\[MAN\] \002%char%alias add\002 <comanda> <comanda BT> \[argumente\] ; \002%char%alias del\002 <comanda>"
 set black(say.ro.man.2212) "\[MAN\] Exemplu 1 : \002%char%alias add\002 lamer \001b\001 %1% 0 Esti un lamer !! \[%1% - nick sau host\]"
-set black(say.ro.man.2213) "\[MAN\] Exemplu 2 : \002%char%alias add\002 idiot \001b\001 %1% %2% Esti un idiot ! \[%1% - nick sau host ;  %2% - timp de ban\]"
+set black(say.ro.man.2213) "\[MAN\] Exemplu 2 : \002%char%alias add\002 bere \001cycle\001 %1% %2% Ma duc la o bere, ma reintorc ! \[%1% - canal ;  %2% - timp cycle\]"
 
 ##############################
 ############################################################################################################

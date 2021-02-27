@@ -1763,7 +1763,7 @@ set black(say.en.man.2209) "\[MAN\] \002ALIAS\002 allows users to create their o
 set black(say.en.man.2210) "\[MAN\] USAGE SYNTAX:"
 set black(say.en.man.2211) "\[MAN\] \002%char%alias add\002 <command> <BT command> \[arguments\] ; \002%char%alias del\002 <command>"
 set black(say.en.man.2212) "\[MAN\] Example 1 : \002%char%alias add\002 lamer \001b\001 %1% 0 Your are a lamer !! \[%1% - nick or host\]"
-set black(say.en.man.2213) "\[MAN\] Example 2 : \002%char%alias add\002 idiot \001b\001 %1% %2% You are an idiot ! \[%1% - nick or host ;  %2% - time ban\]"
+set black(say.en.man.2213) "\[MAN\] Example 2 : \002%char%alias add\002 beer \001cycle\001 %1% %2% Going to have a beer, i will be back \[%1% - channel ;  %2% - cycle duration\]"
 
 ##############################
 ############################################################################################################
