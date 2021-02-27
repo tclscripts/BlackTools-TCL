@@ -39,7 +39,6 @@ set black(files_file) "$black(backdir)/BlackTools/FILES"
 set black(s_file) "$black(backdir)/BlackTools/FILES/$username.suspend.txt"
 set black(status_file) "$black(backdir)/BlackTools/FILES/$username.status.txt"
 set black(seen_file) "$black(backdir)/BlackTools/FILES/$username.seen_db.txt"
-set black(old_seen) "$black(backdir)/BlackTools/FILES/$username.Seen.db"
 set black(uptime_file) "$black(backdir)/BlackTools/FILES/$username.uptime.txt"
 set black(bans_file) "$black(backdir)/BlackTools/FILES/$username.bans.txt"
 set black(join_file) "$black(backdir)/BlackTools/FILES/$username.othermodule.txt"
@@ -47,10 +46,11 @@ set black(extra_file) "$black(backdir)/BlackTools/FILES/$username.flags.txt"
 set black(add_file) "$black(backdir)/BlackTools/FILES/$username.extra.txt"
 set black(quote_file) "$black(backdir)/BlackTools/FILES/$username.quote.txt"
 set black(notes_file) "$black(backdir)/BlackTools/FILES/$username.notes.txt"
+set black(alias_file) "$black(backdir)/BlackTools/FILES/$username.aliases.txt"
 set black(temp_banner) "$black(backdir)/BlackTools/temp/banner"
 set black(temp_motd) "$black(backdir)/BlackTools/temp/motd"
 
-set black(files) "$black(s_file) $black(status_file) $black(seen_file) $black(uptime_file) $black(bans_file) $black(join_file) $black(extra_file) $black(add_file) $black(quote_file) $black(notes_file)"
+set black(files) "$black(s_file) $black(status_file) $black(seen_file) $black(uptime_file) $black(bans_file) $black(join_file) $black(extra_file) $black(add_file) $black(quote_file) $black(notes_file) $black(alias_file)"
 
 if {[file isdirectory "text"]} {
 if {[file exists "text/motd"] && [file exists "text/banner"]} {
@@ -67,18 +67,6 @@ foreach f $black(files) {
 if {![file exists $f]} {
 	set file [open $f w]
 	close $file
-	}
-}
-
-if {[file exists $black(old_seen)]} {
-if {[file exists $black(seen_file)]} {
-	set file [open $black(old_seen) "r"]
-	set seen_file [open $black(seen_file) a]
-while {[gets $file line] != -1} {
-	puts $seen_file $line
-}
-	close $seen_file
-	file delete -force $black(old_seen)
 	}
 }
 
@@ -1831,6 +1819,94 @@ switch $getmethod {
 			}
 		}
 	} 
+}
+
+proc blacktools:tell_v2 {nick host hand chan chan1 type arg} {
+	global black botnick lastbind
+	set split_hand [split $hand ":"]
+	set gethand [lindex $split_hand 0]
+	set replace(%botnick%) $botnick
+	set split_lastbind [split $lastbind ""]
+	set charbind [lindex $split_lastbind 0]
+if {[lsearch -exact $black(cmdchar) $charbind] < 0} {
+	set charbind ""
+}
+	set firstchar [lindex $black(cmdchar) 0]
+if {[string equal $lastbind "*"]} { set charbind "" }
+if {[string equal -nocase "**" $lastbind]} { set charbind "$botnick " }
+if {[string equal -nocase "***" $lastbind]} { 
+	set split_host [split $host ":"]
+if {[lindex $split_host 1] == "chan"} {
+	set host [lindex $split_host 1]
+	set charbind [lindex $split_host 0]
+	} else {
+	set charbind "$host"
+	}
+}
+if {$charbind == ""} {
+	set charbind $firstchar
+if {[validuser $hand]} {
+	set getchar [getuser $hand XTRA MYCHAR]
+if {$getchar != ""} {
+	set charbind $getchar
+		}
+	}
+}
+	set replace(%char%) $charbind
+	set replace(%firstchar%) $firstchar
+	set replace(%chan%) $chan
+	set replace(%botnick%) $botnick
+	set replace(%bind%) $lastbind
+	set counter 0
+foreach a $arg {
+	incr counter
+	set replace(%msg.$counter%) $a
+}
+if {[validuser $gethand]} {
+	set getlang [string tolower [getuser $gethand XTRA OUTPUT_LANG]]
+	set getmethod [getuser $gethand XTRA OUTPUT_TYPE]
+} else {
+	set getlang ""
+	set getmethod ""
+}
+if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
+if {$getmethod == ""} { set getmethod $black(default_output) }	
+if {[string equal -nocase "man.showtip" $type]} {
+	set len [llength $black(say.$getlang.$type)] 
+    set random [expr int(rand()*$len)] 
+    set gettext [lindex $black(say.$getlang.$type) $random]
+	set text [black:color:set $gethand $gettext]
+} else {
+	set text [black:color:set $gethand $black(say.$getlang.$type)]
+}
+	set text [join $text]
+	set reply [string map [array get replace] $text]
+	set reply [string map [list {\"} \" {\[} \[ {\]} \] {\?} \? {\\} \\] $reply]
+if {[string equal -nocase $host "prv"]} {
+	putserv "PRIVMSG $nick :$reply"
+	return
+}
+if {[string equal -nocase $host "chan"]} {
+	putserv "PRIVMSG $chan1 :$reply"
+	return
+}
+switch $getmethod {
+	0 {
+	putserv "NOTICE $nick :$reply"
+}
+	1 {
+if {[validchan $chan1]} {
+if {[onchan $botnick $chan1]} {
+	putserv "PRIVMSG $chan1 :$reply"
+	} else { 
+	putserv "NOTICE $nick :$reply"
+		}
+	} else { putserv "NOTICE $nick :$reply" }
+}
+	2 {
+	putserv "PRIVMSG $nick :$reply"
+		}
+	}
 }
 
 proc blacktools:tell {nick host hand chan chan1 type arg} {
