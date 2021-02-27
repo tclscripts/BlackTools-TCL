@@ -808,12 +808,12 @@ switch $type {
 
 module {
 
-set allmodules "Anunt AutoBroadcast BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private GuestNick Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language AutoUpdate"
-set manager_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Guestnick Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language"
-set owner_modules "Anunt AutoBroadcast BadChan Idle Limit CloneScan XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private GuestNick Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language"
+set allmodules "Anunt AutoBroadcast BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private GuestNick Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language AutoUpdate Alias"
+set manager_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Guestnick Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language Alias"
+set owner_modules "Anunt AutoBroadcast BadChan Idle Limit CloneScan XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private GuestNick Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language Alias"
 set module_output ""
-set other_module "Note"
-set master_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Guestnick Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language"
+set other_module "Note Alias"
+set master_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Guestnick Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language Alias"
 
 if {[matchattr $hand n]} {
 	set current_modules $allmodules
@@ -977,6 +977,10 @@ egg {
 }
 
 autoupdate {
+	lappend module_output "[black:color 1 $hand $m]\[\]"
+}
+
+alias {
 	lappend module_output "[black:color 1 $hand $m]\[\]"
 }
 
