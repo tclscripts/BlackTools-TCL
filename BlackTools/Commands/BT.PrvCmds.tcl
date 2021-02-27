@@ -33,14 +33,24 @@ if {[validchan $mychan] && [matchattr $hand nmo|OVMA $mychan] && ![string equal 
 }
 
 switch [string tolower $cmd] {
+alias {
+if {[matchattr $hand mno|MAO $chan]} {
+	set type 2
+	set what [lindex [split $arg] 1]
+	set cmdf [lindex [split $arg] 2]
+	set cmd_used [lindex [split $arg] 3]
+	set text [join [lrange [split $arg] 4 end]]
+	alias:process $nick "prv" $hand $chan $chan $type [list $what $cmdf $cmd_used $text]
+	}
+}
 
 update {
 if {[matchattr $hand n]} {
 if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.glsuspend none
 	return
 }
-	set what [lindex [split $arg] 2]
-	set option [lindex [split $arg] 3]
+	set what [lindex [split $arg] 1]
+	set option [lindex [split $arg] 2]
 	set type 2
 	update:process $nick "prv" $hand $chan $chan [list $what $option] $type
 	}
@@ -2327,6 +2337,22 @@ if {[getuser $hand pass] != ""} {
 }
 	setuser $hand PASS $pass
 	blacktools:tell $nick "prv" $hand "" "" pass.1 $pass
+			}
+		}
+default {
+	set alias_check [blacktools:alias_check $hand $cmd]
+if {$alias_check != 0} {
+	set counter 0
+	set text [lrange [split $arg] 2 end]
+foreach a $text {
+	incr counter
+	set replace(%${counter}%) $a
+}
+	set replace(%chan%) $chan
+	set text [string map [array get replace] $alias_check]
+	regsub -all {%[0-9]%} $text "" text
+	set text [join $text]
+	comand:pubme:for $nick $host $hand $chan "for ${botnick} $text"
 			}
 		}
 	}

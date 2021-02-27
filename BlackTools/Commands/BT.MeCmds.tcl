@@ -22,6 +22,17 @@ global botnick wordsdir sdir black seendir count server uptime {server-online} v
 if {[isbotnick $nick]} { return }
 if {[isbotnick $bnick]} {
 switch [string tolower $what] {
+alias {
+if {[matchattr $hand mno|MAO $chan]} {
+	set chan1 $chan
+	set type 1
+	set what [lindex [split $arg] 2]
+	set cmd [lindex [split $arg] 3]
+	set cmd_used [lindex [split $arg] 4]
+	set text [join [lrange [split $arg] 5 end]]
+	alias:process $nick $host $hand $chan $chan1 $type [list $what $cmd $cmd_used $text]
+	}
+}
 
 update {
 if {[matchattr $hand n]} {
@@ -2112,7 +2123,23 @@ if {[matchattr $hand nmo|MAO $chan]} {
 	set type 1
 	skippublic:process $nick $host $hand $chan $chan1 $user	$type
 				}
-			}		
+			}
+default {
+	set alias_check [blacktools:alias_check $hand $what]
+if {$alias_check != 0} {
+	set counter 0
+	set text [lrange [split $arg] 2 end]
+foreach a $text {
+	incr counter
+	set replace(%${counter}%) $a
+}
+	set replace(%chan%) $chan
+	set text [string map [array get replace] $alias_check]
+	regsub -all {%[0-9]%} $text "" text
+	set text [join $text]
+	comand:pubme $nick $host $hand $chan "${botnick} $text"
+				}
+			}			
 		}
 	}
 }

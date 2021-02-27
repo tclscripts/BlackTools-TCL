@@ -222,10 +222,8 @@ switch $type {
 }
 
 switch -exact -- [string tolower $command] {
-
 	cmds {
 	switch $access {
-
 VOICE {
 	set cmds [string map [array get replace] $black(say.$getlang.cmdsvoice)]
 	set split_cmds [split $cmds ";"]
@@ -345,6 +343,13 @@ if {$status == "1"} {
 foreach txt [h:wrap [string map [array get replace] [join $show_cmds]] 330] {
 	blacktools:tell:h $nick $host $hand $chan $chan1 h.15 $txt
 		}
+	}	
+}
+	set alias_cmds [blacktools:alias_get $hand $chan]
+if {$alias_cmds != 0} {
+	set text "$black(say.$getlang.alias.7) $alias_cmds"
+foreach txt [h:wrap [join $text] 330] {
+	blacktools:tell:h $nick $host $hand $chan $chan1 h.15 $txt
 	}	
 }
 	switch $type {

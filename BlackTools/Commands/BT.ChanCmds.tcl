@@ -28,6 +28,17 @@ if {$return == "0"} {
 		return
 }
 switch [string tolower $cmd] {
+alias {
+if {[matchattr $hand mno|MAO $chan]} {
+	set chan1 $chan
+	set type 0
+	set what [lindex [split $arg] 1]
+	set cmdf [lindex [split $arg] 2]
+	set cmd_used [lindex [split $arg] 3]
+	set text [join [lrange [split $arg] 4 end]]
+	alias:process $nick $char $hand $chan $chan1 $type [list $what $cmdf $cmd_used $text]
+	}
+}
 
 exempt {
 if {[matchattr $hand mno|M $chan]} {
@@ -2271,7 +2282,23 @@ if {[matchattr $hand nmo|MAO $chan]} {
 	set type 0
 	skippublic:process $nick $char $hand $chan $chan1 $user	$type
 			}
-		}		
+		}
+default {
+	set alias_check [blacktools:alias_check $hand $cmd]
+if {$alias_check != 0} {
+	set counter 0
+	set text [lrange [split $arg] 1 end]
+foreach a $text {
+	incr counter
+	set replace(%${counter}%) $a
+}
+	set replace(%chan%) $chan
+	set text [string map [array get replace] $alias_check]
+	regsub -all {%[0-9]%} $text "" text
+	set text [join $text]
+	comand:chan $nick $host $hand $chan "${char}$text"
+			}
+		}
 	}
 }
 
