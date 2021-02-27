@@ -9,4 +9,5 @@
   was enabled and channel +mD. Now it waits until the channel is no longer +mD
   * added chanserv mass ban detector (trough X) that suspends the user that made
   the massban
+  * added variable that enables or disables the DNS onjoin
   
