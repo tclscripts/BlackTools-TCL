@@ -2567,6 +2567,18 @@ if {[matchattr $hand n]} {
 	}	
 }
 
+alias {
+if {[matchattr $hand nmo|MAO $chan]} {
+	blacktools:tell $nick $host $hand $chan $chan1 man.2209 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2210 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2211 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2212 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2213 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
+	}
+}
+
+
 update {
 if {[matchattr $hand n]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.2206 none
