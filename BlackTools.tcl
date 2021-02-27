@@ -58,7 +58,7 @@
 #                                                                         #
 #  Special thanks to:                                                     #
 #                   o Time2Go [ #Tcl-Help Admin ]                         #
-#		  		    o Florian [ florian@tclscripts.net ]               	  #
+#		  		    o Florian [ florian@tclscripts.net ]  #
 #                     without whom this script would not have gone so far.#
 # -------                                                         ------- #
 #  Thanks to the many people who have contributed over the years, in a    #
@@ -91,7 +91,7 @@ set black(dirname) "scripts"
 
 ###########################################################################
 #-------------------------- AutoUpdate Module ----------------------------#
-###																		###
+###									###
 
 ###
 #How do you want for the update to be made
@@ -115,7 +115,7 @@ set black(update_time_check) "60"
 
 ###########################################################################
 #-------------------------------- Dns Host  ------------------------------#
-###								        								###
+###								        ###
 
 ###
 #Enable DNS-onjoin ? 0 - no ; 1 - yes (please be advised that it will make 
