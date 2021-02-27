@@ -3,7 +3,7 @@
   * added a new module "Alias" that offers the posibility for the users
   to create their own personalized commands based on BT commands. For more info
   see .man alias
-	* added a new module "AutoUpdate" that makes the eggdrop update itself
+  * added a new module "AutoUpdate" that makes the eggdrop update itself
   to the latest version. For more info see .man AutoUpdate
   * solved issue related to Idle Module, the module was working when securemode
   was enabled and channel +mD. Now it waits until the channel is no longer +mD
