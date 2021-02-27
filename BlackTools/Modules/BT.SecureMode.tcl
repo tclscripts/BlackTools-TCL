@@ -82,6 +82,13 @@ if {[onchan $botnick $chan]} {
 	set chanmode [getchanmode $chan]
 if {[string match -nocase "*D*" $chanmode] && [string match -nocase "*m*" $chanmode]} {
 	set secure_act 1
+if {![info exists black(secure_mode:$chan)]} {
+	set black(secure_mode:$chan) 1
+}
+			} else {
+if {[info exists black(secure_mode:$chan)]} {
+	unset black(secure_mode:$chan)
+				}		
 			}
 		}	
 	}

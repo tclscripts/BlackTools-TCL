@@ -213,6 +213,7 @@ proc antidle:module {chans} {
 	set channels ""
 foreach chan $chans {
 if {[validchan $chan]} {
+if {[info exists black(secure_mode:$chan)]} {continue}
 	lappend channels $chan
 		}
 	}
