@@ -10,4 +10,5 @@
   * added chanserv mass ban detector (trough X) that suspends the user that made
   the massban
   * added variable that enables or disables the DNS onjoin
+  * solved an issue related to clonescan ban
   
