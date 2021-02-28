@@ -7186,7 +7186,7 @@ proc dns:checkexcept {host} {
 	global black
 	set valid_except 0
 if {$black(dns_onjoin) == 0} {
-	return 0
+	return 1
 }
 	set host [lindex [split $host "@"] 1]
 foreach h $black(dns:host_excepts) {
