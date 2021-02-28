@@ -5,6 +5,8 @@
   add quotes, must find a solution for that
  ? * to solve issue related to .gag command. Users can specify any time
   they want no matter what is their access.
+  * added 'remove alias commands' from file on delete or autoexpire users
+  * fixed 'remove notes, suspension' from files on autoexpire users
 [1614461735] 2021-02-27  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * added a new module "Alias" that offers the posibility for the users
   to create their own personalized commands based on BT commands. For more info
