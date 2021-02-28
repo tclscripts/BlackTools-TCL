@@ -1,5 +1,5 @@
 
-2021-02-28  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+[1614461735] 2021-02-28  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * added a new module "Alias" that offers the posibility for the users
   to create their own personalized commands based on BT commands. For more info
   see .man alias
