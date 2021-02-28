@@ -1760,6 +1760,9 @@ if {$laston == ""} {
 if {$user_time > $max_time} {
 	set counter [expr $counter + 1]
 	deluser $user
+	notes:remove:ondelete $user
+	alias:remove:ondelete $user
+	s:remove:ondelete $user
 	}
 }
 	blacktools:tell:dcc userexpire.1 "$counter"
