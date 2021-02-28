@@ -2187,6 +2187,26 @@ if {[info exists black(notes:announce:$user)]} {
 	}
 }
 
+###################### delete alias on user remove ###############
+
+proc alias:remove:ondelete {user} {
+	global black
+	set file [open $black(alias_file) "r"]
+	set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
+	set temp "$black(tempdir)/alias_temp.$timestamp"
+	set tempwrite [open $temp w]
+while {[gets $file line] != -1} {
+	set read_user [lindex [split $line] 0]
+if {[string equal -nocase $user $read_user]} {
+	continue
+	} else {
+		puts $tempwrite $line
+		}
+	}
+	close $tempwrite
+	close $file
+    file rename -force $temp $black(alias_file)
+}
 
 ########################## Strip codes ###########################
 
