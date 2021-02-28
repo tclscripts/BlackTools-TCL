@@ -749,6 +749,7 @@ return
 
 if {[validuser $user]} {
 	chhandle $user $chandle
+	alias:change:update $user $chandle
 	blacktools:tell $nick $host $hand $chan $chan1 chuser.1 "$show_user $show_chandle"
 	} else {blacktools:tell $nick $host $hand $chan $chan1 gl.nomem none }
 }
