@@ -529,6 +529,7 @@ if {[setting:get $c xonly] && [onchan $black(chanserv) $c]} {
 }
 	deluser $user
 	notes:remove:ondelete $user
+	alias:remove:ondelete $user
 	s:remove:ondelete $user
 	blacktools:tell $nick $host $hand $chan $chan1 del.1 $show_user
 			} else { blacktools:tell $nick $host $hand $chan $chan1 gl.nomem none }
