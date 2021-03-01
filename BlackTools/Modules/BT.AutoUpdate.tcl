@@ -127,9 +127,6 @@ proc blacktools:update_note_check {hand num} {
     global black
     set found_it 0
     set file [open $black(notes_file) "r"]
-	set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
-	set temp "$black(tempdir)/notes_temp.$timestamp"
-	set tempwrite [open $temp w]
 while {[gets $file line] != -1} {
     set handle [lindex [split $line] 4]
 if {[string equal -nocase $handle $hand]} {
