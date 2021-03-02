@@ -1,5 +1,6 @@
 
 2021-02-28  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+ ? * add antibotidle for eggdrop (after being removed in 2.5.3 :|)
  ? * add backchan alert when a "k", "w", "ub" is being made
  ? * to solve issue related to quote, only users with access can view, remove
   add quotes, must find a solution for that
