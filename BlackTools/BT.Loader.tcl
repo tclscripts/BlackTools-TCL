@@ -70,6 +70,7 @@ if {$black(prot_error_$themodule) == "1"} {
 
 set black(timers_error) [catch {source $black(backdir)/BlackTools/BT.Timers.tcl} black(timers_error_stats)]
 set black(binds_error) [catch {source $black(backdir)/BlackTools/BT.Binds.tcl} black(binds_error_stats)]
+set black(ban_error) [catch {source $black(backdir)/BlackTools/BT.Ban.tcl} black(ban_error_stats)]
 set black(core_error) [catch {source $black(backdir)/BlackTools/BT.Core.tcl} black(core_error_stats)]
 set black(loader_error) [catch {source $black(backdir)/BlackTools/lang/loader.tcl} black(loader_error_stats)]
 
@@ -82,6 +83,9 @@ if {$black(binds_error) == "1"} {
 }
 if {$black(core_error) == "1"} {
 	die "\[BT\] Error. Couldn't load the \"BT Core\". Reason: \"$black(core_error_stats)\""
+}
+if {$black(ban_error) == "1"} {
+	die "\[BT\] Error. Couldn't load the \"BT Ban\". Reason: \"$black(ban_error_stats)\""
 }
 if {$black(loader_error) == "1"} {
 	die "\[BT\] Error. Couldn't load the \"BT Language\". Reason: \"$black(loader_error_stats)\""
