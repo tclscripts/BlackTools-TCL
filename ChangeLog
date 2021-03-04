@@ -1,11 +1,11 @@
  2021-03-04  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * optimised the ban module to work more fast
-   (fields with [ ] are optional. To se available banmask use .man banmask.
-   The regex is added in banlist and everyone who matches it will get banned (just chanban)
   * added .banlist regex to to show only the regex added
   * added .sb -regex to check details of the regex added
   * added .ub -regex to remove the regex stored with .b -regex
   * added .b -regex in wich you can specify regex for <nick>!<ident>@<host>/[realname]/[ban mask]
+    (fields with [ ] are optional). To se available banmask use .man banmask.
+    The regex is added in banlist and everyone who matches it will get banned (just chanban)
   * solved other minor bugs
  2021-02-28  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
  ? * add antibotidle for eggdrop (after being removed in 2.5.3 :|)
