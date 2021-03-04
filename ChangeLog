@@ -1,10 +1,17 @@
-
-2021-02-28  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+ 2021-03-04  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * optimised the ban module to work more fast
+  * added .banlist regex to to show only the regex added
+  * added .sb -regex to check details of the regex added
+  * added .ub -regex to remove the regex stored with .b -regex
+  * added .b -regex in wich you can specify regex for <nick>!<ident>@<host>/[realname]/[ban mask]
+   (fields with [ ] are optional. To se available banmask use .man banmask.
+   The regex is added in banlist and everyone who matches it will get banned (just chanban)
+ 2021-02-28  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
  ? * add antibotidle for eggdrop (after being removed in 2.5.3 :|)
- ? * add backchan alert when a "k", "w", "ub" is being made
+ ? * add backchan alert when a "k", "w" is being made
  ? * to solve issue related to quote, only users with access can view, remove
   add quotes, must find a solution for that
- ? * to solve issue related to .gag command. Users can specify any time
+  * solved issue related to .gag command. Users can specify any time
   they want no matter what is their access.
   * added 'change alias handle' in file when the user's handle is chander trough .chuser
   * added 'remove alias commands' from file on delete or autoexpire users
