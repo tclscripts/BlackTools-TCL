@@ -733,12 +733,16 @@ set black(say.ro.b.5)  { "Esti banat!"
 			 "Multumim ca ai trecut pe aici!"
 			 "Este vremea de stat pe status :P Savureaz-o ;D"
 			 "Nu stii cata lume ar vrea sa fie in locul tu..adica sa zboare ;))"
-			 }
+}
 set black(say.ro.b.6) "\005\[BT\]\005 durata maxima de ban pentru nivelul tau este de \0027d\002 (20160 minute)"
-set black(say.ro.b.7) "\005\[BT\]\005 Ai adaugat un ban local pe \002%chan%\002"
-set black(say.ro.b.8) "\005\[BT\]\005 Ai adaugat un ban global"
+set black(say.ro.b.7) "\005\[BT\]\005 Ai adaugat un \[BAN LOCAL\] pe \002%chan%\002 avand \[ID: \001%msg.1%\001\]"
+set black(say.ro.b.8) "\005\[BT\]\005 Ai adaugat un ban \[GLOBAL\] avand \[ID: \001%msg.1%\001\]"
 set black(say.ro.b.9) "\005\[BT\]\005 Nu este voie massban."
 set black(say.ro.b.10) "\005\[BT\]\005 \002%msg.1%\002 nu este un banmask valid."
+set black(say.ro.b.11) "\005\[BT\]\005 \002%msg.1%\002 nu este o expresie de tip regex valida."
+set black(say.ro.b.12) "\005\[BT\]\005 Ai adaugat un \[BAN LOCAL\] de tip REGEX pe \002%chan%\002 avand \[ID: \001%msg.1%\001\]"
+set black(say.ro.b.13) "\005\[BT\]\005 Ai adaugat un ban \[GLOBAL\] de tip REGEX avand \[ID: \001%msg.1%\001\]"
+set black(say.ro.b.14) "\005\[BT\]\005 Ai adaugat un \[BAN LOCAL\] pe \002%chan%\002 avand \[ID: \001%msg.1%\001\] \[XONLY\]" 
 
 ################################## n #####################################
 
@@ -802,14 +806,14 @@ set black(say.ro.bw.5) "Utilizator nedorit din cauza comportamentului abuziv"
 
 set black(say.ro.sb.1) "\005\[BT\]\005 Am gasit \002%msg.1%\002 banuri (\001%msg.2%\001 globale, \001%msg.3%\001 locale)"
 set black(say.ro.sb.2) "\005\[BT\]\005 Nu am gasit niciun ban referitor la host-ul \002%msg.1%\002."
-set black(say.ro.sb.3) "\005\[BT\]\005 \[ID: \001%msg.1%\001\] ; \[CANAL\] * ; \002%msg.2%\002 ; Adaugat de: \002%msg.3%\002 ; Data: \002%msg.4%\002 ; Expira in: %msg.12% \002%msg.13%\002 \002%msg.15%\002 ; Motiv: %msg.16%"
-set black(say.ro.sb.4) "\005\[BT\]\005 \[ID: \001%msg.1%\001\] ; \[CANAL\] \002%chan%\002 ; \002%msg.2%\002 ; Adaugat de: \002%msg.3%\002 ; Data: \002%msg.4%\002 ; Expira in: %msg.12% \002%msg.13%\002 \002%msg.15%\002 ; Motiv: %msg.16%"
+set black(say.ro.sb.3) "\005\[BT\]\005 \002%msg.1%\002 ; \[ID: \001%msg.2%\001\] ; \[CANAL\] * ; \002%msg.3%\002 ; Adaugat de: \002%msg.4%\002 ; Data: \002%msg.5%\002 ; Expira in: \002%msg.6%\002 ; Motiv: %msg.7%"
+set black(say.ro.sb.4) "\005\[BT\]\005 \002%msg.1%\002 ; \[ID: \001%msg.2%\001\] ; \[CANAL\] \002%chan%\002 ; \002%msg.3%\002 ; Adaugat de: \002%msg.4%\002 ; Data: \002%msg.5%\002 ; Expira in: \002%msg.6%\002 ; Motiv: %msg.7%"
 set black(say.ro.sb.5) "\005\[BT\]\005 Am gasit prea multe rezultate \001(>10)\001 te rog sa reformulezi cautarea."
 set black(say.ro.sb.6) "\005\[BT\]\005 Am gasit \002%msg.1%\002 banuri locale"
 set black(say.ro.sb.7) "\005\[BT\]\005 Acesta a scris pe canal: \002%msg%\002"
 set black(say.ro.sb.8) "\005\[BT\]\005 Acesta s-a aflat pe urmatoarele canale interzise: \002%msg%\002"
-set black(say.ro.sb.9) "\005\[BT\]\005 \[ID: \001%msg.1%\001\] ; \[CANAL\] \002%chan%\002 ; \002%msg.2%\002 ; Adaugat de: \002%msg.3%\002 ; Data: \002%msg.4%\002 ; Expira in: %msg.12% ; Motiv: %msg.11%"
-set black(say.ro.sb.10) "\005\[BT\]\005 \[ID: \001%msg.1%\001\] ; \[CANAL\] * ; \002%msg.2%\002 ; Adaugat de: \002%msg.3%\002 ; Data: \002%msg.4%\002 ; Expira in: %msg.12% ; Motiv: %msg.11%"
+set black(say.ro.sb.9) "\005\[BT\]\005 \002%msg.1%\002 ; \[ID: \001%msg.2%\001\] ; \[CANAL\] \002%chan%\002 ; \002%msg.3%\002 ; Adaugat de: \002%msg.4%\002 ; Data: \002%msg.5%\002 ; Expira in: %msg.6% ; Motiv: %msg.7%"
+set black(say.ro.sb.10) "\005\[BT\]\005 \002%msg.1%\002 ; \[ID: \001%msg.2%\001\] ; \[CANAL\] * ; \002%msg.3%\002 ; Adaugat de: \002%msg.4%\002 ; Data: \002%msg.5%\002 ; Expira in: %msg.6% ; Motiv: %msg.7%"
 set black(say.ro.sb.11) "\005\[BT\]\005 Nu am gasit niciun ban referitor la ID-ul \002%msg.1%\002."
 set black(say.ro.sb.12) "\005\[BT\]\005 \[\002COMENTARIU BAN\002\] %msg%"
 

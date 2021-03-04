@@ -148,8 +148,8 @@ set black(say.ro.man.73) "\[MAN\] Setari optionale: \002%char%set\002 check-mess
 
 set black(say.ro.man.74) "\[MAN\] \002sb\002 este o comanda prin care se pot cauta si vedea informatii despre un anumit ban (suporta wildcard-uri)."
 set black(say.ro.man.75) "\[MAN\] SINTAXE FOLOSIRE:"
-set black(say.ro.man.76) "\[MAN\] \002%char%sb\002 <nick|host|id> ; \002%botnick% sb\002 <nick|host|id> ; \002(PRIVMSG) sb\002 <#canal> <nick|host|id>"
-set black(say.ro.man.77) "\[MAN\] \002%char%sb\002 <nick|host|id> \[global\] ; \002%botnick% sb\002 <nick|host|id> \[global\] ; \002(PRIVMSG) sb\002 <#canal> <nick|host|id> \[global\]"
+set black(say.ro.man.76) "\[MAN\] \002%char%sb\002 \[-regex\] <nick|host|id|regex> ; \002%botnick% sb\002 \[-regex\] <nick|host|id|regex> ; \002(PRIVMSG) sb\002 <#canal> \[-regex\] <nick|host|id|regex>"
+set black(say.ro.man.77) "\[MAN\] \002%char%sb\002 \[-regex\] <nick|host|id|regex> \[global\] ; \002%botnick% sb\002 \[-regex\] <nick|host|id|regex> \[global\] ; \002(PRIVMSG) sb\002 <#canal> \[-regex\] <nick|host|id|regex> \[global\]"
 set black(say.ro.man.78) "\[MAN\] In caz ca se specifica \002<nick>\002 si acesta nu este pe %chan%, eggdrop-ul va da \002WHOIS\002 si va verifica daca are ban  pe \002ident/host/nick\002 si afisa detalii despre el."
 
 #id
@@ -185,18 +185,19 @@ set black(say.ro.man.94) "\[MAN\] Setari optionale: \002dr-reason\002 (setare mo
 set black(say.ro.man.95) "\[MAN\] \002b\002 este o comanda prin care se poate da ban unui user cu un motiv si un ban-time predefinit. Daca specificati durata \0020\002 banul devine permanent (blacklisted)."
 set black(say.ro.man.96) "\[MAN\] Format durata: <x>\002m\002 = minute, <x>\002h\002 = ore, \002d\002 = zile, \0020\002 = permanent"
 set black(say.ro.man.97) "\[MAN\] SINTAXE FOLOSIRE:"
-set black(say.ro.man.98) "\[MAN\] \002%char%b\002 <nick|host> \[-nivel\] \[durata\] \[motiv\] \[-c/comment\] ; \002%botnick% b\002 <nick|host> \[-nivel\] \[durata\] \[motiv\] \[-c/comment\] ; \002(PRIVMSG) b\002 <#canal> <nick|host> \[-nivel\] \[durata\] \[motiv\] \[-c/comment\]"
+set black(say.ro.man.98) "\[MAN\] \002%char%b\002 \[-regex\] <nick|host|regex> \[-nivel\] \[durata\] \[motiv\] \[-c/comment\] ; \002%botnick% b\002 \[-regex\] <nick|host|regex> \[-nivel\] \[durata\] \[motiv\] \[-c/comment\] ; \002(PRIVMSG) b\002 <#canal> \[-regex\] <nick|host|regex> \[-nivel\] \[durata\] \[motiv\] \[-c/comment\]"
 set black(say.ro.man.98_1) "\[MAN\] ** Nota: Folosind optiunea \[-c/comment\] va face ca eggdropul sa arate o a doua linie cu informatii referitoare la acel ban incluzand si acel comentariu. **"
-set black(say.ro.man.99) "\[MAN\] \002%char%b\002 <nick|host> \[-nivel\] \[durata\] \[global|link\] \[motiv\] \[-c/comment\] ; \002%botnick% b\002 <nick|host> \[-nivel\] \[durata|link\] \[global\] \[motiv\] \[-c/comment\] ; \002(PRIVMSG) b\002 <#canal> <nick|host> \[-nivel\] \[durata\] \[global|link\] \[motiv\] \[-c/comment\]"
+set black(say.ro.man.99) "\[MAN\] \002%char%b\002 \[-regex\] <nick|host> \[-nivel\] \[durata\] \[global|link\] \[motiv\] \[-c/comment\] ; \002%botnick% b\002 \[-regex\] <nick|host|regex> \[-nivel\] \[durata|link\] \[global\] \[motiv\] \[-c/comment\] ; \002(PRIVMSG) b\002 <#canal> \[-regex\] <nick|host> \[-nivel\] \[durata\] \[global|link\] \[motiv\] \[-c/comment\]"
 set black(say.ro.man.100) "\[MAN\] Setari optionale: \002b-reason\002 (setare motiv predefinit); \002b-bantime\002 (setare timp ban in minute); \002b-banmask\002 (setare banmask predefinit)"
+set black(say.ro.man.100_1) "\[MAN\] ** Nota: Poti folosi ban de tip REGEX pe \002<nick>!<ident>@<host>/\[realname\]/\[tip banmask\]\002 (campurile intre \[ \] sunt optionale. Pentru a vedea tipurile de \002banmask\002 foloseste \001%char%man banmask\001"
 
 #ub
 
 set black(say.ro.man.101) "\[MAN\] \002ub\002 este o comanda prin care se poate sterge unul sau mai multe banuri de pe un canal specificat (suporta wildcard). \002ATENTIE\002: Daca specificai DOAR \002*\002 eggdrop-ul va elimina toate banurile canalului."
 set black(say.ro.man.102) "\[MAN\] SINTAXE FOLOSIRE:"
-set black(say.ro.man.103) "\[MAN\] \002%char%ub\002 <nick|host|id> ; \002%botnick% ub\002 <nick|host|id> ; \002(PRIVMSG) ub\002 <#canal> <nick|host|id>\002"
-set black(say.ro.man.104) "\[MAN\] \002%char%ub\002 <nick|host|id> \[global\]\002 \[link\] ; \002%botnick% ub\002 <nick|host|id> \[global\] \[link\] ; \002(PRIVMSG) ub\002 <#canal> <nick|host|id> \[global\] \[link\]"
-set black(say.ro.man.105) "\[MAN\] In caz ca se specifica \002<nick>\002 si acesta nu este pe %chan%, eggdrop-ul va da \002WHOIS\002 si va verifica daca exista ban pe \002ident/host/nick\002 si va da unban."
+set black(say.ro.man.103) "\[MAN\] \002%char%ub\002 \[-regex\] <nick|host|id|regex> ; \002%botnick% ub\002 \[-regex\] <nick|host|id|regex> ; \002(PRIVMSG) ub\002 <#canal> \[-regex\] <nick|host|id|regex>\002"
+set black(say.ro.man.104) "\[MAN\] \002%char%ub\002 \[-regex\] <nick|host|id|regex> \[global\]\002 \[link\] ; \002%botnick% ub\002 \[-regex\] <nick|host|id|regex> \[global\] \[link\] ; \002(PRIVMSG) ub\002 <#canal> \[-regex\] <nick|host|id|regex> \[global\] \[link\]"
+set black(say.ro.man.105) "\[MAN\] In caz ca se specifica \002<nick>\002 si acesta nu este pe %chan%, eggdrop-ul va da \002WHOIS\002 si va verifica daca exista ban pe \002ident/host/nick\002 si va da unban. "
 
 #Bot
 
@@ -273,8 +274,8 @@ set black(say.ro.man.151) "\[MAN\] \002%char%ungag\002 <nick|host> ; \002%botnic
 
 set black(say.ro.man.152) "\[MAN\] \002BanList\002 este o comanda prin care se pot vizualiza toate banurile din lista unui canal."
 set black(say.ro.man.153) "\[MAN\] SINTAXA FOLOSIRE:"
-set black(say.ro.man.154) "\[MAN\] \002%char%banlist\002 <handle|all|other> ; \002%botnick% banlist\002 <handle|all|other> ; \002(PRIVMSG) banlist\002 <#canal> <handle|all|other>"
-set black(say.ro.man.155) "\[MAN\] \002%char%banlist\002 <handle|all|other|global> ; \002%botnick% banlist\002 <handle|all|other|global> ; \002(PRIVMSG) banlist\002 <#canal> <handle|all|other|global>"
+set black(say.ro.man.154) "\[MAN\] \002%char%banlist\002 <handle|all|regex|gag|other> ; \002%botnick% banlist\002 <handle|all|regex|gag|other> ; \002(PRIVMSG) banlist\002 <#canal> <handle|all|regex|gag|other>"
+set black(say.ro.man.155) "\[MAN\] \002%char%banlist\002 <handle|all|regex|gag|other|global> ; \002%botnick% banlist\002 <handle|all|regex|gag|other|global> ; \002(PRIVMSG) banlist\002 <#canal> <handle|all|regex|gag|other|global>"
 
 #AddHost
 

@@ -148,9 +148,9 @@ set black(say.en.man.73) "\[MAN\] Optional settings: \002%char%set\002 check-mes
 
 set black(say.en.man.74) "\[MAN\] \002sb\002 search and/or show details about a given ban (supports wildcards)."
 set black(say.en.man.75) "\[MAN\] USAGE SYNTAXES:"
-set black(say.en.man.76) "\[MAN\] \002%char%sb\002 <nick|mask|id> ; \002%botnick% sb\002 <nick|mask|id> ; \002(PRIVMSG) sb\002 <#chan> <nick|mask|id>"
-set black(say.en.man.77) "\[MAN\] \002%char%sb\002 <nick|mask|id> \[global\] ; \002%botnick% sb\002 <nick|mask|id> \[global\] ; \002(PRIVMSG) sb\002 <#chan> <nick|mask|id> \[global\]"
-set black(say.en.man.78) "\[MAN\] ** Note: In case that \002<nick>\002 is not on %chan%, eggdrop will \002WHOIS\002 it and check if it has ban on \002ident/host/nick\002 showing information about. **"
+set black(say.en.man.76) "\[MAN\] \002%char%sb\002 \[-regex\] <nick|mask|id|regex> ; \002%botnick% sb\002 \[-regex\] <nick|mask|id|regex> ; \002(PRIVMSG) sb\002 <#chan> \[-regex\] <nick|mask|id|regex>"
+set black(say.en.man.77) "\[MAN\] \002%char%sb\002 \[-regex\] <nick|mask|id|regex> \[global\] ; \002%botnick% sb\002 \[-regex\] <nick|mask|id|regex> \[global\] ; \002(PRIVMSG) sb\002 <#chan> \[-regex\] <nick|mask|id|regex> \[global\]"
+set black(say.en.man.78) "\[MAN\] ** Note: In case that \002<nick>\002 is not on %chan%, eggdrop will \002WHOIS\002 it and check if it has ban on \002ident/host/nick\002 showing information about. If host matches a \002REGEX\002 ban, it will show the it's info. **"
 
 #id
 
@@ -185,18 +185,18 @@ set black(say.en.man.94) "\[MAN\] Optional settings: \002dr-reason\002 (default 
 set black(say.en.man.95) "\[MAN\] \002b\002 bans a user from a channel for a specified ban-time. If you do not specify a \001\[duration\]\001 will be used default value, but if you specify \0020\002 will become a permanent ban (blacklisted)."
 set black(say.en.man.96) "\[MAN\] Format duration: <X>\002m\002 = minutes, <X>\002h\002 = hours, <X>\002d\002 = days, \0020\002 = permanent"
 set black(say.en.man.97) "\[MAN\] USAGE SYNTAXES:"
-set black(say.en.man.98) "\[MAN\] \002%char%b\002 <nick|mask> \[-level\] \[duration\] \[reason\] \[-c/comment\] ; \002%botnick% b\002 <nick|mask> \[-level\] \[duration\] \[reason\] \[-c/comment\] ; \002(PRIVMSG) b\002 <#chan> <nick|mask> \[-level\] \[duration\] \[reason\] \[-c/comment\]"
+set black(say.en.man.98) "\[MAN\] \002%char%b\002 \[-regex\] <nick|mask|regex> \[-level\] \[duration\] \[reason\] \[-c/comment\] ; \002%botnick% b\002 \[-regex\] <nick|mask|regex> \[-level\] \[duration\] \[reason\] \[-c/comment\] ; \002(PRIVMSG) b\002 \[-regex\] <#chan> <nick|mask|regex> \[-level\] \[duration\] \[reason\] \[-c/comment\]"
 set black(say.en.man.98_1) "\[MAN\] ** Note: Using the optional \[-c/comment\] option will make eggdrop shows a second informations line of the ban entry with that comment. **"
-set black(say.en.man.99) "\[MAN\] \002%char%b\002 <nick|mask>  \[-level\] \[duration\] \[global|link\] \[reason\] \[-c/comment\] ; \002%botnick% b\002 <nick|mask> \[-level\] \[duration\] \[global|link\] \[reason\] \[-c/comment\] ; \002(PRIVMSG) b\002 <#chan> <nick|mask> \[-level\] \[duration\] \[global|link\] \[reason\] \[-c/comment\]"
+set black(say.en.man.99) "\[MAN\] \002%char%b\002 \[-regex\] <nick|mask|regex> \[-level\] \[duration\] \[global|link\] \[reason\] \[-c/comment\] ; \002%botnick% b\002 \[-regex\] <nick|mask|regex> \[-level\] \[duration\] \[global|link\] \[reason\] \[-c/comment\] ; \002(PRIVMSG) b\002 <#chan> \[-regex\] <nick|mask|regex> \[-level\] \[duration\] \[global|link\] \[reason\] \[-c/comment\]"
 set black(say.en.man.100) "\[MAN\] Optional settings: \002b-reason\002 (default reason); \002b-bantime\002 (default ban time); \002b-banmask\002 (default banmask)"
-
+set black(say.en.man.100_1) "\[MAN\] ** Note: You can use REGEX ban on \002<nick>!<ident>@<hostname>/\[realname\]/\[banmask type\]\002 (fields between \[ \] are optional. To get info about \002banmask type\002 use \001%char%man banmask\001"
 #ub
 
 set black(say.en.man.101) "\[MAN\] \002ub\002 removes a ban from a specified channel (supports wildcards). \002ATTENTION\002: If you specify ONLY \002*\002 the eggdrop removes all channel bans."
 set black(say.en.man.102) "\[MAN\] USAGE SYNTAXES:"
-set black(say.en.man.103) "\[MAN\] \002%char%ub\002 <nick|mask|id> ; \002%botnick% ub\002 <nick|mask|id> ; \002(PRIVMSG) ub\002 <#chan> <nick|mask|id>\002"
-set black(say.en.man.104) "\[MAN\] \002%char%ub\002 <nick|mask|id> \[global\]\002 ; \002%botnick% ub\002 <nick|mask|id> \[global|link\] ; \002(PRIVMSG) ub\002 <#chan> <nick|mask|id> \[global|link\]"
-set black(say.en.man.105) "\[MAN\] ** Note: In case that \002<nick>\002 is not on %chan% eggdrop will \002WHOIS\002 it and check if has ban on \002ident/host/nick\002 and will unban it. **"
+set black(say.en.man.103) "\[MAN\] \002%char%ub\002 \[-regex\] <nick|mask|id|regex> ; \002%botnick% ub\002 \[-regex\] <nick|mask|id|regex> ; \002(PRIVMSG) ub\002 <#chan> \[-regex\] <nick|mask|id|regex>\002"
+set black(say.en.man.104) "\[MAN\] \002%char%ub\002 \[-regex\] <nick|mask|id|regex> \[global\]\002 ; \002%botnick% ub\002 \[-regex\] <nick|mask|id|regex> \[global|link\] ; \002(PRIVMSG) ub\002 <#chan> \[-regex\] <nick|mask|id|regex> \[global|link\]"
+set black(say.en.man.105) "\[MAN\] ** Note: In case that \002<nick>\002 is not on %chan% eggdrop will \002WHOIS\002 it and check if has ban on \002ident/host/nick\002 and will unban it. If host matches a \002REGEX\002 ban, it will be REMOVED. **"
 
 #Bot
 
@@ -273,8 +273,8 @@ set black(say.en.man.151) "\[MAN\] \002%char%ungag\002 <nick|mask> ; \002%botnic
 
 set black(say.en.man.152) "\[MAN\] \002BanList\002 shows the list of banned masks that are active on the specified channel."
 set black(say.en.man.153) "\[MAN\] USAGE SYNTAX:"
-set black(say.en.man.154) "\[MAN\] \002%char%banlist\002 <handle|all|other> ; \002%botnick% banlist\002 <handle|all|other> ; \002(PRIVMSG) banlist\002 <#chan> <handle|all|other>"
-set black(say.en.man.155) "\[MAN\] \002%char%banlist\002 <handle|all|other|global> ; \002%botnick% banlist\002 <handle|all|other|global> ; \002(PRIVMSG) banlist\002 <#chan> <handle|all|other|global>"
+set black(say.en.man.154) "\[MAN\] \002%char%banlist\002 <handle|all|regex|gag|other> ; \002%botnick% banlist\002 <handle|all|regex|gag|other> ; \002(PRIVMSG) banlist\002 <#chan> <handle|all|regex|gag|other>"
+set black(say.en.man.155) "\[MAN\] \002%char%banlist\002 <handle|all|regex|gag|other|global> ; \002%botnick% banlist\002 <handle|all|regex|gag|other|global> ; \002(PRIVMSG) banlist\002 <#chan> <handle|all|regex|gag|other|global>"
 
 #AddHost
 
