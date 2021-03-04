@@ -266,7 +266,7 @@ set black(extra_flag) {
 	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink
 }
 
-set black(validcmds) "o omsg v ho man version mode cycle say act i stats t myset h r msg add set userlist info delacc del auto chuser s us addhost delhost b black stick dr bot n id spam bw mb vr gag ungag troll ub sb banlist k w purge set unset show ignore enable disable addchan delchan suspend unsuspend channels die jump save rehash nick uptime status cp chat next noidle skip helped anunt bt idle limit seen clonescan badchan securemode private tcl guestnick greet broadcast leave topic timer topwords next q note login update"
+set black(validcmds) "alias exempt login anunt link note q enable disable securemode cp troll guestnick badhost antispam badrealname badquitpart badident badnick badword unset greet leave topic vr dr n id spam bw mb black bl b stick ub sb banlist r man auto antipub private tcl h ignore idle version stats chat seen limit bt badchan us s info channels userlist chuser delhost addhost del delacc add unsuspend suspend delchan addchan die jump save restart rehash update nick msg omsg set mode cycle broadcast act say v ho o uptime status t k w ungag gag show clonescan topwords myset timer i badword next helped noidle skip"
 
 ########################## BackChan ############################
 
