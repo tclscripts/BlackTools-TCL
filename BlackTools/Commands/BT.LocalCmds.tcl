@@ -144,7 +144,7 @@ if {$type == "2"} {
 }
 	return
 }
-	set local_cmds "h omsg o v ho man version mode cycle broadcast say act i stats t myset b black stick dr bot n id spam bw vr gag sb banlist k w anunt bt badchan idle limit seen clonescan securemode private guestnick greet leave topic next helped noidle skip topwords q note report"
+	set local_cmds "h omsg o v ho man version mode cycle broadcast say act i stats t myset b black stick dr bot n id spam bw vr gag sb banlist k w anunt bt badchan idle limit seen clonescan securemode private guestnick greet leave topic next helped noidle skip topwords q note report alias"
 
 if {[matchattr $hand -|M $chan] && [lsearch -exact $what $local_cmds] < 0} {
 	blacktools:tell $nick $host $hand $chan $chan1 disable.8 $what
