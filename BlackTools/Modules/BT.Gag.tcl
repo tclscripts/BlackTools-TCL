@@ -19,7 +19,13 @@ global botnick black
 	set cmd_status [btcmd:status $chan $hand "gag" 0]
 if {$cmd_status == "1"} {
 	return 
-}	
+}
+if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.glsuspend none
+	return
+}
+if {[matchattr $hand -|q $chan]} { blacktools:tell $nick $host $hand $chan $chan1 gl.suspend none
+	return
+}
 	set split_hand [split $hand ":"]
 	set gethand [lindex $split_hand 0]
 	set getlang [string tolower [setting:get $chan lang]]
@@ -32,12 +38,6 @@ if {$cmd_status == "1"} {
 	set show_reason $reason
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 	set handle [nick2hand $gagger]
-if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.glsuspend none
-	return
-}
-if {[matchattr $hand -|q $chan]} { blacktools:tell $nick $host $hand $chan $chan1 gl.suspend none
-	return
-}
 if {$gagger == ""} {
 switch $type {
 	0 {
@@ -93,38 +93,13 @@ if {[blacktools:isgag $mask $chan] == "1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 gag.3 $show_gagger
 	return
 }
-
-if {[string equal -nocase $gagger "-list"]} {
-foreach b [blacktools:gaglist $chan] {
-	set bhost [lindex [split $b] 2]
-	set counter [expr $counter + 1]
-	set mask [lindex [split $b] 2]
-	set expire [lindex [split $b] 4]
-	set created [lindex [split $b] 5]
-	set created [clock format $created -format %D-%H:%M:%S]
-	set breason [lrange [split $b] 8 end]
-	set bywho [lindex [split $b] 3]
-	set split_bywho [split $bywho ":"]
-	set handle [lindex [split $split_bywho] 0]
-	set type [lindex [split $split_bywho] 1]
-	set bywho "$handle\([string toupper $type]\)"
-if {$type != ""} {
-	set bywho "$handle\([string toupper $type]\)"
-} else { set bywho $handle }
-	set expire [return_time_2 $getlang [expr $expire - [unixtime]]]
-	blacktools:tell $nick $host $hand $chan $chan1 sb.4 "$mask $bywho $created $expire $breason"
-	}
-	blacktools:tell $nick $host $hand $chan $chan1 gag.2 none
-	return
-}
 	set split_hand [split $hand ":"]
 	set handle [lindex $split_hand 0]
 	set type [lindex $split_hand 1]
-if {($return_time > "20160" || $return_time == "0")  && [matchattr $handle -|OS $chan]} {
+if {($return_time > "20160" || $return_time == "0")  && [matchattr $handle -|O $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 gag.7 none
 	return
 }
-
 if {$return_time == "-1"} {
 	set return_time $black(gag_time)
 }
