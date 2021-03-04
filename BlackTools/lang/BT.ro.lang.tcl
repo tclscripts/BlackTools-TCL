@@ -51,9 +51,9 @@ set black(say.ro.level.9) "BAN"
 #                                                                                                                                #
 ##################################################################################################################################
 
-set black(say.ro.gl.instr) "\005\[BT\]\005 Pentru instructiuni de utilizare, foloseste: \002%char%man %msg%\002"
-set black(say.ro.gl.instr_nick) "\005\[BT\]\005 Pentru instructiuni de utilizare, foloseste: \002%botnick% man %msg%\002"
-set black(say.ro.gl.instr_priv) "\005\[BT\]\005 Pentru instructiuni de utilizare, foloseste: \002man %msg%\002"
+set black(say.ro.gl.instr) "\005\[BT\]\005 Pentru instructiuni de utilizare, foloseste: \002%char%man %msg.1%\002"
+set black(say.ro.gl.instr_nick) "\005\[BT\]\005 Pentru instructiuni de utilizare, foloseste: \002%botnick% man %msg.1%\002"
+set black(say.ro.gl.instr_priv) "\005\[BT\]\005 Pentru instructiuni de utilizare, foloseste: \002man %msg.1%\002"
 set black(say.ro.gl.noban) "\005\[BT\]\005 Nu se poate executa deoarece are access."
 set black(say.ro.gl.notonchan) "Nu sunt pe \001%chan%\001."
 set black(say.ro.gl.suspend) "\005\[BT\]\005 Esti suspendat pe \002%chan%\002, nu poti folosi aceasta comanda."
@@ -1174,7 +1174,7 @@ set black(say.ro.disable.4) "\005\[BT\]\005 Am dezactivat comanda \001%msg.1%\00
 set black(say.ro.disable.5) "\005\[BT\]\005 Comanda \001%msg.1%\001 este deja dezactivata pentru \002%msg.2%\002 pe \002%chan%\002"
 set black(say.ro.disable.6) "\005\[BT\]\005 Am dezactivat comanda \001%msg.1%\001 \002GLOBAL\002"
 set black(say.ro.disable.7) "\005\[BT\]\005 Comanda \001%msg.1%\001 este deja dezactivata \002GLOBAL\002"
-set black(say.ro.disable.8) "\005\[BT\]\005 Nu poti dezactiva comanda \002%msg.1\002"
+set black(say.ro.disable.8) "\005\[BT\]\005 Nu poti dezactiva comanda \002%msg.1%\002"
 
 ################################### Module #######################################
 
