@@ -1,4 +1,5 @@
  2021-03-04  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * solved other minor bugs
   * optimised the ban module to work more fast
   * added .banlist regex to to show only the regex added
   * added .sb -regex to check details of the regex added
