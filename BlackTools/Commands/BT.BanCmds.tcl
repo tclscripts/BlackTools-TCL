@@ -14,12 +14,10 @@
 ##					                               ##
 #########################################################################
 
+  
+################################ ub #####################################
 
-################################ Commands #############################
-
-################################ ub ###################################
-
-proc ub:link {mask} {
+proc ub:link {mask fulldns regexp whois} {
 	global black
 	set chanban 0
 	set chanlink 0
@@ -29,6 +27,9 @@ foreach b [blacktools:banlist $chan] {
 	set cidr 0
 	set bhost [lindex [split $b] 3]
 	set real_bhost [string map [list \[ {\[} \] {\]} \? {\?} \\ {\\}] $bhost]
+	set btype [lindex [split $b] 0]
+	set num [lindex [split $b] 1]
+if {$regexp != "REGEX"} {
 if {[regexp {[/]} $real_bhost]} {
 	set read_ip [lindex [split $real_bhost @] 1]
 	set theip [lindex [split $mask @] 1]
@@ -38,17 +39,22 @@ if {$cidr_ip == "1"} {
 	set read_theip [lindex [split $real_bhost @] 0]
 if {[string match -nocase $read_rest_ip $read_theip] || [string match -nocase $read_theip $read_rest_ip]} {
 	set cidr 1
+			}
 		}
 	}
 }
-if {[string match -nocase $mask $real_bhost] || [string match -nocase $real_bhost $mask] || $cidr == "1"} {
+if {(([string match -nocase $mask $bhost] || [string match -nocase $fulldns $bhost] || [matchaddr $fulldns $bhost] || [matchaddr $mask $bhost] || ([matchaddr $bhost $fulldns] && $whois == "1") || ([matchaddr $bhost $mask] && $whois == "1")) && $regexp != "REGEX") || ([string equal -nocase $bhost $mask] && $regexp == "REGEX") || ($btype == "REGEX" && ([regexp "$bhost" $mask] || [regexp "$bhost" $fulldns]))} {
 	set chanban [expr $chanban + 1]
 if {([setting:get $chan xtools] || [setting:get $chan xonly]) && [onchan $black(chanserv) $chan]} {
+if {$regexp != "REGEX"} {
 	putserv "PRIVMSG $black(chanserv) :unban $chan $bhost"
+	}
 } else {
+if {$regexp != "REGEX"} {
 	pushmode $chan -b $bhost
+	}
 }
-	blacktools:delban $real_bhost $chan "0" "0"
+	blacktools:delban $bhost $chan "0" "0"
 			}
 		}
 	}
@@ -58,10 +64,11 @@ if {([setting:get $chan xtools] || [setting:get $chan xonly]) && [onchan $black(
 proc ub:process {user mask nick hand host chan chan1 type gl cmd whois link prv} {
 	global black
 	set mask [strip:all $mask]
+	set rcmd [lindex $cmd 0]
 	set split_cmd [split $cmd ":"]
 	set id [lindex $split_cmd 1]
 	set cmd [lindex $split_cmd 0]
-	set cmd_status [btcmd:status $chan $hand "$cmd" 0]
+	set cmd_status [btcmd:status $chan $hand "$rcmd" 0]
 if {$cmd_status == "1"} { 
 	return 
 }
@@ -77,9 +84,11 @@ if {[matchattr $hand -|q $chan]} { blacktools:tell $nick $host $hand $chan $chan
 
 proc ub:act {user mask nick hand host vhost chan chan1 type gl cmd whois link id prv} {
 	global black
-	set split_cmd [split $cmd ":"]
+	set regexp [lindex $cmd 1]
+	set rcmd [lindex $cmd 0]
+	set split_cmd [split $rcmd ":"]
 	set unbaned_host ""
-	set cmd [lindex $split_cmd 0]
+	set rcmd [lindex $split_cmd 0]
 if {$host == "" && $mask == "" && $whois == "1"} { return }
 	set rest_host [lindex [split $mask @] 0]
 	set fulldns "$rest_host@$host"
@@ -89,13 +98,13 @@ if {$host == ""} { set fulldns $mask}
 if {$user == ""} {
 switch $type {
 	0 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr $cmd
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr $rcmd
 	}
 	1 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_nick $cmd
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_nick $rcmd
 	}
 	2 {
-	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_priv $cmd
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr_priv $rcmd
 		}
 	}
 	return
@@ -117,7 +126,7 @@ if {![botisop $chan] && ![setting:get $chan xonly]} {
 	set rem_b 0
 	set xban 0
 
-if {![regexp {\*} $mask] && $whois != "1" && $id != "id"} {
+if {![regexp {\*} $mask] && $whois != "1" && $id != "id" && $regexp != "REGEX"} {
 	putserv "USERHOST :$user"
 	bind RAW - 302 ub:get:host
 	set ::uuser $user
@@ -128,14 +137,14 @@ if {![regexp {\*} $mask] && $whois != "1" && $id != "id"} {
 	set ::uchan1 $chan1
 	set ::utype $type
 	set ::ugl $gl
-	set ::ucmd $cmd
+	set ::ucmd $rcmd
 	set ::ulink $link
 	set ::prv $prv
 return
 }
 
 if {$link == "1"} {
-	set return [ub:link $mask]
+	set return [ub:link $mask $fulldns $regexp $whois]
 	set chanlink [lindex $return 0]
 	set chanban [lindex $return 1]
 	blacktools:tell $nick $host $hand $chan $chan1 ub.7 "$chanban $chanlink"
@@ -146,12 +155,13 @@ if {$gl != "1"} {
 if {(($mask == "*") || ($mask == "*!*@*")) && [matchattr $hand -|OA $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 ub.5 none
 	return
-} 
+}
 foreach b [blacktools:banlist $chan] {
 	set bhost [lindex [split $b] 3]
 	set btime [lindex [split $b] 5]
 	set num [lindex [split $b] 1]
-if {[string match -nocase $mask $bhost] || [string match -nocase $fulldns $bhost] || [matchaddr $fulldns $bhost] || [matchaddr $mask $bhost] || ([matchaddr $bhost $fulldns] && $whois == "1") || ([matchaddr $bhost $mask] && $whois == "1") || [string equal -nocase $num $mask]} {
+	set btype [lindex [split $b] 0]
+if {(([string match -nocase $mask $bhost] || [string match -nocase $fulldns $bhost] || [matchaddr $fulldns $bhost] || [matchaddr $mask $bhost] || ([matchaddr $bhost $fulldns] && $whois == "1") || ([matchaddr $bhost $mask] && $whois == "1") || [string equal -nocase $num $mask]) && $regexp != "REGEX") || ([string equal -nocase $bhost $mask] && $regexp == "REGEX") || ($btype == "REGEX" && ([regexp "$bhost" $mask] || [regexp "$bhost" $fulldns]))} {
 	set bywho [lindex [split $b] 4]
 	set match_time [lindex [split $b] 5]
 	set read_tr [lindex [split $b] 7]
@@ -173,9 +183,13 @@ if {([blacktools:sticky $mask $chan] == "1") && [matchattr $hand -|OA $chan]} {
 	set rem_b [expr $rem_b + 1]
 
 if {([setting:get $chan xtools] || [setting:get $chan xonly]) && [onchan $black(chanserv) $chan]} {
+if {$regexp != "REGEX"} {
 	putserv "PRIVMSG $black(chanserv) :unban $chan $bhost"
+	}
 } else {
+if {$regexp != "REGEX"} {
 	putserv "MODE $chan -b $bhost"
+	}
 }
 	set unbaned_host $bhost
 	blacktools:delban $bhost $chan "0" "0"
@@ -401,12 +415,11 @@ if {([setting:get $chan xtools] || [setting:get $chan xonly]) && [onchan $black(
 
 proc sb:act {bhost what nick hand host vhost chan chan1 type cmd entry} {
 	global black
-
+	set regexp [lindex $cmd 1]
 if {$bhost == "-"} {
 	blacktools:tell $nick $what $hand $chan $chan1 gl.hostnotexist "none"
 	return
 }
-
 if {($bhost != "") && ($entry == "")} {
 	putserv "USERHOST :$bhost"
 	bind RAW - 302 sb:get:host
@@ -421,12 +434,11 @@ if {($bhost != "") && ($entry == "")} {
 	set ::swhat $what
 	return
 }
-
 if {[matchattr $hand mn]} {
-	sb:search $nick $what $hand $chan $chan1 $bhost $vhost "1" $entry $type
+	sb:search $nick $what $hand $chan $chan1 $bhost $vhost "1" $entry $type $regexp
 	return
 }
-	sb:search $nick $what $hand $chan $chan1 $bhost $vhost "0" $entry $type
+	sb:search $nick $what $hand $chan $chan1 $bhost $vhost "0" $entry $type $regexp
 }
 
 proc sb:process {bhost what nick hand host chan chan1 type cmd entry} {
@@ -440,7 +452,7 @@ if {$cmd_status == "1"} {
 	blacktools:dns:sb $bhost $what $nick $hand $host $vhost $chan $chan1 $type $cmd $entry
 }
 
-proc sb:search {nick host hand chan chan1 bhost vhost gl entry type1} {
+proc sb:search {nick host hand chan chan1 bhost vhost gl entry type1 regexp} {
 	global black
 	set show_bhost $bhost
 	set gl_bans 0
@@ -471,12 +483,15 @@ switch $type1 {
 	}
 	return 0
 }
-if {$gl == "1"} {
-foreach b [blacktools:banlist:gl] {
+foreach b $black(bans) {
 	set cidr 0
 	set mask [lindex [split $b] 3]
 	set id [lindex [split $b] 1]
+	set btype [lindex [split $b] 0]
 	set real_mask [string map [list \[ {\[} \] {\]} \\ {\\}] $mask]
+	set read_chan [lindex [split $b] 2]
+if {[string equal -nocase $read_chan "GLOBAL"] && $gl == 1} {
+if {$regexp != "REGEX"} {
 if {[regexp {[/]} $real_mask]} {
 	set read_ip [lindex [split $real_mask @] 1]
 	set theip [lindex [split $bhost @] 1]
@@ -488,10 +503,11 @@ if {$cidr_ip == "1" || $cidr_ip_dns == "1"} {
 	set read_theip [lindex [split $real_mask @] 0]
 if {[string match -nocase $read_rest_ip $read_theip] || [string match -nocase $read_theip $read_rest_ip]} {
 	set cidr 1
+			}
 		}
 	}
 }
-if {([string match -nocase $fulldns $real_mask] || [string match -nocase $real_mask $fulldns]) || ([string match -nocase $bhost $real_mask] || [string match -nocase $real_mask $bhost]) || $bhost == $id || $cidr == "1"} {
+if {((([string match -nocase $fulldns $real_mask] || [string match -nocase $real_mask $fulldns]) || ([string match -nocase $bhost $real_mask] || [string match -nocase $real_mask $bhost]) || $bhost == $id || $cidr == "1") && $regexp != "REGEX") || ($regexp == "REGEX" && [string equal -nocase $bhost $mask]) || ($btype == "REGEX" && ([regexp "$mask" $bhost] || [regexp "$mask" $fulldns]))} {
 	set gl_bans [expr $gl_bans + 1]
 	set mask [lindex [split $b] 3]
 	set id [lindex [split $b] 1]
@@ -505,25 +521,20 @@ if {([string match -nocase $fulldns $real_mask] || [string match -nocase $real_m
 	set bywho [lindex [split $b] 4]
 if {$expire != "0"} {
 	set expire [return_time_2 $getlang [expr $expire - [unixtime]]]
-	blacktools:tell $nick $host $hand $chan $chan1 sb.3 "$id $mask $bywho $created $expire $breason"
+	blacktools:tell_v2 $nick $host $hand $chan $chan1 sb.3 [list $btype $id $mask $bywho $created $expire $breason]
 if {$comment != "-1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 sb.12 $comment
 	}
 } else { 
 	set expire $black(say.$getlang.banlist.13)
-	blacktools:tell $nick $host $hand $chan $chan1 sb.10 "$id $mask $bywho $created $expire $breason"
+	blacktools:tell_v2 $nick $host $hand $chan $chan1 sb.10 [list $btype $id $mask $bywho $created $expire $breason]
 if {$comment != "-1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 sb.12 $comment
 				}
 			}
 		}
-	}
-}
-foreach b [blacktools:banlist $chan] {
-	set cidr 0
-	set mask [lindex [split $b] 3]
-	set id [lindex [split $b] 1]
-	set real_mask [string map [list \[ {\[} \] {\]} \\ {\\}] $mask]
+} elseif {[string equal -nocase $read_chan $chan]} {
+if {$regexp != "REGEX"} {
 if {[regexp {[/]} $real_mask]} {
 	set read_ip [lindex [split $real_mask @] 1]
 	set theip [lindex [split $bhost @] 1]
@@ -535,13 +546,12 @@ if {$cidr_ip == "1" || $cidr_ip_dns == "1"} {
 	set read_theip [lindex [split $real_mask @] 0]
 if {[string match -nocase $read_rest_ip $read_theip] || [string match -nocase $read_theip $read_rest_ip]} {
 	set cidr 1
+			}
 		}
 	}
 }
-if {([string match -nocase $fulldns $real_mask] || [string match -nocase $real_mask $fulldns]) || ([string match -nocase $bhost $real_mask] || [string match -nocase $real_mask $bhost]) || $bhost == $id || $cidr == "1"} {
+if {((([string match -nocase $fulldns $real_mask] || [string match -nocase $real_mask $fulldns]) || ([string match -nocase $bhost $real_mask] || [string match -nocase $real_mask $bhost]) || $bhost == $id || $cidr == "1") && $regexp != "REGEX") || ($regexp == "REGEX" && [string equal -nocase $bhost $mask]) || ($btype == "REGEX" && ([regexp "$mask" $bhost] || [regexp "$mask" $fulldns]))} {
 	set local_bans [expr $local_bans + 1]
-	set mask [lindex [split $b] 3]
-	set id [lindex [split $b] 1]
 	set expire [lindex [split $b] 5]
 	set created [lindex [split $b] 6]
 	set sticky [lindex [split $b] 7]
@@ -554,7 +564,7 @@ if {([string match -nocase $fulldns $real_mask] || [string match -nocase $real_m
 	set split_bywho [split $bywho ":"]
 	set handle [lindex $split_bywho 0]
 	set type [lindex $split_bywho 1]
-if {$type != "" && $type != "bot"} {
+if {$type != "" && $type != "bot" && $btype != "GAG"} {
 	set bywho "$handle\([encoding convertfrom utf-8 $type]\)"
 } elseif {$sticky == "1"} { 
 	set bywho "$handle\(STICKY\)"
@@ -563,26 +573,26 @@ if {$type != "" && $type != "bot"} {
 }
 if {$expire != "0"} {
 	set expire [return_time_2 $getlang [expr $expire - [unixtime]]]
-	blacktools:tell $nick $host $hand $chan $chan1 sb.4 "$id $mask $bywho $created $expire $breason"
+	blacktools:tell_v2 $nick $host $hand $chan $chan1 sb.4 [list $btype $id $mask $bywho $created $expire $breason]
 if {$comment != "-1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 sb.12 $comment
 	}
 } else { 
 	set expire $black(say.$getlang.banlist.13)
-	blacktools:tell $nick $host $hand $chan $chan1 sb.9 "$id $mask $bywho $created $expire $breason"
+	blacktools:tell_v2 $nick $host $hand $chan $chan1 sb.9 [list $btype $id $mask $bywho $created $expire $breason]
 if {$comment != "-1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 sb.12 $comment
 				}
 			}
 		}
 	}
+}
 if {[expr $local_bans + $gl_bans] > 0} {
 	return
 } else {
 	set gl_bans 0
 	set local_bans 0
 }
-
 foreach b [banlist $chan] {
 	set mask [lindex $b 0]
 if {[string match -nocase $mask $bhost] || [string match -nocase $bhost $mask]} {
@@ -713,6 +723,20 @@ if {[string match -nocase "all" $user]} {
 	return
 }
 
+if {[string match -nocase "regex" $user]} {
+	set gl ""
+	set user ""
+	banlist:getbans $nick $host $hand $chan $chan1 $user "" $type $next $gl [blacktools:banlist:regex $chan] ""
+	return
+}
+
+if {[string match -nocase "gag" $user]} {
+	set gl ""
+	set user ""
+	banlist:getbans $nick $host $hand $chan $chan1 $user "" $type $next $gl [blacktools:gaglist $chan] ""
+	return
+}
+
 if {[string match -nocase "other" $user]} {
 	set gl ""
 	set user ""
@@ -732,24 +756,19 @@ if {![validuser $user] && (![string equal -nocase "all" $user])} {
 	return
 }
 
-
 if {![matchattr $user nmo|OASMN $chan] && (![string equal -nocase "all" $user])} { blacktools:tell $nick $host $hand $chan $chan1 gl.noaccess none 
 	return
-}	
-	set gl ""
-	set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
-	set file_temp "temp.$timestamp"
-if {![file exists $file_temp]} {
-	set file [open $file_temp w]
-	close $file
 }
-	set file [open $file_temp a]
+
+	set gl ""
+	set banlist ""
 foreach b [blacktools:banlist $chan] {
 	set bywho [lindex [split $b] 4]
 	set split_bywho [split $bywho ":"]
 	set handz [join [lindex [split $split_bywho] 0]]
 	set type [lindex [split $split_bywho] 1]
 if {[string equal -nocase $handz $user]} {
+	set btype [lindex [split $b] 0]
 	set id [lindex [split $b] 1]
 	set mask [lindex [split $b] 3]
 	set expire [lindex [split $b] 5]
@@ -758,20 +777,13 @@ if {[string equal -nocase $handz $user]} {
 	set breason [lrange [split $b] 9 end]
 	set breason [blacktools:rem_comment $breason]
 if {$type != ""} {
-	puts $file "$id $mask $expire $created $bywho $sticky [join $breason]"
+	lappend banlist "$btype $id $mask $expire $created $bywho $sticky [join $breason]"
 			} else {
-	puts $file "$id $mask $expire $created $bywho $sticky [join $breason]"		
+	lappend banlist "$btype $id $mask $expire $created $bywho $sticky [join $breason]"
 			}
 		}
 	}
-	close $file
-
-	set file [open $file_temp r]
-	set w [read -nonewline $file]
-	close $file
-	set data [split $w "\n"]
-	banlist:getbans $nick $host $hand $chan $chan1 $user $handle $type $next $gl $data "1"
-	file delete $file_temp
+	banlist:getbans $nick $host $hand $chan $chan1 $user $handle $type $next $gl $banlist "1"
 }
 
 proc banlist:remain {nick host hand count chan chan1 type gl user userb prv} {
@@ -984,16 +996,18 @@ proc show:bans {nick host hand chan chan1 gl b userb} {
 	global black
 if {$b == ""} { return }
 	set never_expire 0
+	set btype ""
 	set getlang [string tolower [getuser $hand XTRA OUTPUT_LANG]]
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 if {$userb == "1"} {
-	set id [lindex [split $b] 0]
-	set mask [lindex [split $b] 1]
-	set expire [lindex [split $b] 2]
-	set created [lindex [split $b] 3]
-	set bywho [lindex [split $b] 4]
-	set sticky [lindex [split $b] 5]
-	set breason [lrange [split $b] 6 end]
+	set btype [lindex [split $b] 0]
+	set id [lindex [split $b] 1]
+	set mask [lindex [split $b] 2]
+	set expire [lindex [split $b] 3]
+	set created [lindex [split $b] 4]
+	set bywho [lindex [split $b] 5]
+	set sticky [lindex [split $b] 6]
+	set breason [lrange [split $b] 7 end]
 	set breason [blacktools:rem_comment $breason]
 	set breason [join [encoding convertfrom utf-8 $breason]]
 } elseif {$userb == "2"} {
@@ -1021,6 +1035,7 @@ if {[isbansticky [lindex $b 0] $chan]} {
 	set sticky 0
 if {$breason == ""} { set breason "N/A" }
 } else {
+	set btype [lindex [split $b] 0]
 	set id [lindex [split $b] 1]
 	set mask [lindex [split $b] 3]
 	set expire [lindex [split $b] 5]
@@ -1034,12 +1049,27 @@ if {$breason == ""} { set breason "N/A" }
 	set split_bywho [split $bywho ":"]
 	set handle [lindex $split_bywho 0]
 	set type [lindex $split_bywho 1]
-if {$type != ""} {
+if {$type != "" && $btype != "REGEX" && $btype != "GAG"} {
 	set type "BAN([join [encoding convertfrom utf-8 $type]])"
-	set bywho "$handle"
-} elseif {$sticky == "1"} {
+	set bywho $handle
+if {$sticky == 1} {
 	set type "BAN(STICK)"
+	set bywho $handle
+} else {
+	set bywho $handle
+	set type "BAN"
+	}
+} elseif {$btype == "REGEX"} {
+if {$type != ""} {
+	set type "REGEX([join [encoding convertfrom utf-8 $type]])"
 	set bywho "$handle"
+	} else {
+	set type "REGEX" 
+	set bywho "$handle"	
+	}
+} elseif {$btype == "GAG"} {
+	set type "GAG" 
+	set bywho "$handle"	
 } else {
 	set bywho $handle
 	set type "BAN"
@@ -1317,7 +1347,6 @@ if {[string equal -nocase $ehost "global"]} {
 	banlist:getbans $nick $host $hand $chan $chan1 $user "" $type $next 0 [exemptlist $chan] "3"
 		}
 	}
-	
 	add {
 	if {$ehost == ""} {
 switch $type {
@@ -1341,7 +1370,6 @@ if {$gl == "0"} {
 	blacktools:tell $nick $host $hand $chan $chan1 exempt.8 $ehost
 		}
 	}
-	
 	del {
 	if {$ehost == ""} {
 switch $type {
@@ -1374,7 +1402,6 @@ if {$rem == "0"} {
 		}
 	}			
 }
-	
 	default {
 switch $type {
 	0 {

@@ -602,133 +602,158 @@ if {[matchattr $hand nmo|MAO $chan]} {
 	set link 0
 	set chan1 "$chan"
 	set level ""
+	set regex 0
 	set b [lindex [split $arg] 2]
-	set tm [lindex [split $arg] 3]
-	set global [lindex [split $arg] 4]
-	set reason [join [lrange [split $arg] 5 end]]
+if {[string equal -nocase $b "-regex"]} {
+	set regex 1
+}
+	set b [lindex [split $arg] [expr $regex + 2]]
+	set tm [lindex [split $arg] [expr $regex + 3]]
+	set global [lindex [split $arg] [expr $regex + 4]]
+	set reason [join [lrange [split $arg] [expr $regex + 5] end]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set global [lindex [split $arg] 3]
-	set reason [join [lrange [split $arg] 4 end]]
+	set global [lindex [split $arg] [expr $regex + 3]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 }
 if {![regexp {^[&#]} $chan]} {
 	set no_chan 1
 	set b [lindex [split $arg] 1]
-	set tm [lindex [split $arg] 2]
-	set global [lindex [split $arg] 3]
-	set reason [join [lrange [split $arg] 4 end]]
+if {[string equal -nocase $b "-regex"]} {
+	set regex 1
+}
+	set b [lindex [split $arg] [expr $regex + 1]]
+	set tm [lindex [split $arg] [expr $regex + 2]]
+	set global [lindex [split $arg] [expr $regex + 3]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set global [lindex [split $arg] 2]
-	set reason [join [lrange [split $arg] 3 end]]
+	set global [lindex [split $arg] [expr $regex + 2]]
+	set reason [join [lrange [split $arg] [expr $regex + 3] end]]
 	}	
 }
 if {$mychan_use == "1"} {
 	set b [lindex [split $arg] 1]
-	set tm [lindex [split $arg] 2]
-	set global [lindex [split $arg] 3]
-	set reason [join [lrange [split $arg] 4 end]]
+if {[string equal -nocase $b "-regex"]} {
+	set regex 1
+}
+	set b [lindex [split $arg] [expr $regex + 1]]
+	set tm [lindex [split $arg] [expr $regex + 2]]
+	set global [lindex [split $arg] [expr $regex + 3]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set global [lindex [split $arg] 2]
-	set reason [join [lrange [split $arg] 3 end]]
+	set global [lindex [split $arg] [expr $regex + 2]]
+	set reason [join [lrange [split $arg] [expr $regex + 3] end]]
 }
 if {[regexp {^[-]} $tm]} {
 	set level [blacktools:check:levelban $hand $chan $tm]
-	set reason [join [lrange [split $arg] 4 end]]
-	set tm [lindex [split $arg] 3]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
+	set tm [lindex [split $arg] [expr $regex + 3]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set tm [lindex [split $arg] 2]
-	set reason [join [lrange [split $arg] 3 end]]
+	set tm [lindex [split $arg] [expr $regex + 2]]
+	set reason [join [lrange [split $arg] [expr $regex + 3] end]]
 		} 
 } elseif {[string equal -nocase "$global" "global"] && [matchattr $hand nm]} {
 	set gl 1
-	set tm [lindex [split $arg] 2]
-	set reason [join [lrange [split $arg] 4 end]]
+	set tm [lindex [split $arg] [expr $regex + 2]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set reason [join [lrange [split $arg] 3 end]]
+	set reason [join [lrange [split $arg] [expr $regex + 3] end]]
 			} 
 } elseif {[string equal -nocase "$global" "link"] && [matchattr $hand nm]} {
 	set link 1
-	set tm [lindex [split $arg] 2]
-	set reason [join [lrange [split $arg] 4 end]]
+	set tm [lindex [split $arg] [expr $regex + 2]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set reason [join [lrange [split $arg] 3 end]]
+	set reason [join [lrange [split $arg] [expr $regex + 3] end]]
 			}
 if {$no_chan == "1"} {
 	set b [lindex [split $arg] 1]
-	set tm [lindex [split $arg] 2]
-	set global [lindex [split $arg] 3]
-	set reason [join [lrange [split $arg] 4 end]]
+if {[string equal -nocase $b "-regex"]} {
+	set regex 1
+}
+	set b [lindex [split $arg] [expr $regex + 1]]
+	set tm [lindex [split $arg] [expr $regex + 2]]
+	set global [lindex [split $arg] [expr $regex + 3]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set global [lindex [split $arg] 2]
-	set reason [join [lrange [split $arg] 3 end]]
+	set global [lindex [split $arg] [expr $regex + 2]]
+	set reason [join [lrange [split $arg] [expr $regex + 3] end]]
 			}
 		}				
 	} else {
 if {$return_time == "-1"} {
-	set reason [join [lrange [split $arg] 2 end]]
+	set reason [join [lrange [split $arg] [expr $regex + 2] end]]
 	} else {
-	set reason [join [lrange [split $arg] 3 end]]
+	set reason [join [lrange [split $arg] [expr $regex + 3] end]]
 		}
 	}
 } else {
 if {[regexp {^[-]} $tm]} {
 	set level [blacktools:check:levelban $hand $chan $tm]
-	set reason [join [lrange [split $arg] 5 end]]
-	set tm [lindex [split $arg] 4]
+	set reason [join [lrange [split $arg] [expr $regex + 5] end]]
+	set tm [lindex [split $arg] [expr $regex + 4]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set tm [lindex [split $arg] 3]
-	set reason [join [lrange [split $arg] 4 end]]
+	set tm [lindex [split $arg] [expr $regex + 3]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 		} 
 } elseif {[string equal -nocase "$global" "global"] && [matchattr $hand nm]} {
 	set gl 1
-	set tm [lindex [split $arg] 3]
-	set reason [join [lrange [split $arg] 5 end]]
+	set tm [lindex [split $arg] [expr $regex + 3]]
+	set reason [join [lrange [split $arg] [expr $regex + 5] end]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set reason [join [lrange [split $arg] 4 end]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 			}
 if {$no_chan == "1"} {
 	set b [lindex [split $arg] 1]
-	set tm [lindex [split $arg] 2]
-	set global [lindex [split $arg] 3]
-	set reason [join [lrange [split $arg] 4 end]]
+if {[string equal -nocase $b "-regex"]} {
+	set regex 1
+}
+	set b [lindex [split $arg] [expr $regex + 1]]
+	set tm [lindex [split $arg] [expr $regex + 2]]
+	set global [lindex [split $arg] [expr $regex + 3]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set global [lindex [split $arg] 2]
-	set reason [join [lrange [split $arg] 3 end]]
+	set global [lindex [split $arg] [expr $regex + 2]]
+	set reason [join [lrange [split $arg] [expr $regex + 3] end]]
 		}
 	}			
 } elseif {[string equal -nocase "$global" "link"] && [matchattr $hand nm]} {
 	set link 1
-	set tm [lindex [split $arg] 3]
-	set reason [join [lrange [split $arg] 5 end]]
+	set tm [lindex [split $arg] [expr $regex + 3]]
+	set reason [join [lrange [split $arg] [expr $regex + 5] end]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set reason [join [lrange [split $arg] 4 end]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 			}
 if {$no_chan == "1"} {
 	set b [lindex [split $arg] 1]
-	set tm [lindex [split $arg] 2]
-	set global [lindex [split $arg] 3]
-	set reason [join [lrange [split $arg] 4 end]]
+if {[string equal -nocase $b "-regex"]} {
+	set regex 1
+}
+	set b [lindex [split $arg] [expr $regex + 1]]
+	set tm [lindex [split $arg] [expr $regex + 2]]
+	set global [lindex [split $arg] [expr $regex + 3]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 	set return_time [time_return_minute $tm]
 if {$return_time == "-1"} {
-	set global [lindex [split $arg] 2]
-	set reason [join [lrange [split $arg] 3 end]]
+	set global [lindex [split $arg] [expr $regex + 2]]
+	set reason [join [lrange [split $arg] [expr $regex + 3] end]]
 			}
 		}				
 	} else {
 if {$return_time == "-1"} {
-	set reason [join [lrange [split $arg] 3 end]]
+	set reason [join [lrange [split $arg] [expr $regex + 3] end]]
 	} else {
-	set reason [join [lrange [split $arg] 4 end]]
+	set reason [join [lrange [split $arg] [expr $regex + 4] end]]
 		}
 	}
 }
@@ -749,16 +774,22 @@ if {[llength $level] > "1"} {
 	blacktools:tell $nick "prv" $hand $chan $chan1 gl.invalidlevel [string map {"0" ""} $level]
 	return
 }
-	
+
+if {$regex == 1} {
+	set cmd [list "b" "REGEX"]
+} else {
+	set cmd "b"
+}
+
 if {$level != ""} {
-	userhost:act $b $nick "$hand:$level" "prv" $chan $chan1 $type $return_time "b" $reason $gl
+	userhost:act $b $nick "$hand:$level" "prv" $chan $chan1 $type $return_time $cmd $reason $gl
 } else {
 if {$link == "1"} {
-	userhost:act $b $nick "$hand" "prv" $chan $chan1 $type $return_time "b" $reason "2"
-	utimer 5 [list blacktools:link_ban [link:chan:get $chan] 0 $b $nick $hand "prv" $chan $chan1 $type $return_time "b" $reason 2]
+	userhost:act $b $nick "$hand" "prv" $chan $chan1 $type $return_time $cmd $reason "2"
+	utimer 5 [list blacktools:link_ban [link:chan:get $chan] 0 $b $nick $hand "prv" $chan $chan1 $type $return_time $cmd $reason 2]
 	return
 }
-	userhost:act $b $nick "$hand" "prv" $chan $chan1 $type $return_time "b" $reason $gl
+	userhost:act $b $nick "$hand" "prv" $chan $chan1 $type $return_time $cmd $reason $gl
 		}
 	}
 }
@@ -802,10 +833,19 @@ if {$return_time == "-1"} {
 ub {
 if {[matchattr $hand nmo|MAO $chan]} {
 	set ban [lindex [split $arg] 1]
-	set why [lindex [split $arg] 2]
+	set regexp 0
+if {[string equal -nocase $ban "-regex"]} {
+	set regexp 1
+}
+	set ban [lindex [split $arg] [expr $regexp + 1]]
+	set why [lindex [split $arg] [expr $regexp + 2]]
 if {[regexp {^[&#]} $ban]} { 
 	set ban [lindex [split $arg] 2]
-	set why [lindex [split $arg] 3]
+if {[string equal -nocase $ban "-regex"]} {
+	set regexp 1
+}
+	set ban [lindex [split $arg] [expr $regexp + 2]]
+	set why [lindex [split $arg] [expr $regexp + 3]]
 }
 	set type 2
 	set chan1 "$chan"
@@ -814,10 +854,13 @@ if {[regexp {^[0-9]} $ban]} {
 } else {
 	set cmd "ub"
 }
+if {$regexp == "1"} {
+	set cmd [list $cmd "REGEX"]
+}
 if {[string equal -nocase $why "global"] && [matchattr $hand nm]} {
 	ub:process $ban $ban $nick $hand $host $chan $chan1 $type "1" $cmd "" "" "prv"
 } elseif {[string equal -nocase $why "link"] && [matchattr $hand nm]} {
-	ub:process $ban $ban $nick $hand $host $chan $chan1 $type "" "ub" "" "1" "prv"
+	ub:process $ban $ban $nick $hand $host $chan $chan1 $type "" $cmd "" "1" "prv"
 } else {
 	ub:process $ban $ban $nick $hand $host $chan $chan1 $type "" $cmd "" "" "prv"
 		}
@@ -929,10 +972,19 @@ if {[regexp {^[&#]} $chan] && [matchattr $hand nmo|M $chan] && ($why != "")} {
 sb {
 if {[matchattr $hand nmo|VMAO $chan]} {
 	set bhost [lindex [split $arg] 2]
-	set what [lindex [split $arg] 3]
+	set regexp 0
+if {[string equal -nocase $bhost "-regex"]} {
+	set regexp 1
+}
+	set bhost [lindex [split $arg] [expr $regexp + 2]]
+	set what [lindex [split $arg] [expr $regexp + 3]]
 if {$mychan_use == "1"} {
 	set bhost [lindex [split $arg] 1]
-	set what [lindex [split $arg] 2]
+if {[string equal -nocase $bhost "-regex"]} {
+	set regexp 1
+}
+	set bhost [lindex [split $arg] [expr $regexp + 1]]
+	set what [lindex [split $arg] [expr $regexp + 2]]
 }
 	set type 2
 	set chan1 "$chan"
@@ -950,13 +1002,14 @@ if {[onchan $bhost $chan]} {
 	sb:process $bhost "prv" $nick $hand $host $chan $chan1 $type "sb" "1"
 	return
 }
-
-if {[regexp {\*} $bhost]} {
+if {$regexp == 1} {
+	sb:process $bhost "prv" $nick $hand $host $chan $chan1 $type [list "sb" "REGEX"] "1"
+	return
+} elseif {[regexp {\*} $bhost]} {
 	sb:process $bhost "prv" $nick $hand $host $chan $chan1 $type "sb" "1"
 	return
 }
 	sb:process $bhost "prv" $nick $hand $host $chan $chan1 $type "sb" ""
-
 		} else { sb:process $bhost "prv" $nick $hand $host $chan $chan1 $type "sb" ""}
 	}
 }

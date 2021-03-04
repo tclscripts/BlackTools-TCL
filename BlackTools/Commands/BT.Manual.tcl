@@ -301,10 +301,12 @@ if {[matchattr $hand nmo|MAO $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.97 none
 if {[matchattr $hand nmo]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.99 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.100_1 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.98_1 none 
 	blacktools:tell $nick $host $hand $chan $chan1 man.100 none
 } else { 
-	blacktools:tell $nick $host $hand $chan $chan1 man.98 none 
+	blacktools:tell $nick $host $hand $chan $chan1 man.98 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.100_1 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.98_1 none 
 	}
 	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
