@@ -436,8 +436,7 @@ if {[setting:get $chan badchan-reason] != ""} {
 
 if {[info exists badchan(checkagain:$banmask:$chan)]} {
 if {[info exists badchan($banmask:$chan)]} {
-	#blacktools:banner:2 $nick "BADCHAN,[encoding convertto utf-8 $badchan(channels:$banmask:$chan)]" $chan $chan1 [getchanhost $nick $chan] "0"
-	putlog "ban $nick"
+	blacktools:banner:2 $nick "BADCHAN,[encoding convertto utf-8 $badchan(channels:$banmask:$chan)]" $chan $chan1 [getchanhost $nick $chan] "0"
 	who:chan $chan
 if {[setting:get $chan showbadchan]} {
 	set replace(%nick%) $show_nick
