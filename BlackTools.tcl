@@ -19,13 +19,13 @@
 #									  #
 #		   			  One TCL. One smart Eggdrop.     #
 #                                                                         #
-#                       #####    ######     #                             #
+#                       #####    ######     #####                         #
 #                           #    #          #                             #
 #                           #    #          #                             #
 #                       ####     ######     #####                         #
 #                       #             #         #                         #
 #                       #             #         #                         #
-#                       #####  # ######  #      #                         #
+#                       #####  # ######  #  #####                         #
 #                                                                         #
 #                                                                         #
 #                   THE    NEXT    GENERATION    TCL                      #
@@ -1731,9 +1731,9 @@ set black(exempt:default_time) "0"
 
 set black(name) "BlackToolS"
 set black(author) "BLaCkShaDoW"
-set black(vers) "2.5.4"
+set black(vers) "2.5.5"
 set black(site) "wWw.TclScriptS.NeT"
-set black(current_modif) "1614636855"
+set black(current_modif) "1614855669"
 
 	bind evnt - init-server loginpublic
 	bind time - "* * * * *" timer:login:check
