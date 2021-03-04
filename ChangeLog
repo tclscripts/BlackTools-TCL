@@ -16,7 +16,7 @@
   * added 'change alias handle' in file when the user's handle is chander trough .chuser
   * added 'remove alias commands' from file on delete or autoexpire users
   * fixed 'remove notes, suspension' from files on autoexpire users
-[1614461735] 2021-02-27  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+2021-02-27  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * added a new module "Alias" that offers the posibility for the users
   to create their own personalized commands based on BT commands. For more info
   see .man alias
