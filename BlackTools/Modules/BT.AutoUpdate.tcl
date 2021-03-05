@@ -513,6 +513,7 @@ if {[info exists found_old_2]} {
     regexp -nocase $regexp_var2 $newdata found_new_2
 if {[info exists found_new_2]} {
 if {[string equal -nocase $found_old_2 $found_new_2]} {continue}
+if {[string equal -nocase "default_away" $var] && [string match -nocase "*www.TCLScripts.Net*" $found_old_2]} {continue}
     incr var_counter
     regsub $regexp_var2 $current_data $found_old_2 current_data
     unset found_new_2
