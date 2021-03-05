@@ -2600,6 +2600,16 @@ if {[matchattr $hand n]} {
 	}	
 }
 
+antibotidle {
+if {[matchattr $hand n]} {
+	blacktools:tell $nick $host $hand $chan $chan1 man.2218 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2218_1 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2219 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2220 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
+	}	
+}
+
 default {
 	blacktools:tell $nick $host $hand $chan $chan1 man.1_1 $nick
 		}

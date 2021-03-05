@@ -1084,7 +1084,7 @@ if {$getlang == ""} { set getlang "[string toupper $black(default_lang)]" }
 egg {
 	set tcl_config $black(tclconfig)
 	set eggcmds ""
-	set egg_cmds "nick realname away homechan chanserv hostchanserv userlogin userpass chanremove-setting add-defaultmask add-mask user-expire banmethod-expire broadcast-showtime cmdchar defaultlang defaultoutput floodmenuprot userfloodmsgprot massfloodmsgprot massfloodsilencetime floodnotcprot pagelimit"
+	set egg_cmds "nick realname away homechan chanserv hostchanserv userlogin userpass chanremove-setting add-defaultmask add-mask user-expire banmethod-expire broadcast-showtime cmdchar defaultlang defaultoutput floodmenuprot userfloodmsgprot massfloodmsgprot massfloodsilencetime floodnotcprot pagelimit antibotidle"
 	set split_cmds [split $egg_cmds " "]
 foreach cmd [color:filter $split_cmds] {
 	switch $cmd {
@@ -1203,6 +1203,10 @@ if {[string equal -nocase $get_info "#no_home_chan"]} {
 	set get_info [config:getinfo $tcl_config "set black(chanremove_all) \"*\""]
 	lappend eggcmds [black:color 2 $hand $cmd]\[$get_info\]
 	}
+	antibotidle {
+	set get_info [config:getinfo $tcl_config "set black(antibotidle_status) \"*\""]
+	lappend eggcmds [black:color 2 $hand $cmd]\[$get_info\]
+	}
 	user-expire {
 	set get_info [config:getinfo $tcl_config "set black(user_expire_time) \"*\""]
 	lappend eggcmds [black:color 2 $hand $cmd]\[$get_info$black(say.$getlang.timeout.4)\]
@@ -1215,7 +1219,6 @@ if {[string equal -nocase $get_info "#no_home_chan"]} {
 	set get_info [config:getinfo $tcl_config "set black(bttime) \"*\""]
 	lappend eggcmds [black:color 2 $hand $cmd]\[$get_info\]
 	}
-	
 	pagelimit {
 	set get_info [config:getinfo $tcl_config "set black(modul:nr:entries) \"*\""]
 	lappend eggcmds [black:color 2 $hand $cmd]\[$get_info\]
