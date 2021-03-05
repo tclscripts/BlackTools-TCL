@@ -120,7 +120,7 @@ set black(update_time_check) "60"
 ###
 #Enable antibotidle for eggdrop ? [1 - no idle ; 0 ; - idle]
 
-set black(antibotidle_status) "1"
+set black(antibotidle_status) "0"
 
 ###########################################################################
 #-------------------------------- Dns Host  ------------------------------#
