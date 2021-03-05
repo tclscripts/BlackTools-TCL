@@ -391,6 +391,7 @@ if {$num == 0} {
     blacktools:update_put $hand $chan 26 ""
     unset black(update_file_saved)
     file delete -force "$black(actdir)/BlackTools.old.tcl"
+    setaway "none"
 }
 
 ###
