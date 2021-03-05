@@ -1773,6 +1773,13 @@ set black(say.ro.man.2215) "\[MAN\] SINTAXA FOLOSIRE:"
 set black(say.ro.man.2216) "\[MAN\] \002%char%set\002 (+/-)noproxy ; \002%botnick% set\002 (+/-)noproxy ; \002(PRIVMSG) set\002 <#chan> (+/-)noproxy"
 set black(say.ro.man.2217) "\[MAN\] Setari optionale: \noproxy-reason\002; noproxy-bantime (Puteti folosi in motiv \001noproxy-reason\001 cuvantul cheie \"%isp%\" iar acesta va fi inlocuit cu ISP-ul IP-ului.)"
 
+#Egg AntiBotIdle
+
+set black(say.ro.man.2218) "\[MAN\] \002AntiBotIdle\002 este o optiune care face ca eggdrop-ul sa aiba sau nu \002IDLE\002 pe IRC."
+set black(say.ro.man.2218_1) "\[MAN\] \0021\002 = fara idle ; \0020\002 = cu idle"
+set black(say.ro.man.2219) "\[MAN\] SINTAXA FOLOSIRE:"
+set black(say.ro.man.2220) "\[MAN\] \002%char%set antibotidle\002 <1|0> ; \002%botnick% set antibotidle\002 <1|0> ; \002(PRIVMSG) set antibotidle\002 <1|0>"
+
 ##############################
 ############################################################################################################
 #   SFARSIT                                                                                                #

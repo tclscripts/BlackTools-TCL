@@ -1772,6 +1772,13 @@ set black(say.en.man.2215) "\[MAN\] USAGE SYNTAXES:"
 set black(say.en.man.2216) "\[MAN\] \002%char%set\002 (+/-)noproxy ; \002%botnick% set\002 (+/-)noproxy ; \002(PRIVMSG) set\002 <#chan> (+/-)noproxy"
 set black(say.en.man.2217) "\[MAN\] Optional settings: \noproxy-reason\002; noproxy-bantime (You can use in \001noproxy-reason\001 the keyword \"%isp%\" and it will be replaced with the IP's ISP)"
 
+#Egg AntiBotidle
+
+set black(say.en.man.2218) "\[MAN\] \002AntiBotIdle\002 is a setting that disables or enables the eggdrop's own \002IDLE\002."
+set black(say.en.man.2218_1) "\[MAN\] \0021\002 = no idle ; \0020\002 = idle"
+set black(say.en.man.2219) "\[MAN\] USAGE SYNTAX:"
+set black(say.en.man.2220) "\[MAN\] \002%char%set antibotidle\002 <1|0> ; \002%botnick% set antibotidle\002 <1|0> ; \002(PRIVMSG) set antibotidle\002 <1|0>"
+
 ##############################
 ############################################################################################################
 #   END                                                                                                    #
