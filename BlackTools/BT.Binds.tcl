@@ -56,6 +56,7 @@ bind join - * badrealname:protect:join
 bind join - * badnick:protect:join
 bind join - * badident:protect:join
 bind join - * badhost:protect
+bind join - * noproxy:protect
 bind nick - * badnick:protect:change
 bind nick - * nickflood:protect
 bind mode - "*+b*" protectpublic

@@ -253,7 +253,7 @@ set black(extra_str) {
 	b-banmask id-banmask spam-banmask bw-banmask bot-banmask gag-banmask black-banmask next-banmask guestnick-msgmethod
 	guestnick-message voiceonmsg-linenum voiceonmsg-idletime inviteban-reason repetitivechars-reason inviteban-bantime badchan-banwait
 	general-bantime general-banmask badchan-scantime clonescan-scantime antispam-scantime idle-scantime anunt-showtime
-	quote-showtime voiceme-showtime quitpartmsgflood-char repetitivechars-char
+	quote-showtime voiceme-showtime quitpartmsgflood-char repetitivechars-char noproxy-reason noproxy-bantime noproxy-banmask
 }
 
 set black(extra_flag) {
@@ -263,7 +263,7 @@ set black(extra_flag) {
 	autovoice leave topwords dontop dontdeop private silent quote note reportnick invisible forward
 	showhandle showid showcount showtime showurl next voiceonmsg autotopic greet xonly nologged settingsaved
 	idleop idlehalfop idlevoice vprotect oprotect hoprotect badquitpart quitpartcolor quitpartmsgflood badhost nickflood guestnick seenreply
-	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink
+	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink noproxy
 }
 
 set black(validcmds) "alias exempt login anunt link note q enable disable securemode cp troll guestnick badhost antispam badrealname badquitpart badident badnick badword unset greet leave topic vr dr n id spam bw mb black bl b stick ub sb banlist r man auto antipub private tcl h ignore idle version stats chat seen limit bt badchan us s info channels userlist chuser delhost addhost del delacc add unsuspend suspend delchan addchan die jump save restart rehash update nick msg omsg set mode cycle broadcast act say v ho o uptime status t k w ungag gag show clonescan topwords myset timer i badword next helped noidle skip"
@@ -736,7 +736,7 @@ if {$type == "1"} {
 	return $show_reason
 }
 
-proc blacktools:banner:2 {nick bot chan chan1 host link} {
+proc blacktools:banner:2 {nick bot chan chan1 host link arg} {
 global black botnick
 	set xban 0
 	set num 0
@@ -791,6 +791,12 @@ if {[string equal -nocase $hand "badchan"]} {
 if {[string equal -nocase $hand "CLONESCAN"]} {
 	set clone [string map {"*!*@" ""} $banmask]
 	set replace(%clone%) $clone
+	set thereason [string map [array get replace] $thereason]
+	set show_reason [string map [array get replace] $show_reason]
+}
+
+if {[string equal -nocase $hand "noproxy"]} {
+	set replace(%isp%) [lindex $arg 0]
 	set thereason [string map [array get replace] $thereason]
 	set show_reason [string map [array get replace] $show_reason]
 }
@@ -3381,7 +3387,7 @@ if {$expire != "0"} {
 	set expire [return_reason_time [expr $expire - [unixtime]]]
 }
 if {$gl == "0"} {
-if {![string equal -nocase $gethand "BADCHAN"] && ![string equal -nocase $gethand "badident"] && ![string equal -nocase $gethand "badnick"] && ![string equal -nocase $gethand "antibadquitpart"] && ![string equal -nocase $gethand "antichanflood"] && ![string equal -nocase $gethand "badrealname"] && ![string equal -nocase $gethand "antispam"] && ![string equal -nocase $gethand "badhost"] && ![string equal -nocase $gethand "antipub"] && ![string equal -nocase $gethand "antijoinflood"] && ![string equal -nocase $gethand "antinotice"] && ![string equal -nocase $gethand "antictcp"] && ![string equal -nocase $gethand "antirepeat"] && ![string equal -nocase $gethand "antibold"] && ![string equal -nocase $gethand "anticolor"] && ![string equal -nocase $gethand "antiunderline"] && ![string equal -nocase $gethand "antilongtext"] && ![string equal -nocase $gethand "antibadword"] && ![string equal -nocase $gethand "anticaps"] && ![string equal -nocase $gethand "nickflood"] && ![string equal -nocase $gethand "inviteban"] && ![string equal -nocase $gethand "private"] && ![string equal -nocase $gethand "clonescan"] && ![string equal -nocase $gethand "repetitivechars"]} {
+if {![string equal -nocase $gethand "BADCHAN"] && ![string equal -nocase $gethand "badident"] && ![string equal -nocase $gethand "badnick"] && ![string equal -nocase $gethand "antibadquitpart"] && ![string equal -nocase $gethand "antichanflood"] && ![string equal -nocase $gethand "badrealname"] && ![string equal -nocase $gethand "antispam"] && ![string equal -nocase $gethand "badhost"] && ![string equal -nocase $gethand "antipub"] && ![string equal -nocase $gethand "antijoinflood"] && ![string equal -nocase $gethand "antinotice"] && ![string equal -nocase $gethand "antictcp"] && ![string equal -nocase $gethand "antirepeat"] && ![string equal -nocase $gethand "antibold"] && ![string equal -nocase $gethand "anticolor"] && ![string equal -nocase $gethand "antiunderline"] && ![string equal -nocase $gethand "antilongtext"] && ![string equal -nocase $gethand "antibadword"] && ![string equal -nocase $gethand "anticaps"] && ![string equal -nocase $gethand "nickflood"] && ![string equal -nocase $gethand "inviteban"] && ![string equal -nocase $gethand "private"] && ![string equal -nocase $gethand "clonescan"] && ![string equal -nocase $gethand "repetitivechars"] && ![string equal -nocase $gethand "noproxy"]} {
 if {[setting:get $chan showhandle] && $gethand != ""} {
 	set show_reason "\[$gethand\] $reason"
 } else { set show_reason "$reason" }
@@ -3416,7 +3422,7 @@ if {[setting:get $chan showhandle]} {
 	set show_reason "\[$bywho\] (GLOBAL) (REGEX) $reason"
 } else { set show_reason "(GLOBAL) (REGEX) $reason" }
 } else {
-if {![string equal -nocase $gethand "BADCHAN"] && ![string equal -nocase $gethand "badident"] && ![string equal -nocase $gethand "badnick"] && ![string equal -nocase $gethand "antibadquitpart"] && ![string equal -nocase $gethand "antichanflood"] && ![string equal -nocase $gethand "badrealname"] && ![string equal -nocase $gethand "antispam"] && ![string equal -nocase $gethand "badhost"] && ![string equal -nocase $gethand "antipub"] && ![string equal -nocase $gethand "antijoinflood"] && ![string equal -nocase $gethand "antinotice"] && ![string equal -nocase $gethand "antictcp"] && ![string equal -nocase $gethand "antirepeat"] && ![string equal -nocase $gethand "antibold"] && ![string equal -nocase $gethand "anticolor"] && ![string equal -nocase $gethand "antiunderline"] && ![string equal -nocase $gethand "antilongtext"] && ![string equal -nocase $gethand "antibadword"] && ![string equal -nocase $gethand "anticaps"] && ![string equal -nocase $gethand "nickflood"] && ![string equal -nocase $gethand "inviteban"] && ![string equal -nocase $gethand "private"] && ![string equal -nocase $gethand "clonescan"] && ![string equal -nocase $gethand "repetitivechars"]} {
+if {![string equal -nocase $gethand "BADCHAN"] && ![string equal -nocase $gethand "badident"] && ![string equal -nocase $gethand "badnick"] && ![string equal -nocase $gethand "antibadquitpart"] && ![string equal -nocase $gethand "antichanflood"] && ![string equal -nocase $gethand "badrealname"] && ![string equal -nocase $gethand "antispam"] && ![string equal -nocase $gethand "badhost"] && ![string equal -nocase $gethand "antipub"] && ![string equal -nocase $gethand "antijoinflood"] && ![string equal -nocase $gethand "antinotice"] && ![string equal -nocase $gethand "antictcp"] && ![string equal -nocase $gethand "antirepeat"] && ![string equal -nocase $gethand "antibold"] && ![string equal -nocase $gethand "anticolor"] && ![string equal -nocase $gethand "antiunderline"] && ![string equal -nocase $gethand "antilongtext"] && ![string equal -nocase $gethand "antibadword"] && ![string equal -nocase $gethand "anticaps"] && ![string equal -nocase $gethand "nickflood"] && ![string equal -nocase $gethand "inviteban"] && ![string equal -nocase $gethand "private"] && ![string equal -nocase $gethand "clonescan"] && ![string equal -nocase $gethand "repetitivechars"] && ![string equal -nocase $gethand "noproxy"]} {
 if {[setting:get $chan showhandle] && $gethand != ""} {
 	set show_reason "\[$gethand\] (REGEX) $reason"
 } else { set show_reason "(REGEX) $reason" }
