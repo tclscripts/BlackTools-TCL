@@ -164,7 +164,7 @@ if {![info exists black(update_check_start)]} {
 #run by minute
 
 proc blacktools:timers:runtime {} {
-	global black
+	global black botnick
 	set badchan_channels ""
 	set clonescan_channels ""
 	set antispam_channels ""
@@ -175,6 +175,9 @@ proc blacktools:timers:runtime {} {
 	set quote_channels ""
 	set voiceme_channels ""
 	set topwords_channels ""
+if {$black(antibotidle_status) == 1} {
+	putserv "PRIVMSG ${botnick}\:X :none"
+}
 foreach chan [channels] {
 
 #badchan
