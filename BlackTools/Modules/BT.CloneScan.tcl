@@ -111,7 +111,7 @@ if {$type == "1"} {
 	putserv "NOTICE @$chan :$message"
 foreach m $found_mask {
 	set mask "*!*@$m"
-	blacktools:banner:2 $nick "CLONESCAN" $chan $chan1 $mask "0"
+	blacktools:banner:2 $nick "CLONESCAN" $chan $chan1 $mask "0" ""
 }
 	who:chan $chan
 		}

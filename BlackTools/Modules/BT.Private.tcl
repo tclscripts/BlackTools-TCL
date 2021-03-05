@@ -153,7 +153,7 @@ if {[setting:get $chan private]} {
 if {[matchattr $handle nmo|oMASOVP $chan]} { 
 	return 
 }
-	blacktools:banner:2 $nick "PRIVATE" $chan $chan1 $host "0"
+	blacktools:banner:2 $nick "PRIVATE" $chan $chan1 $host "0" ""
 	who:chan $chan
 	}
 }
