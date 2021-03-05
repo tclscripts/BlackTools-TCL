@@ -19,8 +19,8 @@ set black(exceptflags) "nmo|HAagMOVSo"
 set black(accessflags) "nmo|MAO"
 set black(localflags) "-|MAOV"
 set black(glflags) "nmo"
-set black(tclconfig) "$black(dirname)/BlackTools.tcl"
-set black(tempdir) "$black(dirname)/BlackTools/temp"
+set black(tclconfig) "$black(backdir)/BlackTools.tcl"
+set black(tempdir) "$black(backdir)/BlackTools/temp"
 set black(banflag) "B"
 
 ############################### Information files ############################
@@ -539,6 +539,7 @@ proc away:timer {} {
 ############################### Config save ##################################
 
 proc config:save {f text_find text_replace} {
+	global black
 	set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
 	set file_temp "temp.$timestamp"
 	set found_it 0
