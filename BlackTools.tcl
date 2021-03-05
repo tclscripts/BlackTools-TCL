@@ -1230,6 +1230,30 @@ set black(repetitivechars:banmethod) "7"
 
 set black(repetitivechars:banmask) "2"
 
+#########################################################################
+#------------------------------- NoProxy -------------------------------#
+
+#Ban-Time (<x>m (minutes), <x>h (hours), <x>d (days))
+
+set black(noproxy:bantime) "1h"
+
+#Excepts hosts from checking
+
+set black(noproxy:excepts) {
+	"*users.undernet.org"
+	"undernet.org"
+}
+
+#Default banmask
+
+#1 - *!*@host
+#2 - *!user@host
+#3 - nick!user@host
+#4 - nick!*@*
+#5 - *!user@*
+
+set black(noproxy:banmask) "1"
+
 ############################### Modules ###############################
 #------------------------------- Quote -------------------------------#
 
