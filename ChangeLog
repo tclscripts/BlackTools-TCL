@@ -1,3 +1,5 @@
+ 2021-03-05  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * added noproxy protection (see .man noproxy)
  2021-03-04  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * optimised the ban module to work more faster
   * added .banlist regex to to show only the regex added
