@@ -30,10 +30,10 @@ if {$check_word != ""} {
 	set found_ident $check_word
 }
 if {$found_ident != ""} {
-	blacktools:banner:2 $nick "BADIDENT:$found_ident" $chan $chan1 $host "0"
+	blacktools:banner:2 $nick "BADIDENT:$found_ident" $chan $chan1 $host "0" ""
 if {[link:status $chan] == "1"} {
 	foreach c [link:chan:get $chan] {
-	blacktools:banner:2 $nick "BADIDENT:$found_ident" $c $c $host "1"
+	blacktools:banner:2 $nick "BADIDENT:$found_ident" $c $c $host "1" ""
 				}
 	blacktools:link_ban2 [link:get] 0
 			} else { who:chan $chan }	

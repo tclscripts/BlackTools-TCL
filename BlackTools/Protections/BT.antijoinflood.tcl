@@ -93,7 +93,7 @@ if {![info exists black(antijoinflood:$host:$chan)]} {
 	incr black(antijoinflood:$host:$chan)
 	utimer $user_time [list joinflood:unset:host $chan $host]
 if {$black(antijoinflood:$host:$chan) >= "$user_num"} {
-	blacktools:banner:2 $nick "ANTIJOINFLOOD" $chan $chan $host "0"
+	blacktools:banner:2 $nick "ANTIJOINFLOOD" $chan $chan $host "0" ""
 	who:chan $chan
 if {[info exists black(antijoinflood:$host:$chan)]} {
 	unset black(antijoinflood:$host:$chan)

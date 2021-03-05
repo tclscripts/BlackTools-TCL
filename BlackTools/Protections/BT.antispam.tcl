@@ -59,7 +59,7 @@ if {$chan == ""} {
 	return
 }
 if {[onchan $nick $chan]} {
-	blacktools:banner:2 $nick "ANTISPAM:$found_spam" $chan $chan $host "0"
+	blacktools:banner:2 $nick "ANTISPAM:$found_spam" $chan $chan $host "0" ""
 	who:chan $chan
 }
 	set inc [expr $num + 1]

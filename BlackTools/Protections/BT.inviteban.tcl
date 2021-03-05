@@ -75,7 +75,7 @@ if {$chan == ""} {
 }
 if {[setting:get $chan inviteban]} {
 if {[onchan $nick $chan]} {
-	blacktools:banner:2 $nick "INVITEBAN:[encoding convertto utf-8 $invitechan]" $chan $chan $mask "0"
+	blacktools:banner:2 $nick "INVITEBAN:[encoding convertto utf-8 $invitechan]" $chan $chan $mask "0" ""
 	who:chan $chan
 	}
 }

@@ -37,10 +37,10 @@ if {[setting:get $chan badnick-bmethod] == ""} {
 } else { set bmethod [setting:get $chan badnick-bmethod] }
 
 if {$bmethod == "2"} {
-	blacktools:banner:2 $nick "BADNICK:$found_nick" $chan $chan1 $host "0"
+	blacktools:banner:2 $nick "BADNICK:$found_nick" $chan $chan1 $host "0" ""
 if {[link:status $chan] == "1"} {
 	foreach c [link:chan:get $chan] {
-	blacktools:banner:2 $nick "BADNICK:$found_nick" $c $c $host "1"
+	blacktools:banner:2 $nick "BADNICK:$found_nick" $c $c $host "1" ""
 					}
 	blacktools:link_ban2 [link:get] 0
 				} else { who:chan $chan }
@@ -70,10 +70,10 @@ if {[setting:get $chan badnick-banwait] == ""} {
 proc badnick:check:again {nick chan host} {
 	global black
 if {[onchan $nick $chan]} {
-	blacktools:banner:2 $nick "BADNICK:$nick" $chan $chan $host "0"
+	blacktools:banner:2 $nick "BADNICK:$nick" $chan $chan $host "0" ""
 if {[link:status $chan] == "1"} {
 	foreach c [link:chan:get $chan] {
-	blacktools:banner:2 $nick "BADNICK:$nick" $c $c $host "1"
+	blacktools:banner:2 $nick "BADNICK:$nick" $c $c $host "1" ""
 			}
 	blacktools:link_ban2 [link:get] 0
 		} else { who:chan $chan }
@@ -109,10 +109,10 @@ if {[setting:get $chan badnick-bmethod] == ""} {
 } else { set bmethod [setting:get $chan badnick-bmethod] }
 
 if {$bmethod == "2"} {
-	blacktools:banner:2 $newnick "BADNICK:$found_nick" $chan $chan $host "0"
+	blacktools:banner:2 $newnick "BADNICK:$found_nick" $chan $chan $host "0" ""
 if {[link:status $chan] == "1"} {
 	foreach c [link:chan:get $chan] {
-	blacktools:banner:2 $newnick "BADNICK:$found_nick" $c $c $host "1"			
+	blacktools:banner:2 $newnick "BADNICK:$found_nick" $c $c $host "1" ""
 					}
 	blacktools:link_ban2 [link:get] 0
 				} else { who:chan $chan }

@@ -44,10 +44,10 @@ if {$check_word != ""} {
 	set found_pub $check_word
 }
 if {$found_pub != ""} {
-	blacktools:banner:2 $nick "ANTIBADQUITPART:$found_pub" $chan $chan1 $host "0"
+	blacktools:banner:2 $nick "ANTIBADQUITPART:$found_pub" $chan $chan1 $host "0" ""
 if {[link:status $chan] == "1"} {
 	foreach c [link:chan:get $chan] {
-	blacktools:banner:2 $nick "ANTIBADQUITPART:$found_pub" $c $c $host "1"
+	blacktools:banner:2 $nick "ANTIBADQUITPART:$found_pub" $c $c $host "1" ""
 				}
 	blacktools:link_ban2 [link:get] 0
 			} else { who:chan $chan }
@@ -75,10 +75,10 @@ if {[setting:get $chan quitpartcolor] && [string match -nocase $color $arg]} {
 	}
 }
 if {$found_color == "1"} {
-	blacktools:banner:2 $nick "ANTIBADQUITPART:COLOR" $chan $chan $host "0"	
+	blacktools:banner:2 $nick "ANTIBADQUITPART:COLOR" $chan $chan $host "0"	""
 if {[link:status $chan] == "1"} {
 	foreach c [link:chan:get $chan] {
-	blacktools:banner:2 $nick "ANTIBADQUITPART:COLOR" $c $c $host "1"
+	blacktools:banner:2 $nick "ANTIBADQUITPART:COLOR" $c $c $host "1" ""
 				}
 			}
 	return
@@ -109,10 +109,10 @@ if {$black(badquitpartmode) != ""} {
 	putserv "MODE $chan +$black(badquitpartmode)"
 	utimer $black(badquitpartsecunde) [list badquitpart:removemode $chan]
 }
-	blacktools:banner:2 $nick "ANTIBADQUITPART:MSGFLOOD" $chan $chan $host "0"	
+	blacktools:banner:2 $nick "ANTIBADQUITPART:MSGFLOOD" $chan $chan $host "0" ""
 if {[link:status $chan] == "1"} {
 	foreach c [link:chan:get $chan] {
-	blacktools:banner:2 $nick "ANTIBADQUITPART:MSGFLOOD" $c $c $host "1"
+	blacktools:banner:2 $nick "ANTIBADQUITPART:MSGFLOOD" $c $c $host "1" ""
 				}
 			}
 	return
