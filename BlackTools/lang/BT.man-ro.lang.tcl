@@ -1766,6 +1766,13 @@ set black(say.ro.man.2211) "\[MAN\] \002%char%alias add\002 <comanda> <comanda B
 set black(say.ro.man.2212) "\[MAN\] Exemplu 1 : \002%char%alias add\002 lamer \001b\001 %1% 0 Esti un lamer !! \[%1% - nick sau host\]"
 set black(say.ro.man.2213) "\[MAN\] Exemplu 2 : \002%char%alias add\002 bere \001cycle\001 %1% %2% Ma duc la o bere, ma reintorc ! \[%1% - canal ;  %2% - timp cycle\]"
 
+#NoProxy
+
+set black(say.ro.man.2214) "\[MAN\] \002NoProxy\002 baneaza userii a caror IP sunt \001PROXY\001"
+set black(say.ro.man.2215) "\[MAN\] SINTAXA FOLOSIRE:"
+set black(say.ro.man.2216) "\[MAN\] \002%char%set\002 (+/-)noproxy ; \002%botnick% set\002 (+/-)noproxy ; \002(PRIVMSG) set\002 <#chan> (+/-)noproxy"
+set black(say.ro.man.2217) "\[MAN\] Setari optionale: \noproxy-reason\002; noproxy-bantime (Puteti folosi in motiv \001noproxy-reason\001 cuvantul cheie \"%isp%\" iar acesta va fi inlocuit cu ISP-ul IP-ului.)"
+
 ##############################
 ############################################################################################################
 #   SFARSIT                                                                                                #

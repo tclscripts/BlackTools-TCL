@@ -1765,6 +1765,13 @@ set black(say.en.man.2211) "\[MAN\] \002%char%alias add\002 <command> <BT comman
 set black(say.en.man.2212) "\[MAN\] Example 1 : \002%char%alias add\002 lamer \001b\001 %1% 0 Your are a lamer !! \[%1% - nick or host\]"
 set black(say.en.man.2213) "\[MAN\] Example 2 : \002%char%alias add\002 beer \001cycle\001 %1% %2% Going to have a beer, i will be back \[%1% - channel ;  %2% - cycle duration\]"
 
+#NoProxy
+
+set black(say.en.man.2214) "\[MAN\] \002NoProxy\002 bans users who use IPs that are considered to be \001PROXY\001"
+set black(say.en.man.2215) "\[MAN\] USAGE SYNTAXES:"
+set black(say.en.man.2216) "\[MAN\] \002%char%set\002 (+/-)noproxy ; \002%botnick% set\002 (+/-)noproxy ; \002(PRIVMSG) set\002 <#chan> (+/-)noproxy"
+set black(say.en.man.2217) "\[MAN\] Optional settings: \noproxy-reason\002; noproxy-bantime (You can use in \001noproxy-reason\001 the keyword \"%isp%\" and it will be replaced with the IP's ISP)"
+
 ##############################
 ############################################################################################################
 #   END                                                                                                    #
