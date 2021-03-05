@@ -1752,7 +1752,7 @@ set black(name) "BlackToolS"
 set black(author) "BLaCkShaDoW"
 set black(vers) "2.5.5"
 set black(site) "wWw.TclScriptS.NeT"
-set black(current_modif) "1614892901"
+set black(current_modif) "1614941211"
 
 	bind evnt - init-server loginpublic
 	bind time - "* * * * *" timer:login:check
