@@ -49,9 +49,14 @@ if {[link:status $chan] == "1"} {
 ###
 proc blacktools:noproxy_data {host} {
     global black
+if {![info exists black(http_ok)]} {
 if {[catch {package require http} no_http] != 0} {
     source $black(backdir)/BlackTools/Addons/http.tcl
     package require http
+    set black(http_ok) 1
+} else {
+    set black(http_ok) 1
+    }
 }
     set link "http://ip-api.com/json/${host}?fields=proxy,status,isp"
     set ipq [::http::config -useragent "lynx"]
