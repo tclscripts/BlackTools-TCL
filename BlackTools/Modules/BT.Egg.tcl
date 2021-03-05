@@ -16,7 +16,7 @@
 
 proc egg:setting_check {setting} {
 	global black
-	set settings "nick realname away homechan chanserv hostchanserv userlogin userpass chanremove-setting add-mask add-defaultmask user-expire banmethod-expire broadcast-showtime cmdchar defaultlang defaultoutput floodmenuprot userfloodmsgprot massfloodmsgprot massfloodsilencetime floodnotcprot pagelimit"
+	set settings "nick realname away homechan chanserv hostchanserv userlogin userpass chanremove-setting add-mask add-defaultmask user-expire banmethod-expire broadcast-showtime cmdchar defaultlang defaultoutput floodmenuprot userfloodmsgprot massfloodmsgprot massfloodsilencetime floodnotcprot pagelimit antibotidle"
 if {[lsearch -exact [string tolower $settings] [string tolower $setting]] < 0} {
 	return 0
 	} else { return 1 }
@@ -358,12 +358,28 @@ if {$error == "0"} {
 	return 1
 }
 
+antibotidle {
+	set return [config:getinfo $tcl_config "set black(antibotidle_status) \"*\""]
+if {[string equal -nocase $return $result]} {
+	return 2
+}
+if {![regexp {^[01]} $result]} {
+	return 0
+}
+	set error [config:save $tcl_config "set black(antibotidle_status) \"*\"" "set black(antibotidle_status) \"$result\""]
+if {$error == "0"} {
+	return 0
+	}
+	rehash
+	return 1
+}
+
 chanremove-setting {
 	set return [config:getinfo $tcl_config "set black(chanremove_all) \"*\""]
 if {[string equal -nocase $return $result]} {
 	return 2
 }
-if {![regexp {^[12]} $result]} {
+if {![regexp {^[01]} $result]} {
 	return 0
 }
 	set error [config:save $tcl_config "set black(chanremove_all) \"*\"" "set black(chanremove_all) \"$result\""]
