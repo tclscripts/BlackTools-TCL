@@ -9,7 +9,6 @@
 
                                       -----------------------
 
-   Download    : http://tclscripts.net/BlackTools2.5.3.tar.gz
    Bugs report : http://www.tclscripts.net
    History     : http://www.tclscripts.net/release-notes
    GitHub page : https://github.com/tclscripts/BlackToolS-TCL-script
@@ -37,7 +36,7 @@
 Minimum requirements:
      o Eggdrop 1.8.x
      o Tcl 8.5 or higher.
-     o TLS package 1.7.18 or higher
+     o TLS package 1.7.18 or higher (for autoupdate module to work)
 
 Most important features:
 
