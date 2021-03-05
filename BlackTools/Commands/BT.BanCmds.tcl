@@ -344,7 +344,7 @@ foreach b [banlist] {
 	set btime [lindex $b 2]
 if {[string match -nocase $mask $bhost] || [string match -nocase $bhost $mask]} {
 	set total_b [expr $total_b + 1]
-if {[setting:get $chan xtools] || [setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
+if {([setting:get $chan xtools] || [setting:get $chan xonly]) && [onchan $black(chanserv) $chan]} {
 	putserv "PRIVMSG $black(chanserv) :unban $chan $bhost"
 } else {
 	putserv "MODE $chan -b $bhost"
