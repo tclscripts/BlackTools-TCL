@@ -313,6 +313,10 @@ set black(say.en.nickflood.2) "Choose a nickname and keep it, please.."
 set black(say.en.repetitivechars.1) "Repetitive chars abuse"
 set black(say.en.repetitivechars.2) "Please do not use excessive characters repeat.."
 
+################################### NickFlood #######################################
+
+set black(say.en.noproxy.1) "PROXY IPs are not allowed here. ISP: \002%isp%\002"
+
 #############################################################################################################################
 #                                                                                                                           #
 #                                                       MODULES                                                             #

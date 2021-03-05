@@ -314,6 +314,10 @@ set black(say.ro.nickflood.2) "Atentie, esti avertizat sa nu mai schimbi atat de
 set black(say.ro.repetitivechars.1) "NU ai respectat regulile pe %chan% in privinta repetarii de caractere."
 set black(say.ro.repetitivechars.2) "Atentie, esti avertizat sa nu te mai repeti in ceea ce priveste caracterele pe %chan%"
 
+################################### NickFlood #######################################
+
+set black(say.ro.noproxy.1) "Ip-urile de tip PROXY nu sunt acceptate aici. ISP: \002%isp%\002"
+
 #############################################################################################################################
 #                                                                                                                           #
 #                                                        MODULE                                                             #
