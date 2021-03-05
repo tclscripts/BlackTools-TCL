@@ -1,5 +1,7 @@
  2021-03-05  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * added antibotidle (see .man antibotidle)
   * added noproxy protection (see .man noproxy)
+  * solved some other minor bugs
  2021-03-04  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * optimised the ban module to work more faster
   * added .banlist regex to to show only the regex added
