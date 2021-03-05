@@ -2590,6 +2590,16 @@ if {[matchattr $hand n]} {
 	}	
 }
 
+noproxy {
+if {[matchattr $hand n]} {
+	blacktools:tell $nick $host $hand $chan $chan1 man.2214 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2215 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2216 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2217 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
+	}	
+}
+
 default {
 	blacktools:tell $nick $host $hand $chan $chan1 man.1_1 $nick
 		}
