@@ -1,3 +1,7 @@
+  2021-03-06  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * added the posibility to add badchan by using REGEX, see .man badchan
+  * modified the badchan working mode, now its faster and more safe
+  * solved some bugs related to BADCHAN module
  2021-03-05  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * added antibotidle (see .man antibotidle)
   * added noproxy protection (see .man noproxy)
