@@ -454,6 +454,9 @@ set black(say.ro.badchan.42) "\005\[BT\]\005 Canalul \002%msg.1%\002 este deja i
 set black(say.ro.badchan.43) "\005\[BT\]\005 Modulul de \002BadChan\002 este deja activ."
 set black(say.ro.badchan.44) "\005\[BT\]\005 \[ALERTA\] ( \002%nick%\002 ) gasit pe canalele interzise: ( \001%chans%\001 )"
 set black(say.ro.badchan.45) "\005\[BT\]\005 Am adaugat canalul \001%msg.1%\001 ca exceptie cu nr. \002%msg.2%\002 in lista de \002badchan\002 a canalului \002%chan%\002"
+set black(say.ro.badchan.46) "\002regex\002"
+set black(say.ro.badchan.47) "\005\[BT\]\005 Am adaugat REGEX \001%msg.1%\001 cu nr. \002%msg.2%\002 in lista de \002badchan\002 GLOBALA"
+set black(say.ro.badchan.48) "\005\[BT\]\005 Am adaugat REGEX \001%msg.1%\001 cu nr. \002%msg.2%\002 in lista de \002badchan\002 a canalului \002%chan%\002"
 
 ################################# AntiTaKe ######################################
 

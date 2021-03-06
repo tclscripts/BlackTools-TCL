@@ -453,6 +453,9 @@ set black(say.en.badchan.42) "\005\[BT\]\005 \001%msg.1%\001 is already added to
 set black(say.en.badchan.43) "\005\[BT\]\005 \002BadChan\002 is already activated."
 set black(say.en.badchan.44) "( \002%nick%\002 ) found in bad channels: ( \002%chans%\002 )"
 set black(say.en.badchan.45) "\005\[BT\]\005 Added \001%msg.1%\001 as exception with no. \002%msg.2%\002 in \002%chan%\002's BadChans List."
+set black(say.en.badchan.46) "\002regex\002"
+set black(say.en.badchan.47) "\005\[BT\]\005 Added REGEX \001%msg.1%\001 with no. \002%msg.2%\002 in my \002GLOBAL\002 BadChans List."
+set black(say.en.badchan.48) "\005\[BT\]\005 Added REGEX \001%msg.1%\001 with no. \002%msg.2%\002 in \002%chan%\002's BadChans List."
 
 ################################# AntiTaKe ######################################
 

@@ -559,13 +559,13 @@ set black(say.ro.man.409) "\[MAN\] \002%char%set\002 (+/-)xtools ; \002%botnick%
 
 #BadChan
 
-set black(say.ro.man.410) "\[MAN\] \002BadChan\002 este un modul de protectie care nu va lasa userii ce se afla pe anumite canale din blacklist sa intre pe %chan% (suporta wildcard-uri)."
+set black(say.ro.man.410) "\[MAN\] \002BadChan\002 este un modul de protectie care nu va lasa userii ce se afla pe anumite canale din blacklist sa intre pe %chan% (suporta wildcard-uri). Acum suporta canale de tip \002REGEX\002"
 set black(say.ro.man.411) "\[MAN\] SINTAXE FOLOSIRE:"
 set black(say.ro.man.412) "\[MAN\] \002%char%badchan\002 <ON|OFF> ; \002%botnick% badchan\002 <ON|OFF> ; \002(PRIVMSG) badchan\002 <#canal> <ON|OFF>"
 set black(say.ro.man.413) "\[MAN\] \002%char%badchan add\002 <#badchan> \[motiv\] (adauga badchan) ; \002%char%badchan \[#canal\] list\002 (vezi lista badchans)"
 set black(say.ro.man.414) "\[MAN\] \002%char%badchan add\002 <#badchan> \[global\] \[motiv\]\002 ; %char%badchan del\002 <nr. lista> \[global\] ; \002%char%badchan list\002 \[global\]"
-set black(say.ro.man.415) "\[MAN\] \002%char%badchan add\002 <+#badchan> (adauga exceptie) ; \002%char%badchan del\002 <nr. lista> (sterge badchan din lista)"
-set black(say.ro.man.416) "\[MAN\] Setari optionale: \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, badchan-floodcontrol, \002showbadchan\002"
+set black(say.ro.man.415) "\[MAN\] \002%char%badchan add\002 <+#badchan> (adauga exceptie) ; \002%char%badchan regex\002 <#regex> \[motiv\] \001(exemplu \001regex: #\[a-z\]+\[0-9\]\[0-9\])\001 , adauga badchan de tip REGEX, canalele ce vor corespunde expresiei vor fi considerate BADCHAN)"
+set black(say.ro.man.416) "\[MAN\] Setari optionale: \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, showbadchan"
 
 #Anunt
 
@@ -1499,13 +1499,6 @@ set black(say.ro.man.1270) "\[MAN\] Variabile disponibile: \002%countchan%\002 =
 set black(say.ro.man.1271) "\[MAN\] SYNTAXA FOLOSIRE:"
 set black(say.ro.man.1272) "\[MAN\] \002%char%greet\002 set <text> ; \002%botnick% greet\002 set <text> ; \002(PRIVMSG) greet\002 <#canal> set <text>"
 set black(say.ro.man.1273) "\[MAN\] \001Exemplu\001: Bine ai venit %nick%, esti persoana cu numarul %count% care intra pe %countchan% din %time%."
-
-#BadChan-FloodControl
-
-set black(say.ro.man.1274) "\[MAN\] \002BadChan-FloodControl\002 este o extra optiune a modulului \002BadChan\002 cu rol in protejarea eggdropului de actiunile \002massjoin\002 prin oprirea scanarii userilor la join, pe o perioada de\002 30\002 secunde. Dupa expirarea acestei perioade \002modulul BadChan\002 isi reia functionarea normala."
-set black(say.ro.man.1275) "\[MAN\] SINTAXA FOLOSIRE:"
-set black(say.ro.man.1276) "\[MAN\] \002%char%set\002 (+/-)badchan-floodcontrol <nr. joins>:<nr. secunde> ; \002%botnick% set\002 (+/-)badchan-floodcontrol <nr. joins>:<nr. secunde> ; \002(PRIVMSG) set\002 <#canal> (+/-)badchan-floodcontrol <nr. joins>:<nr. secunde>"
-set black(say.ro.man.1277) "Vizualizare setari optiuni: \002%char%show\002 <setare> ; \002%botnick% show\002 <setare> ; \002(PRIVMSG) show\002 <#canal> <setare>"
 
 #Exempt
 
