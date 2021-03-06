@@ -2234,16 +2234,6 @@ if {[matchattr $hand nmo|M $chan]} {
 	}
 }
 
-badchanfloodcontrol {
-if {[matchattr $hand nmo|M $chan]} {
-	blacktools:tell $nick $host $hand $chan $chan1 man.1274 none
-	blacktools:tell $nick $host $hand $chan $chan1 man.1275 none
-	blacktools:tell $nick $host $hand $chan $chan1 man.1276 none
-	blacktools:tell $nick $host $hand $chan $chan1 man.1277 none
-	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
-	}
-}
-
 exempt {
 if {[matchattr $hand nmo|M $chan]} {	
 	blacktools:tell $nick $host $hand $chan $chan1 man.1278 none
