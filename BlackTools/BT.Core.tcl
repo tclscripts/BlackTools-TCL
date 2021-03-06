@@ -238,7 +238,7 @@ set black(extra_str) {
 	joinflood chanflood private-bantime antilongtextmax antirepeat-setting idlevoicemax clonescan-maxclone
 	idleopmax idlehalfopmax kickcount xbantime xbanlevel limit-default nickflood-bantime clonescan-bantime backchan
 	dr-bantime vr-bantime n-bantime b-bantime id-bantime spam-bantime bw-bantime mb-bantime badnick-bmethod badnick-banwait
-	bot-bantime gag-bantime b-bantime stick-bantime d-bantime badchan-bantime badchan-bmethod badchan-reason badchan-floodcontrol
+	bot-bantime gag-bantime b-bantime stick-bantime d-bantime badchan-bantime badchan-bmethod badchan-reason
 	joincount jointime lang next-bantime greet-method leave-method url antipub-warn antinotice-warn
 	antictcp-warn antibadword-warn antilongtext-warn antirepeat-warn anticolor-warn repetitivechars-warn
 	antibold-warn antiunderline-warn anticaps-warn antichanflood-warn nickflood-warn nickflood-repeat
