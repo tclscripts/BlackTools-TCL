@@ -562,7 +562,7 @@ set black(say.en.man.410) "\[MAN\] \002BadChan\002 forbids people who are co-cha
 set black(say.en.man.411) "\[MAN\] USAGE SYNTAXES:"
 set black(say.en.man.412) "\[MAN\] \002%char%badchan\002 <ON|OFF> ; \002%botnick% badchan\002 <ON|OFF> ; \002(PRIVMSG) badchan\002 <#chan> <ON|OFF>"
 set black(say.en.man.413) "\[MAN\] \002%char%badchan add\002 <#badchan> \[reason\] (add badchan) ; \002%char%badchan \[#chan\] list\002 (see badchans list)"
-set black(say.en.man.414) "\[MAN\] \002%char%badchan add\002 <#badchan> \[global\] \[reason\]\002 ; %char%badchan del\002 <no. list> \[-global\] ; \002%char%badchan list\002 \[-global\]"
+set black(say.en.man.414) "\[MAN\] \002%char%badchan add\002 <#badchan> \[global\] \[reason\]\002 ; %char%badchan del\002 <no. list> \[global\] ; \002%char%badchan list\002 \[global\]"
 set black(say.en.man.415) "\[MAN\] \002%char%badchan add\002 <+#badchan> (add exceptions) ; \002%char%badchan del\002 <no. list> (remove badchan from list)"
 set black(say.en.man.416) "\[MAN\] Optional settings: \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, badchan-floodcontrol, \002showbadchan\002"
 

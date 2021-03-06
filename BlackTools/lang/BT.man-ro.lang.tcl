@@ -563,7 +563,7 @@ set black(say.ro.man.410) "\[MAN\] \002BadChan\002 este un modul de protectie ca
 set black(say.ro.man.411) "\[MAN\] SINTAXE FOLOSIRE:"
 set black(say.ro.man.412) "\[MAN\] \002%char%badchan\002 <ON|OFF> ; \002%botnick% badchan\002 <ON|OFF> ; \002(PRIVMSG) badchan\002 <#canal> <ON|OFF>"
 set black(say.ro.man.413) "\[MAN\] \002%char%badchan add\002 <#badchan> \[motiv\] (adauga badchan) ; \002%char%badchan \[#canal\] list\002 (vezi lista badchans)"
-set black(say.ro.man.414) "\[MAN\] \002%char%badchan add\002 <#badchan> \[global\] \[motiv\]\002 ; %char%badchan del\002 <nr. lista> \[-global\] ; \002%char%badchan list\002 \[-global\]"
+set black(say.ro.man.414) "\[MAN\] \002%char%badchan add\002 <#badchan> \[global\] \[motiv\]\002 ; %char%badchan del\002 <nr. lista> \[global\] ; \002%char%badchan list\002 \[global\]"
 set black(say.ro.man.415) "\[MAN\] \002%char%badchan add\002 <+#badchan> (adauga exceptie) ; \002%char%badchan del\002 <nr. lista> (sterge badchan din lista)"
 set black(say.ro.man.416) "\[MAN\] Setari optionale: \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, badchan-floodcontrol, \002showbadchan\002"
 
