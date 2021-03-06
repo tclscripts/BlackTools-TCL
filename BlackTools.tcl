@@ -1363,10 +1363,13 @@ set black(badcbanmethod) "1"
 
 set black(badcbanwait) "30"
 
-#BadChan onjoin floodcontrol (joins:seconds)
-#(the bot will stop check if the floodcontrol is activated)
+#BadChan onjoin floodcontrol foreach user (joins:seconds)
 
-set black(badchan:join:seconds) "5:6"
+set black(badchan:join:seconds) "2:10"
+
+#How much time to mantain the floodcontrol protection for each user ? (minutes)
+
+set black(badchan:floodprot:time) "1"
 
 ########################################################################
 #-------------------------------- Anunt -------------------------------#
