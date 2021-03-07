@@ -486,24 +486,14 @@ if {$findchan == "1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 badchan.42 $show_bdchan
 	return
 }
-	while {$temp_num == 0} {
-	set get [find:num $num "GLOBAL" "BADCHAN"]
-if {$get == "$num"} {
-	set num [expr $num + 1]
-	} else { set temp_num 1 }
-}
+	set num [badchan:find:num "GLOBAL"]
 	set file [open $black(add_file) a]
 	puts $file "GLOBAL BADCHAN $num $bdchan $reason"
 	close $file
 	blacktools:tell $nick $host $hand $chan $chan1 badchan.11  "$show_bdchan $num"
 	return
 }
-	while {$temp_num == 0} {
-	set get [find:num $num $chan "BADCHAN"]
-if {$get == "$num"} {
-	set num [expr $num + 1]
-	} else { set temp_num 1 }
-}
+	set num [badchan:find:num $chan]
 	set encoded [encoding convertto utf-8 $bdchan]
 	set enc_chan [encoding convertto utf-8 $chan]
 	set file [open $black(add_file) a]
