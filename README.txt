@@ -39,7 +39,8 @@ Minimum requirements:
      o TLS package 1.7.18 or higher (for autoupdate module to work,if not, it will be disabled)
 
 Most important features:
-
+    o AutoUpdate that gives the eggdrop the ability to download and install the BT if a new version
+      or bug fix version is on github. All BT files and settings are saved and restored after install.
     o Multi-channels support: intelligent IRC channel management, every owner(s)/manager(s) can
       customise this script and its component settings for each channel to his liking.
       (add/remove users, activate or disable desired protections, modules or commands)
