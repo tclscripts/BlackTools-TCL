@@ -29,6 +29,7 @@ bind pubm - "***" comand:chan
 
 bind msgm - * forward:redirect
 bind msgm - "*" command:pubpriv
+bind dcc - bt command:pubdcc
 bind ctcp - ACTION blacktools:protect:me
 bind ctcp - ACTION voiceonmsg:public:me
 bind ctcp - ACTION topwords:module:me

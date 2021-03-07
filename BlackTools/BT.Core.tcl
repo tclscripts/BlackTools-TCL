@@ -1736,6 +1736,10 @@ foreach w [wordwrap $reply 440] {
 if {[string equal -nocase $host "prv"]} {
 	putserv "PRIVMSG $nick :$w"
 	return
+} elseif {[string equal -nocase [lindex $host 0] "dcc"]} {
+	set idx [lindex $host 1]
+	putidx $idx $w
+	return
 }
 switch $getmethod {
 	0 {
@@ -1815,8 +1819,11 @@ if {[string equal -nocase "man.showtip" $type]} {
 if {[string equal -nocase $host "prv"]} {
 	putserv "PRIVMSG $nick :$reply"
 	return
-}
-if {[string equal -nocase $host "chan"]} {
+} elseif {[string equal -nocase [lindex $host 0] "dcc"]} {
+	set idx [lindex $host 1]
+	putidx $idx $reply
+	return
+} elseif {[string equal -nocase $host "chan"]} {
 	putserv "PRIVMSG $chan1 :$reply"
 	return
 }
@@ -1923,8 +1930,11 @@ if {[string equal -nocase "man.showtip" $type]} {
 if {[string equal -nocase $host "prv"]} {
 	putserv "PRIVMSG $nick :$reply"
 	return
-}
-if {[string equal -nocase $host "chan"]} {
+} elseif {[string equal -nocase [lindex $host 0] "dcc"]} {
+	set idx [lindex $host 1]
+	putidx $idx $reply
+	return
+} elseif {[string equal -nocase $host "chan"]} {
 	putserv "PRIVMSG $chan1 :$reply"
 	return
 }
@@ -1978,6 +1988,11 @@ if {[string match "*<*" $txt] || [string match "*>*" $txt]} {
 } else {
 	lappend text $txt
 	}  	
+}
+if {[lindex $host 0] == "dcc"} {
+	set idx [lindex $host 1]
+	putidx $idx [join $text]
+	return
 }
 if {$prv == "1"} {
 	putserv "PRIVMSG $nick :[join $text]"
@@ -3966,6 +3981,7 @@ if {[string equal -nocase $total "total"]} {
 proc modul:remain {nick host hand count chan chan1 type modul gl prv} {
 	global black lastbind botnick
 	set otherchan 0
+	set charbind ""
 if {$chan != $chan1} {
 	set otherchan 1
 }
@@ -4086,7 +4102,7 @@ if {$otherchan == "1" || $prv == "1"} {
 if {$msg == ""} {
 	return
 } 
-	blacktools:tell:cmd $nick "" $hand $chan $chan1 $prv $type [string map [array get replace] $msg]
+	blacktools:tell:cmd $nick $host $hand $chan $chan1 $prv $type [string map [array get replace] $msg]
 }
 
 ########################## Other Module Process ######################
