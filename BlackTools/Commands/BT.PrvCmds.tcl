@@ -14,6 +14,7 @@
 ##					                               ##
 #########################################################################
 
+###
 proc command:pubpriv {nick host hand arg} {
 	global black server uptime {server-online} botnick userfile
 	set cmd [lindex [split $arg] 0]
@@ -22,6 +23,11 @@ proc command:pubpriv {nick host hand arg} {
 	set chan1 $nick
 	set found_access 0
 	set mychan_use 0
+if {[lindex $host 0] == "dcc"} {
+	set input $host
+} else {
+	set input "prv"
+}
 if {![regexp {^[&#]} $chan]} {
 if {[validuser $hand]} {
 	set mychan [join [string tolower [getuser $hand XTRA MYCHAN]]]
@@ -40,7 +46,7 @@ if {[matchattr $hand mno|MAO $chan]} {
 	set cmdf [lindex [split $arg] 2]
 	set cmd_used [lindex [split $arg] 3]
 	set text [join [lrange [split $arg] 4 end]]
-	alias:process $nick "prv" $hand $chan $chan $type [list $what $cmdf $cmd_used $text]
+	alias:process $nick $input $hand $chan $chan $type [list $what $cmdf $cmd_used $text]
 	}
 }
 
@@ -52,7 +58,7 @@ if {[matchattr $hand q]} { blacktools:tell $nick $host $hand $chan $chan1 gl.gls
 	set what [lindex [split $arg] 1]
 	set option [lindex [split $arg] 2]
 	set type 2
-	update:process $nick "prv" $hand $chan $chan [list $what $option] $type
+	update:process $nick $input $hand $chan $chan [list $what $option] $type
 	}
 }
 
@@ -119,7 +125,7 @@ if {$return_time == "-1"} {
 if {![regexp {[0-9]} $tm]} {
 	set return_time $black(exempt:default_time)
 }
-	exempt:process $nick "prv" $hand $chan $chan1 $type $ecmd $ehost $return_time $reason $gl $next
+	exempt:process $nick $input $hand $chan $chan1 $type $ecmd $ehost $return_time $reason $gl $next
 	}
 }
 
@@ -127,7 +133,7 @@ login {
 if {[matchattr $hand mn]} {
 	set type 2
 	set chan1 $chan
-	login:process $nick "prv" $hand $chan $chan1
+	login:process $nick $input $hand $chan $chan1
 	}
 }
 
@@ -143,7 +149,7 @@ if {$mychan_use == "1"} {
 if {[matchattr $hand mno|MAO $chan]} {
 	return
 }
-	report:process $nick "prv" $host $hand $chan $chan1 $type $what $message
+	report:process $nick $input $host $hand $chan $chan1 $type $what $message
 }
 
 idle {
@@ -152,13 +158,13 @@ if {[matchattr $hand nmo|M $chan]} {
 	set chan1 "$chan"	
 	set why [lindex [split $arg] 2]
 	set user [lindex [split $arg] 3]
-	set host [lindex [split $arg] 4]
+	set hosts [lindex [split $arg] 4]
 if {$mychan_use == "1"} {
 	set why [lindex [split $arg] 1]
 	set user [lindex [split $arg] 2]
-	set host [lindex [split $arg] 3]
+	set hosts [lindex [split $arg] 3]
 }
-	antidle:process $why $type $user "prv" $nick $hand $chan $chan1
+	antidle:process $why $type $user $input $nick $hand $chan $chan1
 	}
 }
 
@@ -170,7 +176,7 @@ if {[matchattr $hand nmo]} {
 	set what [lindex [split $arg] 1]
 	set delchan [lindex [split $arg] 2]
 	set chan1 $chan
-	link:process $nick "prv" $hand $chan $chan1 $type $what $channels $delchan
+	link:process $nick $input $hand $chan $chan1 $type $what $channels $delchan
 	}
 }
 
@@ -189,7 +195,7 @@ if {$found_access == "1"} {
 	set number [lindex [split $arg] 2]
 	set user_send [lindex [split $arg] 2]
 	set note_send [join [lrange [split $arg] 3 end]]
-	note:process $nick "prv" $hand $chan $chan1 $who $note $user_send $note_send $number $type
+	note:process $nick $input $hand $chan $chan1 $who $note $user_send $note_send $number $type
 	}
 }
 
@@ -231,9 +237,9 @@ if {$who == "*"} {
 	set type 2
 	set chan1 $chan
 if {$mychan_use == "1"} {
-	quote:process $nick "prv" $hand $chan $chan1 $type $who $quote [lrange [split $arg] 1 end] $next
+	quote:process $nick $input $hand $chan $chan1 $type $who $quote [lrange [split $arg] 1 end] $next
 	} else {
-	quote:process $nick "prv" $hand $chan $chan1 $type $who $quote [lrange [split $arg] 2 end] $next
+	quote:process $nick $input $hand $chan $chan1 $type $who $quote [lrange [split $arg] 2 end] $next
 		}
 	}
 }
@@ -312,7 +318,7 @@ if {[setting:get $chan onlyonmode] && ![info exists black(voiceme:stat:$chan)]} 
 	return
 }
 if {[isvoice $nick $chan]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 voiceme.4 none
+	blacktools:tell $nick $input $hand $chan $chan1 voiceme.4 none
 	return
 }
 
@@ -320,7 +326,7 @@ if {[setting:get $chan nologged]} {
 		set code [join [lrange [split $arg] 2 end]]
 if {$code == ""} {
 	set black(voicemecode:$chan) [string toupper [bot:setcode]]
-	blacktools:tell $nick "prv" $hand $chan $chan1 voiceme.5 $black(voicemecode:$chan)
+	blacktools:tell $nick $input $hand $chan $chan1 voiceme.5 $black(voicemecode:$chan)
 foreach tmr [utimers] {
 if {[string match "*unset black(voicemecode:$chan)*" [join [lindex $tmr 1]]]} {
 	killutimer [lindex $tmr 2]
@@ -337,10 +343,10 @@ if {![info exists black(voicemecode:$chan)]} {
 if {[string equal -nocase $code $black(voicemecode:$chan)]} {
 if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {	
 	putserv "PRIVMSG $black(chanserv) :voice $chan $nick"
-	blacktools:tell $nick "prv" $hand $chan $chan1 voiceme.3 none
+	blacktools:tell $nick $input $hand $chan $chan1 voiceme.3 none
 		} else {
 	putserv "MODE $chan +v $nick"
-	blacktools:tell $nick "prv" $hand $chan $chan1 voiceme.3 none
+	blacktools:tell $nick $input $hand $chan $chan1 voiceme.3 none
 		}
 	}
 } else {
@@ -356,11 +362,12 @@ if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 }
 
 unbanme {
-
+if {[lindex $host 0] == "dcc"} {
+	return
+}
 if {![regexp {^[&#]} $chan]} {
 	return
 }
-
 if {![validchan $chan]} {
 	return
 }
@@ -389,7 +396,7 @@ if {$found_ban == "0"} {
 
 if {$code == ""} {
 	set black(botcode:$chan) [string toupper [bot:setcode]]
-	blacktools:tell $nick "prv" $hand $chan $chan1 bot.6 $black(botcode:$chan)
+	blacktools:tell $nick $input $hand $chan $chan1 bot.6 $black(botcode:$chan)
 foreach tmr [utimers] {
 if {[string match "*unset black(botcode:$chan)*" [join [lindex $tmr 1]]]} {
 	killutimer [lindex $tmr 2]
@@ -417,7 +424,7 @@ if {[setting:get $chan xonly] || [setting:get $chan xtools]} {
 	putquick "PRIVMSG $black(chanserv) :unban $chan $read_host"
 						}
 	blacktools:auto:remove $read_host $chan
-	blacktools:tell $nick "prv" $hand $chan $chan1 bot.7 none
+	blacktools:tell $nick $input $hand $chan $chan1 bot.7 none
 				}
 			}
 		}
@@ -434,7 +441,7 @@ if {$mychan_use == "1"} {
 }
 	set chan1 "$chan"
 	set type "2"
-	enable:process $nick "prv" $hand $chan $chan1 $type $what $user
+	enable:process $nick $input $hand $chan $chan1 $type $what $user
 	}
 }
 
@@ -448,7 +455,7 @@ if {$mychan_use == "1"} {
 }
 	set chan1 "$chan"
 	set type "2"
-	disable:process $nick "prv" $hand $chan $chan1 $type $what $user
+	disable:process $nick $input $hand $chan $chan1 $type $what $user
 	}
 }
 
@@ -462,7 +469,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	userhost:act $drone $nick $hand "prv" $chan $chan1 $type $black(dr:bantime) "dr" "$com" "0"
+	userhost:act $drone $nick $hand $input $chan $chan1 $type $black(dr:bantime) "dr" "$com" "0"
 	}
 }
 
@@ -476,7 +483,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	userhost:act $bot $nick "$hand:bot" "prv" $chan $chan1 $type $black(bot:bantime) "bot" "$com" "0"
+	userhost:act $bot $nick "$hand:bot" $input $chan $chan1 $type $black(bot:bantime) "bot" "$com" "0"
 	}
 }
 
@@ -492,19 +499,19 @@ if {$mychan_use == "1"} {
 	set chan1 "$chan"
 	
 if {[setting:get $chan nextshortcmd]} {
-	nextpublic:process $nick "prv" $hand $chan $chan1 $badnick
+	nextpublic:process $nick $input $hand $chan $chan1 $badnick
 	return
 }
 
 if {[regexp {\*} $badnick]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 gl.instr_priv "n"
+	blacktools:tell $nick $input $hand $chan $chan1 gl.instr_priv "n"
 	return
 }
 if {$badnick == ""} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 gl.instr_priv "n"
+	blacktools:tell $nick $input $hand $chan $chan1 gl.instr_priv "n"
 	return
 		}
-	bancmds:process $badnick $badnick $nick $hand "prv" $chan $chan1 $type $black(n:bantime) "n" "$com" "0"
+	bancmds:process $badnick $badnick $nick $hand $input $chan $chan1 $type $black(n:bantime) "n" "$com" "0"
 	}
 }
 
@@ -519,7 +526,7 @@ if {$mychan_use == "1"} {
 	set handle [nick2hand $badident]
 	set type 2
 	set chan1 "$chan"
-	userhost:act $badident $nick $hand "prv" $chan $chan1 $type $black(id:bantime) "id" "$com" "0"
+	userhost:act $badident $nick $hand $input $chan $chan1 $type $black(id:bantime) "id" "$com" "0"
 	}
 }
 
@@ -533,7 +540,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	userhost:act $spammer $nick $hand "prv" $chan $chan1 $type $black(spam:bantime) "spam" "$com" "0"
+	userhost:act $spammer $nick $hand $input $chan $chan1 $type $black(spam:bantime) "spam" "$com" "0"
 	}
 }
 
@@ -548,7 +555,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	userhost:act $badw $nick $hand "prv" $chan $chan1 $type $black(bw:bantime) "bw" "$com" "0"
+	userhost:act $badw $nick $hand $input $chan $chan1 $type $black(bw:bantime) "bw" "$com" "0"
 	}
 }
 
@@ -562,7 +569,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	userhost:act $badd $nick $hand "prv" $chan $chan1 $type $black(mb:bantime) "mb" $reason "0"
+	userhost:act $badd $nick $hand $input $chan $chan1 $type $black(mb:bantime) "mb" $reason "0"
 	}
 }
 
@@ -576,7 +583,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	userhost:act $blackb $nick $hand "prv" $chan $chan1 $type "0" "black" $reason "0"
+	userhost:act $blackb $nick $hand $input $chan $chan1 $type "0" "black" $reason "0"
 	}
 }
 
@@ -590,7 +597,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	userhost:act $blackb $nick $hand "prv" $chan $chan1 $type "0" "black" $reason "0"
+	userhost:act $blackb $nick $hand $input $chan $chan1 $type "0" "black" $reason "0"
 	}
 }
 
@@ -759,19 +766,19 @@ if {$return_time == "-1"} {
 }
 	
 if {[setting:get $chan nextshortcmd]} {
-	noidlepublic:process $nick "prv" $hand $chan $chan1 $b 0
+	noidlepublic:process $nick $input $hand $chan $chan1 $b 0
 	return
 }
 
 if {($return_time > "20160" || $return_time == "0")  && [matchattr $hand -|OS $b]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 b.6 none
+	blacktools:tell $nick $input $hand $chan $chan1 b.6 none
 	return
 }
 if {$return_time == "-1"} {
 	set return_time $black(b:bantime)
 }
 if {[llength $level] > "1"} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 gl.invalidlevel [string map {"0" ""} $level]
+	blacktools:tell $nick $input $hand $chan $chan1 gl.invalidlevel [string map {"0" ""} $level]
 	return
 }
 
@@ -782,14 +789,14 @@ if {$regex == 1} {
 }
 
 if {$level != ""} {
-	userhost:act $b $nick "$hand:$level" "prv" $chan $chan1 $type $return_time $cmd $reason $gl
+	userhost:act $b $nick "$hand:$level" $input $chan $chan1 $type $return_time $cmd $reason $gl
 } else {
 if {$link == "1"} {
-	userhost:act $b $nick "$hand" "prv" $chan $chan1 $type $return_time $cmd $reason "2"
-	utimer 5 [list blacktools:link_ban [link:chan:get $chan] 0 $b $nick $hand "prv" $chan $chan1 $type $return_time $cmd $reason 2]
+	userhost:act $b $nick "$hand" $input $chan $chan1 $type $return_time $cmd $reason "2"
+	utimer 5 [list blacktools:link_ban [link:chan:get $chan] 0 $b $nick $hand $input $chan $chan1 $type $return_time $cmd $reason 2]
 	return
 }
-	userhost:act $b $nick "$hand" "prv" $chan $chan1 $type $return_time $cmd $reason $gl
+	userhost:act $b $nick "$hand" $input $chan $chan1 $type $return_time $cmd $reason $gl
 		}
 	}
 }
@@ -819,14 +826,14 @@ if {$mychan_use == "1"} {
 	set type 2
 	set chan1 "$chan"
 if {($return_time > "20160" || $return_time == "0")  && [matchattr $hand -|OS $stickb]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 b.6 none
+	blacktools:tell $nick $input $hand $chan $chan1 b.6 none
 	return
 }
 
 if {$return_time == "-1"} {
 	set return_time $black(stick:bantime)
 }
-	userhost:act $stickb $nick $hand "prv" $chan $chan1 $type $return_time "stick" $reason "0"
+	userhost:act $stickb $nick $hand $input $chan $chan1 $type $return_time "stick" $reason "0"
 	}
 }
 
@@ -858,11 +865,11 @@ if {$regexp == "1"} {
 	set cmd [list $cmd "REGEX"]
 }
 if {[string equal -nocase $why "global"] && [matchattr $hand nm]} {
-	ub:process $ban $ban $nick $hand $host $chan $chan1 $type "1" $cmd "" "" "prv"
+	ub:process $ban $ban $nick $hand $host $chan $chan1 $type "1" $cmd "" "" $input
 } elseif {[string equal -nocase $why "link"] && [matchattr $hand nm]} {
-	ub:process $ban $ban $nick $hand $host $chan $chan1 $type "" $cmd "" "1" "prv"
+	ub:process $ban $ban $nick $hand $host $chan $chan1 $type "" $cmd "" "1" $input
 } else {
-	ub:process $ban $ban $nick $hand $host $chan $chan1 $type "" $cmd "" "" "prv"
+	ub:process $ban $ban $nick $hand $host $chan $chan1 $type "" $cmd "" "" $input
 		}
 	}
 }
@@ -879,8 +886,8 @@ if {$mychan_use == "1"} {
 	set handle [nick2hand $knick]
 	set chan1 "$chan"
 if {$knick != ""} {
-	k:process $knick $nick $hand "prv" $reason $chan $chan1 $type
-		} else {k:process $knick $nick $hand "prv" $reason $chan $chan1 $type}
+	k:process $knick $nick $hand $input $reason $chan $chan1 $type
+		} else {k:process $knick $nick $hand $input $reason $chan $chan1 $type}
 	}
 }
 
@@ -894,8 +901,8 @@ if {$mychan_use == "1"} {
 	set handle [nick2hand $wnick]
 	set chan1 "$chan"
 if {$wnick != ""} {
-	w:process $wnick $nick $hand "prv" $chan $chan1 $type
-		} else { w:process $wnick $nick $hand "prv" $chan $chan1 $type }
+	w:process $wnick $nick $hand $input $chan $chan1 $type
+		} else { w:process $wnick $nick $hand $input $chan $chan1 $type }
 	}
 }
 
@@ -908,8 +915,8 @@ if {$mychan_use == "1"} {
 	set type 2
 	set chan1 "$chan"
 if {$gagger != ""} {
-	ungag:process $gagger $nick $hand "prv" $chan $chan1 $type
-	} else { ungag:process $gagger $nick $hand "prv" $chan $chan1 $type }
+	ungag:process $gagger $nick $hand $input $chan $chan1 $type
+	} else { ungag:process $gagger $nick $hand $input $chan $chan1 $type }
 	}
 }
 
@@ -936,8 +943,8 @@ if {$time == ""} {
 }
 
 if {$gagger != ""} {
-	gag:process $gagger $time $reason $nick "$hand:GAG" "prv" $chan $chan1 $type
-		} else { gag:process $gagger $time $reason $nick $hand "prv" $chan $chan1 $type }
+	gag:process $gagger $time $reason $nick "$hand:GAG" $input $chan $chan1 $type
+		} else { gag:process $gagger $time $reason $nick $hand $input $chan $chan1 $type }
 	}
 }
 
@@ -949,7 +956,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	show:process $nick "prv" $hand $chan $chan1 $wich $type
+	show:process $nick $input $hand $chan $chan1 $wich $type
 	}
 }
 
@@ -962,10 +969,10 @@ if {[regexp {^[&#]} $chan] && [matchattr $hand nmo|M $chan] && ($why != "")} {
 	set chan1 "$chan"
 	set clone [join [lrange [split $arg] 3 end]]
 	set number [lindex [split $arg] 3]
-	prot:module:process $nick "prv" $hand $chan $chan1 $chan $clone $type $number "clonescan"
+	prot:module:process $nick $input $hand $chan $chan1 $chan $clone $type $number "clonescan"
 	return
 		}
-	scanner:process $nick "prv" $hand $chan $chan1 $type
+	scanner:process $nick $input $hand $chan $chan1 $type
 	}
 }
 
@@ -990,27 +997,27 @@ if {[string equal -nocase $bhost "-regex"]} {
 	set chan1 "$chan"
 if {$bhost != ""} {
 if {[regexp {^[0-9]} $bhost]} {
-	sb:process $bhost "prv" $nick $hand $host $chan $chan1 $type "sb" "2"
+	sb:process $bhost $input $nick $hand $host $chan $chan1 $type "sb" "2"
 	return
 }
 if {![validchan $chan]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 gl.novalidchan none
+	blacktools:tell $nick $input $hand $chan $chan1 gl.novalidchan none
 	return
 }
 if {[onchan $bhost $chan]} {
 	set bhost "$bhost![getchanhost $bhost $chan]"
-	sb:process $bhost "prv" $nick $hand $host $chan $chan1 $type "sb" "1"
+	sb:process $bhost $input $nick $hand $host $chan $chan1 $type "sb" "1"
 	return
 }
 if {$regexp == 1} {
-	sb:process $bhost "prv" $nick $hand $host $chan $chan1 $type [list "sb" "REGEX"] "1"
+	sb:process $bhost $input $nick $hand $host $chan $chan1 $type [list "sb" "REGEX"] "1"
 	return
 } elseif {[regexp {\*} $bhost]} {
-	sb:process $bhost "prv" $nick $hand $host $chan $chan1 $type "sb" "1"
+	sb:process $bhost $input $nick $hand $host $chan $chan1 $type "sb" "1"
 	return
 }
-	sb:process $bhost "prv" $nick $hand $host $chan $chan1 $type "sb" ""
-		} else { sb:process $bhost "prv" $nick $hand $host $chan $chan1 $type "sb" ""}
+	sb:process $bhost $input $nick $hand $host $chan $chan1 $type "sb" ""
+		} else { sb:process $bhost $input $nick $hand $host $chan $chan1 $type "sb" ""}
 	}
 }
 
@@ -1027,7 +1034,7 @@ if {[string equal -nocase $chan "global"]} {
 }
 	set type 2
 	set chan1 "$chan"
-	banlist:process $nick "prv" $hand $chan $chan1 $user $type "banlist" $next
+	banlist:process $nick $input $hand $chan $chan1 $user $type "banlist" $next
 	}
 }
 
@@ -1036,10 +1043,10 @@ if {[matchattr $hand nmo|MAO $chan]} {
 	set c [lindex [split $arg] 1]
 	set chan1 $chan
 if {$c != "" && [matchattr $hand nmo|AMO $c]} {
-	topic:refresh $nick "prv" $hand $c $chan1 $arg
+	topic:refresh $nick $input $hand $c $chan1 $arg
 	return
 }
-	topic:refresh $nick "prv" $hand $chan $chan1 $arg
+	topic:refresh $nick $input $hand $chan $chan1 $arg
 	}
 }
 
@@ -1047,7 +1054,7 @@ man {
 if {[matchattr $hand nmo|MASOV $chan]} {
 	set command [lindex [split $arg] 1]
 	set type 0
-	man:process $nick "prv" $hand $chan $chan1 $type $command
+	man:process $nick $input $hand $chan $chan1 $type $command
 	}
 }
 
@@ -1062,14 +1069,14 @@ if {$mychan_use == "1"} {
 	set user [lindex [split $arg] 2]
 	set gl [lindex [split $arg] 3]
 }
-	auto:process $nick "prv" $hand $chan $chan1 $user $option $gl $type 
+	auto:process $nick $input $hand $chan $chan1 $user $option $gl $type 
 	}
 }
 
 version {
 if {[matchattr $hand nmo|MASOV $chan]} {
 	set text [lindex [split $arg] 1]
-	version:process $nick "prv" $hand $chan $chan1 $text
+	version:process $nick $input $hand $chan $chan1 $text
 	}
 }
 
@@ -1098,7 +1105,7 @@ if {[regexp {^[&#]} $wseen] && [matchattr $hand nmo|MAOV $wseen]} {
 channels {
 if {[matchattr $hand nmo]} {
 	set chan1 "$nick"
-	channels:process $nick "prv" $hand $chan $chan1
+	channels:process $nick $input $hand $chan $chan1
 	}
 }
 
@@ -1111,10 +1118,10 @@ if {$mychan_use == "1"} {
 	set level [lindex [split $arg] 1]
 }
 if {([string equal -nocase $chan [blacktools:getlevelname 2 $hand]] || [string equal -nocase $chan [blacktools:getlevelname 8 $hand]]) && [matchattr $hand nmo]} {
-	userlist:execute $hand "prv" $chan $chan $chan1 $nick $type
+	userlist:execute $hand $input $chan $chan $chan1 $nick $type
 	return
 }
-	userlist:execute $hand "prv" $level $chan $chan1 $nick $type
+	userlist:execute $hand $input $level $chan $chan1 $nick $type
 	}
 }
 
@@ -1124,7 +1131,7 @@ if {[matchattr $hand nmo|M $chan]} {
 	set chandle [lindex [split $arg] 2]
 	set type 2
 	set chan1 "$nick"
-	chuser:process $nick "prv" $hand $chan $chan1 $user $chandle $type
+	chuser:process $nick $input $hand $chan $chan1 $user $chandle $type
 	}
 }
 
@@ -1140,7 +1147,7 @@ if {$mychan_use == "1"} {
 	set except [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
 		}
-	prot:module:process $nick "prv" $hand $chan $chan1 $why $except $type $number "securemode"
+	prot:module:process $nick $input $hand $chan $chan1 $why $except $type $number "securemode"
 	}
 }
 
@@ -1150,7 +1157,7 @@ if {[matchattr $hand nmo|MA $chan]} {
 	set type 2
 	set chan1 "$chan"
 	set hosts [lindex [split $arg] 2]
-	delhost:process $nick "prv" $hand $chan $chan1 $user $hosts $type
+	delhost:process $nick $input $hand $chan $chan1 $user $hosts $type
 	}
 }
 
@@ -1161,7 +1168,7 @@ if {[matchattr $hand nmo|MA $chan]} {
 	set chan1 "$chan"
 	set user [lindex [split $arg] 1]
 	set hosts [lindex [split $arg] 2]
-	addhost:process $nick "prv" $hand $chan $chan1 $user $hosts $type
+	addhost:process $nick $input $hand $chan $chan1 $user $hosts $type
 	}
 }
 
@@ -1170,7 +1177,7 @@ if {[matchattr $hand nmo|M $chan]} {
 	set args [lrange [split $arg] 1 end]
 	set type 2
 	set chan1 "$chan"
-	del:process $nick "prv" $hand $chan $chan1 $args $type
+	del:process $nick $input $hand $chan $chan1 $args $type
 	}
 }
 
@@ -1183,11 +1190,10 @@ if {$mychan_use == "1"} {
 	set type 2
 	set chan1 "$chan"
 foreach user $args {
-	delacc:process $nick "prv" $hand $chan $chan1 $user $type
+	delacc:process $nick $input $hand $chan $chan1 $user $type
 		}
 	}
 }
-
 
 add {
 if {[matchattr $hand nmo|MA $chan]} {
@@ -1213,13 +1219,13 @@ if {[validchan $chan] && [onchan $user $chan]} {
 	set handle [nick2hand $user]
 	set hosts [getchanhost $user $chan]
 	set uhost [return_mask $black(hostdefaultadd) $hosts $user]
-	add:process $user $uhost $handle $level $hand "prv" $chan $chan1 $nick $type "add" $reason "ban"
+	add:process $user $uhost $handle $level $hand $input $chan $chan1 $nick $type "add" $reason "ban"
 } else {
 if {![string is alnum $user]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 add.18 none
+	blacktools:tell $nick $input $hand $chan $chan1 add.18 none
 	continue
 }
-	add:process $user $uhost $handle $level $hand "prv" $chan $chan1 $nick $type "add" $reason "ban"
+	add:process $user $uhost $handle $level $hand $input $chan $chan1 $nick $type "add" $reason "ban"
 		}
 	}
 	return
@@ -1230,18 +1236,18 @@ if {[validchan $chan] && [onchan $user $chan]} {
 	set handle [nick2hand $user]
 	set hosts [getchanhost $user $chan]
 	set uhost [return_mask $black(hostdefaultadd) $hosts $user]
-	add:process $user $uhost $handle $level $hand "prv" $chan $chan1 $nick $type "add" "" ""
+	add:process $user $uhost $handle $level $hand $input $chan $chan1 $nick $type "add" "" ""
 	continue
 } else {
 if {![string is alnum $user]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 add.18 none
+	blacktools:tell $nick $input $hand $chan $chan1 add.18 none
 	continue
 }
-	add:process $user $uhost $handle $level $hand "prv" $chan $chan1 $nick $type "add" "" ""
+	add:process $user $uhost $handle $level $hand $input $chan $chan1 $nick $type "add" "" ""
 					}
 				}
 			}
-		} else {  add:process "" $uhost $handle $level $hand "prv" $chan $chan1 $nick $type "add" "" ""}	
+		} else {  add:process "" $uhost $handle $level $hand $input $chan $chan1 $nick $type "add" "" ""}	
 	}
 }
 
@@ -1252,29 +1258,29 @@ if {[matchattr $hand nmo]} {
 if {$cmd_status == "1"} { 
 	return 
 }
-if {[matchattr $hand q]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.glsuspend none
+if {[matchattr $hand q]} { blacktools:tell $nick $input $hand $chan $chan1 gl.glsuspend none
 	return
 }
 	set chan1 "$chan"
-if {$chan == ""} {blacktools:tell $nick "prv" $hand $chan $chan1 gl.instr_priv "suspend"
+if {$chan == ""} {blacktools:tell $nick $input $hand $chan $chan1 gl.instr_priv "suspend"
 	return
 }
 if {![regexp {^[&#]} $chan]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 gl.novalidchan none
+	blacktools:tell $nick $input $hand $chan $chan1 gl.novalidchan none
 	return
 }
-if {![validchan $chan]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.novalidchan none
+if {![validchan $chan]} { blacktools:tell $nick $input $hand $chan $chan1 gl.novalidchan none
 	return
 }
 
 if {[channel get $chan inactive]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 suspend.3 $chan
+	blacktools:tell $nick $input $hand $chan $chan1 suspend.3 $chan
 	return
 }
 	channel set $chan +inactive
 if {$reason == ""} { set reason "N/A" }
 	suspendchan:note $hand $chan $reason
-	blacktools:tell $nick "prv" $hand $chan $chan1 suspend.4 $chan
+	blacktools:tell $nick $input $hand $chan $chan1 suspend.4 $chan
 	}
 }
 
@@ -1284,29 +1290,29 @@ if {[matchattr $hand nmo]} {
 if {$cmd_status == "1"} { 
 	return 
 }
-if {[matchattr $hand q]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.glsuspend none
+if {[matchattr $hand q]} { blacktools:tell $nick $input $hand $chan $chan1 gl.glsuspend none
 	return
 }
 	set chan1 "$chan"
-if {$chan == ""} {blacktools:tell $nick "prv" $hand $chan $chan1 gl.instr_priv "unsuspend"
+if {$chan == ""} {blacktools:tell $nick $input $hand $chan $chan1 gl.instr_priv "unsuspend"
 	return
 }
 
 if {![regexp {^[&#]} $chan]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 gl.novalidchan none
+	blacktools:tell $nick $input $hand $chan $chan1 gl.novalidchan none
 	return
 }
  
-if {![validchan $chan]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.novalidchan none
+if {![validchan $chan]} { blacktools:tell $nick $input $hand $chan $chan1 gl.novalidchan none
 	return
 }
 
 if {![channel get $chan inactive]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 unsuspend.3 $chan
+	blacktools:tell $nick $input $hand $chan $chan1 unsuspend.3 $chan
 	return
 }
 	channel set $chan -inactive
-	blacktools:tell $nick "prv" $hand $chan $chan1 unsuspend.4 $chan
+	blacktools:tell $nick $input $hand $chan $chan1 unsuspend.4 $chan
 	}
 }
 
@@ -1317,19 +1323,19 @@ if {[matchattr $hand nmo]} {
 if {$cmd_status == "1"} { 
 	return 
 }
-if {[matchattr $hand q]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.glsuspend none
+if {[matchattr $hand q]} { blacktools:tell $nick $input $hand $chan $chan1 gl.glsuspend none
 	return
 }
 	set chan1 "$chan"
-if {$chan == ""} {blacktools:tell $nick "prv" $hand $chan $chan1 gl.instr_priv "delchan"
+if {$chan == ""} {blacktools:tell $nick $input $hand $chan $chan1 gl.instr_priv "delchan"
 	return
 }
 if {![regexp {^[&#]} $chan]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 gl.novalidchan none 
+	blacktools:tell $nick $input $hand $chan $chan1 gl.novalidchan none 
 	return
 } 
 
-if {![validchan $chan]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.novalidchan none
+if {![validchan $chan]} { blacktools:tell $nick $input $hand $chan $chan1 gl.novalidchan none
 	return
 }
 	set getlang [string tolower [getuser $hand XTRA OUTPUT_LANG]]
@@ -1337,7 +1343,7 @@ if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 
 if {!($black(homechan) == "") && ![string equal -nocase $black(homechan) "#no_home_chan"]} {
 if {[string equal -nocase $chan $black(homechan)]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 delchan.5 $chan
+	blacktools:tell $nick $input $hand $chan $chan1 delchan.5 $chan
 	return
 	}
 }
@@ -1345,7 +1351,7 @@ if {[string equal -nocase $chan $black(homechan)]} {
 	delchan:all $chan
 if {$reason == ""} { set reason "N/A" }
 	delchan:note $hand $chan $reason
-	blacktools:tell $nick "prv" $hand $chan $chan1 delchan.3 $chan
+	blacktools:tell $nick $input $hand $chan $chan1 delchan.3 $chan
 	}
 }
 
@@ -1355,27 +1361,27 @@ if {[matchattr $hand nmo]} {
 if {$cmd_status == "1"} { 
 	return 
 }
-if {[matchattr $hand q]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.glsuspend none
+if {[matchattr $hand q]} { blacktools:tell $nick $input $hand $chan $chan1 gl.glsuspend none
 	return
 }
 	set key [lindex [split $arg] 2]
 	set chan1 "$chan"
 if {$chan == ""} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 gl.instr_priv "addchan"
+	blacktools:tell $nick $input $hand $chan $chan1 gl.instr_priv "addchan"
 	return
 }
 
 if {![regexp {^[&#]} $chan]} {	
-	blacktools:tell $nick "prv" $hand $chan $chan1 gl.novalidchan none
+	blacktools:tell $nick $input $hand $chan $chan1 gl.novalidchan none
 	return
 } 
 
 if {[validchan $chan]} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 addchan.2 $chan
+	blacktools:tell $nick $input $hand $chan $chan1 addchan.2 $chan
 	return
 } else {
 	channel add $chan
-	blacktools:tell $nick "prv" $hand $chan $chan1 addchan.3 $chan
+	blacktools:tell $nick $input $hand $chan $chan1 addchan.3 $chan
 if {$key != ""} {
 	putquick "JOIN $chan :$key"
 	channel set $chan chanmode "+ntk $key"
@@ -1390,14 +1396,14 @@ if {[matchattr $hand nm]} {
 if {$cmd_status == "1"} { 
 	return 
 }
-if {[matchattr $hand q]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.glsuspend none
+if {[matchattr $hand q]} { blacktools:tell $nick $input $hand $chan $chan1 gl.glsuspend none
 	return
 }
 	set chan1 "$chan"
 	set reason [join [lrange [split $arg] 1 end]]
 	set getlang [string tolower [getuser $hand XTRA OUTPUT_LANG]]
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
-	blacktools:tell $nick "prv" $hand $chan $chan1 die.1 none
+	blacktools:tell $nick $input $hand $chan $chan1 die.1 none
 if {$reason == ""} {
 	set text [black:color:set "" $black(say.$getlang.die.2)]
 	set reply [join $text]
@@ -1413,16 +1419,16 @@ if {[matchattr $hand nm]} {
 if {$cmd_status == "1"} { 
 	return 
 }
-if {[matchattr $hand q]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.glsuspend none
+if {[matchattr $hand q]} { blacktools:tell $nick $input $hand $chan $chan1 gl.glsuspend none
 	return
 }
 set chan1 "$chan"
 set serv [lindex [split $arg] 1]
 if {$serv == ""} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 jump.1 "..."
+	blacktools:tell $nick $input $hand $chan $chan1 jump.1 "..."
 	utimer 3 [list jump]
 } else {
-	blacktools:tell $nick "prv" $hand $chan $chan1 jump.1 "\002$serv\002"
+	blacktools:tell $nick $input $hand $chan $chan1 jump.1 "\002$serv\002"
 	utimer 3 [list jump $serv]
 		}	
 	}
@@ -1434,11 +1440,11 @@ if {[matchattr $hand nm]} {
 if {$cmd_status == "1"} { 
 	return 
 }
-if {[matchattr $hand q]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.glsuspend none
+if {[matchattr $hand q]} { blacktools:tell $nick $input $hand $chan $chan1 gl.glsuspend none
 	return
 }
 	set chan1 "$chan"
-	blacktools:tell $nick "prv" $hand $chan $chan1 save.1 none
+	blacktools:tell $nick $input $hand $chan $chan1 save.1 none
 	save
 	}
 }
@@ -1449,11 +1455,11 @@ if {[matchattr $hand nm]} {
 if {$cmd_status == "1"} { 
 	return 
 }
-if {[matchattr $hand q]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.glsuspend none
+if {[matchattr $hand q]} { blacktools:tell $nick $input $hand $chan $chan1 gl.glsuspend none
 	return
 }
 	set chan1 "$chan"
-	blacktools:tell $nick "prv" $hand $chan $chan1 restart.1 none
+	blacktools:tell $nick $input $hand $chan $chan1 restart.1 none
 	utimer 3 [list restart]
 	}
 }
@@ -1465,11 +1471,11 @@ if {[matchattr $hand nm]} {
 if {$cmd_status == "1"} { 
 	return 
 }
-if {[matchattr $hand q]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.glsuspend none
+if {[matchattr $hand q]} { blacktools:tell $nick $input $hand $chan $chan1 gl.glsuspend none
 	return
 }
 	set chan1 "$chan"
-	blacktools:tell $nick "prv" $hand $chan $chan1 rehash.1 none
+	blacktools:tell $nick $input $hand $chan $chan1 rehash.1 none
 	rehash
 	}
 }
@@ -1479,7 +1485,7 @@ if {[matchattr $hand nm]} {
 	set thenick [lindex [split $arg] 1]
 	set chan1 $chan
 	set type 2
-	tempnick:process $thenick $nick "prv" $hand $chan $chan1 $type
+	tempnick:process $thenick $nick $input $hand $chan $chan1 $type
 	}
 }
 
@@ -1489,7 +1495,7 @@ if {[matchattr $hand nmo]} {
 	set chan1 "$chan"
 	set type 2
 	set msg [join [lrange [split $arg] 2 end]]
-	msg:process $nick "prv" $hand $chan $chan1 $who $msg $type
+	msg:process $nick $input $hand $chan $chan1 $who $msg $type
 	}
 }
 
@@ -1499,7 +1505,7 @@ if {[matchattr $hand nmo|OMA $chan]} {
 	set chan1 "$chan"
 	set type 2
 	set msg [join [lrange [split $arg] 3 end]]
-	omsg:process $nick "prv" $hand $chan $chan1 $who $msg $type
+	omsg:process $nick $input $hand $chan $chan1 $who $msg $type
 	}
 }
 
@@ -1520,12 +1526,12 @@ if {[matchattr $hand mn]} {
 if {[string equal -nocase "global" $chan]} {
 	set chan "$flags"
 	foreach c [channels] {
-	set:process $nick "prv" $hand $c $chan1 $flags $type $type1	
+	set:process $nick $input $hand $c $chan1 $flags $type $type1	
 		}
 		return
 			}
 		}
-	set:process $nick "prv" $hand $chan $chan1 $flags $type $type1
+	set:process $nick $input $hand $chan $chan1 $flags $type $type1
 	}
 }
 
@@ -1539,7 +1545,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	mode:process $nick "prv" $hand $chan $chan1 $modes $type $hosts
+	mode:process $nick $input $hand $chan $chan1 $modes $type $hosts
 	}
 }
 
@@ -1550,7 +1556,7 @@ if {$mychan_use == "1"} {
 	set reason [join [lrange [split $arg] 1 end]]
 }
 	set chan1 "$chan"
-	cycle:process $nick "prv" $hand $chan $chan1 $reason
+	cycle:process $nick $input $hand $chan $chan1 $reason
 	}
 }
 
@@ -1562,10 +1568,10 @@ if {$mychan_use == "1"} {
 }
 	set chan1 "$chan"
 if {$reason == ""} {
-	blacktools:tell $nick "prv" $hand $chan $chan1 purge.1 none
+	blacktools:tell $nick $input $hand $chan $chan1 purge.1 none
 	return
 }
-	purge:process $nick "prv" $hand $chan $chan1 $reason
+	purge:process $nick $input $hand $chan $chan1 $reason
 	}
 }
 
@@ -1574,7 +1580,7 @@ if {[matchattr $hand nm]} {
 	set text [join [lrange [split $arg] 2 end]]	
 	set chan1 "$chan"
 	set type 2
-	broadcast:cmd:process $nick "prv" $hand $chan $chan1 $text $type
+	broadcast:cmd:process $nick $input $hand $chan $chan1 $text $type
 	}
 }
 
@@ -1588,7 +1594,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	act:process $nick "prv" $hand $chan $chan1 $text $type
+	act:process $nick $input $hand $chan $chan1 $text $type
 	}
 }
 
@@ -1602,7 +1608,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	say:process $nick "prv" $hand $chan $chan1 $text $type
+	say:process $nick $input $hand $chan $chan1 $text $type
 	}
 }
 
@@ -1613,7 +1619,7 @@ if {$mychan_use == "1"} {
 	set voicex [join [lrange [split $arg] 1 end]]
 }
 	set chan1 "$chan"
-	v:process $nick "prv" $hand $chan $chan1 $voicex
+	v:process $nick $input $hand $chan $chan1 $voicex
 	}
 }
 
@@ -1624,7 +1630,7 @@ if {$mychan_use == "1"} {
 	set hopex [join [lrange [split $arg] 1 end]]
 }
 	set chan1 "$chan"
-	ho:process $nick "prv" $hand $chan $chan1 $hopex
+	ho:process $nick $input $hand $chan $chan1 $hopex
 	}
 }
 
@@ -1635,7 +1641,7 @@ if {$mychan_use == "1"} {
 	set opex [join [lrange [split $arg] 1 end]]
 }
 	set chan1 "$chan"
-	o:process $nick "prv" $hand $chan $chan1 $opex
+	o:process $nick $input $hand $chan $chan1 $opex
 	}
 }
 
@@ -1649,7 +1655,7 @@ if {$mychan_use == "1"} {
 	set why [lindex [split $arg] 1]
 	set user [lindex [split $arg] 2]
 }
-	private:process $nick "prv" $hand $chan $chan1 $why $user $type
+	private:process $nick $input $hand $chan $chan1 $why $user $type
 	}
 }
 
@@ -1668,7 +1674,7 @@ if {[regexp {^[&#]} $chan] && [validuser $hand]} {
 	set typez [lindex [split $arg] 2]
 	set chan2 [lindex [split $arg] 3]
 	set arg [join [lrange [split $arg] 2 end]]
-	myset:process $nick "prv" $hand $chan $chan1 $flags $typez $type $chan2 $arg
+	myset:process $nick $input $hand $chan $chan1 $flags $typez $type $chan2 $arg
 	}
 }
 
@@ -1679,10 +1685,10 @@ if {$cmd_status == "1"} {
 	return 
 }
 	set getlang [string tolower [getuser $hand XTRA OUTPUT_LANG]]
-if {[matchattr $hand q]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.glsuspend none
+if {[matchattr $hand q]} { blacktools:tell $nick $input $hand $chan $chan1 gl.glsuspend none
 	return
 }
-if {[matchattr $hand -|q $chan]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.suspend none
+if {[matchattr $hand -|q $chan]} { blacktools:tell $nick $input $hand $chan $chan1 gl.suspend none
 	return
 }
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
@@ -1700,16 +1706,16 @@ if {$data == ""} {
 	set read_maxup [return_time_2 $getlang [lindex [split $data] 0]]
 	set read_maxon [return_time_2 $getlang [lindex [split $data] 1]]
 }
-	blacktools:tell $nick "prv" $hand $chan $chan1 maxup.1 "$up $read_maxup"
-	blacktools:tell $nick "prv" $hand $chan $chan1 maxon.1 "$on $read_maxon"
-	blacktools:tell $nick "prv" $hand $chan $chan1 uptime.2 $shelluptime
-	blacktools:tell $nick "prv" $hand $chan $chan1 uptime.3 $server
+	blacktools:tell $nick $input $hand $chan $chan1 maxup.1 "$up $read_maxup"
+	blacktools:tell $nick $input $hand $chan $chan1 maxon.1 "$on $read_maxon"
+	blacktools:tell $nick $input $hand $chan $chan1 uptime.2 $shelluptime
+	blacktools:tell $nick $input $hand $chan $chan1 uptime.3 $server
 	}
 }
 
 status {
 if {[matchattr $hand nmo]} {
-	status:process $nick "prv" $hand $chan
+	status:process $nick $input $hand $chan
 	}
 }
 
@@ -1721,7 +1727,7 @@ if {$mychan_use == "1"} {
 }
 	set type 2
 	set chan1 "$chan"
-	t:process $nick "prv" $hand $chan $chan1 $topics $type
+	t:process $nick $input $hand $chan $chan1 $topics $type
 	}
 }
 
@@ -1731,7 +1737,7 @@ if {[matchattr $hand n]} {
 	set chan1 "$chan"
 	set the_script [lindex [split $arg] 2]
 	set who [lindex [split $arg] 1]
-	tcl:process $nick "prv" $hand $chan $chan1 $type $the_script $who
+	tcl:process $nick $input $hand $chan $chan1 $type $the_script $who
 	}
 }
 
@@ -1747,7 +1753,7 @@ if {$mychan_use == "1"} {
 	set message [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
 }
-	anunt:process $nick "prv" $hand $chan $chan1 $who $message $number $type
+	anunt:process $nick $input $hand $chan $chan1 $who $message $number $type
 	}
 }
 
@@ -1760,7 +1766,7 @@ if {[regexp {^[&#]} $command]} {
 	set chan $command
 	set command [lindex [split $arg] 2]
 }
-	h:process $nick "prv" $hand $chan $chan1 $command $type
+	h:process $nick $input $hand $chan $chan1 $command $type
 	}
 }
 
@@ -1771,7 +1777,7 @@ if {[matchattr $hand nm]} {
 	set what [lindex [split $arg] 1]
 	set from [lindex [split $arg] 2]
 	set to [lindex [split $arg] 3]
-	cp:process $nick "prv" $hand $chan $chan1 $type $what $from $to
+	cp:process $nick $input $hand $chan $chan1 $type $what $from $to
 	}
 }
 
@@ -1783,7 +1789,7 @@ if {$mychan_use == "1"} {
 }
 	set chan1 "$chan"
 	set type 2
-	userhost:act $tr $nick $hand "prv" $chan $chan1 $type "1440" "troll" "" "0"
+	userhost:act $tr $nick $hand $input $chan $chan1 $type "1440" "troll" "" "0"
 	}
 }
 
@@ -1798,7 +1804,7 @@ if {[regexp {^[&#]} $why] && [matchattr $hand nmo|M $why]} {
 	set why [lindex [split $arg] 2]
 	set lm [lindex [split $arg] 3]
 		}
-	limit:process $nick "prv" $hand $chan $chan1 $why $lm $type
+	limit:process $nick $input $hand $chan $chan1 $why $lm $type
 	}
 }
 
@@ -1809,7 +1815,7 @@ if {[matchattr $hand nm]} {
 	set who [lindex [split $arg] 1]
 	set message [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
-	broadcast:process $nick "prv" $hand $chan $chan1 $who $message $number $type
+	broadcast:process $nick $input $hand $chan $chan1 $who $message $number $type
 	}
 }
 
@@ -1821,7 +1827,7 @@ if {[matchattr $hand nmo|MA $chan]} {
 if {$mychan_use == "1"} {
 	set users [lindex [split $arg] 1]
 }
-	us:process $nick "prv" $hand $chan $chan1 $users $type
+	us:process $nick $input $hand $chan $chan1 $users $type
 	}
 }
 
@@ -1843,7 +1849,7 @@ if {$mychan_use == "1"} {
 	set suspend_reason [join [lrange [split $arg] 2 end]]
 			}
 		}
-	s:process $nick "prv" $hand $chan $chan1 $user $type $suspend_time $suspend_reason
+	s:process $nick $input $hand $chan $chan1 $user $type $suspend_time $suspend_reason
 	}
 }
 
@@ -1860,7 +1866,7 @@ if {$mychan_use == "1"} {
 	set gnick [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
 }
-	guestnick:process $nick "prv" $hand $chan $chan1 $who $gnick $type $number $modul
+	guestnick:process $nick $input $hand $chan $chan1 $who $gnick $type $number $modul
 	}
 }
 
@@ -1876,7 +1882,7 @@ if {$mychan_use == "1"} {
 	set badh [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
 }
-	prot:module:process $nick "prv" $hand $chan $chan1 $why $badh $type $number "badhost"
+	prot:module:process $nick $input $hand $chan $chan1 $why $badh $type $number "badhost"
 	}
 }
 
@@ -1892,7 +1898,7 @@ if {$mychan_use == "1"} {
 	set antisp [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
 }
-	prot:module:process $nick "prv" $hand $chan $chan1 $why $antisp $type $number "antispam"
+	prot:module:process $nick $input $hand $chan $chan1 $why $antisp $type $number "antispam"
 	}
 }
 
@@ -1908,7 +1914,7 @@ if {$mychan_use == "1"} {
 	set badf [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
 }
-	prot:module:process $nick "prv" $hand $chan $chan1 $why $badf $type $number "badrealname"
+	prot:module:process $nick $input $hand $chan $chan1 $why $badf $type $number "badrealname"
 	}
 }
 
@@ -1924,7 +1930,7 @@ if {$mychan_use == "1"} {
 	set badq [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
 }
-	prot:module:process $nick "prv" $hand $chan $chan1 $why $badq $type $number "badquitpart"
+	prot:module:process $nick $input $hand $chan $chan1 $why $badq $type $number "badquitpart"
 	}
 }
 
@@ -1940,7 +1946,7 @@ if {$mychan_use == "1"} {
 	set badi [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
 }
-	prot:module:process $nick "prv" $hand $chan $chan1 $why $badi $type $number "badident"
+	prot:module:process $nick $input $hand $chan $chan1 $why $badi $type $number "badident"
 	}
 }
 
@@ -1956,7 +1962,7 @@ if {$mychan_use == "1"} {
 	set badn [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
 }
-	prot:module:process $nick "prv" $hand $chan $chan1 $why $badn $type $number "badnick"
+	prot:module:process $nick $input $hand $chan $chan1 $why $badn $type $number "badnick"
 	}
 }
 
@@ -1972,7 +1978,7 @@ if {$mychan_use == "1"} {
 	set badw [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
 }
-	prot:module:process $nick "prv" $hand $chan $chan1 $why $badw $type $number "badword"
+	prot:module:process $nick $input $hand $chan $chan1 $why $badw $type $number "badword"
 	}
 }
 
@@ -1990,10 +1996,10 @@ if {![regexp {^[&#]} $chan]} {
 	set type 2
 	set chan1 "$chan"
 if {[regexp {^[&#]} $chan] && [matchattr $hand nmo|MAO $chan] && ($infouser == "")} {
-	info:process:chan $nick "prv" $hand $chan $chan1
+	info:process:chan $nick $input $hand $chan $chan1
 	return
 		}
-	info:process $nick "prv" $hand $chan $chan1 $user $type
+	info:process $nick $input $hand $chan $chan1 $user $type
 	}
 }
 
@@ -2009,7 +2015,7 @@ if {$mychan_use == "1"} {
 	set except [join [lrange [split $arg] 2 end]]
 	set number [lindex [split $arg] 2]
 }
-	prot:module:process $nick "prv" $hand $chan $chan1 $why $except $type $number "antipub"
+	prot:module:process $nick $input $hand $chan $chan1 $why $except $type $number "antipub"
 	}
 }
 
@@ -2051,7 +2057,7 @@ if {[string equal -nocase $type "global"]} {
 		}
 	}
 }
-	badchan:process $nick "prv" $hand $chan $chan1 $why $bdchan $type1 $type $reason
+	badchan:process $nick $input $hand $chan $chan1 $why $bdchan $type1 $type $reason
 	}
 }
 
@@ -2066,11 +2072,11 @@ if {$mychan_use == "1"} {
 if {[string equal -nocase $setting "global"] && [matchattr $hand nm]} {
 	set setting [lindex [split $arg] 2]
 foreach c [channels] {
-	unset:process $nick "prv" $hand $c $chan1 $setting $type
+	unset:process $nick $input $hand $c $chan1 $setting $type
 			}
 		return
 	}
-	unset:process $nick "prv" $hand $chan $chan1 $setting $type
+	unset:process $nick $input $hand $chan $chan1 $setting $type
 	}
 }
 
@@ -2085,7 +2091,7 @@ if {$mychan_use == "1"} {
 	set who [lindex [split $arg] 1]
 	set greet [join [lrange [split $arg] 2 end]]
 }
-	othermodule:process $nick "prv" $hand $chan $chan1 $who $greet $type $modul	
+	othermodule:process $nick $input $hand $chan $chan1 $who $greet $type $modul	
 	}
 }
 
@@ -2100,7 +2106,7 @@ if {$mychan_use == "1"} {
 	set who [lindex [split $arg] 1]
 	set leave [join [lrange [split $arg] 2 end]]
 }
-	othermodule:process $nick "prv" $hand $chan $chan1 $who $leave $type $modul		
+	othermodule:process $nick $input $hand $chan $chan1 $who $leave $type $modul		
 	}
 }
 
@@ -2115,7 +2121,7 @@ if {$mychan_use == "1"} {
 	set who [lindex [split $arg] 1]
 	set topic [join [lrange [split $arg] 2 end]]
 }
-	othermodule:process $nick "prv" $hand $chan $chan1 $who $topic $type $modul	
+	othermodule:process $nick $input $hand $chan $chan1 $who $topic $type $modul	
 	}
 }
 
@@ -2129,7 +2135,7 @@ if {$mychan_use == "1"} {
 	set vr [lindex [split $arg] 1]
 	set com [join [lrange [split $arg] 2 end]]
 }
-	userhost:act $vr $nick $hand "prv" $chan $chan1 $type $black(vr:bantime) "vr" "$com" "0"
+	userhost:act $vr $nick $hand $input $chan $chan1 $type $black(vr:bantime) "vr" "$com" "0"
 	}
 }
 
@@ -2140,7 +2146,7 @@ if {[matchattr $hand nm]} {
 	set pid [lindex [split $arg] 2]
 	set timer_args [join [lrange [split $arg] 4 end]]
 	set type 2
-	timer:process $nick "prv" $hand $chan $chan1 $cmd $pid $timer_args $type
+	timer:process $nick $input $hand $chan $chan1 $cmd $pid $timer_args $type
 	}
 }
 
@@ -2156,7 +2162,7 @@ if {[regexp {^[&#]} $inick] && [matchattr $hand nmo|VAOM $inick]} {
 	set chan "$inick"
 	set inick [lindex [split $arg] 3]
 }
-	i:process $nick "prv" $hand $chan $chan1 $inick $type
+	i:process $nick $input $hand $chan $chan1 $inick $type
 	}
 }
 
@@ -2167,7 +2173,7 @@ if {$mychan_use == "1"} {
 	set option [lindex [split $arg] 1]
 }
 	set chan1 $chan
-		nextpublic:process $nick "prv" $hand $chan $chan1 $option
+		nextpublic:process $nick $input $hand $chan $chan1 $option
 	}
 }
 
@@ -2179,7 +2185,7 @@ if {$mychan_use == "1"} {
 }
 	set chan1 $chan
 	set type 1
-	helpedpublic:process $nick "prv" $hand $chan $chan1 $user $type
+	helpedpublic:process $nick $input $hand $chan $chan1 $user $type
 	}
 }
 
@@ -2191,7 +2197,7 @@ if {$mychan_use == "1"} {
 }
 	set chan1 $chan
 	set type 2
-	noidlepublic:process $nick "prv" $hand $chan $chan1 $user $type
+	noidlepublic:process $nick $input $hand $chan $chan1 $user $type
 	}
 }
 
@@ -2203,7 +2209,7 @@ if {$mychan_use == "1"} {
 }
 	set chan1 $chan
 	set type 2
-	skippublic:process $nick "prv" $hand $chan $chan1 $user	$type
+	skippublic:process $nick $input $hand $chan $chan1 $user	$type
 				}
 			}		
 
@@ -2217,7 +2223,7 @@ if {$mychan_use == "1"} {
 	set user [lindex [split $arg] 1]
 	set option [lindex [split $arg] 2]
 		}
-	stats:process $nick "prv" $hand $chan $chan1 $user $option $type
+	stats:process $nick $input $hand $chan $chan1 $user $option $type
 	}
 }
 topwords {
@@ -2342,7 +2348,7 @@ if {[matchattr $hand nmo|MAOV $next]} {
 		}
 	}
 }
-	topwords:process $nick "prv" $hand $chan $chan1 $cmd $type $next
+	topwords:process $nick $input $hand $chan $chan1 $cmd $type $next
 	}	
 }
 
@@ -2357,7 +2363,7 @@ if {[matchattr $hand nmo|M $chan]} {
 if {![regexp {^[0-9]} $time]} {
 	set reason [join [lrange [split $arg] 3 end]]
 }
-	ignore:process $nick "prv" $hand $chan $chan1 $what $mask $time $reason $type
+	ignore:process $nick $input $hand $chan $chan1 $what $mask $time $reason $type
 			}
 		}
 chat {
@@ -2366,12 +2372,12 @@ if {[matchattr $hand nm]} {
 if {$cmd_status == "1"} { 
 	return 
 }
-if {[matchattr $hand q]} { blacktools:tell $nick "prv" $hand $chan $chan1 gl.glsuspend none
+if {[matchattr $hand q]} { blacktools:tell $nick $input $hand $chan $chan1 gl.glsuspend none
 	return
 }
 	set chan1 $chan
 	*ctcp:CHAT $nick $host $hand $botnick CHAT $arg
-	blacktools:tell $nick "prv" $hand $chan $chan1 chat.1 none
+	blacktools:tell $nick $input $hand $chan $chan1 chat.1 none
 			} 
 		}
 hello {
@@ -2389,7 +2395,7 @@ if {[getuser $hand pass] != ""} {
 	return
 }
 	setuser $hand PASS $pass
-	blacktools:tell $nick "prv" $hand "" "" pass.1 $pass
+	blacktools:tell $nick $input $hand "" "" pass.1 $pass
 			}
 		}
 default {
@@ -2410,6 +2416,14 @@ foreach a $text {
 		}
 	}
 }
+
+###
+##DCC Commands
+proc command:pubdcc {hand idx arg} {
+    global black
+    command:pubpriv "" [list "dcc" $idx] $hand $arg
+}
+
 
 ##############
 #########################################################################
