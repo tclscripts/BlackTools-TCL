@@ -1216,9 +1216,9 @@ set black(say.ro.h.25) "\005\[BT\]\005 \002%char%h\002 cmds ; \002%char%h\002 ba
 set black(say.ro.h.26) "\005\[BT\]\005 \002h\002 cmds ; \002h\002 ban ; \002h\002 add ; \002h\002 chaninfo ; \002h\002 BTinfo ; \002h\002 module ; \002h\002 master"
 set black(say.ro.h.27) "\005\[BT\]\005 %botnick% \002h\002 cmds ; %botnick% \002h\002 ban ; %botnick% \002h\002 add ; %botnick% \002h\002 module ; %botnick% \002h\002 master"
 
-set black(say.ro.hcommand.1) "\005\[BT\]\005 Pentru a vizualiza \002Manualul\002 fiecarei comenzi, foloseste: \001%char%man <comanda>\001"
-set black(say.ro.hcommand.2) "\005\[BT\]\005 Pentru a vizualiza \002Manualul\002 fiecarei comenzi, foloseste: \001%botnick% man <comanda>\001"
-set black(say.ro.hcommand.3) "\005\[BT\]\005 Pentru a vizualiza \002Manualul\002 fiecarei comenzi, foloseste: \001man <comanda>\001"
+set black(say.ro.hcommand.1) "\005\[BT\]\005 Pentru a vizualiza \002Manualul\002 fiecarei comenzi, foloseste: \001%char%man <comanda>\001. Pentru a da comenzile si in \002DCC\002 foloseste: \001.bt <comanda> \[#canal\] \[argumente\]\001"
+set black(say.ro.hcommand.2) "\005\[BT\]\005 Pentru a vizualiza \002Manualul\002 fiecarei comenzi, foloseste: \001%botnick% man <comanda>\001. Pentru a da comenzile si in \002DCC\002 foloseste: \001.bt <comanda> \[#canal\] \[argumente\]\001"
+set black(say.ro.hcommand.3) "\005\[BT\]\005 Pentru a vizualiza \002Manualul\002 fiecarei comenzi, foloseste: \001man <comanda>\001. Pentru a da comenzile si in \002DCC\002 foloseste: \001.bt <comanda> \[#canal\] \[argumente\]\001"
 set black(say.ro.hcommand.4) "\005\[BT\]\005 Pentru a vizualiza \002Manualul\002 fiecarei setari, foloseste: \001%char%man <setare>\001"
 set black(say.ro.hcommand.5) "\005\[BT\]\005 Pentru a vizualiza \002Manualul\002 fiecarei setari, foloseste: \001%botnick% man <setare>\001"
 set black(say.ro.hcommand.6) "\005\[BT\]\005 Pentru a vizualiza \002Manualul\002 fiecarei setari, foloseste: \001man <setare>\001"
