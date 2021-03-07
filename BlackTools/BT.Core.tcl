@@ -330,7 +330,7 @@ if {($getinvite == "") || ($getinvite == "0")} { return } else {
 
 proc msg:mass:unsilence {} {
 	global black
-	putquick "SILENCE -*!*@*"
+	killignore *!*@*
 	blacktools:tell:dcc antiflood.4 none
 }
 
@@ -368,7 +368,7 @@ if {![info exists black(antiflood:prot)]} {
 	utimer $timer [list unset  black(antiflood:$host:prot)]
 	utimer $mass_timer [list unset black(antiflood:prot)]
 if {$black(antiflood:prot) >= $mass_number} {
-	putquick "SILENCE +*!*@*"
+	newignore "*!*@*" $botnick "MASS FLOOD DETECTED"
 	blacktools:tell:dcc antiflood.3 "\002\[BT\]\002 MASS MSG FLOOD PROTECTION"
 	utimer $black(mass:msg:silence_time) [list msg:mass:unsilence] 
 	return
