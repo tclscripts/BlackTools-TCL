@@ -1,3 +1,7 @@
+  2021-03-07  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * now all commands work trough DCC by using .bt <command> [#channe] [arguments]
+    if ".myset mychan" is set you dont have to specify the channel 
+  * solved other minor bugs
   2021-03-06  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * added the posibility to add badchan by using REGEX, see .man badchan
   * modified the badchan working mode, now its faster and more safe
