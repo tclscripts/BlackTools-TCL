@@ -16,8 +16,8 @@
 
 package require tls
 
-set black(backup_dir) "$black(dirname)/BT.backup"
-set black(log_file) "$black(dirname)/BT.update.log"
+set black(backup_dir) "scripts/BT.backup"
+set black(log_file) "scripts/BT.update.log"
 set black(actdir) "scripts"
 
 ###
@@ -213,8 +213,8 @@ if {[catch {file copy -force $black(tclconfig) $black(backup_dir)} error_b] != 0
     set black(update_chan) $chan
 blacktools:every 1000 {
 if {[file isdirectory "$black(backup_dir)/BlackTools"]} {
-    set after_file_num [llength [glob-r "$black(backup_dir)/BlackTools"]]
-    set current_file_num [llength [glob-r "$black(actdir)/BlackTools"]]
+    set after_file_num [blacktools:size "$black(backup_dir)/BlackTools"]
+    set current_file_num [blacktools:size "$black(actdir)/BlackTools"]
 if {$current_file_num == $after_file_num} {
     blacktools:update_backup
     break
@@ -262,7 +262,7 @@ proc blacktools:backup_run {hand chan new_version last_modify} {
     set found_line [string map [list $black(dirname) $black(backup_dir)] $found_line]
     regsub $regexp_var2 $data $found_line data
     blacktools:update_data 1 $data
-
+    
     set file [open $config r]
     set data [read -nonewline $file]
     close $file
@@ -276,6 +276,17 @@ proc blacktools:backup_run {hand chan new_version last_modify} {
 }
 
 ###
+proc blacktools:size {dir} {
+    set files [glob-r $dir]
+    set total 0
+foreach f $files {
+    set size [file size $f]
+    set total [expr $size + $total]
+    }
+    return $total
+}
+
+###
 proc blacktools:update_start_download {hand chan new_version last_modify} {
     global black
     rehash
@@ -285,8 +296,11 @@ proc blacktools:update_start_download {hand chan new_version last_modify} {
     ::github::github update tclscripts BlackTools-TCL $black(actdir)
     blacktools:every 1000 {
 if {[file isdirectory $black(actdir)/BlackTools]} {
+    set size [blacktools:size "$black(actdir)/BlackTools"]
+if {$size == $black(current_size)} {
     blacktools:update_start_restore
     break
+            }
         }
     }
 }
