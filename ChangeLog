@@ -1,4 +1,5 @@
   2021-03-08  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * solved AutoUpdate issue for slower connections (when downloading from github)
   * removed some remaining old binds for badchan module
   * changed the bot 'private msg antiflood action' from silence +*!*@* to IGNORE *!*@*
   2021-03-07  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
