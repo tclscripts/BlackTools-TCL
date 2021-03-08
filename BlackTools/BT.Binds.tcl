@@ -86,10 +86,6 @@ bind ctcr - VERSION ctcpvers
 bind mode - *+o* dontoppublic
 bind mode - *-o* dontdeoppublic
 
-bind part - * badchan:part
-bind sign - * badchan:part
-bind splt - * badchan:split
-bind kick - * badchan:kick
 bind nick - * badchan:nickchange
 
 bind kick - * massban:kick
