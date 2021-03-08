@@ -1,5 +1,6 @@
   2021-03-08  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
-  * removed some remaining old binds for badchan module 
+  * removed some remaining old binds for badchan module
+  * changed the bot 'private msg antiflood action' from silence +*!*@* to IGNORE *!*@*
   2021-03-07  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * now all commands work trough DCC by using .bt <command> [#channel] [arguments]
     if ".myset mychan" is set you dont have to specify the channel 
