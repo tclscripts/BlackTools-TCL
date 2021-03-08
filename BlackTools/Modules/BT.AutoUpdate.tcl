@@ -433,8 +433,8 @@ foreach f $topwords_files {
     set filename [file tail $f]
     file copy -force $f "$black(actdir)/BlackTools/FILES/TOPWORDS/$filename"
     }
-}
     unset black(update_file_topwords)
+}
     return $counter
 }
 
