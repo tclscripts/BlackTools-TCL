@@ -1202,7 +1202,7 @@ set black(say.ro.h.11) "\005\[BT\]\005 NIVEL ACCESS \002-= %msg% =-\002"
 set black(say.ro.h.12) "\005\[BT\]\005 \002%char%h\002 cmds ; \002%char%h\002 ban ; \002%char%h\002 add ; \002%char%h\002 module"
 set black(say.ro.h.13) "\005\[BT\]\005 NIVEL ACCESS \002-= %msg% =-\002"
 set black(say.ro.h.14) "\005\[BT\]\005 \002%char%h\002 cmds ; \002%char%h\002 ban ; \002%char%h\002 add ; \002%char%h\002 chaninfo ; \002%char%h\002 BTinfo ; \002%char%h\002 module"
-set black(say.ro.h.15) "%msg%"
+set black(say.ro.h.15) "\005\[BT\]\005 %msg%"
 set black(say.ro.h.16) "\005\[BT\]\005 Te rog asteapta \001%msg.1%\001 de secunde inainte de a executa o alta comanda de tip \002%char%h\002. Multumesc!"
 set black(say.ro.h.17) "\005\[BT\]\005 \002h\002 cmds ; \002h\002 ban ; \002h\002 add ; \002h\002 chaninfo ; \002h\002 BTinfo ; \002h\002 module ; \002h\002 egg ; \002h\002 owner"
 set black(say.ro.h.18) "\005\[BT\]\005 \002h\002 cmds ; \002h\002 ban ; \002h\002 add ; \002h\002 chaninfo ; \002h\002 BTinfo ; \002h\002 module"
@@ -1352,7 +1352,7 @@ set black(say.ro.exempt.16) "\005\[BT\]\005 Nu exista exceptie la ban pentru hos
 
 ###################################### AutoUpdate ################################
 
-set black(say.ro.autoupdate.1) "\005\[BT\]\005 Nu am putut porni \001UPDATE\001 : Pachetul TLS nu este instalat."
+set black(say.ro.autoupdate.1) "\005\[BT\]\005 Nu am putut executa \%msg.1%\001 : Pachetul \002TLS\002 nu este instalat."
 set black(say.ro.autoupdate.2) "\005\[BT\]\005 Update-ul a esuat, nu am putut verifica daca exista noi update-uri."
 set black(say.ro.autoupdate.3) "\005\[BT\]\005 Am gasit versiune \001NOUA\001 de BlackTools \002%msg.1%\002, pornesc descarcarea.."
 set black(say.ro.autoupdate.4) "\005\[BT\]\005 Am gasit noi bugfix-uri pentru versiunea de \002BlackTools %msg.1%\002 instalata, pornesc descarcarea.."
@@ -1375,7 +1375,7 @@ set black(say.ro.autoupdate.20) "\005\[BT\]\005 Nicio variabila restaurata din v
 set black(say.ro.autoupdate.21) "\005\[BT\]\005 Readuc setari, banuri si alte informatii ..."
 set black(say.ro.autoupdate.22) "\005\[BT\]\005 Nu am gasit niciun fisier care sa contina setari, banuri sau alte informatii ..."
 set black(say.ro.autoupdate.23) "\005\[BT\]\005 Restaurat (\002%msg.1%\002) fisiere care contin setari, banuri si alte informatii."
-set black(say.ro.autoupdate.24) "\005\[BT\]\005 Update pentru \001BlackTools\001 finalizat in \002%msg.1%\002"
+set black(say.ro.autoupdate.24) "\005\[BT\]\005 Update pentru \001BlackTools\001 finalizat in \002%msg.1%\002 . Changelog: \002https://github.com/tclscripts/BlackTools-TCL/blob/master/ChangeLog\002"
 set black(say.ro.autoupdate.25) "\005\[BT\]\005 Daca ceva nu a mers cum trebuie, copia de rezerva o gasiti in \001\"%msg.1%\"\001 pana la urmatorul update. Puteti vizualiza si LOG-ul de update in \001\"%msg.2%\"\001"
 set black(say.ro.autoupdate.26) "\005\[BT\]\005 Tineti minte, pentru informatii si anuntare bug-uri pentru BT --- \002WwW.TclScripts.Net\002"
 set black(say.ro.autoupdate.27) "\005\[BT\]\005 Update pornit la \001%msg.1%\001"
@@ -1395,6 +1395,9 @@ set black(say.ro.autoupdate.40) "\005\[BT\]\005 \001AutoUpdate\001 sarit momenta
 set black(say.ro.autoupdate.41) "\005\[BT\]\005 Timpul de \001AutoUpdate\001 este setat la: \002%msg.1%\002 minute"
 set black(say.ro.autoupdate.42) "\005\[BT\]\005 Am setat timpul pentru \001AutoUpdate\001 la: \002%msg.1%\002 (%msg.2% minute)"
 set black(say.ro.autoupdate.43) "\005\[BT\]\005 AutoUpdate a gasit un \001update\001 nou: BlackTools \002%msg.1%\002 (Ultimul update: \001%msg.2%\001)."
+set black(say.ro.autoupdate.44) "\005\[BT\]\005 Nu am putut executa \001%msg.1%\001 : Versiunea pachetului \002TLS\002 este mai mica de \0011.7.18\001."
+set black(say.ro.autoupdate.45) "\005\[BT\]\005 Pentru a finaliza acest update este necesara repornirea eggdrop-ului prin intermediul comenzii de \002restart\002"
+set black(say.ro.autoupdate.46) "\005\[BT\]\005 Restart automat in 10 secunde pentru a finaliza update-ul."
 
 ######################################## ALIAS ###################################
 

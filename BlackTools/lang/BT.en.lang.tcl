@@ -1352,7 +1352,7 @@ set black(say.en.exempt.16) "\005\[BT\]\005 There is not exempt that matches \00
 
 ###################################### AutoUpdate ################################
 
-set black(say.en.autoupdate.1) "\005\[BT\]\005 Could not start Update : No TLS package available."
+set black(say.en.autoupdate.1) "\005\[BT\]\005 Could not start %msg.1% : No TLS package available."
 set black(say.en.autoupdate.2) "\005\[BT\]\005 Update failed, could not get new updates"
 set black(say.en.autoupdate.3) "\005\[BT\]\005 Found \001NEW\001 BlackTools \002%msg.1%\002 version, begining download.."
 set black(say.en.autoupdate.4) "\005\[BT\]\005 Found \001BUG\001 fixes for current installed version \002BlackTools %msg.1%\002, begining download.."
@@ -1375,7 +1375,7 @@ set black(say.en.autoupdate.20) "\005\[BT\]\005 No variables restored from old \
 set black(say.en.autoupdate.21) "\005\[BT\]\005 Restoring settings, bans and other old information ..."
 set black(say.en.autoupdate.22) "\005\[BT\]\005 No settings, bans and other information found ..."
 set black(say.en.autoupdate.23) "\005\[BT\]\005 Restored (\002%msg.1%\002) files that contain settings, bans and other information."
-set black(say.en.autoupdate.24) "\005\[BT\]\005 Update succeded for \001BlackTools\001 in \002%msg.1%\002"
+set black(say.en.autoupdate.24) "\005\[BT\]\005 Update finished for \001BlackTools\001 in \002%msg.1%\002 . Changelog: \002https://github.com/tclscripts/BlackTools-TCL/blob/master/ChangeLog\002"
 set black(say.en.autoupdate.25) "\005\[BT\]\005 If something is wrong the backup FILES are stil available in \001\"%msg.1%\"\001 until next Update. Also you can check the UPDATE LOG in \001\"%msg.2%\"\001"
 set black(say.en.autoupdate.26) "\005\[BT\]\005 Remember, for information or bug issues visit the official site of \002BT\002 --- \001WwW.TclScripts.Net\001"
 set black(say.en.autoupdate.27) "\005\[BT\]\005 Update started at \001%msg.1%\001"
@@ -1395,6 +1395,9 @@ set black(say.en.autoupdate.40) "\005\[BT\]\005 \001AutoUpdate\001 skipped for t
 set black(say.en.autoupdate.41) "\005\[BT\]\005 Time for \001AutoUpdate\001 is set to: \002%msg.1%\002 minutes"
 set black(say.en.autoupdate.42) "\005\[BT\]\005 Set time for \001AutoUpdate\001 to: \002%msg.1%\002 (%msg.2% minutes)"
 set black(say.en.autoupdate.43) "\005\[BT\]\005 AutoUpdate found new \001update\001 for: BlackTools \002%msg.1%\002 (Last Update: \001%msg.2%\001)."
+set black(say.en.autoupdate.44) "\005\[BT\]\005 Could not start %msg.1% : \002TLS\002 package installed has version lower then \0011.7.18\001"
+set black(say.en.autoupdate.45) "\005\[BT\]\005 In order to complete this update it's necessary to restart the eggdrop by using the \001restart\002 command."
+set black(say.en.autoupdate.46) "\005\[BT\]\005 Automatic \002restart\002 in 10 seconds to complete the update."
 
 ######################################## ALIAS ###################################
 
