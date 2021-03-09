@@ -1764,8 +1764,6 @@ set black(name) "BlackToolS"
 set black(author) "BLaCkShaDoW"
 set black(vers) "2.5.5"
 set black(site) "wWw.TclScriptS.NeT"
-set black(current_modif) "1615299288"
-set black(current_size) "76"
 
 	bind evnt - init-server loginpublic
 	bind time - "* * * * *" timer:login:check
