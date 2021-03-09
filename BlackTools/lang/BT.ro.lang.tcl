@@ -1395,7 +1395,6 @@ set black(say.ro.autoupdate.40) "\005\[BT\]\005 \001AutoUpdate\001 sarit momenta
 set black(say.ro.autoupdate.41) "\005\[BT\]\005 Timpul de \001AutoUpdate\001 este setat la: \002%msg.1%\002 minute"
 set black(say.ro.autoupdate.42) "\005\[BT\]\005 Am setat timpul pentru \001AutoUpdate\001 la: \002%msg.1%\002 (%msg.2% minute)"
 set black(say.ro.autoupdate.43) "\005\[BT\]\005 AutoUpdate a gasit un \001update\001 nou: BlackTools \002%msg.1%\002 (Ultimul update: \001%msg.2%\001)."
-set black(say.ro.autoupdate.44) "\005\[BT\]\005 Nu am putut executa \001%msg.1%\001 : Versiunea pachetului \002TLS\002 este mai mica de \0011.7.18\001."
 set black(say.ro.autoupdate.45) "\005\[BT\]\005 Pentru a finaliza acest update este necesara repornirea eggdrop-ului prin intermediul comenzii de \002restart\002"
 set black(say.ro.autoupdate.46) "\005\[BT\]\005 Restart automat in 10 secunde pentru a finaliza update-ul."
 
