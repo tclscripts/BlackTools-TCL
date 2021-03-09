@@ -36,7 +36,7 @@
 Minimum requirements:
      o Eggdrop 1.8.x
      o Tcl 8.5 or higher.
-     o TLS package 1.7.18 or higher (for autoupdate module to work,if not, it will be disabled)
+     o TLS package (for autoupdate module to work,if not, it will be disabled)
 
 Most important features:
     o AutoUpdate that gives the eggdrop the ability to download and install the BT if a new version
