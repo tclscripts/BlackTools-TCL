@@ -72,7 +72,7 @@ if {[info exists black(backup_update)]} {
 	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.39 ""
 	return
 }
-	blacktools:update $nick $host $chan
+	blacktools:update $nick $host $chan 0
 }
 	check {
 if {[info exists black(update_disabled)]} {
