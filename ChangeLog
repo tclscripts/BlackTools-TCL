@@ -1,9 +1,9 @@
  2021-03-09  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
-  * added a setting that automatic restarts the eggdrop on automatic
-    update check if 'the update requires that'. For manual check, it will
+  * added a setting that automatic restarts the eggdrop on autoupdate 
+    check if 'the update requires that'. For manual check, it will
     show a message that a restart is required to complete the update.
   * added for AutoUpdate module a 'tls package check' for the module to run only
-    when the version is the one required (1.7.18)
+    when the version is the one required (1.7.18) ore later.
  2021-03-08  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * solved AutoUpdate issue for slower connections (when downloading from github)
   * removed some remaining old binds for badchan module
