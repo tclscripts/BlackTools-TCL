@@ -533,7 +533,7 @@ proc blacktools:update_restore {data newdata} {
     set current_data $newdata
     set variables [regexp -all -inline  {set black\((.+?)\)} $data]
     regsub -all {set black\((.+?)\)} $variables "" variables
-    set var_nomodif "name author vers site current_modif current_size"
+    set var_nomodif "name author vers site"
     set var_counter 0
 foreach var $variables {
 if {$var == ""} {continue}
