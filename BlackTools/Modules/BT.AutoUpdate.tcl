@@ -432,7 +432,7 @@ if {$black(finish_action) == 0} {
     rehash
     setaway "none"
     } else {
-if {$black(update_type) == 0} {
+if {$black(update_from) == 0} {
     rehash
     setaway "none"
     blacktools:update_put $hand $chan 45 ""
