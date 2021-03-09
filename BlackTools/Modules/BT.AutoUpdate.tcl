@@ -14,8 +14,6 @@
 ##					                               ##
 #########################################################################
 
-package require tls
-
 set black(backup_dir) "scripts/BT.backup"
 set black(log_file) "scripts/BT.update.log"
 set black(actdir) "scripts"
@@ -35,6 +33,16 @@ if {[catch {package require github} no_github] != 0} {
     source $black(dirname)/BlackTools/Addons/github.tcl
     package require github
     }
+if {[catch {package require tls} no_tls] != 0} {
+    return 0
+} else {
+    set tls_version [package versions tls]
+    set need_version "1.7.18"
+    set compare [package vcompare $tls_version $need_version]
+if {$compare < 0} {
+    return -1
+        }
+    }
     return 1
 }
 
@@ -42,6 +50,13 @@ if {[catch {package require github} no_github] != 0} {
 proc blacktools:update_check {nick hand host chan type} {
     global black
     set check_addons [blacktools:check_addons $hand $chan]
+if {$check_addons == 0} {
+     blacktools:update_put $hand $chan 1 [list "CHECK UPDATE"]
+     return
+} elseif {$check_addons == -1} {
+    blacktools:update_put $hand $chan 44 [list "CHECK UPDATE"]
+    return
+}
     set status [blacktools:update_verify]
 if {$status == -1} {
     blacktools:update_put $hand $chan 31 ""
@@ -78,7 +93,7 @@ proc blacktools:update:timer {} {
 if {$black(update_type) == 0} {
 if {![info exists black(update_disabled)]} {
 if {![info exists black(backup_update)]} {
-    set update [catch {blacktools:update "" "" ""} error]
+    set update [catch {blacktools:update "" "" "" 1} error]
 } else {
     blacktools:update_put "" "" 40 ""  
     }
@@ -145,7 +160,7 @@ if {[string equal -nocase $sender "AUTOUPDATE"] && [string equal -nocase $num $l
 }
 
 ###
-proc blacktools:update {hand host chan} {
+proc blacktools:update {hand host chan type} {
     global black
 if {[info exists black(backup_update)]} {
     blacktools:update_put $hand $chan 29 ""
@@ -158,8 +173,11 @@ if {[info exists black(backup_update)]} {
     blacktools:update_put $hand $chan 28 ""
     set check_addons [blacktools:check_addons $hand $chan]
 if {$check_addons == 0} {
-     blacktools:update_put $hand $chan 1 ""
+     blacktools:update_put $hand $chan 1 [list "UPDATE"]
      return
+} elseif {$check_addons == -1} {
+    blacktools:update_put $hand $chan 44 [list "UPDATE"]
+    return
 }
     set status [blacktools:update_verify]
 if {$status == -1} {
@@ -170,6 +188,7 @@ if {$status == -1} {
     set new_version [lindex [lindex $data 0] 1]
     set last_modify [lindex [lindex $data 1] 2]
     set status [lindex [lindex $data 2] 1]
+if {$status == 1} {set black(finish_action) 1} else {set black(finish_action) 0}
 
 if {$black(vers) != $new_version} {
     blacktools:update_put $hand $chan 3 [list $new_version]   
@@ -178,6 +197,11 @@ if {$black(vers) != $new_version} {
 } else {
     blacktools:update_put $hand $chan 5 ""
     return 0
+}
+if {$type == 0} {
+    set black(update_from) 0
+} else {
+    set black(update_from) 1
 }
 
 if {![file isdirectory $black(backup_dir)]} {
@@ -396,7 +420,6 @@ if {$num == 0} {
     set file [open $config w]
     puts $file $data
     close $file
-    rehash
     unset black(update_hand)
     unset black(update_chan)
     blacktools:update_unsetflag
@@ -405,7 +428,21 @@ if {$num == 0} {
     blacktools:update_put $hand $chan 26 ""
     unset black(update_file_saved)
     file delete -force "$black(actdir)/BlackTools.old.tcl"
+if {$black(finish_action) == 0} {
+    rehash
     setaway "none"
+    } else {
+if {$black(update_type) == 0} {
+    rehash
+    setaway "none"
+    blacktools:update_put $hand $chan 45 ""
+        } else {
+    blacktools:update_put $hand $chan 46 ""
+    utimer 10 [list restart]
+        }
+    }
+    unset black(finish_action)
+    unset black(update_type)
 }
 
 ###
