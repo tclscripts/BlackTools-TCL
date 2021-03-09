@@ -1395,7 +1395,6 @@ set black(say.en.autoupdate.40) "\005\[BT\]\005 \001AutoUpdate\001 skipped for t
 set black(say.en.autoupdate.41) "\005\[BT\]\005 Time for \001AutoUpdate\001 is set to: \002%msg.1%\002 minutes"
 set black(say.en.autoupdate.42) "\005\[BT\]\005 Set time for \001AutoUpdate\001 to: \002%msg.1%\002 (%msg.2% minutes)"
 set black(say.en.autoupdate.43) "\005\[BT\]\005 AutoUpdate found new \001update\001 for: BlackTools \002%msg.1%\002 (Last Update: \001%msg.2%\001)."
-set black(say.en.autoupdate.44) "\005\[BT\]\005 Could not start %msg.1% : \002TLS\002 package installed has version lower then \0011.7.18\001"
 set black(say.en.autoupdate.45) "\005\[BT\]\005 In order to complete this update it's necessary to restart the eggdrop by using the \001restart\002 command."
 set black(say.en.autoupdate.46) "\005\[BT\]\005 Automatic \002restart\002 in 10 seconds to complete the update."
 
