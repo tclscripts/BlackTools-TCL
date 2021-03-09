@@ -36,7 +36,7 @@ if {[catch {package require github} no_github] != 0} {
 if {[catch {package require tls} no_tls] != 0} {
     return 0
 } else {
-    set tls_version [package versions tls]
+    set tls_version [lindex [package versions tls] 0]
     set need_version "1.7.18"
     set compare [package vcompare $tls_version $need_version]
 if {$compare < 0} {
