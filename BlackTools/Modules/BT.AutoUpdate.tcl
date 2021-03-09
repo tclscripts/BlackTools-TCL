@@ -25,6 +25,9 @@ if {[catch {package require http} no_http] != 0} {
     source $black(dirname)/BlackTools/Addons/http.tcl
     package require http
     }
+if {[catch {package require tls} no_tls] != 0} {
+    return 0
+}
 if {[catch {package require json} no_json] != 0} {
     source $black(dirname)/BlackTools/Addons/json.tcl
     package require json
@@ -32,16 +35,6 @@ if {[catch {package require json} no_json] != 0} {
 if {[catch {package require github} no_github] != 0} {
     source $black(dirname)/BlackTools/Addons/github.tcl
     package require github
-    }
-if {[catch {package require tls} no_tls] != 0} {
-    return 0
-} else {
-    set tls_version [lindex [package versions tls] 0]
-    set need_version "1.7.18"
-    set compare [package vcompare $tls_version $need_version]
-if {$compare < 0} {
-    return -1
-        }
     }
     return 1
 }
@@ -53,9 +46,6 @@ proc blacktools:update_check {nick hand host chan type} {
 if {$check_addons == 0} {
      blacktools:update_put $hand $chan 1 [list "CHECK UPDATE"]
      return
-} elseif {$check_addons == -1} {
-    blacktools:update_put $hand $chan 44 [list "CHECK UPDATE"]
-    return
 }
     set status [blacktools:update_verify]
 if {$status == -1} {
@@ -175,9 +165,6 @@ if {[info exists black(backup_update)]} {
 if {$check_addons == 0} {
      blacktools:update_put $hand $chan 1 [list "UPDATE"]
      return
-} elseif {$check_addons == -1} {
-    blacktools:update_put $hand $chan 44 [list "UPDATE"]
-    return
 }
     set status [blacktools:update_verify]
 if {$status == -1} {
@@ -533,7 +520,7 @@ proc blacktools:update_restore {data newdata} {
     set current_data $newdata
     set variables [regexp -all -inline  {set black\((.+?)\)} $data]
     regsub -all {set black\((.+?)\)} $variables "" variables
-    set var_nomodif "name author vers site"
+    set var_nomodif "name author vers site current_modif current_size"
     set var_counter 0
 foreach var $variables {
 if {$var == ""} {continue}
@@ -599,7 +586,7 @@ if {$type == 0} {
 proc blacktools:update_verify {} {
     global black
     set link "https://raw.githubusercontent.com/tclscripts/BlackTools-TCL/master/VERSION"
-    http::register https 443 [list ::tls::socket -autoservername true]
+    http::register https 443 [list ::tls::socket -tls1 true]
     set ipq [http::config -useragent "lynx"]
 	set error [catch {set ipq [::http::geturl $link -timeout 10000]} eror]
 	set status [::http::status $ipq]
