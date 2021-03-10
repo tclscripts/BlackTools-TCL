@@ -5,7 +5,7 @@
 #########################   AutoUpdate TCL   ############################
 #########################################################################
 ##						                       ##
-##   BlackTools  : http://$black(tclname)scripts.net	               ##
+##   BlackTools  : http://blacktools.tclscripts.net	               ##
 ##   Bugs report : http://www.tclscripts.net/	                       ##
 ##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL        ##
 ##   Online Help : irc://irc.undernet.org/tcl-help 	               ##
@@ -17,6 +17,7 @@
 set black(backup_dir) "$black(dirtcl)/BT.backup"
 set black(log_file) "$black(dirtcl)/BT.update.log"
 set black(actdir) $black(dirtcl)
+set black(last_update_file) "$black(dirtcl)/BlackTools/temp/lastupdate.txt"
 
 ###
 proc blacktools:check_addons {hand chan} {
@@ -72,6 +73,10 @@ if {$type == 0} {
 } else {
 if {$type == 0} {
     blacktools:tell $nick $host $hand $chan $chan autoupdate.5 ""
+        }
+    set check_update_byother [blacktools:lastupdate 1 $last_modify 0]
+if {$check_update_byother == 1} {
+    blacktools:tell_v2 $nick $host $hand $chan $chan autoupdate.47 [list [ctime $last_modify]]
         }
     return 0
     }
@@ -177,18 +182,27 @@ if {$status == -1} {
     set status [lindex [lindex $data 2] 1]
 if {$status == 1} {set black(finish_action) 1} else {set black(finish_action) 0}
 
+if {$type == 0} {
+    set black(update_from) 0
+} else {
+    set black(update_from) 1
+}
+
 if {$black(vers) != $new_version} {
     blacktools:update_put $hand $chan 3 [list $new_version]   
 } elseif {$last_modify != $black(current_modif)} {
     blacktools:update_put $hand $chan 4 [list $black(vers)]
 } else {
     blacktools:update_put $hand $chan 5 ""
+    set check_update_byother [blacktools:lastupdate 1 $last_modify 0]
+ if {$check_update_byother == 1} {
+    blacktools:update_put $hand $chan 48 [list [ctime $last_modify]]
+    blacktools:finish_config $hand $chan $last_modify $status
+        } else {
+    unset black(update_from)
+    unset black(finish_action)
+    }
     return 0
-}
-if {$type == 0} {
-    set black(update_from) 0
-} else {
-    set black(update_from) 1
 }
 
 if {![file isdirectory $black(backup_dir)]} {
@@ -235,6 +249,41 @@ if {$current_file_num == $after_file_num} {
 }
 
 ###
+proc blacktools:finish_config {hand chan lastmodif status} {
+    global black
+    set update_old_data [blacktools:update_data 0 ""]
+    set update_new_data [blacktools:update_getconfig]
+    set file [open "test" w]
+    puts $file $update_new_data
+    close $file
+    set restore_config [blacktools:update_restore $update_old_data $update_new_data]
+    set newdata [lindex $restore_config 0]
+    set num_var [lindex $restore_config 1]
+if {$num_var > 0} {
+    set newdata [blacktools:update_data 1 $newdata]
+    blacktools:update_put $hand $chan 19 [list $num_var]
+} else {
+    blacktools:update_put $hand $chan 20 ""
+    }
+if {$black(finish_action) == 0} {
+    rehash
+    setaway "none"
+    } else {
+if {$black(update_from) == 0} {
+    rehash
+    setaway "none"
+    blacktools:update_put $hand $chan 45 ""
+        } else {
+    blacktools:update_put $hand $chan 46 ""
+    utimer 10 [list restart]
+        }
+    }
+    unset black(update_from)
+    unset black(finish_action)
+    blacktools:lastupdate 0 $lastmodif 0
+}
+
+###
 proc blacktools:update_backup {} {
     global black
     set hand $black(update_hand)
@@ -254,7 +303,6 @@ if {[file isdirectory "$black(dirname)/BlackTools/FILES/TOPWORDS"]} {
     blacktools:update_put $hand $chan 15 [list $new_version [ctime $last_modify]]
     blacktools:backup_run $hand $chan $new_version $last_modify
     unset black(update_version)
-    unset black(update_last_modify)
     unset black(update_hand)
     unset black(update_chan)
 }
@@ -428,9 +476,46 @@ if {$black(update_from) == 0} {
     utimer 10 [list restart]
         }
     }
+    blacktools:lastupdate 0 $black(update_last_modify) 1
+    unset black(update_last_modify)
     unset black(finish_action)
-    unset black(update_type)
+    unset black(update_from)
 }
+
+###
+proc blacktools:lastupdate {type lastmodif new} {
+    global black botnick
+if {$type == 0} {
+if {$new == 1} {
+     set file [open $black(last_update_file) w]
+    puts $file "$botnick $lastmodif"
+    close $file
+    return
+}
+if {![file exists $black(last_update_file)]} {
+    set file [open $black(last_update_file) w]
+    puts $file "$botnick $lastmodif"
+    close $file
+} else {
+    set file [open $black(last_update_file) a]
+    puts $file "$botnick $lastmodif"
+    close $file
+    }
+} else {
+if {![file exists $black(last_update_file)]} {
+    return 0
+}
+    set file [open $black(last_update_file) r]
+    set data [read -nonewline $file]
+    close $file
+if {[lsearch -nocase [split $data "\n"] "$botnick $lastmodif"] > -1} {
+    return 0
+    } elseif {[lsearch -nocase [split $data "\n"] "* $lastmodif"] > -1} {
+    return 1     
+        }
+    }
+}
+
 
 ###
 proc blacktools:update_restore_files {} {
@@ -580,6 +665,23 @@ if {$type == 0} {
     puts $file $data
     close $file
     }
+}
+
+###
+proc blacktools:update_getconfig {} {
+    global black
+    set link "https://raw.githubusercontent.com/tclscripts/BlackTools-TCL/master/BlackTools.tcl"
+    http::register https 443 [list ::tls::socket -tls1 true]
+    set ipq [http::config -useragent "lynx"]
+	set error [catch {set ipq [::http::geturl $link -timeout 10000]} eror]
+	set status [::http::status $ipq]
+if {$status != "ok"} {
+	::http::cleanup $ipq
+	return -1
+}
+	set getipq [::http::data $ipq]
+	::http::cleanup $ipq
+	return $getipq
 }
 
 ###
