@@ -272,7 +272,7 @@ set black(chanserv:suspend_level) "400"
 #How many percent from channel users the ban should cover in order for
 #eggdrop to identify as being a massban
 
-set black(chanserv:percent_ban) "20%"
+set black(chanserv:percent_ban) "50%"
 
 ###########################################################################
 #--------------------------- Join Flood ----------------------------------#
