@@ -58,7 +58,11 @@ if {$status == -1} {
     set new_version [lindex [lindex $data 0] 1]
     set last_modify [lindex [lindex $data 1] 2]
     set status [lindex [lindex $data 2] 1]
-
+    set check_update_byother [blacktools:lastupdate 1 $last_modify 0]
+if {$check_update_byother == 1} {
+    blacktools:tell_v2 $nick $host $hand $chan $chan autoupdate.47 [list [ctime $last_modify]]
+    return
+}
 if {$black(vers) != $new_version} {
 if {$type == 0} {
     blacktools:tell $nick $host $hand $chan $chan autoupdate.32 "$new_version"
@@ -73,10 +77,6 @@ if {$type == 0} {
 } else {
 if {$type == 0} {
     blacktools:tell $nick $host $hand $chan $chan autoupdate.5 ""
-        }
-    set check_update_byother [blacktools:lastupdate 1 $last_modify 0]
-if {$check_update_byother == 1} {
-    blacktools:tell_v2 $nick $host $hand $chan $chan autoupdate.47 [list [ctime $last_modify]]
         }
     return 0
     }
@@ -187,24 +187,22 @@ if {$type == 0} {
 } else {
     set black(update_from) 1
 }
-
+    set check_update_byother [blacktools:lastupdate 1 $last_modify 0]
+ if {$check_update_byother == 1} {
+    blacktools:update_put $hand $chan 48 [list [ctime $last_modify]]
+    blacktools:finish_config $hand $chan $last_modify $status
+    return
+}
 if {$black(vers) != $new_version} {
     blacktools:update_put $hand $chan 3 [list $new_version]   
 } elseif {$last_modify != $black(current_modif)} {
     blacktools:update_put $hand $chan 4 [list $black(vers)]
 } else {
     blacktools:update_put $hand $chan 5 ""
-    set check_update_byother [blacktools:lastupdate 1 $last_modify 0]
- if {$check_update_byother == 1} {
-    blacktools:update_put $hand $chan 48 [list [ctime $last_modify]]
-    blacktools:finish_config $hand $chan $last_modify $status
-        } else {
     unset black(update_from)
     unset black(finish_action)
-    }
     return 0
 }
-
 if {![file isdirectory $black(backup_dir)]} {
 if {[catch {file mkdir $black(backup_dir)} error] != 0} {
     blacktools:update_put $hand $chan 6 [list $error]
