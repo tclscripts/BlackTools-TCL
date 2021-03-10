@@ -623,6 +623,7 @@ if {$find_entry > -1} {
 proc seen:save_file {min hour day mon year} {
 	global black
 	set channels ""
+if {![file exists $black(seen_file)]} {return}
 foreach chan [channels] {
 if {[setting:get $chan seen]} {
 if {[info exists black(seen_list:$chan)]} {
