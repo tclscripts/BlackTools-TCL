@@ -1397,6 +1397,8 @@ set black(say.ro.autoupdate.42) "\005\[BT\]\005 Am setat timpul pentru \001AutoU
 set black(say.ro.autoupdate.43) "\005\[BT\]\005 AutoUpdate a gasit un \001update\001 nou: BlackTools \002%msg.1%\002 (Ultimul update: \001%msg.2%\001)."
 set black(say.ro.autoupdate.45) "\005\[BT\]\005 Pentru a finaliza acest update este necesara repornirea eggdrop-ului prin intermediul comenzii de \002restart\002"
 set black(say.ro.autoupdate.46) "\005\[BT\]\005 Restart automat in 10 secunde pentru a finaliza update-ul."
+set black(say.ro.autoupdate.47) "\005\[BT\]\005 Ultimul update (\001%msg.1%\001) a fost instalat de catre alt eggdrop din aceeasi arhiva. Foloseste \001%char%update start\001 pentru a finaliza update."
+set black(say.ro.autoupdate.48) "\005\[BT\]\005 Ultimul update (\001%msg.1%\001) gasit ca instalat de catre alt eggdrop din aceeasi arhiva. Finalizez update.."
 
 ######################################## ALIAS ###################################
 
