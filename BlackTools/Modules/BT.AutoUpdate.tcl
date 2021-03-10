@@ -14,10 +14,10 @@
 ##					                               ##
 #########################################################################
 
-set black(backup_dir) "$black(dirtcl)/BT.backup"
-set black(log_file) "$black(dirtcl)/BT.update.log"
-set black(actdir) $black(dirtcl)
-set black(last_update_file) "$black(dirtcl)/BlackTools/temp/lastupdate.txt"
+set black(backup_dir) "scripts/BT.backup"
+set black(log_file) "scripts/BT.update.log"
+set black(actdir) "scripts"
+set black(last_update_file) "scripts/BlackTools/temp/lastupdate.txt"
 
 ###
 proc blacktools:check_addons {hand chan} {
@@ -392,7 +392,7 @@ proc blacktools:update_start_restore {} {
     set hand $black(update_hand)
     set chan $black(update_chan)
     set userlang [blacktools:update_userlang $hand]
-    if {![file isdirectory "$black(actdir)/BlackTools"]} {
+if {![file isdirectory "$black(actdir)/BlackTools"]} {
     blacktools:update_put $hand $chan 16 ""
     file delete -force $black(backup_dir)
     blacktools:update_unsetflag
