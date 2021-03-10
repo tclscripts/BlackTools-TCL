@@ -5,7 +5,7 @@
 #########################   AutoUpdate TCL   ############################
 #########################################################################
 ##						                       ##
-##   BlackTools  : http://blacktools.tclscripts.net	               ##
+##   BlackTools  : http://$black(tclname)scripts.net	               ##
 ##   Bugs report : http://www.tclscripts.net/	                       ##
 ##   GitHub page : https://github.com/tclscripts/BlackToolS-TCL        ##
 ##   Online Help : irc://irc.undernet.org/tcl-help 	               ##
@@ -14,9 +14,9 @@
 ##					                               ##
 #########################################################################
 
-set black(backup_dir) "scripts/BT.backup"
-set black(log_file) "scripts/BT.update.log"
-set black(actdir) "scripts"
+set black(backup_dir) "$black(dirtcl)/BT.backup"
+set black(log_file) "$black(dirtcl)/BT.update.log"
+set black(actdir) $black(dirtcl)
 
 ###
 proc blacktools:check_addons {hand chan} {
@@ -198,10 +198,10 @@ if {[catch {file mkdir $black(backup_dir)} error] != 0} {
     }
 }
 
-if {[file exists $black(backup_dir)/BlackTools.tcl]} {
+if {[file exists $black(backup_dir)/$black(tclname)]} {
     blacktools:update_put "" "" 7 ""
     file delete -force $black(backup_dir)/BlackTools
-    file delete -force $black(backup_dir)/BlackTools.tcl
+    file delete -force $black(backup_dir)/$black(tclname)
 }
 if {[catch {file copy -force "$black(dirname)/BlackTools" $black(backup_dir)} error_b] == 0} {
     blacktools:update_put "" "" 8 ""
@@ -263,7 +263,7 @@ if {[file isdirectory "$black(dirname)/BlackTools/FILES/TOPWORDS"]} {
 proc blacktools:backup_run {hand chan new_version last_modify} {
     global black config
     set black(update_old_data) [blacktools:update_data 0 ""]
-    set bt_file "$black(dirname)/BlackTools.tcl"
+    set bt_file "$black(dirname)/$black(tclname)"
     set file [open $bt_file r]
     set data [read -nonewline $file]
     close $file
@@ -277,12 +277,12 @@ proc blacktools:backup_run {hand chan new_version last_modify} {
     set file [open $config r]
     set data [read -nonewline $file]
     close $file
-    set reg "source $black(dirname)/BlackTools.tcl"
+    set reg "source $black(dirname)/$black(tclname)"
     regsub $reg $data "source $black(dirname)/BlackTools.old.tcl" data
     set file [open $config w]
     puts $file $data
     close $file
-    file rename -force "$black(dirname)/BlackTools.tcl" "$black(dirname)/BlackTools.old.tcl"
+    file rename -force "$black(dirname)/$black(tclname)" "$black(dirname)/BlackTools.old.tcl"
     utimer 5 [list blacktools:update_start_download $hand $chan $new_version $last_modify]
 }
 
@@ -349,7 +349,7 @@ proc blacktools:update_start_restore {} {
     file delete -force $black(backup_dir)
     blacktools:update_unsetflag
     return
-} elseif {![file exists "$black(actdir)/BlackTools.tcl"]} {
+} elseif {![file exists "$black(actdir)/$black(tclname)"]} {
     blacktools:update_put $hand $chan 16 ""
     file delete -force $black(backup_dir)
     blacktools:update_unsetflag
@@ -403,7 +403,7 @@ if {$num == 0} {
     set data [read -nonewline $file]
     close $file
     set reg "source $black(actdir)/BlackTools.old.tcl"
-    regsub $reg $data "source $black(actdir)/BlackTools.tcl" data
+    regsub $reg $data "source $black(actdir)/$black(tclname)" data
     set file [open $config w]
     puts $file $data
     close $file
@@ -465,7 +465,7 @@ foreach f $topwords_files {
 ###
 proc blacktools:update_set_time {num type} {
     global black
-    set bt_file "$black(dirname)/BlackTools.tcl"
+    set bt_file "$black(dirname)/$black(tclname)"
     set file [open $bt_file r]
     set data [read -nonewline $file]
     close $file
@@ -486,7 +486,7 @@ if {$type == 0} {
 proc blacktools:update_on_off {type} {
     global black
     set regexp_var2 "set black\\(update_type\\) \"(.*?)\""
-    set bt_file "$black(dirname)/BlackTools.tcl"
+    set bt_file "$black(dirname)/$black(tclname)"
     set file [open $bt_file r]
     set data [read -nonewline $file]
     close $file
@@ -566,7 +566,7 @@ if {[string equal -nocase "default_away" $var] && [string match -nocase "*www.TC
 ###
 proc blacktools:update_data {type data} {
     global black
-    set bt_file "$black(dirname)/BlackTools.tcl"
+    set bt_file "$black(dirname)/$black(tclname)"
 if {![file exists $bt_file]} {
     return 0
 }
