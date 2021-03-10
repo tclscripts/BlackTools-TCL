@@ -1774,7 +1774,9 @@ if {[info exists black(backup_update)]} {
 	set black(backdir) $black(dirname)
 }
 
- set black(loader_error) [catch {source $black(backdir)/BlackTools/BT.Loader.tcl} black(loader_error_stats)]
+set black(tclname) [file tail [info script]]
+set black(dirtcl) [file dirname [info script]]
+set black(loader_error) [catch {source $black(backdir)/BlackTools/BT.Loader.tcl} black(loader_error_stats)]
 
 if {$black(loader_error) == "1"} {
 	die "\[BT\] Error. Couldn't load the \"BT Loader\". Reason: \"$black(loader_error_stats)\""
