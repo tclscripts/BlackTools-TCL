@@ -2652,8 +2652,7 @@ if {[info exists black(flood:$the_host:$chan)]} {
 proc maxuptime {min hour day mon year} {
 	global black uptime {server-online}
 if {![file exists $black(uptime_file)]} {
-	set file [open $black(uptime_file) w]
-	close $file
+	return
 }
 	set online [expr [unixtime] - ${server-online}]
 	set read_uptime [expr [unixtime] - $uptime]
@@ -4779,6 +4778,7 @@ if {[string equal -nocase $c $chan] && [string equal -nocase $gettype "XTRA"] &&
 
 proc setting:get {chan setting} {
 	global black
+if {![file exists $black(extra_file)]} {return 0}
 	set flag_setting 0
 	set found_it 0
 	set return ""
