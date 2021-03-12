@@ -30,19 +30,21 @@ if {$cmd_status == "1"} {
 }
 switch $what {
 	on {
-	set out [blacktools:update_on_off 1]
+	set out [blacktools:update_on_off 0]
 if {$out == 1} {
 	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.35 ""
 } elseif {$out == 3} {
 	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.36 ""
+	rehash
 }
 	}
 	off {
-	set out [blacktools:update_on_off 0]
+	set out [blacktools:update_on_off 1]
 if {$out == 0} {
 	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.37 ""
 } elseif {$out == 2} {
 	blacktools:tell $nick $host $hand $chan $chan1 autoupdate.38 ""
+	rehash
 }
 	}
 	time {
