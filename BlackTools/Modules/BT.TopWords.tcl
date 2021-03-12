@@ -85,7 +85,6 @@ if {[matchattr $user -|w $chan]} {
 proc topwords:process {nick host hand chan chan1 cmd type next} {
 global botnick black username
 	set topwords_file "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
-if {![file exists $topwords_file]} {return}
 	set cmd_status [btcmd:status $chan $hand "topwords" 0]
 if {$cmd_status == "1"} { 
 	return 
@@ -398,7 +397,6 @@ proc topwords:module {nick host hand chan arg} {
 	global black username
 	set arg [split $arg]
 	set topwords_file "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
-if {![file exists $topwords_file]} {return}
 	set mask [return_mask [return_host_num "topwords" $chan $host] $host $nick]
 	set handle [nick2hand $nick]
 	set topwords_run 0
