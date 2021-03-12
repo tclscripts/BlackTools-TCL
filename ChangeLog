@@ -1,3 +1,5 @@
+ 2021-03-12  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * solved NICKSERV login issue
  2021-03-10  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * Added support for AutoUpdate in case there are more then 1 eggdrop on same archive.
  2021-03-09  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
