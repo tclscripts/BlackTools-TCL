@@ -154,10 +154,10 @@ bind notc - "*Maximum concurrent logins exceeded*" black:login:max
 
 #nickserv
 
-bind notc - "*If this is your nick*" black:nickserv:yes
-bind notc - "*Password accepted for*" black:nickserv:identify
+bind notc - "*registered and protected*" black:nickserv:yes
+bind notc - "*Password accepted*" black:nickserv:identify
 bind notc - "*The password supplied*" black:nickserv:wrongpass
-bind notc - "*is registered to someone else*" black:nickserv:registered
+bind notc - "*registered to someone else*" black:nickserv:registered
 bind nick - * black:nickserv:release
 #
 
