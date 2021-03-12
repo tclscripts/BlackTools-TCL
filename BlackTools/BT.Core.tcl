@@ -392,7 +392,7 @@ proc notc:flood:protection {nick host hand text dest} {
 	global black botnick
 	set number [scan $black(notice:flood) %\[^:\]]
 	set timer [scan $black(notice:flood) %*\[^:\]:%s]
-if {$nick == $black(chanserv)} {
+if {$nick == $black(chanserv) || [string equal -nocase $nick "CHANSERV"]} {
 	return
 }
 if {![isbotnick $dest]} {
