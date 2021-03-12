@@ -22,7 +22,7 @@ set black(glflags) "nmo"
 set black(tclconfig) "$black(backdir)/$black(tclname)"
 set black(tempdir) "$black(backdir)/BlackTools/temp"
 set black(banflag) "B"
-set black(current_modif) "1615407374"
+set black(current_modif) "1615556948"
 set black(current_size) "76"
 
 ############################### Information files ############################
