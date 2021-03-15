@@ -1588,7 +1588,9 @@ quote {
 if {[matchattr $hand nmo|MAOV $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.892 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.893 none
+if {[matchattr $hand nmo|M $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.894 none
+}
 	blacktools:tell $nick $host $hand $chan $chan1 man.895 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.896 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
