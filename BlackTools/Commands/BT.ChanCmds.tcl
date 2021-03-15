@@ -173,7 +173,7 @@ if {[matchattr $hand nmo|MAOV $chan]} {
 }
 
 q {
-if {[matchattr $hand nmo|MAOV $chan]} {
+if {($black(quote:usage) == "1" && [matchattr $hand nmo|MAOV $chan]) || $black(quote:usage) == "0"} {
 	set otherchan 0
 	set who [lindex [split $arg] 1]
 	set next [lindex [split $arg] 2]
