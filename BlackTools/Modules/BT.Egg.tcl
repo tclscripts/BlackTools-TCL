@@ -16,7 +16,7 @@
 
 proc egg:setting_check {setting} {
 	global black
-	set settings "nick realname away homechan chanserv hostchanserv userlogin userpass chanremove-setting add-mask add-defaultmask user-expire banmethod-expire broadcast-showtime cmdchar defaultlang defaultoutput floodmenuprot userfloodmsgprot massfloodmsgprot massfloodsilencetime floodnotcprot pagelimit antibotidle"
+	set settings "nick realname away homechan chanserv hostchanserv userlogin userpass chanremove-setting add-mask add-defaultmask user-expire banmethod-expire broadcast-showtime cmdchar defaultlang defaultoutput floodmenuprot userfloodmsgprot massfloodmsgprot massfloodsilencetime floodnotcprot pagelimit antibotidle quote-usage"
 if {[lsearch -exact [string tolower $settings] [string tolower $setting]] < 0} {
 	return 0
 	} else { return 1 }
@@ -367,6 +367,22 @@ if {![regexp {^[01]} $result]} {
 	return 0
 }
 	set error [config:save $tcl_config "set black(antibotidle_status) \"*\"" "set black(antibotidle_status) \"$result\""]
+if {$error == "0"} {
+	return 0
+	}
+	rehash
+	return 1
+}
+
+quote-usage {
+	set return [config:getinfo $tcl_config "set black(quote:usage) \"*\""]
+if {[string equal -nocase $return $result]} {
+	return 2
+}
+if {![regexp {^[01]} $result]} {
+	return 0
+}
+	set error [config:save $tcl_config "set black(quote:usage) \"*\"" "set black(quote:usage) \"$result\""]
 if {$error == "0"} {
 	return 0
 	}
