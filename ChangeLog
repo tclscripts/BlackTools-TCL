@@ -1,6 +1,8 @@
  2021-03-15  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * removed guestnick module
-  * solved small potentially bugs related to autoupdate. 
+  * solved small potentially bugs related to autoupdate.
+  * solved issue related to quote, now you can choose if you want users with access 
+    or all to add quotes/list/remove.
  2021-03-12  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * solved NICKSERV login issue
   * solved update on/off issue
@@ -38,8 +40,6 @@
   * solved other minor bugs
  2021-02-28  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
  ? * add backchan alert when a "k", "w" is being made
- ? * to solve issue related to quote, only users with access can view, remove
-  add quotes, must find a solution for that
   * solved issue related to .gag command. Users can specify any time
   they want no matter what is their access.
   * added 'change alias handle' in file when the user's handle is chander trough .chuser
