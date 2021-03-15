@@ -1274,6 +1274,10 @@ set black(quote:msgtime) "3h"
 
 set black(quote:outtype) "0"
 
+#Who can use quote ? (0 - users with access ; 1 - all users)
+
+set black(quote:usage) "0"
+
 #######################################################################
 #------------------------------- VoiceMe -----------------------------#
 
