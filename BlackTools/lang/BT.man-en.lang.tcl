@@ -934,13 +934,6 @@ set black(say.en.man.835) "\[MAN\] USAGE SYNTAXES:"
 set black(say.en.man.836) "\[MAN\] \002%char%set\002 (+/-)banstats ; \002%botnick% set\002 (+/-)banstats ; \002(PRIVMSG) set\002 <#chan> (+/-)banstats"
 set black(say.en.man.837) "\[MAN\] \002%char%banstats\002 <total|reset> ; \002%botnick% banstats\002 <total|reset> ; \002(PRIVMSG) banstats\002 <#chan> <total|reset>\002"
 
-#GuestNick
-
-set black(say.en.man.838) "\[MAN\] \002GuestNick\002 sends a predefined message to all users who join a channel and whose nick contains \"words\" defined in the eggdrop's database."
-set black(say.en.man.839) "\[MAN\] USAGE SYNTAX:"
-set black(say.en.man.840) "\[MAN\] \002%char%guestnick\002 <ON|OFF> ; \002%botnick% guestnick\002 <ON|OFF> ; \002(PRIVMSG) guestnick\002 <#chan> <ON|OFF>"
-set black(say.en.man.841) "\[MAN\] Optional settings: \002%char%set guestnick-msgmethod\002 <method> ( CHAN | NOTICE | PRIVMSG ) ; \002%char%set guestnick-message\002 <text>"
-
 #CP
 
 set black(say.en.man.842) "\[MAN\] \002cp\002 allows you to copy a channel settings to another channel, including the userlist, banlist and badchans."

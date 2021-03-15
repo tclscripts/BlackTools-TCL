@@ -382,20 +382,6 @@ set black(say.ro.topwords.27) "\005\[BT\]\005 Nu am gasit inregistrari legate de
 set black(say.ro.topwords.28) "TopWords Aceasta Saptamana: (\001%msg.1%\001) Host: \001%msg.2%\001 Cuvinte: \002%msg.3%\002 Linii: \002%msg.4%\002 Litere: \002%msg.12%\002 Zambete: \002%msg.13%\002 Actiuni: \002%msg.15%\002 Intrebari: \002%msg.17%\002 (Locul \002%msg.19%\002/\002%msg.21%\002 useri)."
 set black(say.ro.topwords.29) "\005\[BT\]\005 Am resetat topwords pentru \001%msg.1%\001 de pe \002%chan%\002."
 
-################################ GuestNick ####################################
-
-set black(say.ro.guestnick.1) "\005\[BT\]\005 Ai activat modulul de \001GuestNick\001 pe \002%chan%\002."
-set black(say.ro.guestnick.2) "\005\[BT\]\005 Ai dezactivat modulul de \001GuestNick\001 pe \002%chan%\002."
-set black(say.ro.guestnick.3) "\005\[BT\]\005 Am adaugat \001%msg.1%\001 cu nr. \002%msg.2%\002 in lista de \002GuestNick\002"
-set black(say.ro.guestnick.4) "\005\[BT\]\005 Am sters GuestNick-ul cu numarul \002%msg.1%\002 din lista canalului \002%chan%\002."
-set black(say.ro.guestnick.5) "\005\[BT\]\005 Nu am gasit GuestNick-ul cu numarul \002%msg.1%\002 in lista."
-set black(say.ro.guestnick.6) "\005\[BT\]\005 Nu sunt GuestNick-uri pentru \002%chan%\002"
-set black(say.ro.guestnick.7) "\005\[BT\]\005 Lista de \002GuestNicks\002 pentru \002%chan%\002 este:"
-set black(say.ro.guestnick.8) "\005\[BT\]\005 Pentru afisarea urmatoarelor \002GuestNicks\002 foloseste: \001%char%GuestNick list -next\001 (\002%counter%\002 GuestNick-uri ramase)"
-set black(say.ro.guestnick.9) "\005\[BT\]\005 *** Sfarsit lista GuestNicks ***"
-set black(say.ro.guestnick.10) "Salut \002%nick%\002: daca vrei sa-ti schimbi nick-ul cu ceva mai adecvat pentru numele tau, atunci folosind \002/nick nume\002 vei realiza acest lucru.."
-set black(say.ro.guestnick.11) "\005\[BT\]\005 Pentru afisarea urmatoarelor \002GuestNicks\002 foloseste: \001%char%GuestNick %chan% list -next\001 (\004%counter%\004 GuestNick-uri ramase)"
-
 ################################ BackChan ###################################
 
 set black(say.ro.reportchan) "\005\[BT\]\005 Am adaugat ban pe \002%chan%\002 pe hostul \001%banmask%\001 cu motivul: \002%reason%\002. Expira in: \001%bantime%\001."

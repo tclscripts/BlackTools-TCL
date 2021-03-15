@@ -935,13 +935,6 @@ set black(say.ro.man.835) "\[MAN\] SINTAXE FOLOSIRE:"
 set black(say.ro.man.836) "\[MAN\] \002%char%set\002 (+/-)banstats ; \002%botnick% set\002 (+/-)banstats ; \002(PRIVMSG) set\002 <#canal> (+/-)banstats"
 set black(say.ro.man.837) "\[MAN\] \002%char%banstats\002 <total|reset> ; \002%botnick% banstats\002 <total|reset> ; \002(PRIVMSG) banstats\002 <#canal> <total|reset>\002"
 
-#GuestNick
-
-set black(say.ro.man.838) "\[MAN\] \002GuestNick\002 este un modul care odata activat informeaza toti userii ce intra pe canal si folosesc un anumit \"cuvant\" definit in nick-ul lor."
-set black(say.ro.man.839) "\[MAN\] SINTAXA FOLOSIRE:"
-set black(say.ro.man.840) "\[MAN\] \002%char%guestnick\002 <ON|OFF> ; \002%botnick% guestnick\002 <ON|OFF> ; \002(PRIVMSG) guestnick\002 <#canal> <ON|OFF>"
-set black(say.ro.man.841) "\[MAN\] Setari optionale: \002%char%set guestnick-msgmethod\002 <metoda> (CHAN | NOTICE | PRIVMSG) ; \002%char%set guestnick-message\002 <mesaj>"
-
 #cp
 
 set black(say.ro.man.842) "\[MAN\] \002cp\002 este un modul care permite copierea setarilor unui canal pe alt canal, incluzand atat userii cu access, cat si lista de banuri, setarile canalului sau lista badchans."

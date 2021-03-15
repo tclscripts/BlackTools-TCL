@@ -381,20 +381,6 @@ set black(say.en.topwords.27) "\005\[BT\]\005 No entries found about \002%msg.1%
 set black(say.en.topwords.28) "Week's TopWords: (\001%msg.1%\001) Host: \001%msg.2%\001 Words: \002%msg.3%\002 Lines: \002%msg.4%\002 Letters: \002%msg.12%\002 Smiles: \002%msg.13%\002 Actions: \002%msg.15%\002 Questions: \002%msg.17%\002 (Place \002%msg.19%\002/\002%msg.21%\002 users)."
 set black(say.en.topwords.29) "\005\[BT\]\005 Reset topwords of \001%msg.1%\001 from \002%chan%\002"
 
-################################ GuestNick ####################################
-
-set black(say.en.guestnick.1) "\005\[BT\]\005 \002GuestNick\002 module turned \001ON\001."
-set black(say.en.guestnick.2) "\005\[BT\]\005 \002GuestNick\002 module turned \001OFF\001."
-set black(say.en.guestnick.3) "\005\[BT\]\005 Added \001%msg.1%\001 with no. \002%msg.2%\002 in \002GuestNicks List\002"
-set black(say.en.guestnick.4) "\005\[BT\]\005 Removed \002guestnick\002 with no. \001%msg.1%\001 from \002%chan%\002."
-set black(say.en.guestnick.5) "\005\[BT\]\005 FAILED: No entries matching for no. \001%msg.1%\001 in \002GuestNicks List\002."
-set black(say.en.guestnick.6) "\005\[BT\]\005 There are no GuestNicks for \002%chan%\002."
-set black(say.en.guestnick.7) "\005\[BT\]\005 \002GuestNicks List\002 for \001%chan%\001 is:"
-set black(say.en.guestnick.8) "\005\[BT\]\005 To see the next set of entries, type: \001%char%GuestNick list -next\001 (\002%counter%\002 GuestNicks left)"
-set black(say.en.guestnick.9) "\005\[BT\]\005 *** END GuestNicks List ***"
-set black(say.en.guestnick.10) "Hello \002$nick\002: if you want to change your actual nickname with something more appropriate to your name, using \002/nick YourName\002 will accomplish this.."
-set black(say.en.guestnick.11) "\005\[BT\]\005 To see the next set of entries, type: \001%char%GuestNick %chan% list -next\001 (\002%counter%\002 GuestNicks left)"
-
 ################################ BackChan ###################################
 
 set black(say.en.reportchan) "\005\[BT\]\005 Added ban on \002%chan%\002 for host \002%banmask%\002 with reason: \002%reason%\002. Expires after: \002%bantime%\002."
@@ -1376,7 +1362,7 @@ set black(say.en.autoupdate.21) "\005\[BT\]\005 Restoring settings, bans and oth
 set black(say.en.autoupdate.22) "\005\[BT\]\005 No settings, bans and other information found ..."
 set black(say.en.autoupdate.23) "\005\[BT\]\005 Restored (\002%msg.1%\002) files that contain settings, bans and other information."
 set black(say.en.autoupdate.24) "\005\[BT\]\005 Update finished for \001BlackTools\001 in \002%msg.1%\002 . Changelog: \002https://github.com/tclscripts/BlackTools-TCL/blob/master/ChangeLog\002"
-set black(say.en.autoupdate.25) "\005\[BT\]\005 If something is wrong the backup FILES are still available in \001\"%msg.1%\"\001 until next Update. Also you can check the UPDATE LOG in \001\"%msg.2%\"\001"
+set black(say.en.autoupdate.25) "\005\[BT\]\005 If something is wrong the backup FILES are stil available in \001\"%msg.1%\"\001 until next Update. Also you can check the UPDATE LOG in \001\"%msg.2%\"\001"
 set black(say.en.autoupdate.26) "\005\[BT\]\005 Remember, for information or bug issues visit the official site of \002BT\002 --- \001WwW.TclScripts.Net\001"
 set black(say.en.autoupdate.27) "\005\[BT\]\005 Update started at \001%msg.1%\001"
 set black(say.en.autoupdate.28) "\005\[BT\]\005 Verifying for new updates.."
@@ -1384,7 +1370,7 @@ set black(say.en.autoupdate.29) "\005\[BT\]\005 Update is already runing.."
 set black(say.en.autoupdate.30) "\005\[BT\]\005 Can't start update. Reason: \002%msg%\002"
 set black(say.en.autoupdate.31) "\005\[BT\]\005 Can't verify for new update. Please try again later."
 set black(say.en.autoupdate.32) "\005\[BT\]\005 New version of \001BlackTools\001 found: \002%msg%\002 . Use \001%char%update start\002 to start update"
-set black(say.en.autoupdate.33) "\005\[BT\]\005 You are already using the latest \001BlackTools\001 version. A minor bugfix was found (\001%msg%\001). Use \001%char%update start\002 to start update"
+set black(say.en.autoupdate.33) "\005\[BT\]\005 No new version of \001BlackTools\001 found but found a bugfix (\001%msg%\001) for the current one. Use \001%char%update start\002 to start update"
 set black(say.en.autoupdate.34) "\005\[BT\]\005 \001AutoUpdate\001 is disabled. Reason: \002%msg%\002"
 set black(say.en.autoupdate.35) "\005\[BT\]\005 \001AutoUpdate\001 is already turned \001on\001 .."
 set black(say.en.autoupdate.36) "\005\[BT\]\005 \001AutoUpdate\001 module is turned \001ON\001."
