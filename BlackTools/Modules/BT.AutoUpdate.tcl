@@ -58,6 +58,7 @@ if {$status == -1} {
     set new_version [lindex [lindex $data 0] 1]
     set last_modify [lindex [lindex $data 1] 2]
     set status [lindex [lindex $data 2] 1]
+    set size [lindex [lindex $data 3] 1]
     set check_update_byother [blacktools:lastupdate 1 $last_modify 0]
 if {$check_update_byother == 1} {
     blacktools:tell_v2 $nick $host $hand $chan $chan autoupdate.47 [list [ctime $last_modify]]
@@ -180,6 +181,8 @@ if {$status == -1} {
     set new_version [lindex [lindex $data 0] 1]
     set last_modify [lindex [lindex $data 1] 2]
     set status [lindex [lindex $data 2] 1]
+    set size [lindex [lindex $data 3] 1]
+    set black(download_size) $size
 if {$status == 1} {set black(finish_action) 1} else {set black(finish_action) 0}
 
 if {$type == 0} {
@@ -354,14 +357,13 @@ proc blacktools:update_start_download {hand chan new_version last_modify} {
     blacktools:every 1000 {
 if {[file isdirectory $black(actdir)/BlackTools]} {
     set size [llength [glob-r "$black(actdir)/BlackTools"]]
-if {$size == $black(current_size)} {
+if {$size == $black(download_size)} {
     blacktools:update_start_restore
     break
             }
         }
     }
 }
-
 ###
 #https://wiki.tcl-lang.org/page/glob
 proc glob-r {{dir .}} {
@@ -478,6 +480,7 @@ if {$black(update_from) == 0} {
     unset black(update_last_modify)
     unset black(finish_action)
     unset black(update_from)
+    unset black(download_size)
 }
 
 ###
