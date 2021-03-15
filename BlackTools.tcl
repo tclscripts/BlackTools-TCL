@@ -145,7 +145,7 @@ set black(dns:host_excepts) {
 # Here you set your eggdrop's homechan. If you modify here the eggdrop    #
 #will join homechan. If not leave it "#no_home_chan" or "" (empty)        #
 ###									###
-set black(homechan) "#bt"
+set black(homechan) "#no_home_chan"
 
 ###########################################################################
 #---------------------------- First Char ---------------------------------#
