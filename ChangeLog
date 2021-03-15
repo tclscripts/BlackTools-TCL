@@ -1,3 +1,5 @@
+ 2021-03-15  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * removed guestnick module
  2021-03-12  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * solved NICKSERV login issue
   * solved update on/off issue
