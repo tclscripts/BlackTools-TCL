@@ -3,6 +3,7 @@
   * solved small potentially bugs related to autoupdate.
   * solved issue related to quote, now you can choose if you want users with access 
     or all to add quotes/list/remove.
+  * restart required after this update.
  2021-03-12  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * solved NICKSERV login issue
   * solved update on/off issue
