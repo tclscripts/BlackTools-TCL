@@ -1,5 +1,6 @@
  2021-03-15  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * removed guestnick module
+  * solved small potentially bugs related to autoupdate. 
  2021-03-12  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * solved NICKSERV login issue
   * solved update on/off issue
