@@ -150,7 +150,7 @@ if {[lindex $split_host 1] == "chan"} {
 
 switch $who {
 	list {
-if {[matchattr $hand nmo|M $chan]} {
+if {($black(quote:usage) == "1" && [matchattr $hand nmo|MAOV $chan]) || $black(quote:usage) == "0"} {
 	array set nicklist [list]
 	set getlang [string tolower [getuser $hand XTRA OUTPUT_LANG]]
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
@@ -186,7 +186,7 @@ foreach msg [lsort -integer -increasing [array names nicklist]] {
 }
 
 del {
-if {[matchattr $hand nmo|M $chan]} {
+if {($black(quote:usage) == "1" && [matchattr $hand nmo|MAOV $chan]) || $black(quote:usage) == "0"} {
 if {![regexp {^[0-9]} $next]} {
 switch $type {
 	0 {
