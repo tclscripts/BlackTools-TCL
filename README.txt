@@ -34,7 +34,7 @@
       In any case, if you have any comment (good or bad) go to www.tclscripts.net.
 
 Minimum requirements:
-     o Eggdrop 1.8.x
+     o Eggdrop 1.8.x or higher.
      o Tcl 8.5 or higher.
      o TLS package (for autoupdate module to work,if not, it will be disabled)
 
