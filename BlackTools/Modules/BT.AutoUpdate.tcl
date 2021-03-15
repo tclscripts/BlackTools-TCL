@@ -327,11 +327,13 @@ proc blacktools:backup_run {hand chan new_version last_modify} {
     set data [read -nonewline $file]
     close $file
     set reg "source $black(dirname)/$black(tclname)"
-    regsub $reg $data "source $black(dirname)/BlackTools.old.tcl" data
+    set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
+    set black(old_config_file) "BlackTools.${timestamp}.tcl"
+    regsub $reg $data "source $black(dirname)/$black(old_config_file)" data
     set file [open $config w]
     puts $file $data
     close $file
-    file rename -force "$black(dirname)/$black(tclname)" "$black(dirname)/BlackTools.old.tcl"
+    file rename -force "$black(dirname)/$black(tclname)" "$black(dirname)/$black(old_config_file)"
     utimer 5 [list blacktools:update_start_download $hand $chan $new_version $last_modify]
 }
 
@@ -450,7 +452,7 @@ if {$num == 0} {
     set file [open $config r]
     set data [read -nonewline $file]
     close $file
-    set reg "source $black(actdir)/BlackTools.old.tcl"
+    set reg "source $black(actdir)/$black(old_config_file)"
     regsub $reg $data "source $black(actdir)/$black(tclname)" data
     set file [open $config w]
     puts $file $data
@@ -462,7 +464,7 @@ if {$num == 0} {
     blacktools:update_put $hand $chan 25 [list $black(backup_dir) $black(log_file)]
     blacktools:update_put $hand $chan 26 ""
     unset black(update_file_saved)
-    file delete -force "$black(actdir)/BlackTools.old.tcl"
+    file delete -force "$black(actdir)/$black(old_config_file)"
 if {$black(finish_action) == 0} {
     rehash
     setaway "none"
@@ -481,6 +483,7 @@ if {$black(update_from) == 0} {
     unset black(finish_action)
     unset black(update_from)
     unset black(download_size)
+    unset black(old_config_file)
 }
 
 ###
