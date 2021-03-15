@@ -1,3 +1,7 @@
+ 2021-03-16  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * to implement category TCL in witch you have all tcl and also .tcl info
+    to get info like bind pub, flags, strings from that TCL. [ pending ]
+  * to implement .update reinstall [ pending ]
  2021-03-15  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * removed guestnick module
   * solved small potentially bugs related to autoupdate.
