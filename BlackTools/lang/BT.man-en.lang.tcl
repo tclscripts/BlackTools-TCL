@@ -1015,9 +1015,10 @@ set black(say.en.man.891) "View options settings: \002%char%show\002 <setting> ;
 
 set black(say.en.man.892) "\[MAN\] \002Quote\002 is a quotes system with public commands for adding, removing and displaying quotes (includes also a search function)."
 set black(say.en.man.893) "\[MAN\] USAGE SYNTAXES:"
-set black(say.en.man.894) "\[MAN\] \002%char%set\002 (+/-)quote ; \002%botnick% set\002 (+/-)quote ; \002(PRIVMSG) set\002 <#chan> (+/-)quote ; \002%char%set\002 quote-usage <1/0> ; \002%botnick% set\002 quote-usage <1/0> ; \002(PRIVMSG) set\002 <#canal> quote-usage <1/0> (\0010\001 - all can use this module ; \0011\001 - only valid users)"
+set black(say.en.man.894) "\[MAN\] \002%char%set\002 (+/-)quote ; \002%botnick% set\002 (+/-)quote ; \002(PRIVMSG) set\002 <#chan> (+/-)quote"
 set black(say.en.man.895) "\[MAN\] \002%char%q\002 \[#chan\] <text> (add quote) ; \002%char%q\002 \[#chan\] <word> (search) ; \002%char%q\002 \[#chan\] <list> ; \002%char%q\002 \[#chan\] del <no. quote>"
 set black(say.en.man.896) "\[MAN\] ** Note: To add more than 1 sentence use \002%char%q add \[#chan\] <text1>~<text2>\002.. and eggdrop will show the quotes as 2 different senteces. **"
+set black(say.en.man.896_2) "\[MAN\] \002%char%set\002 (+/-)quote ; \002%botnick% set\002 (+/-)quote ; \002(PRIVMSG) set\002 <#chan> (+/-)quote ; \002%char%set\002 quote-usage <1/0> ; \002%botnick% set\002 quote-usage <1/0> ; \002(PRIVMSG) set\002 <#canal> quote-usage <1/0> (\0010\001 - all can use this module ; \0011\001 - only valid users)"
 
 #QuoteOfDay
 

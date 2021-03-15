@@ -1016,10 +1016,10 @@ set black(say.ro.man.891) "Vizualizare setari optiuni: \002%char%show\002 <setar
 
 set black(say.ro.man.892) "\[MAN\] \002Quote\002 este un modul de citate (quote), cu comenzi publice de adaugare, stergere si afisare a citatelor (include si functie de cautare)."
 set black(say.ro.man.893) "\[MAN\] SINTAXE FOLOSIRE:"
-set black(say.ro.man.894) "\[MAN\] \002%char%set\002 (+/-)quote ; \002%botnick% set\002 (+/-)quote ; \002(PRIVMSG) set\002 <#canal> (+/-)quote ; \002%char%set\002 quote-usage <1/0> ; \002%botnick% set\002 quote-usage <1/0> ; \002(PRIVMSG) set\002 <#canal> quote-usage <1/0> (\0010\001 - toti pot folosi modulul ; \0011\001 - doar userii cu access)"
+set black(say.ro.man.894) "\[MAN\] \002%char%set\002 (+/-)quote ; \002%botnick% set\002 (+/-)quote ; \002(PRIVMSG) set\002 <#canal> (+/-)quote"
 set black(say.ro.man.895) "\[MAN\] \002%char%q\002 \[#canal\] <citat> (adaugare quote) ; \002%char%q\002 \[#canal\] <cuvant> (cauta quote) ; \002%char%q\002 \[#canal\] <list> ; \002%char%q\002 \[#canal\] del <nr quote>"
 set black(say.ro.man.896) "\[MAN\] Pentru a adauga mai mult de o propozitie utilizati: \002%char%q add \[#canal\] <citat1>~<citat2>..\002 si eggdrop-ul va arata nota ca 2 propozitii diferite."
-
+set black(say.ro.man.896_2) "\[MAN\] \002%char%set\002 (+/-)quote ; \002%botnick% set\002 (+/-)quote ; \002(PRIVMSG) set\002 <#canal> (+/-)quote ; \002%char%set\002 quote-usage <1/0> ; \002%botnick% set\002 quote-usage <1/0> ; \002(PRIVMSG) set\002 <#canal> quote-usage <1/0> (\0010\001 - toti pot folosi modulul ; \0011\001 - doar userii cu access)"
 #QuoteOfDay
 
 set black(say.ro.man.897) "\[MAN\] \002QuoteOfDay\002 este un modul care care odata activat va afisa aleatoriu citate (quote) stocate la un anumit interval de timp."
