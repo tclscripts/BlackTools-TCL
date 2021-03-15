@@ -2626,11 +2626,11 @@ leave-method {
 }
 
 backchan {
-	set replyinfo $black(say.ro.gl.noset)
+	set replyinfo $black(say.$getlang.gl.noset)
 }
 
 url {
-	set replyinfo $black(say.ro.gl.noset)
+	set replyinfo $black(say.$getlang.gl.noset)
 }
 
 idlehalfopmax {
