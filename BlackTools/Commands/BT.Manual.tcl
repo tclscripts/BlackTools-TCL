@@ -1495,16 +1495,6 @@ if {[matchattr $hand nmo|M $chan]} {
 	}
 }
 
-guestnick {
-if {[matchattr $hand nmo|M $chan]} {
-	blacktools:tell $nick $host $hand $chan $chan1 man.838 none
-	blacktools:tell $nick $host $hand $chan $chan1 man.839 none
-	blacktools:tell $nick $host $hand $chan $chan1 man.840 none
-	blacktools:tell $nick $host $hand $chan $chan1 man.841 none
-	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
-	}
-}
-
 cp {
 if {[matchattr $hand nmo|M $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.842 none

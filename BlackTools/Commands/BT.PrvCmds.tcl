@@ -1853,23 +1853,6 @@ if {$mychan_use == "1"} {
 	}
 }
 
-guestnick {
-if {[matchattr $hand nmo|M $chan]} {
-	set who [lindex [split $arg] 2]
-	set modul "guestnick"
-	set type 2
-	set chan1 $chan
-	set gnick [join [lrange [split $arg] 3 end]]
-	set number [lindex [split $arg] 3]
-if {$mychan_use == "1"} {
-	set who [lindex [split $arg] 1]
-	set gnick [join [lrange [split $arg] 2 end]]
-	set number [lindex [split $arg] 2]
-}
-	guestnick:process $nick $input $hand $chan $chan1 $who $gnick $type $number $modul
-	}
-}
-
 badhost {
 if {[matchattr $hand nmo|M $chan]} {
 	set type 2

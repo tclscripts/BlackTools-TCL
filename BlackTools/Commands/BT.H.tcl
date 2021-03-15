@@ -808,12 +808,12 @@ switch $type {
 
 module {
 
-set allmodules "Anunt AutoBroadcast BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private GuestNick Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language AutoUpdate Alias"
-set manager_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Guestnick Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language Alias"
-set owner_modules "Anunt AutoBroadcast BadChan Idle Limit CloneScan XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private GuestNick Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language Alias"
+set allmodules "Anunt AutoBroadcast BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language AutoUpdate Alias"
+set manager_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language Alias"
+set owner_modules "Anunt AutoBroadcast BadChan Idle Limit CloneScan XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language Alias"
 set module_output ""
 set other_module "Note Alias"
-set master_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Guestnick Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language Alias"
+set master_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language Alias"
 
 if {[matchattr $hand n]} {
 	set current_modules $allmodules
@@ -1000,13 +1000,6 @@ private {
 if {[setting:get $chan private]} {
 	lappend module_output "[black:color 2 $hand $m]\[+\]"
 } else { lappend module_output "[black:color 4 $hand $m]\[-\]" }	
-}
-
-
-guestnick {
-if {[setting:get $chan guestnick]} {
-	lappend module_output "[black:color 2 $hand $m]\[+\]"
-} else { lappend module_output "[black:color 4 $hand $m]\[-\]"}	
 }
 
 greet {

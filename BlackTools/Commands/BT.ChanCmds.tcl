@@ -290,23 +290,6 @@ if {[regexp {^[&#]} $tr] && [matchattr $hand nmo|MAO $tr]} {
 	}
 }
 
-guestnick {
-if {[matchattr $hand nmo|M $chan]} {
-	set who [lindex [split $arg] 1]
-	set modul "guestnick"
-	set type 0
-	set chan1 $chan
-	set gnick [join [lrange [split $arg] 2 end]]
-	set number [lindex [split $arg] 2]
-if {[regexp {^[&#]} $who] && [matchattr $hand nmo|M $who]} {
-	set who [lindex [split $arg] 2]
-	set gnick [join [lrange [split $arg] 3 end]]
-	set number [lindex [split $arg] 3]
-		}
-	guestnick:process $nick $char $hand $chan $chan1 $who $gnick $type $number $modul
-	}
-}
-
 badhost {
 if {[matchattr $hand nmo|M $chan]} {
 	set type 0
