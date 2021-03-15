@@ -100,26 +100,14 @@ if {$line == ""} {
 if {[onchan $botnick $chan]} {
 if {[regexp {[~]} $message]} {
 	set split_message [split $message "~"]
-if {$black(quote:outtype) == "1"} {
-	puthelp "PRIVMSG $chan :\001ACTION $reply2\001"
-} else {
 	puthelp "PRIVMSG $chan :$reply2"
-}
 foreach mes $split_message {
 	set encoded [encoding convertto utf-8 $mes]
-if {$black(quote:outtype) == "1"} {
-	puthelp "PRIVMSG $chan :\001ACTION \"[join $encoded]\"\001"
-} else { 
 	puthelp "PRIVMSG $chan :\"[join $encoded]\""
-				}
 			}
 		} else {
-		set encoded [encoding convertto utf-8 $message]
-if {$black(quote:outtype) == "1"} {
-	puthelp "PRIVMSG $chan :\001ACTION $reply2 [join $encoded]\001"
-} else { 
+	set encoded [encoding convertto utf-8 $message]
 	puthelp "PRIVMSG $chan :$reply2 [join $encoded]"
-			}
 		}
 	}
 }
