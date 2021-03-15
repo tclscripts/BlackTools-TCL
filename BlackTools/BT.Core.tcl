@@ -23,7 +23,7 @@ set black(tclconfig) "$black(backdir)/$black(tclname)"
 set black(tempdir) "$black(backdir)/BlackTools/temp"
 set black(banflag) "B"
 set black(current_modif) "1615556948"
-set black(current_size) "76"
+set black(current_size) "75"
 
 ############################### Information files ############################
 
@@ -252,8 +252,8 @@ set black(extra_str) {
 	antispam-banmask antispam-banmask antirepeat-banmask anticolor-banmask antibold-banmask
 	antiunderline-banmask anticaps-banmask nickflood-banmask badrealname-banmask badnick-banmask repetitivechars-banmask
 	antichanflood-banmask private-banmask dr-banmask vr-banmask stick-banmask badident-banmask
-	b-banmask id-banmask spam-banmask bw-banmask bot-banmask gag-banmask black-banmask next-banmask guestnick-msgmethod
-	guestnick-message voiceonmsg-linenum voiceonmsg-idletime inviteban-reason repetitivechars-reason inviteban-bantime badchan-banwait
+	b-banmask id-banmask spam-banmask bw-banmask bot-banmask gag-banmask black-banmask next-banmask
+    voiceonmsg-linenum voiceonmsg-idletime inviteban-reason repetitivechars-reason inviteban-bantime badchan-banwait
 	general-bantime general-banmask badchan-scantime clonescan-scantime antispam-scantime idle-scantime anunt-showtime
 	quote-showtime voiceme-showtime quitpartmsgflood-char repetitivechars-char noproxy-reason noproxy-bantime noproxy-banmask
 }
@@ -264,11 +264,11 @@ set black(extra_flag) {
 	antijoinflood antichanflood xtools antibadchan anunt limit clonescan seen autoop showbadchan showtroll
 	autovoice leave topwords dontop dontdeop private silent quote note reportnick invisible forward
 	showhandle showid showcount showtime showurl next voiceonmsg autotopic greet xonly nologged settingsaved
-	idleop idlehalfop idlevoice vprotect oprotect hoprotect badquitpart quitpartcolor quitpartmsgflood badhost nickflood guestnick seenreply
+	idleop idlehalfop idlevoice vprotect oprotect hoprotect badquitpart quitpartcolor quitpartmsgflood badhost nickflood seenreply
 	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink noproxy
 }
 
-set black(validcmds) "alias exempt login anunt link note q enable disable securemode cp troll guestnick badhost antispam badrealname badquitpart badident badnick badword unset greet leave topic vr dr n id spam bw mb black bl b stick ub sb banlist r man auto antipub private tcl h ignore idle version stats chat seen limit bt badchan us s info channels userlist chuser delhost addhost del delacc add unsuspend suspend delchan addchan die jump save restart rehash update nick msg omsg set mode cycle broadcast act say v ho o uptime status t k w ungag gag show clonescan topwords myset timer i badword next helped noidle skip"
+set black(validcmds) "alias exempt login anunt link note q enable disable securemode cp troll badhost antispam badrealname badquitpart badident badnick badword unset greet leave topic vr dr n id spam bw mb black bl b stick ub sb banlist r man auto antipub private tcl h ignore idle version stats chat seen limit bt badchan us s info channels userlist chuser delhost addhost del delacc add unsuspend suspend delchan addchan die jump save restart rehash update nick msg omsg set mode cycle broadcast act say v ho o uptime status t k w ungag gag show clonescan topwords myset timer i badword next helped noidle skip"
 
 ########################## BackChan ############################
 
@@ -2596,7 +2596,7 @@ if {$current == ""} { set current 0 }
 
 proc flood:join:protection {nick host hand chan} {
 	global black
-if {[setting:get $chan greet] || [setting:get $chan antijoinflood] || [setting:get $chan guestnick] || [setting:get $chan antispam]} {
+if {[setting:get $chan greet] || [setting:get $chan antijoinflood] || [setting:get $chan antispam]} {
 	set joinflood [setting:get $chan joinflood]
 if {$joinflood == ""} {set joinflood $black(joinflood:protect)}
 	set number [scan $joinflood %\[^:\]]
@@ -3716,9 +3716,6 @@ tcl {
 quote {
 	blacktools:tell $nick $host $hand $chan $chan1 $modul.2 none 
 			}
-guestnick {
-	blacktools:tell $nick $host $hand $chan $chan1 $modul.9 none
-}
 autobroadcast {
 	blacktools:tell $nick $host $hand $chan $chan1 $modul.10 none 
 			}
@@ -3767,9 +3764,6 @@ noteslist {
 quote {
 	blacktools:tell $nick $host $hand $chan $chan1 $modul.8 none 
 			}
-guestnick {
-	blacktools:tell $nick $host $hand $chan $chan1 $modul.7 none 
-}
 autobroadcast {
 	blacktools:tell $nick $host $hand $chan $chan1 $modul.9 none
 	}
@@ -3866,9 +3860,6 @@ noteslist {
 quote {
 	blacktools:tell $nick $host $hand $chan $chan1 $modul.2 none 
 			}
-guestnick {
-	blacktools:tell $nick $host $hand $chan $chan1 $modul.9 none
-}
 autobroadcast {
 	blacktools:tell $nick $host $hand $chan $chan1 $modul.10 none 
 			}
@@ -4067,13 +4058,6 @@ topwords {
 	}
 topbans {
 	set msg ""
-}
-guestnick {
-if {$otherchan == "1" || $prv == "1"} {
-	set msg $black(say.$getlang.$modul.11)
-	} else {
-	set msg $black(say.$getlang.$modul.8)
-	}
 }
 autobroadcast {
 	set msg $black(say.$getlang.$modul.12)
