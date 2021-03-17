@@ -35,7 +35,7 @@
 
 Minimum requirements:
      o Eggdrop 1.8.x or higher.
-     o Tcl 8.5 or higher.
+     o Tcl 8.6 or higher.
      o TLS package (for autoupdate module to work,if not, it will be disabled)
 
 Most important features:
