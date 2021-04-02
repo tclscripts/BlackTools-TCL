@@ -1,4 +1,5 @@
  2021-03-16  BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * to implement "Vote Module" [pending]
   * to implement category TCL in witch you have all tcl and also .tcl info
     to get info like bind pub, flags, strings from that TCL. [ pending ]
   * to implement .update reinstall [ pending ]
