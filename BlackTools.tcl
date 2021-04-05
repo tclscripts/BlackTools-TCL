@@ -836,6 +836,11 @@ set black(antirepeat:repeats) "3:5"
 
 set black(antirepeat:banmethod) "7"
 
+#if you want to punish only on specific colors, set here the colors like
+# "\00308 \00312" if not, leave it ""
+
+set black(anticolor:specific_colors) ""
+
 #Ban-Mode
 
 set black(antirepeatmode) ""
