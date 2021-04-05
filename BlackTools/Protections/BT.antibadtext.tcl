@@ -38,6 +38,15 @@ antiunderline {
 	set textfind "\037"
 	}	
 }
+if {$type == "anticolor" && $black(anticolor:specific_colors) != ""} {
+	foreach c $black(anticolor:specific_colors) {
+if {[string match "*$c*" $arg]} {
+	blacktools:banner:1 $nick [string toupper "$type"] $chan $host [get:banmethod $type $chan] [link:chan:get $chan]	
+	break
+		}		
+	}
+	return
+}
 if {[string match "*$textfind*" $arg]} {
 	blacktools:banner:1 $nick [string toupper "$type"] $chan $host [get:banmethod $type $chan] [link:chan:get $chan]	
 	return 1	
