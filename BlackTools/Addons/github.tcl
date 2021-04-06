@@ -33,7 +33,7 @@ proc ::github::download {url folder {debug true}} {
     if {![file exists $folder]} {
         file mkdir $folder
     }
-    set data [http::data [http::geturl $url]]
+    set data [http::data [http::geturl $url -timeout 5000]]
     set d [json::json2dict $data]
     set l [llength $d]
     set files [list]
