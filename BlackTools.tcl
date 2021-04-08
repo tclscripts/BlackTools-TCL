@@ -94,6 +94,10 @@ set black(dirname) "scripts"
 ###									###
 
 ###
+#If you want the autoupdate to be turned off completely, set here "0"
+set black(update_on) "1"
+
+###
 #How do you want for the update to be made
 # 0 - autoupdate on TIME interval and by command
 # 1 - update ONLY on command
