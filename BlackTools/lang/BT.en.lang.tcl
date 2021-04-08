@@ -1385,6 +1385,7 @@ set black(say.en.autoupdate.45) "\005\[BT\]\005 In order to complete this update
 set black(say.en.autoupdate.46) "\005\[BT\]\005 Automatic \002restart\002 in 10 seconds to complete the update."
 set black(say.en.autoupdate.47) "\005\[BT\]\005 Latest update (\001%msg.1%\001) was installed by another eggdrop from the same archive. Use \001%char%update start\001 to finish update."
 set black(say.en.autoupdate.48) "\005\[BT\]\005 Found latest (\001%msg.1%\001) update installed by another eggdrop from the same archive. Finishing update.."
+set black(say.en.autoupdate.49) "\005\[BT\]\005 \001AutoUpdate\001 is disabled."
 
 ######################################## ALIAS ###################################
 
