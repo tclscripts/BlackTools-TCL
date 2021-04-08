@@ -156,9 +156,11 @@ if {![info exists black(broadcast:timer_start)]} {
 }
 
 #AutoUpdate Check
+if {$black(update_on) != 0} {
 if {![info exists black(update_check_start)]} {
 	timer $black(update_time_check) blacktools:update:timer
 	set black(update_check_start) 1
+	}
 }
 
 #run by minute
@@ -178,6 +180,7 @@ proc blacktools:timers:runtime {} {
 if {$black(antibotidle_status) == 1} {
 	putserv "PRIVMSG ${botnick}\:X :none"
 }
+
 foreach chan [channels] {
 
 #badchan
