@@ -43,6 +43,10 @@ if {[catch {package require github} no_github] != 0} {
 ###
 proc blacktools:update_check {nick hand host chan type} {
     global black
+if {$black(update_on) == 0} {
+    blacktools:tell $nick $host $hand $chan $chan autoupdate.49 ""
+    return
+}
     set check_addons [blacktools:check_addons $hand $chan]
 if {$check_addons == 0} {
      blacktools:update_put $hand $chan 1 [list "CHECK UPDATE"]
@@ -158,6 +162,10 @@ if {[string equal -nocase $sender "AUTOUPDATE"] && [string equal -nocase $num $l
 ###
 proc blacktools:update {hand host chan type} {
     global black
+if {$black(update_on) == 0} {
+    blacktools:tell $hand $host $hand $chan $chan autoupdate.49 ""
+    return
+}
 if {[info exists black(backup_update)]} {
     blacktools:update_put $hand $chan 29 ""
     return 0
