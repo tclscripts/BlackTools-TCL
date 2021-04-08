@@ -1385,7 +1385,7 @@ set black(say.ro.autoupdate.45) "\005\[BT\]\005 Pentru a finaliza acest update e
 set black(say.ro.autoupdate.46) "\005\[BT\]\005 Restart automat in 10 secunde pentru a finaliza update-ul."
 set black(say.ro.autoupdate.47) "\005\[BT\]\005 Ultimul update (\001%msg.1%\001) a fost instalat de catre alt eggdrop din aceeasi arhiva. Foloseste \001%char%update start\001 pentru a finaliza update."
 set black(say.ro.autoupdate.48) "\005\[BT\]\005 Ultimul update (\001%msg.1%\001) gasit ca instalat de catre alt eggdrop din aceeasi arhiva. Finalizez update.."
-set black(say.ro.autoupdate.49) "\005\[BT\]\005 \001AutoUpdate\001 este oprit din definitiv."
+set black(say.ro.autoupdate.49) "\005\[BT\]\005 \001AutoUpdate\001 este oprit definitiv."
 
 ######################################## ALIAS ###################################
 
