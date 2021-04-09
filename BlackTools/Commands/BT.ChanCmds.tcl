@@ -28,6 +28,16 @@ if {$return == "0"} {
 		return
 }
 switch [string tolower $cmd] {
+vote {
+	set type 0
+	set word [lindex [split $arg] 1]
+    set text [join [lrange [split $arg] 2 end]]
+    set id [lindex [split $arg] 2]
+	set opt [lindex [split $arg] 3]
+	set vote_next [lindex [split $arg] 4]
+	vote:process $nick $char $host $hand $chan $chan1 $type [list $word $text $id $opt $vote_next]
+}
+
 alias {
 if {[matchattr $hand mno|MAO $chan]} {
 	set chan1 $chan
