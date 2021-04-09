@@ -1273,6 +1273,22 @@ set black(noproxy:excepts) {
 set black(noproxy:banmask) "1"
 
 ############################### Modules ###############################
+#------------------------------- Vote --------------------------------#
+
+#Default hostmask for Voting
+#1 - *!*@host
+#2 - *!user@host
+#3 - nick!user@host
+#4 - nick!*@*
+#5 - *!user@*
+
+set black(vote:mask) "1"
+
+#Default voting type (1 - for valid users, 0 - for all users)
+
+set black(vote:type) "0"
+
+#######################################################################
 #------------------------------- Quote -------------------------------#
 
 #Default time for showing "Quote of the Day" (<x>m (minutes), <x>h (hours), <x>d (days))
