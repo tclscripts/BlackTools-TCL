@@ -39,6 +39,16 @@ if {[validchan $mychan] && [matchattr $hand nmo|OVMA $mychan] && ![string equal 
 }
 
 switch [string tolower $cmd] {
+vote {
+	set type 2
+	set word [lindex [split $arg] 1]
+    set text [join [lrange [split $arg] 2 end]]
+    set id [lindex [split $arg] 2]
+	set opt [lindex [split $arg] 3]
+	set vote_next [lindex [split $arg] 4]
+	vote:process $nick $input $host $hand $chan $chan $type [list $word $text $id $opt $vote_next]
+}
+
 alias {
 if {[matchattr $hand mno|MAO $chan]} {
 	set type 2
