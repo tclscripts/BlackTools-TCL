@@ -1766,6 +1766,24 @@ set black(say.ro.man.2218_1) "\[MAN\] \0021\002 = fara idle ; \0020\002 = cu idl
 set black(say.ro.man.2219) "\[MAN\] SINTAXA FOLOSIRE:"
 set black(say.ro.man.2220) "\[MAN\] \002%char%set antibotidle\002 <1|0> ; \002%botnick% set antibotidle\002 <1|0> ; \002(PRIVMSG) set antibotidle\002 <1|0>"
 
+#Vote
+
+set black(say.ro.man.2221) "\[MAN\] \002Vote\002 este un modul ce ofera posibilitatea userilor de a deschide un proces de vot la care utilizatorii (cei cu access sau toti) sa poata sa raspunda cu una optiunile predefinite."
+set black(say.ro.man.2222) "\[MAN\] SINTAXA FOLOSIRE:"
+set black(say.ro.man.2223) "\[MAN\] \002%char%set\002 (+/-)vote ; \002%botnick% set\002 (+/-)vote ; \002(PRIVMSG) set\002 <#canal> (+/-)vote"
+set black(say.ro.man.2224) "\[MAN\] \002%char%vote \002\[#canal\] add\002 <nume_vote> -option <optiune1> -option <optiune2>.. \[-time \[DD/MM/YY HH:MM\]\] (timp expirare) \[-type 1/0\] (1 - useri cu access, 0 - toti utilizatorii)"
+set black(say.ro.man.2225) "\[MAN\] \002%char%vote \002\[#canal\] \002list \[ID\]\002 (listare votari, daca se specifica ID, se vor lista voturile exprimate pentru acel proces de votare) ; \002%char%vote \002\[#canal\] \002del\002 <ID> (stergere votare)"
+set black(say.ro.man.2226) "\[MAN\] \002%char%vote \002\[#canal\]\002 <ID> <litera> (litera corespunzatoare optiunii pentru ID votare) ; \002%char%vote \002\[#canal\] time\002 <ID> <DD/MM/YY HH:MM> (setare timp de expirare nou) ; \002%char%vote \002\[#canal\] end\002 <ID> (incheiere votare)"
+set black(say.ro.man.2227) "\[MAN\] Setari optionale: \002vote-mask\002 (vezi \002%char%vote man\002 mask)"
+set black(say.ro.man.2228) "\[MAN\] \002%char%vote \002\[#canal\] list\002 \[ID\]\002 (listare votari, daca se specifica ID, se vor lista voturile exprimate pentru acel proces de votare)"
+set black(say.ro.man.2229) "\[MAN\] \002%char%vote \002\[#canal\] <ID> <litera> (litera corespunzatoare optiunii pentru ID votare)"
+
+#Mask
+
+set black(say.ro.man.2230) "\[MAN\] Aveti la dispozitie urmatoarele metode de mask-uri:"
+set black(say.ro.man.2231) "\[MAN\] \002#1\002 *!*@host ; \002#2\002 *!user@host ; \002#3\002 nick!user@host ; \002#4\002 nick!*@* ; \002#5\002 *!user@*"
+set black(say.ro.man.2232) "\[MAN\] SINTAXA FOLOSIRE: \002%char%set\002 <setare> <nr. metoda> ; \002%botnick% set\002 <setare> <nr. metoda> ; \002(PRIVMSG) set\002 <#canal> <setare> <nr. metoda>"
+
 ##############################
 ############################################################################################################
 #   SFARSIT                                                                                                #
