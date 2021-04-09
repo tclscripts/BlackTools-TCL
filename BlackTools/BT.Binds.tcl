@@ -129,6 +129,8 @@ bind nick - * blacktools:chnick:ban
 
 bind join - * blacktools:backchan:verify
 
+bind join - * blacktools:vote:greetshow
+
 bind raw - invite inviteban:protect
 
 bind raw - 474 abuse:ban:note
