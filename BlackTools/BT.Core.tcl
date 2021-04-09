@@ -48,10 +48,11 @@ set black(add_file) "$black(backdir)/BlackTools/FILES/$username.extra.txt"
 set black(quote_file) "$black(backdir)/BlackTools/FILES/$username.quote.txt"
 set black(notes_file) "$black(backdir)/BlackTools/FILES/$username.notes.txt"
 set black(alias_file) "$black(backdir)/BlackTools/FILES/$username.aliases.txt"
+set black(voting_file) "$black(backdir)/BlackTools/FILES/$username.votes.txt"
 set black(temp_banner) "$black(backdir)/BlackTools/temp/banner"
 set black(temp_motd) "$black(backdir)/BlackTools/temp/motd"
 
-set black(files) "$black(s_file) $black(status_file) $black(seen_file) $black(uptime_file) $black(bans_file) $black(join_file) $black(extra_file) $black(add_file) $black(quote_file) $black(notes_file) $black(alias_file)"
+set black(files) "$black(s_file) $black(status_file) $black(seen_file) $black(uptime_file) $black(bans_file) $black(join_file) $black(extra_file) $black(add_file) $black(quote_file) $black(notes_file) $black(alias_file) $black(voting_file)"
 
 if {[file isdirectory "text"]} {
 if {[file exists "text/motd"] && [file exists "text/banner"]} {
@@ -254,7 +255,7 @@ set black(extra_str) {
 	b-banmask id-banmask spam-banmask bw-banmask bot-banmask gag-banmask black-banmask next-banmask
     voiceonmsg-linenum voiceonmsg-idletime inviteban-reason repetitivechars-reason inviteban-bantime badchan-banwait
 	general-bantime general-banmask badchan-scantime clonescan-scantime antispam-scantime idle-scantime anunt-showtime
-	quote-showtime voiceme-showtime quitpartmsgflood-char repetitivechars-char noproxy-reason noproxy-bantime noproxy-banmask
+	quote-showtime voiceme-showtime quitpartmsgflood-char repetitivechars-char noproxy-reason noproxy-bantime noproxy-banmask topwords-mask vote-mask
 }
 
 set black(extra_flag) {
@@ -264,10 +265,10 @@ set black(extra_flag) {
 	autovoice leave topwords dontop dontdeop private silent quote note reportnick invisible forward
 	showhandle showid showcount showtime showurl next voiceonmsg autotopic greet xonly nologged settingsaved
 	idleop idlehalfop idlevoice vprotect oprotect hoprotect badquitpart quitpartcolor quitpartmsgflood badhost nickflood seenreply
-	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink noproxy
+	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink noproxy vote votegreet
 }
 
-set black(validcmds) "alias exempt login anunt link note q enable disable securemode cp troll badhost antispam badrealname badquitpart badident badnick badword unset greet leave topic vr dr n id spam bw mb black bl b stick ub sb banlist r man auto antipub private tcl h ignore idle version stats chat seen limit bt badchan us s info channels userlist chuser delhost addhost del delacc add unsuspend suspend delchan addchan die jump save restart rehash update nick msg omsg set mode cycle broadcast act say v ho o uptime status t k w ungag gag show clonescan topwords myset timer i badword next helped noidle skip"
+set black(validcmds) "alias exempt login anunt link note q enable disable securemode cp troll badhost antispam badrealname badquitpart badident badnick badword unset greet leave topic vr dr n id spam bw mb black bl b stick ub sb banlist r man auto antipub private tcl h ignore idle version stats chat seen limit bt badchan us s info channels userlist chuser delhost addhost del delacc add unsuspend suspend delchan addchan die jump save restart rehash update nick msg omsg set mode cycle broadcast act say v ho o uptime status t k w ungag gag show clonescan topwords myset timer i badword next helped noidle skip vote"
 
 ########################## BackChan ############################
 
@@ -457,6 +458,22 @@ if {![info exists bt_timers_running]} {
 if {![info exists securedtimer_running]} {
 	utimer 30 [list securemode:timer]
 	set securedtimer_running 1
+}
+
+##
+#Vote check timer
+
+if {![info exists black(vote_expire)]} {
+    set expire [blacktools:first_expire]
+if {$expire != 0} {
+	set dif [expr $expire - [clock seconds]]
+if {$dif < 0} {
+    utimer 1 [list blacktools:vote:expire]
+} else {
+	utimer [expr $expire - [clock seconds]] [list blacktools:vote:expire]
+    set black(vote_expire) $expire
+		}
+    }
 }
 
 ################################ check access ################################
@@ -3624,6 +3641,9 @@ if {[info exists black(notlogged)]} {
 
 proc module:getinfo {nick host hand chan chan1 type text modul gl next} {
 	global black
+	set opt [lindex $next 1]
+	set vote_next [lindex $next 2]
+	set next [lindex $next 0]
 	set remain 0
 	set top ""
 	set split_modul [split $modul ":"]
@@ -3637,7 +3657,7 @@ if {$themodul == "topwords" || $themodul == "topbans"} {
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 	set getmethod [getuser $hand XTRA OUTPUT_TYPE]
 if {$getmethod == ""} { set getmethod $black(default_output) }
-if {[string equal -nocase $next "-next"]} {
+if {[string equal -nocase $next "-next"] || [string equal -nocase $vote_next "-next"]} {
 if {[info exists black($modul:more:$chan:$hand)]} {
 if {$black($modul:more:$chan:$hand) >= $maxentries} {
 for {set i $black($modul:show:$chan:$hand)} { $i < [expr $black($modul:show:$chan:$hand) + $maxentries] } { incr i } {
@@ -3650,20 +3670,20 @@ if {$current_text != ""} {
 	lappend top $read_nick:$nr_text:$counter
 	}
 } else {
-	show:modul:info $nick $host $hand $chan $chan1 $current_text $modul $remain
+	show:modul:info $nick $host $hand $chan $chan1 $current_text $modul $remain $opt
 	}
 }
 if {$themodul == "topwords" || $themodul == "topbans"} {
 if {$black($modul:more:$chan:$hand) > 0} {
 	set remain 1
 } 
-	show:modul:info $nick $host $hand $chan $chan1 $top $modul $remain
+	show:modul:info $nick $host $hand $chan $chan1 $top $modul $remain $opt
 }
 	set black($modul:more:$chan:$hand) [expr $black($modul:more:$chan:$hand) - $maxentries]
 if {$host == "prv"} {
-	modul:remain $nick $host $hand $black($modul:more:$chan:$hand) $chan $chan1 $getmethod $modul $gl "1"
+	modul:remain $nick $host $hand $black($modul:more:$chan:$hand) $chan $chan1 $getmethod $modul $gl "1" $opt
 } else {
-	modul:remain $nick $host $hand $black($modul:more:$chan:$hand) $chan $chan1 $getmethod $modul $gl "0"
+	modul:remain $nick $host $hand $black($modul:more:$chan:$hand) $chan $chan1 $getmethod $modul $gl "0" $opt
 }
 	set black($modul:show:$chan:$hand) [expr $black($modul:show:$chan:$hand) + $maxentries]
 	} else {
@@ -3680,12 +3700,12 @@ if {$current_text != ""} {
 	lappend top $read_nick:$nr_text:$counter
 }
 } else {
-	show:modul:info $nick $host $hand $chan $chan1 $current_text $modul $remain
+	show:modul:info $nick $host $hand $chan $chan1 $current_text $modul $remain $opt
 	}
 }
 if {$themodul == "topwords" || $themodul == "topbans"} {
 
-	show:modul:info $nick $host $hand $chan $chan1 $top $modul $remain
+	show:modul:info $nick $host $hand $chan $chan1 $top $modul $remain $opt
 }
 	set black($modul:more:$chan:$hand) [expr $black($modul:more:$chan:$hand) - $black($modul:show:$chan:$hand)]
 	}
@@ -3700,6 +3720,13 @@ switch $themodul {
 badchan {
 	blacktools:tell $nick $host $hand $chan $chan1 $modul.4 none
 			}
+vote {
+if {$opt != ""} {
+	blacktools:tell $nick $host $hand $chan $chan1 $modul.36 none
+} else {
+	blacktools:tell $nick $host $hand $chan $chan1 $modul.26 none
+	}
+}
 notesinbox {
 	blacktools:tell $nick $host $hand $chan $chan1 $modul.13 none
 }
@@ -3778,6 +3805,13 @@ badword {
 badquitpart {
 	blacktools:tell $nick $host $hand $chan $chan1 antibadquitpart.7 none 
 }
+vote {
+if {$opt != ""} {
+	blacktools:tell $nick $host $hand $chan $chan1 $modul.35 [list $opt]
+} else {
+	blacktools:tell $nick $host $hand $chan $chan1 $modul.29 none
+	}
+}
 
 default {
 	blacktools:tell $nick $host $hand $chan $chan1 $themodul.7 none
@@ -3798,7 +3832,7 @@ if {$current_text != ""} {
 	lappend top $read_nick:$nr_text:$counter
 	}
 } else {
-	show:modul:info $nick $host $hand $chan $chan1 $current_text $modul $remain
+	show:modul:info $nick $host $hand $chan $chan1 $current_text $modul $remain $opt
 	}
 }
 
@@ -3806,14 +3840,14 @@ if {$themodul == "topwords" || $themodul == "topbans"} {
 if {$black($modul:more:$chan:$hand) > 0} {
 	set remain 1
 } 
-	show:modul:info $nick $host $hand $chan $chan1 $top $modul $remain
+	show:modul:info $nick $host $hand $chan $chan1 $top $modul $remain $opt
 }
 	set black($modul:show:$chan:$hand) [expr $black($modul:show:$chan:$hand) + $maxentries]
 if {$black($modul:more:$chan:$hand) > 0} {
 if {$host == "prv"} {
-	modul:remain $nick $host $hand $black($modul:more:$chan:$hand) $chan $chan1 $getmethod $modul $gl "1"
+	modul:remain $nick $host $hand $black($modul:more:$chan:$hand) $chan $chan1 $getmethod $modul $gl "1" $opt
 	} else {
-	modul:remain $nick $host $hand $black($modul:more:$chan:$hand) $chan $chan1 $getmethod $modul $gl "0"
+	modul:remain $nick $host $hand $black($modul:more:$chan:$hand) $chan $chan1 $getmethod $modul $gl "0" $opt
 	}
 }
 	foreach tmr [utimers] {
@@ -3833,17 +3867,24 @@ if {$current_text != ""} {
 	lappend top $read_nick:$nr_text:$counter
 }
 } else {
-	show:modul:info $nick $host $hand $chan $chan1 $current_text $modul $remain
+	show:modul:info $nick $host $hand $chan $chan1 $current_text $modul $remain $opt
 	}
 }
 if {$themodul == "topwords" || $themodul == "topbans"} {
-	show:modul:info $nick $host $hand $chan $chan1 $top $modul $remain
+	show:modul:info $nick $host $hand $chan $chan1 $top $modul $remain $opt
 }	
 switch $themodul {
 
 badchan {
 	blacktools:tell $nick $host $hand $chan $chan1 $modul.4 none
 	}
+vote {
+if {$opt != ""} {
+	blacktools:tell $nick $host $hand $chan $chan1 $modul.36 none
+} else {
+	blacktools:tell $nick $host $hand $chan $chan1 $modul.26 none
+	}
+}
 anunt {
 	blacktools:tell $nick $host $hand $chan $chan1 $modul.2 none 
 			}
@@ -3895,7 +3936,7 @@ if {[info exists black($modul:show:$chan:$hand)]} {
 	}
 }
 
-proc show:modul:info {nick host hand chan chan1 text modul remain} {
+proc show:modul:info {nick host hand chan chan1 text modul remain opt} {
 	global black lastbind
 	set split_modul [split $modul ":"]
 	set themodul [lindex $split_modul 0]
@@ -3960,16 +4001,39 @@ if {[string equal -nocase $total "total"]} {
 	blacktools:tell $nick $host $hand $chan $chan1 $themodul.2 "[join $top]"
 	}
 }
+} elseif {$themodul == "vote"} {
+if {[regexp {^[0-9]+$} $opt]} {
+	set id [lindex $text 0]
+	set handle [lindex $text 1]
+	set host [lindex $text 2]
+	set vote [lindex $text 3]
+	set vote_time [clock format [lindex $text 4] -format "%d/%m/%y %H:%M"]
+	blacktools:tell_v2 $nick $host $hand $chan $chan1 vote.34 [list $id $handle $host $vote $vote_time]
 	return
 }
+	set id [lindex $text 0]
+    set voting_name [lindex $text 1]
+    set show_list [lindex $text 2]
+    set status [lindex $text 3]
+    set access [lindex $text 4]
+    set expire_time [lindex $text 5]
+	set handle [lindex $text 6]
+if {$status == 1} {set read_status $black(say.$getlang.vote.13)} else {set read_status $black(say.$getlang.vote.14)}
+if {$status == 0} {
+	blacktools:tell_v2 $nick $host $hand $chan $chan1 vote.37 [list $id $voting_name $show_list $read_status $access $expire_time $handle]
+} else {
+	blacktools:tell_v2 $nick $host $hand $chan $chan1 vote.25 [list $id $voting_name $show_list $read_status $access $expire_time $handle]
+	}
+} else {
 	set num [lindex [split $text] 0]
 	set gettext [join [lrange [split $text] 1 end]]
 	set encoded [encoding convertfrom utf-8 $gettext]
 	set gettext [lindex [split $text] 0]
 	blacktools:tell $nick $host $hand $chan $chan1 gl.showline "$num [join $encoded]"
+	}
 }
 
-proc modul:remain {nick host hand count chan chan1 type modul gl prv} {
+proc modul:remain {nick host hand count chan chan1 type modul gl prv opt} {
 	global black lastbind botnick
 	set otherchan 0
 	set charbind ""
@@ -4016,6 +4080,22 @@ if {$otherchan == "1" || $prv == "1"} {
 if {$gl == "1"} {
 	set msg $black(say.$getlang.$modul.2)
 	} 
+}
+vote {
+		set replace(%id%) $opt
+if {$otherchan == "1" || $prv == "1"} {
+if {$opt != ""} {
+	set msg $black(say.$getlang.$modul.32)
+} else {
+	set msg $black(say.$getlang.$modul.28)
+	}
+} else {
+if {$opt != ""} {
+	set msg $black(say.$getlang.$modul.31)
+} else {
+	set msg $black(say.$getlang.$modul.27)
+		}
+	}
 }
 anunt {
 if {$otherchan == "1" || $prv == "1"} {
@@ -4737,6 +4817,7 @@ while {[gets $file line] != -1} {
 if {[string equal -nocase $c $chan] && [string equal -nocase $gettype "XTRA"] && [string equal -nocase $comp_map $setting]} {
 if {[regexp {^[+]} $comp]} {
 	set status 1
+	break
 				}
 			}
 		}
@@ -4752,6 +4833,7 @@ while {[gets $file line] != -1} {
 if {![regexp {^[+-]} $comp]} {
 if {[string equal -nocase $c $chan] && [string equal -nocase $gettype "XTRA"] && [string equal -nocase $comp $setting] && [string equal -nocase $msg $getmsg]} {
 	set status 1
+	break
 		}
 	}
 }
@@ -4785,12 +4867,15 @@ if {[string equal -nocase $c $chan] && [string equal -nocase $gettype "XTRA"] &&
 	set getmsg [lrange [split $line] 3 end]
 if {$flag_setting == "0"} {	
 	set return $getmsg
+	break
 } else {
 if {[regexp {^[+]} $comp]} {
-	set return 1		
-					}
+	set return 1
+	break
+}
 if {[regexp {^[-]} $comp]} {
-	set return 0		
+	set return 0
+	break
 				}			
 			}
 		}
@@ -4859,6 +4944,7 @@ if {[regexp {^[+-]} $setting]} {
 if {[string equal -nocase $c $chan]} {
 if {[string equal -nocase $setting $comp]} {
 	set flag_exists 1
+	break
 			}
 		}
 	}
@@ -6469,7 +6555,7 @@ if {$findword != "1"} {
 	puts $file "$enc_chan $protname $num $text"
 	close $file
 	}
-}
+} 
 
  
 #################
