@@ -808,12 +808,12 @@ switch $type {
 
 module {
 
-set allmodules "Anunt AutoBroadcast BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language AutoUpdate Alias"
-set manager_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language Alias"
-set owner_modules "Anunt AutoBroadcast BadChan Idle Limit CloneScan XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language Alias"
+set allmodules "Anunt AutoBroadcast BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language AutoUpdate Vote Alias TCL"
+set manager_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language Vote Alias"
+set owner_modules "Anunt AutoBroadcast BadChan Idle Limit CloneScan XTools Xonly Seen VoiceMe VoiceOnMsg CloneScan EGG ChanLink SecureMode Private Greet Leave Count Topic Timer Next TopWords BackChan ReportNick Quote Note Language Vote Alias"
 set module_output ""
-set other_module "Note Alias Quote"
-set master_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language Alias"
+set other_module "Note Quote Vote Alias"
+set master_module "Anunt BadChan Idle Limit XTools Xonly Seen VoiceMe VoiceOnMsg Clonescan Securemode Private Greet Leave Count Topic Next TopWords BackChan ReportNick Quote Note Language Vote Alias"
 
 if {[matchattr $hand n]} {
 	set current_modules $allmodules
@@ -977,6 +977,14 @@ egg {
 }
 
 autoupdate {
+if {$black(update_type) == 0} {
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else {
+	lappend module_output "[black:color 1 $hand $m]\[-\]"
+	}
+}
+
+tcl {
 	lappend module_output "[black:color 1 $hand $m]\[\]"
 }
 
@@ -992,6 +1000,12 @@ if {[setting:get $chan note]} {
 
 securemode {
 if {[setting:get $chan securemode]} {
+	lappend module_output "[black:color 2 $hand $m]\[+\]"
+} else { lappend module_output "[black:color 4 $hand $m]\[-\]" }	
+}
+
+vote {
+if {[setting:get $chan vote]} {
 	lappend module_output "[black:color 2 $hand $m]\[+\]"
 } else { lappend module_output "[black:color 4 $hand $m]\[-\]" }	
 }
@@ -1055,13 +1069,15 @@ if {[setting:get $chan reportnick]} {
 }
 
 language {
-	set lang [string toupper [setting:get $chan lang]]
-if {$getlang == ""} { set getlang "[string toupper $black(default_lang)]" }
+	set lang [string toupper [setting:get $chan language]]
+if {$lang == ""} { set lang "[string toupper $black(default_lang)]" }
 	lappend module_output "[black:color 1 $hand $m]\[$lang\]"
 					}
 				}
 			}
-	blacktools:tell:h $nick $host $hand $chan $chan1 h.15 "[join $module_output " ; "]"
+foreach m [h:wrap [join $module_output " ; "]  450] {
+		blacktools:tell:h $nick $host $hand $chan $chan1 h.15 $m
+}
 	switch $type {
 	0 {
 	blacktools:tell $nick $host $hand $chan $chan1 hcommand.7 none
