@@ -1775,7 +1775,7 @@ set black(say.ro.man.2224) "\[MAN\] \002%char%vote \002\[#canal\] add\002 <nume_
 set black(say.ro.man.2225) "\[MAN\] \002%char%vote \002\[#canal\] \002list \[ID\]\002 (listare votari, daca se specifica ID, se vor lista voturile exprimate pentru acel proces de votare) ; \002%char%vote \002\[#canal\] \002del\002 <ID> (stergere votare)"
 set black(say.ro.man.2226) "\[MAN\] \002%char%vote \002\[#canal\]\002 <ID> <litera> (litera corespunzatoare optiunii pentru ID votare) ; \002%char%vote \002\[#canal\] time\002 <ID> <DD/MM/YY HH:MM> (setare timp de expirare nou) ; \002%char%vote \002\[#canal\] end\002 <ID> (incheiere votare)"
 set black(say.ro.man.2227) "\[MAN\] Setari optionale: \002vote-mask\002 (vezi \002%char%vote man\002 mask)"
-set black(say.ro.man.2228) "\[MAN\] \002%char%vote \002\[#canal\] list\002 \[ID\]\002 (listare votari, daca se specifica ID, se vor lista voturile exprimate pentru acel proces de votare)"
+set black(say.ro.man.2228) "\[MAN\] \002%char%vote \002\[#canal\] list\002 \[ID\]\002 (listare votari, daca se specifica ID \[doar admin+\]], se vor lista voturile exprimate pentru acel proces de votare)"
 set black(say.ro.man.2229) "\[MAN\] \002%char%vote \002\[#canal\] <ID> <litera> (litera corespunzatoare optiunii pentru ID votare)"
 
 #Mask
