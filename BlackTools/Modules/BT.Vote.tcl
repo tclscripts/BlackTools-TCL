@@ -270,14 +270,12 @@ if {$list == 0} {
 } else {
     if {[matchattr $hand nmo|MA $chan]} {
     set list [blacktools:voting_list $chan $userlang $id 1]
-} else {
-    set list [blacktools:voting_list $chan $userlang $id 0]
-    }
 if {$list == 0} {
     blacktools:tell_v2 $nick $host $hand $chan $chan1 vote.33 $id
     return
         }
      module:getinfo $nick $host $hand $chan $chan1 $type $list "vote" "0" [list $opt $id $vote_next]
+        }
     }
 }
     del {
