@@ -1171,7 +1171,7 @@ set black(say.ro.disable.8) "\005\[BT\]\005 Nu poti dezactiva comanda \002%msg.1
 
 ################################### Module #######################################
 
-set black(say.ro.hmodule.1) "Module: %msg%"
+set black(say.ro.hmodule.1) "%msg%"
 set black(say.ro.hmodule.3) "Pentru a vizualiza \002Manualul\002 fiecarui modul foloseste: \001%char%man <modul>\001 | \002%botnick% man <modul>\002"
 
 ####################################### h ########################################
@@ -1397,6 +1397,50 @@ set black(say.ro.alias.5) "\005\[BT\]\005 \002%msg.1%\002 nu este adaugata ca \0
 set black(say.ro.alias.6) "\005\[BT\]\005 Am sters \002%msg.1%\002 din lista de comenzi \001alias\001"
 set black(say.ro.alias.7) "\002COMENZI ALIAS:\002"
 
+######################################## VOTE ###################################
+
+set black(say.ro.vote.1) "\005\[BT\]\005 Foloseste \002%char%vote\002 add <nume vote> -option <optiune 1> -option <optiune 2>.. \[-time \[DD/MM/YY HH:MM\]\] (timp expirare) \[-type 1/0\] (1 - useri cu access, 0 - toti utilizatorii)"
+set black(say.ro.vote.2) "\005\[BT\]\005 Te rog foloseste un timp valid \[DD/MM/YY HH:MM\] ca exemplu 25/12/21 00:00" 
+set black(say.ro.vote.3) "\005\[BT\]\005 Te rog foloseste un tip valid \[-type 1/0\] (\0021\002 - userli cu access, \0020\002 - toti utilizatorii)"
+set black(say.ro.vote.4) "\005\[BT\]\005 Este deja o votare cu acelasi nume. Te rog alege altul."
+set black(say.ro.vote.5) "\005\[BT\]\005 Am adaugat votarea cu ID-ul \002%msg.3%\002 si numele \"%msg.1%\" avand ca optiuni \[%msg.2%\]. Expira la: \002NICIODATA\002."
+set black(say.ro.vote.6) "\005\[BT\]\005 Am adaugat votarea cu ID-ul \002%msg.4%\002 si numele \"%msg.1%\" avand ca optiuni \[%msg.2%\]. Expira la: \002%msg.3%\002."
+set black(say.ro.vote.7) "\005\[BT\]\005 Foloseste \002%char%vote\002 del <id>"
+set black(say.ro.vote.8) "\005\[BT\]\005 Nu am gasit nicio votare cu ID-ul: \002%msg.1%\002."
+set black(say.ro.vote.9) "\005\[BT\]\005 Am sters votarea cu ID-ul: \002%msg.1%\002."
+set black(say.ro.vote.10) "\005\[BT\]\005 Foloseste \002%char%vote\002 end <id>"
+set black(say.ro.vote.11) "\005\[BT\]\005 Votarea avand ID-ul: \002%msg.1%\002 este deja incheiata."
+set black(say.ro.vote.12) "\005\[BT\]\005 Am incheiat votarea cu ID-ul: \002%msg.1%\002."
+set black(say.ro.vote.13) "\002ACTIV\002"
+set black(say.ro.vote.14) "\002INCHEIAT\002"
+set black(say.ro.vote.15) "\002Utilizatori cu access\002"
+set black(say.ro.vote.16) "\002Toti utilizatorii\002"
+set black(say.ro.vote.17) "\005\[BT\]\005 Detali votare -- ID: \002%msg.1%\002 ; Nume: \002%msg.2%\002 ; Adaugat de: \002%msg.7% ; Statut: \002%msg.4%\002 ; Audienta: \002%msg.5%\002 ; Expira: \002%msg.6%\002"
+set black(say.ro.vote.18) "Voturi exprimate: N/A"
+set black(say.ro.vote.19) "\005\[BT\]\005 Votes cast: %msg.1%. Total votes: \002%msg.2%\002."
+set black(say.ro.vote.20) "\005\[BT\]\005 Votarea avand ID-ul: \002%msg.1%\002 s-a incheiat, nu mai poti vota."
+set black(say.ro.vote.21) "\005\[BT\]\005 Te rog specifica o optiune de votare: de la A la Z."
+set black(say.ro.vote.22) "\005\[BT\]\005 Nu exista nicio optiune cu litera \002%msg.1%\002 pentru aceasta votare. Optiunile de votare sunt: %msg.2%"
+set black(say.ro.vote.23) "\005\[BT\]\005 Ti-ai ales deja optiunea pentru aceasta votare."
+set black(say.ro.vote.24) "\005\[BT\]\005 Ai ales optiunea \002%msg.1%\002 pentru votarea cu ID-ul: \002%msg.2%\002 si numele: \002%msg.3%\002"
+set black(say.ro.vote.25) "\005\[BT\]\005 ID: \002%msg.1%\002 ; Nume: \002%msg.2%\002 ; Adaugat de: \002%msg.7% ; \002Statut: \002%msg.4%\002 ; Audienta: \002%msg.5%\002 ; Expira: \002%msg.6%\002 ; Comanda detalii: \002%char%vote %msg.1%\002"
+set black(say.ro.vote.26) "\005\[BT\]\005 Sfarsit lista votari"
+set black(say.ro.vote.27) "\005\[BT\]\005 Pentru a afisa urmatoarele votari foloseste: \001%char%vote list -next\001 (\002%counter%\002 votari ramase)"
+set black(say.ro.vote.28) "\005\[BT\]\005 Pentru a afisa urmatoarele votari foloseste: \001%char%vote %chan% list -next\001 (\002%counter%\002 votari ramase)"
+set black(say.ro.vote.29) "\005\[BT\]\005 Lista votari pentru %chan% este:"
+set black(say.ro.vote.30) "\005\[BT\]\005 Nu sunt votari pentru %chan%."
+set black(say.ro.vote.31) "\005\[BT\]\005 Pentru a afisa urmatoarele votari foloseste: \001%char%vote list %id% -next\001 (\002%counter%\002 votari ramase)"
+set black(say.ro.vote.32) "\005\[BT\]\005 Pentru a afisa urmatoarele votari foloseste: \001%char%vote %chan% list %id% -next\001 (\002%counter%\002 votari ramase)"
+set black(say.ro.vote.33) "\005\[BT\]\005 Nu sunt voturi pentru votarea cu ID-ul %msg.1% pentru %chan%."
+set black(say.ro.vote.34) "\005\[BT\]\005 \002#%msg.1%\002 Nume: \002%msg.2%\002 ; Host: %msg.3% ; Vot: \002%msg.4%\002 ; Data vot: \002%msg.5%\002"
+set black(say.ro.vote.35) "\005\[BT\]\005 Lista voturi pentru ID: \002%msg.1%\002 pentru %chan% este:"
+set black(say.ro.vote.36) "\005\[BT\]\005 Sfarsit lista voturi"
+set black(say.ro.vote.37) "\005\[BT\]\005 ID: \002%msg.1%\002 ; Nume: \002%msg.2%\002 ; Adaugat de: \002%msg.7% ; \002Statut: \002%msg.4%\002 ; Audienta: \002%msg.5%\002 ; Comanda detalii: \002%char%vote %msg.1%\002"
+set black(say.ro.vote.38) "\005\[BT\]\005 Detali votare -- ID: \002%msg.1%\002 ; Nume: \002%msg.2%\002 ; Adaugat de: \002%msg.7% ; Statut: \002%msg.4%\002 ; Audienta: \002%msg.5%\002"
+set black(say.ro.vote.39) "\005\[BT\]\005 Foloseste \002%char%vote\002 time <id> <DD/MM/YY HH:MM> (setare timp nou de expirare)"
+set black(say.ro.vote.40) "\005\[BT\]\005 Am setat data de expirare pentru votarea cu ID: \002%msg.1%\002 peste \002%msg.2%\002"
+set black(say.ro.vote.41) "\005\[BT\]\005 Optiuni votare: \[%msg.1%\]"
+set black(say.ro.vote.42) "\005\[BT\]\005 -- VOT -- Sunt disponibile VOTARI la care poti raspunde. ID-urile sunt: \002%msg.1%\002 . Pentru a vizualiza informatii referitoare la VOT foloseste \001%char%vote <id>\001 . Pentru a \002VOTA\002 foloseste \001%char%vote <id> <litera>\001 . Pentru a vedea lista foloseste \001%char%vote list\001"
 
 ##############################
 ############################################################################################################
