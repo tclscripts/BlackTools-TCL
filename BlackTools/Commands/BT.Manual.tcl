@@ -2575,7 +2575,7 @@ if {[matchattr $hand n]} {
 }
 
 noproxy {
-if {[matchattr $hand n]} {
+if {[matchattr $hand nmo|M $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.2214 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.2215 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.2216 none
@@ -2591,6 +2591,30 @@ if {[matchattr $hand n]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.2219 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.2220 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
+	}	
+}
+vote {
+if {[matchattr $hand nmo|M $chan]} {
+	blacktools:tell $nick $host $hand $chan $chan1 man.2221 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2222 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2223 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2224 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2225 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2226 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2227 none
+	} elseif {[matchattr $hand nmo|MAOV $chan]} {
+	blacktools:tell $nick $host $hand $chan $chan1 man.2221 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2222 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2228 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2229 none
+	}
+}
+
+mask {
+if {[matchattr $hand nmo|M $chan]} {
+	blacktools:tell $nick $host $hand $chan $chan1 man.2230 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2231 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2232 none
 	}	
 }
 
