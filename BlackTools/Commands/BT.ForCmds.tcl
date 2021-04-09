@@ -24,6 +24,16 @@ global botnick wordsdir sdir black seendir count server uptime {server-online} v
 if {[isbotnick $nick]} { return }
 if {[string equal -nocase $for "for"] && ([lsearch -exact -nocase $split_bots $botnick] > -1)} {
 switch [string tolower $the_cmd] {
+vote {
+	set type 1
+	set word [lindex [split $arg] 3]
+    set text [join [lrange [split $arg] 4 end]]
+    set id [lindex [split $arg] 4]
+	set opt [lindex [split $arg] 5]
+	set vote_next [lindex [split $arg] 6]
+	vote:process $nick $host $host $hand $chan $chan $type [list $word $text $id $opt $vote_next]
+}
+
 alias {
 if {[matchattr $hand mno|MAO $chan]} {
 	set chan1 $chan
