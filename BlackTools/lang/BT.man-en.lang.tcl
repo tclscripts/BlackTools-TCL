@@ -1773,6 +1773,24 @@ set black(say.en.man.2218_1) "\[MAN\] \0021\002 = no idle ; \0020\002 = idle"
 set black(say.en.man.2219) "\[MAN\] USAGE SYNTAX:"
 set black(say.en.man.2220) "\[MAN\] \002%char%set antibotidle\002 <1|0> ; \002%botnick% set antibotidle\002 <1|0> ; \002(PRIVMSG) set antibotidle\002 <1|0>"
 
+#Vote
+
+set black(say.en.man.2221) "\[MAN\] \002Vote\002 gives you the posibility to open a Voting process where all users (those with access or all) can answer with one of the options available."
+set black(say.en.man.2222) "\[MAN\] USAGE SYNTAX:"
+set black(say.en.man.2223) "\[MAN\] \002%char%set\002 (+/-)vote ; \002%botnick% set\002 (+/-)vote ; \002(PRIVMSG) set\002 <#chan> (+/-)vote"
+set black(say.en.man.2224) "\[MAN\] \002%char%vote \002\[#chan\] \002add\002 <vote_name> -option <option1> -option <option2>.. \[-time \[DD/MM/YY HH:MM\]\] (expire time) \[-type 1/0\] (1 - users with access, 0 - all users)"
+set black(say.en.man.2225) "\[MAN\] \002%char%vote \002\[#chan\]\002 \002list \[ID\]\002 (voting list, if an ID is specified, it will list the votes for the voting specified by ID) ; \002%char%vote \002\[#chan\]\002 del <ID> (remove voting)"
+set black(say.en.man.2226) "\[MAN\] \002%char%vote \002\[#chan\]\002 <ID> <letter> (the option letter from the voting ID) ; \002%char%vote \002\[#chan\] time\002 <ID> <DD/MM/YY HH:MM> (setup new expire time) ; \002%char%vote \002\[#chan\]\002 end <ID> (end voting)"
+set black(say.en.man.2227) "\[MAN\] Optional settings: \002vote-mask\002 (see \002%char%vote man\002 mask)"
+set black(say.en.man.2228) "\[MAN\] \002%char%vote \002\[#chan\]\002 \002list \[ID\]\002 (voting list, if an ID is specified, it will list the votes for the voting specified by ID)"
+set black(say.en.man.2229) "\[MAN\] \002%char%vote \002\[#chan\]\002 <ID> <letter> (the option letter from the voting ID)"
+
+#Mask
+
+set black(say.en.man.2230) "\[MAN\] Available masks:"
+set black(say.en.man.2231) "\[MAN\] \002#1\002 *!*@host ; \002#2\002 *!user@host ; \002#3\002 nick!user@host ; \002#4\002 nick!*@* ; \002#5\002 *!user@*"
+set black(say.en.man.2232) "\[MAN\] USAGE SYNTAX: \002%char%set\002 <setting> <no. method> ; \002%botnick% set\002 <setting> <no. method> ; \002(PRIVMSG) set\002 <#chan> <setting> <no. method>"
+
 ##############################
 ############################################################################################################
 #   END                                                                                                    #
