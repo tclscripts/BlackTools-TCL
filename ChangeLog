@@ -2,6 +2,8 @@
   * to implement category TCL in witch you have all tcl and also .tcl info
     to get info like bind pub, flags, strings from that TCL. [ pending ]
   * to implement .update reinstall [ pending ]
+ 2021-04-11 BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * small fixes related to VOTE module
  2021-04-09 BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * implemented VOTE module
   * added a variable if you want the update process to stop completely
