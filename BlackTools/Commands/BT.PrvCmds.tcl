@@ -41,11 +41,18 @@ if {[validchan $mychan] && [matchattr $hand nmo|OVMA $mychan] && ![string equal 
 switch [string tolower $cmd] {
 vote {
 	set type 2
+	set word [lindex [split $arg] 2]
+    set text [join [lrange [split $arg] 3 end]]
+    set id [lindex [split $arg] 3]
+	set opt [lindex [split $arg] 4]
+	set vote_next [lindex [split $arg] 5]
+if {$mychan_use == "1"} {
 	set word [lindex [split $arg] 1]
     set text [join [lrange [split $arg] 2 end]]
     set id [lindex [split $arg] 2]
 	set opt [lindex [split $arg] 3]
 	set vote_next [lindex [split $arg] 4]
+}
 	vote:process $nick $input $host $hand $chan $chan $type [list $word $text $id $opt $vote_next]
 }
 
@@ -165,7 +172,7 @@ if {[matchattr $hand mno|MAO $chan]} {
 idle {
 if {[matchattr $hand nmo|M $chan]} {
 	set type 2
-	set chan1 "$chan"	
+	set chan1 "$chan"
 	set why [lindex [split $arg] 2]
 	set user [lindex [split $arg] 3]
 	set hosts [lindex [split $arg] 4]
