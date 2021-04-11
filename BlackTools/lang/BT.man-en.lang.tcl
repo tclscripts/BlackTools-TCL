@@ -1781,7 +1781,7 @@ set black(say.en.man.2223) "\[MAN\] \002%char%set\002 (+/-)vote ; \002%botnick% 
 set black(say.en.man.2224) "\[MAN\] \002%char%vote \002\[#chan\] \002add\002 <vote_name> -option <option1> -option <option2>.. \[-time \[DD/MM/YY HH:MM\]\] (expire time) \[-type 1/0\] (1 - users with access, 0 - all users)"
 set black(say.en.man.2225) "\[MAN\] \002%char%vote \002\[#chan\]\002 \002list \[ID\]\002 (voting list, if an ID is specified, it will list the votes for the voting specified by ID) ; \002%char%vote \002\[#chan\]\002 del <ID> (remove voting)"
 set black(say.en.man.2226) "\[MAN\] \002%char%vote \002\[#chan\]\002 <ID> <letter> (the option letter from the voting ID) ; \002%char%vote \002\[#chan\] time\002 <ID> <DD/MM/YY HH:MM> (setup new expire time) ; \002%char%vote \002\[#chan\]\002 end <ID> (end voting)"
-set black(say.en.man.2227) "\[MAN\] Optional settings: \002vote-mask\002 (see \002%char%vote man\002 mask)"
+set black(say.en.man.2227) "\[MAN\] Optional settings: \002vote-mask\002 (see \002%char%vote man\002 mask) ; \002(+/-)votegreet\002 (enable greet for users to know if votings are available)"
 set black(say.en.man.2228) "\[MAN\] \002%char%vote \002\[#chan\]\002 \002list \[ID\]\002 (voting list, if an ID is specified \[admin+ only\], it will list the votes for the voting specified by ID)"
 set black(say.en.man.2229) "\[MAN\] \002%char%vote \002\[#chan\]\002 <ID> <letter> (the option letter from the voting ID)"
 
