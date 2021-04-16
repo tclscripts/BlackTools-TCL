@@ -1109,9 +1109,10 @@ topwords {
 if {[matchattr $hand nmo|MAOV $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.464 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.465 none
-if {[matchattr $hand nmo|M]} {
+if {[matchattr $hand nmo|MA]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.466 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.467_1 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.467_2 none
 } else {
 	blacktools:tell $nick $host $hand $chan $chan1 man.467 none
 		}
