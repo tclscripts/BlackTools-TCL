@@ -1939,7 +1939,6 @@ if {[regexp {^[&#]} $c] && [matchattr $hand nmo|M $c]} {
 }
 
 topwords {
-if {[matchattr $hand nmo|AOMV $chan]} {
 	set chan1 "$chan"
 	set cmd ""
 	set type 1
@@ -2063,7 +2062,6 @@ if {[matchattr $hand nmo|MAOV $next]} {
 	}
 }
 	topwords:process $nick $host $hand $chan $chan1 $cmd $type $next
-	}	
 }
 
 myset {
