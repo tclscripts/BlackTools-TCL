@@ -658,7 +658,7 @@ set black(say.ro.man.465) "\[MAN\] SINTAXE FOLOSIRE:"
 set black(say.ro.man.466) "\[MAN\] \002%char%set\002 (+/-)topwords ; \002%botnick% set\002 (+/-)topwords ; \002(PRIVMSG) set\002 <#canal> (+/-)topwords"
 set black(say.ro.man.467) "\[MAN\] \002%char%topwords\002 \[#canal\] <nick> \[total\] ; \002%char%topwords\002 \[#canal\] <nick> \[total\] ; \002(PRIVMSG) topwords\002 \[#canal\] <nick> \[total\]"
 set black(say.ro.man.467_1) "\[MAN\] \002%char%topwords\002 \[#canal\] <nick> \[total|reset\]  ; \002(PRIVMSG) topwords\002 \[#canal\] <nick> \[total|reset\]"
-
+set black(say.ro.man.467_2) "\[MAN\] \002%char%topwords\002 \[#canal\] add <nick> (adaugare exceptie) ; \002%char%topwords\002 \[#canal\] list (listare exceptii) ; \002%char%topwords\002 \[#canal\] del <nick> (stergere exceptie)"
 
 #AntiTake
 

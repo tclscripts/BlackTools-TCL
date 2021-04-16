@@ -657,6 +657,7 @@ set black(say.en.man.465) "\[MAN\] USAGE SYNTAXES:"
 set black(say.en.man.466) "\[MAN\] \002%char%set\002 (+/-)topwords ; \002%botnick% set\002 (+/-)topwords ; \002(PRIVMSG) set\002 <#chan> (+/-)topwords"
 set black(say.en.man.467) "\[MAN\] \002%char%topwords\002 \[#chan\] <nick> \[total\] ; \002%char%topwords\002 \[#chan\] <nick> \[total\] ; \002(PRIVMSG) topwords\002 \[#chan\] <nick> \[total\]"
 set black(say.en.man.467_1) "\[MAN\] \002%char%topwords\002 \[#chan\] <nick> \[total|reset\]  ; \002(PRIVMSG) topwords\002 \[#chan\] <nick> \[total|reset\]"
+set black(say.en.man.467_2) "\[MAN\] \002%char%topwords\002 \[#chan\] add <nick> (add exceptions) ; \002%char%topwords\002 \[#chan\] list (list exceptions) ; \002%char%topwords\002 \[#chan\] del <nick> (remove exception)"
 
 #AntiTake
 
