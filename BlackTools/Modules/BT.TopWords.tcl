@@ -112,10 +112,10 @@ if {![file exists $topwords_file]} {
 	return
 }
 
-if {[string equal -nocase $cmd "list"]} {
+if {[string equal -nocase $cmd "list"] && [matchattr $hand mno|MA $chan]} {
 	set list [userlist "-|w" $chan]
 	blacktools:tell $nick $host $hand $chan $chan1 topwords.18 "none"
-if {$list == ""} {set list "NONE"}
+if {$list == ""} {set list "N/A"}
 	blacktools:tell $nick $host $hand $chan $chan1 topwords.19 "$list"
 	return
 }
@@ -132,7 +132,7 @@ if {[onchan $theuser $chan]} {
 	return
 }
 
-if {[string equal -nocase $cmd "del"]} {
+if {[string equal -nocase $cmd "del"] && [matchattr $hand mno|MA $chan]} {
 if {$next == ""} {
 switch $type {
 	0 {
@@ -151,7 +151,7 @@ switch $type {
 	return
 }
 
-if {[string equal -nocase $cmd "add"]} {
+if {[string equal -nocase $cmd "add"] && [matchattr $hand mno|MA $chan]} {
 if {$next == ""} {
 switch $type {
 	0 {
@@ -169,7 +169,7 @@ switch $type {
 	topwords:addexcept $next $nick $host $hand $chan $chan1
 	return
 }
-if {[string equal -nocase $cmd "reset"]} {
+if {[string equal -nocase $cmd "reset"] && [matchattr $hand mno|M $chan]} {
 	set reset [topwords:reset $chan]
 if {$reset == "1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 topwords.8 none
@@ -245,6 +245,7 @@ proc topwords:user {nick host hand chan chan1 user mask type1} {
 	set topwords_file "$black(dirname)/BlackTools/FILES/TOPWORDS/$username.$chan.txt"
 switch $type {
 	reset {
+if {[matchattr $hand mno|MA $chan]} {
 	set reset [topwords:user:reset $theuser $chan]
 if {$reset == "1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 topwords.29 $theuser
@@ -252,6 +253,7 @@ if {$reset == "1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 topwords.4 $theuser
 		}
 	}
+}
 default {
 	set file [open $topwords_file r]
 	set size [file size $topwords_file]
