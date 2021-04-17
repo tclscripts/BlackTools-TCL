@@ -115,7 +115,7 @@ set black(update_note) "1"
 ###
 #Time interval check (<x>m (minutes), <x>h (hours), <x>d (days))
 
-set black(update_time_check) "60"
+set black(update_time_check) "60m"
 
 ###########################################################################
 #----------------------------- AntiBotIdle -------------------------------#
