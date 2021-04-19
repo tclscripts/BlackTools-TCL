@@ -2,6 +2,8 @@
   * to implement category TCL in witch you have all tcl and also .tcl info
     to get info like bind pub, flags, strings from that TCL. [ pending ]
   * to implement .update reinstall [ pending ]
+ 2021-04-19 BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
+  * implemented spanish language
  2021-04-16 BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * small language manual correction for TopWords module
   * the command topwords now works for all users
