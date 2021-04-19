@@ -1246,7 +1246,7 @@ set black(say.en.hegg.4) "\005\[BT\]\005 To see the \002BlackToolS Manual\002 fo
 ############################### GREETING #######################################
 
 set black(say.en.greeting.1) "\005\[BT\]\005 Welcome in \002BlackToolS WORLD\002 version \002$black(vers)\002. To start please define the following settings for you:"
-set black(say.en.greeting.2) "\002%char%myset mychar\002 <trigger> ( set desired trigger ) ; \002%char%myset lang <language> ( RO | EN )"
+set black(say.en.greeting.2) "\002%char%myset mychar\002 <trigger> ( set desired trigger ) ; \002%char%myset lang <language> ( RO | EN | ES)"
 set black(say.en.greeting.3) "\002%char%myset mychan\002 <#chan> ; \002%char%myset output\002 <method> ( CHAN | NOTICE )"
 set black(say.en.greeting.4) "\002%char%myset noteexpire <no. days> ; \002%char%myset greet\002 <message> (onjoin gree message) ; \002%char%myset autoinvite\002 <ON|OFF>"
 set black(say.en.greeting.5) "\005\[BT\]\005 Use \002%char%h\002 in any channel that the bot is in to get a complete list with all \002available commands\002."
