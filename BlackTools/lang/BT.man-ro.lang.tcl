@@ -689,7 +689,7 @@ set black(say.ro.man.486_1) "\[MAN\] Pentru informatii despre \002silent\002 vez
 #Language
 
 set black(say.ro.man.487) "\[MAN\] \002Lang\002 permite schimbarea limbii in care eggdropul iti raspunde, precum si limba default a motivelor de kick/ban de pe un anumit canal."
-set black(say.ro.man.487_1) "\[MAN\] Limbi disponibile: \002RO\002 = romana ; \002EN\002 = engleza"
+set black(say.ro.man.487_1) "\[MAN\] Limbi disponibile: \002RO\002 = romana ; \002EN\002 = engleza ; \002ES\002 = spaniola"
 set black(say.ro.man.488) "\[MAN\] SINTAXE FOLOSIRE:"
 set black(say.ro.man.489) "\[MAN\] \002%char%set\002 \[#canal\] lang <limba> ; \002%botnick% set\002 \[#canal\] lang <limba> ; \002(PRIVMSG) set\002 \[#canal\] lang <limba>"
 set black(say.ro.man.489_1) "\[MAN\] \002%char%myset\002 lang <limba> ; \002%botnick% myset\002 lang <limba> ; \002(PRIVMSG) myset\002 lang <limba> (setare limba default user)"
