@@ -688,7 +688,7 @@ set black(say.en.man.486_1) "\[MAN\] For informations about \002silent\002 pleas
 #Language
 
 set black(say.en.man.487) "\[MAN\] \002Lang\002 allows you to select the language in which eggdrop will reply to you and also sets the default language messages used in kick/ban reasons."
-set black(say.en.man.487_1) "\[MAN\] Languages available: \002RO\002 = romanian ; \002EN\002 = english"
+set black(say.en.man.487_1) "\[MAN\] Languages available: \002RO\002 = romanian ; \002EN\002 = english ; \002ES\002 = spanish"
 set black(say.en.man.488) "\[MAN\] USAGE SYNTAXES:"
 set black(say.en.man.489) "\[MAN\] \002%char%set\002 \[#chan\] lang <language> ; \002%botnick% set\002 \[#chan\] lang <language> ; \002(PRIVMSG) set\002 \[#chan\] lang <language>"
 set black(say.en.man.489_1) "\[MAN\] \002%char%myset\002 lang <language> ; \002%botnick% myset\002 lang <language> ; \002(PRIVMSG) myset\002 lang <language> (default user language)"
