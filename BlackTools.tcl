@@ -161,7 +161,7 @@ set black(cmdchar) "! . ` \^"
 ###########################################################################
 #-------------------------- Default Language -----------------------------#
 ###									###
-#Default language of the script ( RO / EN )
+#Default language of the script ( RO / EN / ES )
 
 set black(default_lang) "EN"
 
