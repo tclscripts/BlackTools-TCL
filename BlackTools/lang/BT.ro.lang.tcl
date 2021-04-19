@@ -1246,7 +1246,7 @@ set black(say.ro.hegg.4) "\005\[BT\]\005 Pentru a vizualiza \002Manualul\002 fie
 ############################### GREETING #######################################
 
 set black(say.ro.greeting.1) "\005\[BT\]\005 Bun venit in lumea \001BlackToolS\001 versiunea \002$black(vers)\002. Pentru a incepe, trebuie sa definiti urmatoarele setari:"
-set black(say.ro.greeting.2) "\002%char%myset mychar\002 <trigger> ( setare trigger dorit ) ; \001%char%myset lang\001 <limba> ( RO | EN )"
+set black(say.ro.greeting.2) "\002%char%myset mychar\002 <trigger> ( setare trigger dorit ) ; \001%char%myset lang\001 <limba> ( RO | EN | ES )"
 set black(say.ro.greeting.3) "\001%char%myset mychan\001 <#canal> ; \002%char%myset output\002 <metoda> ( CHAN | NOTICE )"
 set black(say.ro.greeting.4) "\002%char%myset noteexpire\002 <nr. zile> ; \001%char%myset greet\001 <mesaj> ; \002%char%myset autoinvite\002 <ON|OFF>"
 set black(say.ro.greeting.5) "\005\[BT\]\005 Foloseste \001%char%h\001 pe orice canal in care se afla botul pentru o \002lista completa\002 a comenzilor disponibile."
