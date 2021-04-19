@@ -689,7 +689,7 @@ set black(say.es.man.486_1) "\[MAN\] Para obtener información sobre \002silent\
 #Language
 
 set black(say.es.man.487) "\[MAN\] \002Lang\002 le permite seleccionar el idioma en el que Eggdrop le responderá y también establece los mensajes de idioma predeterminados utilizados en razones de expulsión/prohibición."
-set black(say.es.man.487_1) "\[MAN\] Idiomas disponibles: \002RO\002 = romanian ; \002EN\002 = english"
+set black(say.es.man.487_1) "\[MAN\] Idiomas disponibles: \002RO\002 = romanian ; \002EN\002 = english ; \002ES\002 = spanish"
 set black(say.es.man.488) "\[MAN\] SINTAXIS:"
 set black(say.es.man.489) "\[MAN\] \002%char%set\002 \[#chan\] lang <lenguaje> ; \002%botnick% set\002 \[#chan\] lang <lenguaje> ; \002(PRIVMSG) set\002 \[#chan\] lang <lenguaje>"
 set black(say.es.man.489_1) "\[MAN\] \002%char%myset\002 lang <lenguaje> ; \002%botnick% myset\002 lang <lenguaje> ; \002(PRIVMSG) myset\002 lang <lenguaje> (idioma de usuario predeterminado)"
