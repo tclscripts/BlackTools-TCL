@@ -1427,10 +1427,10 @@ set black(say.es.vote.26) "\005\[BT\]\005 Fin de la lista de votación"
 set black(say.es.vote.27) "\005\[BT\]\005 Para ver el siguiente conjunto de votos, escribe: \001%char%vote list -next\001 (\002%counter%\002 votos restantes) "
 set black(say.es.vote.28) "\005\[BT\]\005 Para ver el siguiente conjunto de votos, escribe: \001%char%vote %chan% list -next \001(\002%counter%\002 votos restantes) "
 set black(say.es.vote.29) "\005\[BT\]\005 La lista de votantes para %chan% es:"
-set black(say.es.vote.30) "\005\[BT\]\005 No hay votaciones para% chan%".
+set black(say.es.vote.30) "\005\[BT\]\005 No hay votaciones para% chan%"
 set black(say.es.vote.31) "\005\[BT\]\005 Para ver el siguiente conjunto de votos, escribe: \001char%vote list %id% -next\001 (\002%counter%\002 votos restantes) "
 set black(say.es.vote.32) "\005\[BT\]\005 Para ver el siguiente conjunto de votos, escribe: \001%char% vote% chan% list% id% -next \001(\002%counter%\002 votos restantes)"
-set black(say.es.vote.33) "\005\[BT\]\005 No hay votos para votar con ID \002%msg.1%\002 en %chan%".
+set black(say.es.vote.33) "\005\[BT\]\005 No hay votos para votar con ID \002%msg.1%\002 en %chan%"
 set black(say.es.vote.34) "\002#%msg.1%\002 Nombre: \002%msg.2%\002; Host: %msg.3% ; Vote: \002%msg.4%\002; Fecha de votación: \002%msg.5%\002 "
 set black(say.es.vote.35) "\005\[BT\]\005 Lista de votos para ID: \002%msg.1%\002 en %chan% es:"
 set black(say.es.vote.36) "\005\[BT\]\005 Fin de la lista de votos"
