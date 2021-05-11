@@ -5,7 +5,7 @@
 ===========================================================================================================
 
    BlackTools is the most complete channel management script who can manage channels from all 
-   the IRC networks, although some modules are specifically designed only for Undernet network.
+   the IRC networks.
 
                                       -----------------------
 
@@ -39,6 +39,7 @@ Minimum requirements:
      o TLS package (for autoupdate module to work,if not, it will be disabled)
 
 Most important features:
+    o Multiple languages support (EN,RO,ES)
     o AutoUpdate that gives the eggdrop the ability to download and install the BT if a new version
       or bug fix version is on github. All BT files and settings are saved and restored after install.
     o Capability to create aliases (commands based on BT official commands) foreach user.
@@ -89,10 +90,6 @@ Credits:
 Utenti italiani:
 ---------------------
       Italian Language: Nessuna traduzione ufficiale ancora (puo essere fatta su richiesta).
-
-Usuarios espanoles:
----------------------
-      Spanish Language: Sin traduccion oficial todavia (se puede realizar a peticion).
 
 -----------------------------------------------------------------------------------------------------------
 Copyright (c) 2008-2021 Daniel Voipan (aka BLaCkShaDoW).
