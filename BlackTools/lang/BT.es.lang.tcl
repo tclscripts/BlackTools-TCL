@@ -326,7 +326,7 @@ set black(say.es.noproxy.1) "Aquí no se permiten direcciones PROXY: \002%isp%\0
 ################################## SecureMode ##################################
 
 set black(say.es.securemode.1) {
-"\002ATENCIÓN:\002 Intentaste unirte a %chan% pero el canal está \ 002Cerrado\002 (\002+mD\002). Como estamos siendo atacados por bots, escribe: \002/msg% botnick %check% chan% %msg.1%\002 para demostrar que eres humano. Si lo hace, se le permitirá unirse. Si te equivocas, no pasará nada."
+"\002ATENCIÓN:\002 Intentaste unirte a %chan% pero el canal está \002Cerrado\002 (\002+mD\002). Como estamos siendo atacados por bots, escribe: \002/msg %botnick% check %chan% %msg.1%\002 para demostrar que eres humano. Si lo hace, se le permitirá unirse. Si te equivocas, no pasará nada."
 "\002ATENCIÓN:\002 Bienvenido a %chan%. Como estamos siendo atacados por bots, el canal está \002Cerrado\002 (\002+mD\002), por favor Escribe: \002/msg %botnick% check %chan% %msg.1%\002"
 "\002ATENCIÓN:\002 nuestro canal está \002Cerrado\002 (\002+mD\002) y dado que estamos siendo atacados por bots e intentaste unirte a %chan%, por favor Escribe: \002/msg %botnick% check %chan% %msg.1%\002"
 }
@@ -344,7 +344,11 @@ set black(say.es.securemode.11) "Modo seguro: off"
 
 ################################## VoiceMe #####################################
 
-set black(say.es.voiceme.1) "El canal está \002moderado (modo +m)\002. Si quieres chatear en \002%chan%\002, usa: \002/msg% botnick% voiceme %chan%\002. Requiere estar registrado \002yregistrado en la red\002."
+set black(say.es.voiceme.1) "El canal está \002moderado (modo +m)\002. Si quieres chatear en \002%chan%\002, usa: \002/msg
+
+
+
+botnick% voiceme %chan%\002. Requiere estar registrado \002yregistrado en la red\002."
 set black(say.es.voiceme.2) "El canal ya NO está \002moderado (modo +m)\002. ¡Disfruta!"
 set black(say.es.voiceme.3) "Recibió \002voice (+v)\002 en \002 %chan%\002. Que tengas un buen chat!"
 set black(say.es.voiceme.4) "Estás listo \002voice (+v)\002 en \002%chan%\002."
