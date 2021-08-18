@@ -262,9 +262,6 @@ proc blacktools:finish_config {hand chan lastmodif status} {
     global black
     set update_old_data [blacktools:update_data 0 ""]
     set update_new_data [blacktools:update_getconfig]
-    set file [open "test" w]
-    puts $file $update_new_data
-    close $file
     set restore_config [blacktools:update_restore $update_old_data $update_new_data]
     set newdata [lindex $restore_config 0]
     set num_var [lindex $restore_config 1]
