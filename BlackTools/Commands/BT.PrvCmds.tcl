@@ -441,6 +441,7 @@ if {[setting:get $chan xonly] || [setting:get $chan xtools]} {
 	putquick "PRIVMSG $black(chanserv) :unban $chan $read_host"
 						}
 	blacktools:auto:remove $read_host $chan
+	set black(bans) [blacktools:banlist:all]
 	blacktools:tell $nick $input $hand $chan $chan1 bot.7 none
 				}
 			}
