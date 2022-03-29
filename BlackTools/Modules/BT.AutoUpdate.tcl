@@ -332,6 +332,7 @@ proc blacktools:backup_run {hand chan new_version last_modify} {
     set data [read -nonewline $file]
     close $file
     set reg "source $black(dirname)/$black(tclname)"
+    set black(restore_config_file) $black(tclname)
     set timestamp [clock format [clock seconds] -format {%Y%m%d%H%M%S}]
     set black(old_config_file) "BlackTools.${timestamp}.tcl"
     regsub $reg $data "source $black(dirname)/$black(old_config_file)" data
@@ -445,10 +446,6 @@ proc blacktools:update_end {num} {
     global black config
     set hand $black(update_hand)
     set chan $black(update_chan)
-    set userlang [blacktools:update_userlang $hand]
-    set end_update [unixtime]
-    set dif [expr $end_update - $black(start_update)]
-    unset black(start_update)
 if {$num == 0} {
     blacktools:update_put "" "" 22 ""
 } else {
@@ -457,11 +454,30 @@ if {$num == 0} {
     set file [open $config r]
     set data [read -nonewline $file]
     close $file
-    set reg "source $black(actdir)/$black(old_config_file)"
-    regsub $reg $data "source $black(actdir)/$black(tclname)" data
+    set split_data [split $data "\n"]
+    blacktools:config_write $split_data 0 $hand $chan "" [llength $split_data]
+}
+
+
+###
+proc blacktools:config_write {sdata num hand chan data total} {
+    global black config
+    set line [lindex $sdata $num]
+if {[string match -nocase "*/$black(old_config_file)" $line]} {
+    lappend data "source $black(actdir)/$black(restore_config_file)"
+} else {
+    lappend data $line
+}
+    set counter [expr $num + 1]
+if {$counter <= $total} {
+    blacktools:config_write $sdata $counter $hand $chan $data $total
+} else {
     set file [open $config w]
-    puts $file $data
+    puts $file [join $data "\n"]
     close $file
+    set userlang [blacktools:update_userlang $hand]
+    set end_update [unixtime]
+    set dif [expr $end_update - $black(start_update)]
     unset black(update_hand)
     unset black(update_chan)
     blacktools:update_unsetflag
@@ -470,13 +486,20 @@ if {$num == 0} {
     blacktools:update_put $hand $chan 26 ""
     unset black(update_file_saved)
     file delete -force "$black(actdir)/$black(old_config_file)"
+    utimer 5 [list blacktools:update_rehash $hand $chan]
+    }
+}
+
+###
+proc blacktools:update_rehash {hand chan} {
+    global black
 if {$black(finish_action) == 0} {
     rehash
-    setaway "none"
+    utimer 5 [list setaway "none"]
     } else {
 if {$black(update_from) == 0} {
     rehash
-    setaway "none"
+    utimer 5 [list setaway "none"]
     blacktools:update_put $hand $chan 45 ""
         } else {
     blacktools:update_put $hand $chan 46 ""
@@ -489,6 +512,8 @@ if {$black(update_from) == 0} {
     unset black(update_from)
     unset black(download_size)
     unset black(old_config_file)
+    unset black(start_update)
+    unset black(restore_config_file)
 }
 
 ###
