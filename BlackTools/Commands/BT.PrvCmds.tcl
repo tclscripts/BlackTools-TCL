@@ -1595,7 +1595,7 @@ if {$reason == ""} {
 
 broadcast {
 if {[matchattr $hand nm]} {
-	set text [join [lrange [split $arg] 2 end]]	
+	set text [join [lrange [split $arg] 1 end]]	
 	set chan1 "$chan"
 	set type 2
 	broadcast:cmd:process $nick $input $hand $chan $chan1 $text $type
