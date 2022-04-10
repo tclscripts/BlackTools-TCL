@@ -100,7 +100,6 @@ if {[string equal -nocase [lindex $line 0] "VOTE"]} {
 if {[info exists black(vote_expire)]} {
 if {$expire <= $black(vote_expire)} {
     set replace_line [lreplace $line 8 8 "0"]
-    putlog "1 $replace_line"
     puts $tempwrite $replace_line
     } else {
     puts $tempwrite $line       
@@ -108,7 +107,6 @@ if {$expire <= $black(vote_expire)} {
 } elseif {$expire <= [clock seconds]} {
     set replace_line [lreplace $line 8 8 "0"]
     puts $tempwrite $replace_line
-    putlog "2 $replace_line"
         } else {
     puts $tempwrite $line
         }
