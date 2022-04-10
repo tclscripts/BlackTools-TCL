@@ -397,7 +397,7 @@ if {([lsearch -exact [string tolower [split $black(next:$chan:served)]] [string 
 	return
 	}
 }
-	blacktools:banner:2 $user "NEXT" $chan $chan1 [getchanhost $user $chan] "0"
+	blacktools:banner:2 $user "NEXT" $chan $chan1 [getchanhost $user $chan] "0" ""
 	who:chan $chan
 }
 
