@@ -44,7 +44,7 @@ if {![onchan $botnick $chan]} {
 	return
 }
 	blacktools:tell $nick $host $hand $chan $chan1 clonescan.11 none
-	clonescan:act $chan $nick $hand $chan1 $type 0
+	clonescan:act $chan $nick $host $hand $chan1 0 0
 }
 
 proc clonescan:timer {chans} {
@@ -56,11 +56,11 @@ if {[validchan $chan]} {
 		}
 	}
 if {$channels != ""} {
-	clonescan:act $channels "nick" "" "chan1" $type 0
+	clonescan:act $channels "nick" "" "" "chan1" $type 0
 	}
 }
 
-proc clonescan:act {channels nick hand chan1 type counter} {
+proc clonescan:act {channels nick h hand chan1 type counter} {
 	global black
 	set chan [lindex $channels $counter]
 	set cc [expr $counter + 1]
@@ -96,7 +96,7 @@ if {[llength [split $userlist]] >= $maxclone} {
 	lappend found_mask $clone
 	lappend theclones $clones($clone)
 if {$type == "0"} {
-	blacktools:tell $nick "" $hand $chan $chan1 clonescan.10 "[llength [split $userlist]] $clone [join $clones($clone) ", "]"
+	blacktools:tell $nick $h $hand $chan $chan1 clonescan.10 "[llength [split $userlist]] $clone [join $clones($clone) ", "]"
 		}
 	}
 }
@@ -117,11 +117,12 @@ foreach m $found_mask {
 		}
 	}
 }
+
 if {([lindex $channels $cc] != "") && ($type == "1")} {
-	utimer 5 [list clonescan:act $channels $nick $hand $chan1 $type $cc]
+	utimer 5 [list clonescan:act $channels $nick $h $hand $chan1 $type $cc]
 		}
 if {($type == "0") && ($found_clones == "0")} {
-	blacktools:tell $nick "" $hand $chan $chan1 clonescan.2 none
+	blacktools:tell $nick $h $hand $chan $chan1 clonescan.2 none
 	}
 }
 
