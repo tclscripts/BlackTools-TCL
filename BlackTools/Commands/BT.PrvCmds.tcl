@@ -1776,6 +1776,15 @@ if {$mychan_use == "1"} {
 }
 
 h {
+if {![validchan $chan]} {
+if {[matchattr $hand nmo]} {
+	set chan [lindex [channels] 0]
+if {![validchan $chan]} {
+	blacktools:tell $nick $host $hand $chan $chan1 gl.novalidchan none
+	return
+		}
+	}
+}
 if {[matchattr $hand nmo|MOAV $chan]} {
 	set chan1 "$chan"
 	set type 2
