@@ -72,17 +72,8 @@ foreach b $black(bans) {
 }
 
 ###
-#https://rosettacode.org/wiki/Sorting_algorithms/Quicksort#Tcl
 proc blacktools:quicksort {m} {
-    if {[llength $m] <= 1} {
-        return $m
-    }
-    set pivot [lindex $m 0]
-    set less [set equal [set greater [list]]]
-    foreach x $m {
-        lappend [expr {$x < $pivot ? "less" : $x > $pivot ? "greater" : "equal"}] $x
-    }
-    return [concat [blacktools:quicksort $less] $equal [blacktools:quicksort $greater]]
+	lsort -integer $m
 }
 
 ###
