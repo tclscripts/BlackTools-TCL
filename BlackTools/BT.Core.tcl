@@ -5357,7 +5357,7 @@ if {[string match -nocase [string tolower [lindex $ban 0]] $host]} {
 ######################### XTOOLS ##########################
 
 proc toolspublic {chan type} {
-global botnick black
+global botnick botname black
 if {![setting:get $chan xtools]} {
 	return
 }
@@ -5369,12 +5369,12 @@ if {$type == "op"} {
 if  {![onchan "$black(chanserv)" $chan] && ![botisop $chan]} {
 	return
 }
-	putquick "PRIVMSG $black(chanserv) :unban $chan $botnick"
+	putquick "PRIVMSG $black(chanserv) :unban $chan $botname"
 	putquick "PRIVMSG $black(chanserv) :op $chan $botnick"
 	return
 }
 if {$type == "unban"} {
-	putquick "PRIVMSG $black(chanserv) :unban $chan $botnick"
+	putquick "PRIVMSG $black(chanserv) :unban $chan $botname"
 	return
 }
 if {$type == "invite" || $type == "limit"} {
