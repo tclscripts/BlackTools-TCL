@@ -983,12 +983,14 @@ if {[matchattr $hand nmo|M $chan]} {
 	set chan1 "$chan"
 	set why [lindex [split $arg] 3]
 	set user [lindex [split $arg] 4]
+	set uhost [lindex [split $arg] 5]
 if {[regexp {^[&#]} $why] && [matchattr $hand nmo|M $chan]} {
 	set chan "$why"
 	set why [lindex [split $arg] 4]
 	set user [lindex [split $arg] 5]
+	set uhost [lindex [split $arg] 6]
 		}
-	private:process $nick $host $hand $chan $chan1 $why $user $type
+	private:process $nick $host $hand $chan $chan1 $why $user $uhost $type
 	}
 }
 
