@@ -1665,15 +1665,18 @@ if {$mychan_use == "1"} {
 
 private {
 if {[matchattr $hand nmo|M $chan]} {
-	set type 2
+	set type 1
 	set chan1 "$chan"
 	set why [lindex [split $arg] 2]
 	set user [lindex [split $arg] 3]
-if {$mychan_use == "1"} {
-	set why [lindex [split $arg] 1]
-	set user [lindex [split $arg] 2]
-}
-	private:process $nick $input $hand $chan $chan1 $why $user $type
+	set uhost [lindex [split $arg] 4]
+if {[regexp {^[&#]} $why] && [matchattr $hand nmo|M $chan]} {
+	set chan "$why"
+	set why [lindex [split $arg] 3]
+	set user [lindex [split $arg] 4]
+	set uhost [lindex [split $arg] 5]
+		}
+private:process $nick $host $hand $chan $chan1 $why $user $uhost $type
 	}
 }
 
