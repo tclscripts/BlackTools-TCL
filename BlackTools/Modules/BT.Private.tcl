@@ -14,7 +14,7 @@
 ##					                               ##
 #########################################################################
 
-proc private:process {nick host hand chan chan1 why user type} {
+proc private:process {nick host hand chan chan1 why user shost type} {
 global botnick black
 	set cmd_status [btcmd:status $chan $hand "private" 0]
 if {$cmd_status == "1"} { 
@@ -70,9 +70,9 @@ if {[matchattr $user $flags $chan]} {
 	chattr $user $flags $chan
 	blacktools:tell $nick $host $hand $chan $chan1 private.7 $show_user
 } else {
+if {[onchan $user $chan]} {
 	set hosts [getchanhost $user $chan]
-	set uhost [return_mask $black(addusermask) $hosts $user]
-	
+	set uhost [return_mask $black(hostdefaultadd) $hosts $user]
 	if {[userlist] != ""} {
 foreach usr [userlist] {
 	set hst [getuser $usr hosts]
@@ -81,15 +81,20 @@ if {[string match -nocase $hhost $uhost] && (![string match -nocase $usr $user])
 	blacktools:tell $nick $host $hand $chan $chan1 add.5 $usr
 	set user $usr
 	set show_user $usr
+				}
 			}
 		}
 	}
-}
+} else {set uhost $shost}
 
 if {[validuser $user]} {
 	chattr $user $flags $chan
 	blacktools:tell $nick $host $hand $chan $chan1 private.7 $show_user
 	return
+}
+if {$uhost == ""} {
+	blacktools:tell $nick $host $hand $chan $chan1 gl.instr $cmd
+	return 0
 }
 	adduser $user $uhost
 	chattr $user $flags $chan
