@@ -336,6 +336,13 @@ proc msg:mass:unsilence {} {
 	blacktools:tell:dcc antiflood.4 none
 }
 
+proc msg:flood:unset {type} {
+	global black
+	if {[info exists black($type)]} {
+		unset black($type)
+	}
+}
+
 proc msg:flood:protection {nick host hand arg} {
 	global black botnick
 	set user [nick2hand $nick]
@@ -367,8 +374,8 @@ if {![info exists black(antiflood:prot)]} {
 }
 	set black(antiflood:$host:prot) [expr $black(antiflood:$host:prot) + 1]
 	set black(antiflood:prot) [expr $black(antiflood:prot) + 1]
-	utimer $timer [list unset  black(antiflood:$host:prot)]
-	utimer $mass_timer [list unset black(antiflood:prot)]
+	utimer $timer [list msg:flood:unset antiflood:$host:prot]
+	utimer $mass_timer [list msg:flood:unset antiflood:prot]
 if {$black(antiflood:prot) >= $mass_number} {
 	newignore "*!*@*" $botnick "MASS FLOOD DETECTED"
 	blacktools:tell:dcc antiflood.3 "\002\[BT\]\002 MASS MSG FLOOD PROTECTION"
@@ -408,7 +415,7 @@ if {![info exists black(antiflood:$host:notc)]} {
 	set black(antiflood:$host:notc) 0
 }
 	set black(antiflood:$host:notc) [expr $black(antiflood:$host:notc) + 1]
-	utimer $timer [list unset  black(antiflood:$host:notc)]
+	utimer $timer [list msg:flood:unset antiflood:$host:notc]
 if {$black(antiflood:$host:notc) >= $number} {
 	newignore "*!$host" $botnick "\002\[BT\]\002 NOTICE FLOOD PROTECTION" $black(notice:flood:notc_time)
 	blacktools:tell:dcc antiflood.2 "$host \002\[BT\]\002 NOTICE FLOOD PROTECTION"
