@@ -205,6 +205,7 @@ proc get:securemode:host {from keyword arguments} {
 	set hosts [lindex [split $arguments] 1]
 	set hostname [lindex [split $hosts "="] 1]
 	regsub {^[-+]} $hostname "" mask
+ 	set ident [lindex [split $mask "@"] 0]
 	set nick $::shnick
 	set except_mask "$nick!$mask"
 	set chan $::shchan
@@ -230,7 +231,7 @@ if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 	}
 	return
 }
-if {[securemode:findexcept $chan $except_mask] == "1"} { 
+if {[securemode:findexcept $chan $except_mask] == "1" || ![regexp {~} $ident]} {
 if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 	putserv "PRIVMSG $black(chanserv) :voice $chan $nick"
 		} else {
