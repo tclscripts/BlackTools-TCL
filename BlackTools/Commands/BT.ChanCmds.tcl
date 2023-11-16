@@ -18,6 +18,9 @@ proc comand:chan {nick host hand chan arg} {
 global botnick wordsdir sdir black seendir count server uptime {server-online} version lastbind
 	set cmd_chan [lindex [split $arg] 0]
 	set chan1 $chan
+ if {[setting:get $chan disablepubcmds]} {
+	return
+}
 if {[isbotnick $nick]} { return }
 
 	set split_cmd [split $cmd_chan ""]
