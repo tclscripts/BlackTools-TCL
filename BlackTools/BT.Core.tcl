@@ -265,7 +265,7 @@ set black(extra_flag) {
 	autovoice leave topwords dontop dontdeop private silent quote note reportnick invisible forward
 	showhandle showid showcount showtime showurl next voiceonmsg autotopic greet xonly nologged settingsaved
 	idleop idlehalfop idlevoice vprotect oprotect hoprotect badquitpart quitpartcolor quitpartmsgflood badhost nickflood seenreply
-	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink noproxy vote votegreet
+	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink noproxy vote votegreet disablepubcmds
 }
 
 set black(validcmds) "alias exempt login anunt link note q enable disable securemode cp troll badhost antispam badrealname badquitpart badident badnick badword unset greet leave topic vr dr n id spam bw mb black bl b stick ub sb banlist r man auto antipub private tcl h ignore idle version stats chat seen limit bt badchan us s info channels userlist chuser delhost addhost del delacc add unsuspend suspend delchan addchan die jump save restart rehash update nick msg omsg set mode cycle broadcast act say v ho o uptime status t k w ungag gag show clonescan topwords myset timer i badword next helped noidle skip vote"
