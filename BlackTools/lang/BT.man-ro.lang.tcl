@@ -1784,6 +1784,9 @@ set black(say.ro.man.2230) "\[MAN\] Aveti la dispozitie urmatoarele metode de ma
 set black(say.ro.man.2231) "\[MAN\] \002#1\002 *!*@host ; \002#2\002 *!user@host ; \002#3\002 nick!user@host ; \002#4\002 nick!*@* ; \002#5\002 *!user@*"
 set black(say.ro.man.2232) "\[MAN\] SINTAXA FOLOSIRE: \002%char%set\002 <setare> <nr. metoda> ; \002%botnick% set\002 <setare> <nr. metoda> ; \002(PRIVMSG) set\002 <#canal> <setare> <nr. metoda>"
 
+#+/-disablepubcmds
+set black(say.ro.man.2233) "\[MAN\] Aceasta setare odata activata va face ca, comenzile care se dau pe canal prin intermediul caracterului de inceput (ex. !w) sa fie dezactivate"
+
 ##############################
 ############################################################################################################
 #   SFARSIT                                                                                                #
