@@ -1792,6 +1792,9 @@ set black(say.en.man.2230) "\[MAN\] Available masks:"
 set black(say.en.man.2231) "\[MAN\] \002#1\002 *!*@host ; \002#2\002 *!user@host ; \002#3\002 nick!user@host ; \002#4\002 nick!*@* ; \002#5\002 *!user@*"
 set black(say.en.man.2232) "\[MAN\] USAGE SYNTAX: \002%char%set\002 <setting> <no. method> ; \002%botnick% set\002 <setting> <no. method> ; \002(PRIVMSG) set\002 <#chan> <setting> <no. method>"
 
+#+/-disablepubcmds
+set black(say.en.man.2233) "\[MAN\] This setting, once activated, will cause the commands that are given on the channel through the beginning character (eg !w) to be disabled"
+
 ##############################
 ############################################################################################################
 #   END                                                                                                    #
