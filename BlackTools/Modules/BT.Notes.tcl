@@ -314,7 +314,7 @@ proc notes:del {num hand} {
 while {[gets $file line] != -1} {
 	set read_num [lindex [split $line] 2]
 	set handle [lindex [split $line] 4]
-if {[string equal $num $read_num] && [string equal $handle $hand]} {
+if {[string equal $num $read_num] && [string equal -nocase $handle $hand]} {
 	set found_it 1
 	continue
 } else {
@@ -338,7 +338,7 @@ proc notes:delall {hand} {
 while {[gets $file line] != -1} {
 	set type [lindex [split $line] 0]
 	set handle [lindex [split $line] 4]
-if {[string equal $handle $hand] && [string equal $type "INBOX"]} {
+if {[string equal -nocase $handle $hand] && [string equal $type "INBOX"]} {
 	set found_it [expr $found_it + 1]
 	continue
 } else {
@@ -363,7 +363,7 @@ while {[gets $file line] != -1} {
 	set handle [lindex [split $line] 4]
 	set read_type [lindex [split $line] 0]
 	set readit [lindex [split $line] 3]
-if {[string equal $num $read_num] && [string equal $handle $hand] && [string equal -nocase $read_type "INBOX"] && ($readit == "0")} {
+if {[string equal $num $read_num] && [string equal -nocase $handle $hand] && [string equal -nocase $read_type "INBOX"] && ($readit == "0")} {
 	set db [lindex [split $line] 1]
 	set readtype [lindex [split $line] 0]
 	set readnum [lindex [split $line] 2]
