@@ -35,15 +35,15 @@
 #                                                                                                                                #
 ##################################################################################################################################
 
-set black(say.en.level.1) "BOSS OWNER"
-set black(say.en.level.2) "OWNER"
-set black(say.en.level.3) "MANAGER"
+set black(say.en.level.1) "PROPRIÉTAIRE BOSS"
+set black(say.en.level.2) "PROPRIÉTAIRE"
+set black(say.en.level.3) "GESTIONNAIRE"
 set black(say.en.level.4) "ADMIN"
 set black(say.en.level.5) "OP"
-set black(say.en.level.6) "VOICE"
-set black(say.en.level.7) "PROTECT"
-set black(say.en.level.8) "MASTER"
-set black(say.en.level.9) "BAN"
+set black(say.en.level.6) "VOIX"
+set black(say.en.level.7) "PROTÉGER"
+set black(say.en.level.8) "MAÎTRE"
+set black(say.en.level.9) "BANNIR"
 
 ##################################################################################################################################
 #                                                                                                                                #
