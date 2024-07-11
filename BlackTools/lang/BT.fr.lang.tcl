@@ -12,7 +12,7 @@
 ##################################################################################################################################
 #                                                                                                                                #
 #                                                  *** The Future is Here ***                                                    #
-#                                                                                     Copyright 2008 - 2021 @ www.tclscripts.net #
+#                                                                                     Copyright 2008 - 2024 @ www.tclscripts.net #
 ##################################################################################################################################
 #                                                                                                                         �      #
 #     ######  #          #     #####  #    # ####### ####### ####### #        #####        #          #    #     #  #####        #
@@ -24,9 +24,9 @@
 #     ######  ####### #     #  #####  #    #    #    ####### ####### #######  #####        ####### #     # #     #  #####        #
 #                                                                                                                                #
 ##################################################################################################################################
-#   				           #                             translation updated by Florian | Florian@tclscripts.net #
-#             ENGLISH LANGUAGE (EN)	   #                     retouches and corrections by QueenElsa | QueenElsa@undernet.org #
-#				           #	                                                        Date: 25.02.2018 14:26PM #
+#   				           #                         translation updated by BLaCkShaDoW | Florian@tclscripts.net #
+#             		FRENCH (FR)	   #                    								 #
+#				           #	                                                        Date: 11.07.2024 14:26PM #
 ##################################################################################################################################
 
 ##################################################################################################################################
@@ -1308,10 +1308,10 @@ set black(say.en.userexpire.1) "\005[BT]\005 Expiration de l'utilisateur : \002%
 
 ##################################### Hello ####################################
 
-set black(say.en.hello.1) "*** HOORAH! *** You have \001%msg%\001 access level to my commands."
-set black(say.en.hello.2) "\005\[BT\]\005 Hi \002%msg.1%\002. I'm \004%botnick%\004, an eggdrop bot running \001%msg.2%\001 %msg.3%."
-set black(say.en.hello.3) "\005\[BT\]\005 I'll recognize you by hostmask '\001%msg.1%\001' from now on. Please set your password, typing: /msg \001%botnick%\001 <pass> <yourpassword>"
-set black(say.en.hello.4) "\005\[BT\]\005 You can use \002%char%h\002 in any channel that the bot is in to get a complete list with all \002available commands\002. Have fun :D"
+set black(say.en.hello.1) "*** HOURRA ! *** Vous avez un niveau d'accès \001%msg%\001 à mes commandes."
+set black(say.en.hello.2) "\005[BT]\005 Bonjour \002%msg.1%\002. Je suis \004%botnick%\004, un bot Eggdrop fonctionnant avec \001%msg.2%\001 %msg.3%."
+set black(say.en.hello.3) "\005[BT]\005 Je vous reconnaîtrai par le masque d'hôte '\001%msg.1%\001' à partir de maintenant. Veuillez définir votre mot de passe en tapant : /msg \001%botnick%\001 <pass> <votremotdepasse>"
+set black(say.en.hello.4) "\005[BT]\005 Vous pouvez utiliser \002%char%h\002 dans n'importe quel canal où le bot est présent pour obtenir une liste complète de toutes les \002commandes disponibles\002. Amusez-vous bien :D"
 
 ##################################### Pass #####################################
 
