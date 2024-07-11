@@ -1315,7 +1315,7 @@ set black(say.en.hello.4) "\005[BT]\005 Vous pouvez utiliser \002%char%h\002 dan
 
 ##################################### Pass #####################################
 
-set black(say.en.pass.1) "\005\[BT\]\005 Done. Your password is now: \002%msg%\002"
+set black(say.en.pass.1) "\005[BT]\005 Terminé. Votre mot de passe est maintenant : \002%msg%\002"
 
 #################################### oMsg ######################################
 
