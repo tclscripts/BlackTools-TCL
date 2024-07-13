@@ -1780,7 +1780,7 @@ set black(exempt:default_time) "0"
 
 set black(name) "BlackToolS"
 set black(author) "BLaCkShaDoW"
-set black(vers) "2.5.5"
+set black(vers) "3.0"
 set black(site) "wWw.TclScriptS.NeT"
 
 	bind evnt - init-server loginpublic
