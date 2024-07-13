@@ -32,9 +32,12 @@ if {[matchattr $hand -|q $chan]} { blacktools:tell_v2 $nick $host $hand $chan $c
     set cmd_used [lindex $arg 2]
     set text [lindex $arg 3]
     set text2 [join [lrange $arg 2 3]]
+    set cmds [join [lrange $arg 2 end]]
+    set split_cmds [wsplit $cmds "|"]
+    set llength_cmd [llength $split_cmds]
 switch [string tolower $what] {
     add {
-if {$cmd == ""} {
+if {$llength_cmd == 0} {
     blacktools:tell_v2 $nick $host $hand $chan $chan1 alias.1 none
     return
 }
@@ -42,23 +45,35 @@ if {$cmd_used == ""} {
     blacktools:tell_v2 $nick $host $hand $chan $chan1 alias.1 none
     return
 }
-    set valid [blacktools:alias_valid $hand $cmd_used $chan]
-if {$valid == 1} {
+    set invalidCmd 0
+for {set i 0} { $i < $llength_cmd} {incr i} {
+    if {[concat [lindex $split_cmds $i]] == ""} {
+        blacktools:tell_v2 $nick $host $hand $chan $chan1 alias.2 "N/A"
+        set invalidCmd 1
+        break
+    }
+    set valid [blacktools:alias_valid $hand [lindex [lindex $split_cmds $i] 0] $chan]
+    if {$valid == 0} {
+        blacktools:tell_v2 $nick $host $hand $chan $chan1 alias.2 [lindex [lindex $split_cmds $i] 0]
+        set invalidCmd 1
+        break
+    }
+}
+if {$invalidCmd == 1} {
+    return
+}
     set exists [blacktools:alias_check $hand $cmd]
 if {$exists != 0} {
     blacktools:tell_v2 $nick $host $hand $chan $chan1 alias.3 [list $cmd $exists]
     return
 } else {
-if {$text == ""} {
-    set text $cmd_used
-} else {
-    set text $text2
-}
+    if {$text == ""} {
+        set text $cmd_used
+    } else {
+        set text $text2
+    }
     blacktools:tell_v2 $nick $host $hand $chan $chan1 alias.4 [list $cmd $text]
     blacktools:alias_add $hand $cmd $text
-}
-    } else {
-    blacktools:tell_v2 $nick $host $hand $chan $chan1 alias.2 [list $cmd_used]
     }
 }
     del {
