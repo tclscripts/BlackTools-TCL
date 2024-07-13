@@ -1743,7 +1743,7 @@ set black(say.es.man.2208) "\[MAN\] \002%char%update <on>\002 (habilitar actuali
 
 set black(say.es.man.2209) "\[MAN\] \002ALIAS\002 permite a los usuarios crear sus propios comandos basados en los comandos BT. Todos los comandos están disponibles"
 set black(say.es.man.2210) "\[MAN\] SINTAXIS:"
-set black(say.es.man.2211) "\[MAN\] \002%char%alias add\002 <comando> <BT comando> \[argumentos\] ; \002%char%alias del\002 <comando>"
+set black(say.es.man.2211) "\[MAN\] \002%char%alias add\002 <comando> <BT comando 1> \[argumentos\] | <BT comando 2> \[argumentos\] .. ; \002%char%alias del\002 <comando>"
 set black(say.es.man.2212) "\[MAN\] Ejemplo 1 : \002%char%alias add\002 lamer \001b\001 %1% 0 Eres un lamer !! \[%1% - nick ó host\]"
 set black(say.es.man.2213) "\[MAN\] Ejemplo 2 : \002%char%alias add\002 cerveza \001cycle\001 %1% %2% Voy a tomarme una cerveza, volveré \[%1% - canal ; %2% - duración del ciclo\]"
 

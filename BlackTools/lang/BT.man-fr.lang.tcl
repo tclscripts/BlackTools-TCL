@@ -1754,7 +1754,7 @@ set black(say.fr.man.2208) "\[MAN\] \002%char%update <on>\002 (activer l'autoupd
 
 set black(say.fr.man.2209) "\[MAN\] \002ALIAS\002 permet aux utilisateurs de créer leurs propres commandes basées sur les commandes BT. Toutes les commandes sont disponibles."
 set black(say.fr.man.2210) "\[MAN\] SYNTAXE D'UTILISATION :"
-set black(say.fr.man.2211) "\[MAN\] \002%char%alias add\002 <commande> <commande BT> \[arguments\] ; \002%char%alias del\002 <commande>"
+set black(say.fr.man.2211) "\[MAN\] \002%char%alias add\002 <commande> <commande BT 1> \[arguments\] | <commande BT 2> \[arguments\] .. ; \002%char%alias del\002 <commande>"
 set black(say.fr.man.2212) "\[MAN\] Exemple 1 : \002%char%alias add\002 lamer \001b\001 %1% 0 Vous êtes un lamer !! \[%1% - pseudo ou hôte\]"
 set black(say.fr.man.2213) "\[MAN\] Exemple 2 : \002%char%alias add\002 beer \001cycle\001 %1% %2% Je vais prendre une bière, je reviendrai \[%1% - canal ; %2% - durée du cycle\]"
 
