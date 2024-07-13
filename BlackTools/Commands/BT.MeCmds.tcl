@@ -2153,20 +2153,24 @@ if {[matchattr $hand nmo|MAO $chan]} {
 	skippublic:process $nick $host $hand $chan $chan1 $user	$type
 				}
 			}
-default {
+	default {
 	set alias_check [blacktools:alias_check $hand $what]
 if {$alias_check != 0} {
 	set counter 0
 	set text [lrange [split $arg] 2 end]
+	set split_cmd [wsplit $alias_check "|"]
+	set llength_cmd [llength $split_cmd]
 foreach a $text {
 	incr counter
 	set replace(%${counter}%) $a
 }
 	set replace(%chan%) $chan
-	set text [string map [array get replace] $alias_check]
+for {set i 0} { $i < $llength_cmd} {incr i} {
+	set text [string map [array get replace] [lindex $split_cmd $i]]
 	regsub -all {%[0-9]%} $text "" text
-	set text [join $text]
+	set text [concat [join $text]]
 	comand:pubme $nick $host $hand $chan "${botnick} $text"
+					}	
 				}
 			}			
 		}

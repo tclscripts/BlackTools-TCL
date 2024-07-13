@@ -2160,15 +2160,19 @@ default {
 if {$alias_check != 0} {
 	set counter 0
 	set text [lrange [split $arg] 3 end]
+	set split_cmd [wsplit $alias_check "|"]
+	set llength_cmd [llength $split_cmd]
 foreach a $text {
 	incr counter
 	set replace(%${counter}%) $a
 }
 	set replace(%chan%) $chan
-	set text [string map [array get replace] $alias_check]
+for {set i 0} { $i < $llength_cmd} {incr i} {
+	set text [string map [array get replace] [lindex $split_cmd $i]]
 	regsub -all {%[0-9]%} $text "" text
-	set text [join $text]
+	set text [concat [join $text]]
 	comand:pubme:for $nick $host $hand $chan "for ${botnick} $text"
+					}	
 				}
 			}		
 		}
