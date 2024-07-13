@@ -92,7 +92,7 @@ Utenti italiani:
       Italian Language: Nessuna traduzione ufficiale ancora (puo essere fatta su richiesta).
 
 -----------------------------------------------------------------------------------------------------------
-Copyright (c) 2008-2022 Daniel Voipan (aka BLaCkShaDoW).
+Copyright (c) 2008-2024 Daniel Voipan (aka BLaCkShaDoW).
 -----------------------------------------------------------------------------------------------------------
 AUTHOR   : Daniel Voipan
 NICK     : BLaCkShaDoW
