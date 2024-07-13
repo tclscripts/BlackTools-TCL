@@ -32,7 +32,7 @@
 #                                                                         #
 #                      - #TCL-HELP @ UNDERNET -     	                  #
 #                                                                         #
-#			      Copyright 2008 - 2021 @ WwW.TCLScripts.NET  #
+#			      Copyright 2008 - 2024 @ WwW.TCLScripts.NET  #
 #                                                                         #
 ###########################################################################
 #                                                                         #
