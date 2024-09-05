@@ -631,12 +631,12 @@ set black(say.es.man.452) "\[MAN\] ** Nota: Para agregar más de 1 oración en u
 
 #Idle
 
-set black(say.es.man.453) "\[MAN\] \002Idle\002 prohíbe a los usuarios con \002op (@)\002, \002halfop (+h %)\002 o \002voice (+v)\002 que estén inactivos."
+set black(say.es.man.453) "\[MAN\] \002Idle\002 prohíbe a los usuarios con \002op (@)\002, \002halfop (+h %)\002 o \002voice (+v)\002 que estén inactivos. También puede prohibir a los usuarios normales quedarse inactivos en el canal mediante la configuración \002(+/-)b\002."
 set black(say.es.man.453_1) "\[MAN\] Periodo de formato: <X>\002m\002 = minutes, <X>\002h\002 = hours, <X>\002d\002 = days"
 set black(say.es.man.454) "\[MAN\] SINTAXIS:"
-set black(say.es.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002(PRIVMSG) idle\002 <#chan> <(+/-)o / (+/-)v / (+/-)ho>"
+set black(say.es.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002(PRIVMSG) idle\002 <#chan> <(+/-)o / (+/-)v / (+/-)ho / (+/-)b>"
 set black(say.es.man.456) "\[MAN\] \002%char%idle add\002 <nick> (add exception from idle), \002%char%idle <list>\002 (list exceptions), \002%char%idle del\002 <nick> (delete exception)"
-set black(say.es.man.457) "\[MAN\] Configuraciones opcionales \002idleopmax\002 <Periodo> (default time idledeop) ; \002idlevoicemax\002 <Periodo> (default time idlevoice) ; \002idlehalfopmax\002 <Periodo> (default time idlehalfop) ; \002idle-scantime\002 <Periodo> (scan time)"
+set black(say.es.man.457) "\[MAN\] Configuraciones opcionales \002idleopmax\002 <Periodo> (default time idledeop) ; \002idlevoicemax\002 <Periodo> (default time idlevoice) ; \002idlehalfopmax\002 <Periodo> (default time idlehalfop) ; \002idlebanmax\002 <Periodo> (default time idleban) ; \002idleban-reason\002 <motivo> (razón del baneo) ; \002idleban-bantime\002 <Periodo> (tiempo de prohibición) ; \002idle-scantime\002 <Periodo> (tiempo de escaneo)"
 set black(say.es.man.458) "Ver configuración de opciones: \002%char%show\002 <ajuste> ; \002%botnick% show\002 <ajuste> ; \002(PRIVMSG) show\002 <#chan> <ajuste>"
 set black(say.es.man.458_1) "\[MAN\] Para obtener información sobre \002idlevoice\002, consulte: \002%char%man idle\002"
 set black(say.es.man.458_2) "\[MAN\] Para obtener información sobre \002idleop\002 consulte: \002%char%man idle\002"
