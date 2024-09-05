@@ -637,7 +637,7 @@ set black(say.ro.man.453_1) "\[MAN\] Format perioada: <x>\002m\002 = minute, <x>
 set black(say.ro.man.454) "\[MAN\] SINTAXE FOLOSIRE:"
 set black(say.ro.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002(PRIVMSG) idle\002 <#canal> <(+/-)o / (+/-)v / (+/-)ho / (+/-)b>"
 set black(say.ro.man.456) "\[MAN\] \002%char%idle add\002 <nick> (adaugare exceptie de la idle), \002%char%idle <list>\002 (listare exceptii), \002%char%idle del\002 <nick> (stergere exceptie)"
-set black(say.ro.man.457) "\[MAN\] Setari optionale: \002idleopmax\002 <perioada> (perioada timp idledeop) ; \002idlevoicemax\002 <perioada> (perioada timp idlevoice) ; \002idlehalfopmax\002 <perioada> (perioada timp idlehalfop) ; \002idlebanmax\002 <perioada> (perioada timp idleban) ; \002idle-scantime\002 <perioada> (timp scanare)"
+set black(say.ro.man.457) "\[MAN\] Setari optionale: \002idleopmax\002 <perioada> (perioada timp idledeop) ; \002idlevoicemax\002 <perioada> (perioada timp idlevoice) ; \002idlehalfopmax\002 <perioada> (perioada timp idlehalfop) ; \002idlebanmax\002 <perioada> (perioada timp idleban) ; \002idleban-reason\002 <motiv> (motiv ban) ; \002idleban-bantime\002 <perioada> (timpul pentru ban) ; \002idle-scantime\002 <perioada> (timp scanare)"
 set black(say.ro.man.458) "Vizualizare setari optiuni: \002%char%show\002 <setare> ; \002%botnick% show\002 <setare> ; \002(PRIVMSG) show\002 <#canal> <setare>"
 set black(say.ro.man.458_1) "\[MAN\] Pentru informatii despre \002idlevoice\002 vezi: \002%char%man idle\002"
 set black(say.ro.man.458_2) "\[MAN\] Pentru informatii despre \002idleop\002 vezi: \002%char%man idle\002"
