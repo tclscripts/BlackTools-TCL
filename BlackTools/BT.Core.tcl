@@ -256,6 +256,7 @@ set black(extra_str) {
     voiceonmsg-linenum voiceonmsg-idletime inviteban-reason repetitivechars-reason inviteban-bantime badchan-banwait
 	general-bantime general-banmask badchan-scantime clonescan-scantime antispam-scantime idle-scantime anunt-showtime
 	quote-showtime voiceme-showtime quitpartmsgflood-char repetitivechars-char noproxy-reason noproxy-bantime noproxy-banmask topwords-mask vote-mask
+ 	idlebanmax idleban-reason idleban-bantime idleban-banmask idleban-bantime
 }
 
 set black(extra_flag) {
@@ -264,7 +265,7 @@ set black(extra_flag) {
 	antijoinflood antichanflood xtools antibadchan anunt limit clonescan seen autoop showbadchan showtroll
 	autovoice leave topwords dontop dontdeop private silent quote note reportnick invisible forward
 	showhandle showid showcount showtime showurl next voiceonmsg autotopic greet xonly nologged settingsaved
-	idleop idlehalfop idlevoice vprotect oprotect hoprotect badquitpart quitpartcolor quitpartmsgflood badhost nickflood seenreply
+	idleop idlehalfop idlevoice idleban vprotect oprotect hoprotect badquitpart quitpartcolor quitpartmsgflood badhost nickflood seenreply
 	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink noproxy vote votegreet disablepubcmds
 }
 
@@ -714,8 +715,10 @@ if {$getreason == ""} {
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 if {[string equal -nocase $hand "NEXT"]} {
 	set getreason $black(say.$getlang.$hand.5)
-} else {
-	set getreason $black(say.$getlang.$hand.1)
+} elseif {[string equal -nocase $hand "IDLEBAN"]} {
+		set getreason $black(say.$getlang.idle.29)
+		} else {
+		set getreason $black(say.$getlang.$hand.1)
 	}
 }
 
