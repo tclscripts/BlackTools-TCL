@@ -631,12 +631,12 @@ set black(say.en.man.452) "\[MAN\] ** Note: To add more than 1 sentence in an le
 
 #Idle
 
-set black(say.en.man.453) "\[MAN\] \002Idle\002 forbids users with \002op (@)\002, \002halfop (+h %)\002 or \002voice (+v)\002 to idle."
+set black(say.en.man.453) "\[MAN\] \002Idle\002 forbids users with \002op (@)\002, \002halfop (+h %)\002 or \002voice (+v)\002 to idle. It may also ban regular users from idling on the channel by setting \002(+/-)b\002."
 set black(say.en.man.453_1) "\[MAN\] Format period: <X>\002m\002 = minutes, <X>\002h\002 = hours, <X>\002d\002 = days"
 set black(say.en.man.454) "\[MAN\] USAGE SYNTAXES:"
-set black(say.en.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002(PRIVMSG) idle\002 <#chan> <(+/-)o / (+/-)v / (+/-)ho>"
+set black(say.en.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002(PRIVMSG) idle\002 <#chan> <(+/-)o / (+/-)v / (+/-)ho / (+/-)b>"
 set black(say.en.man.456) "\[MAN\] \002%char%idle add\002 <nick> (add exception from idle), \002%char%idle <list>\002 (list exceptions), \002%char%idle del\002 <nick> (delete exception)"
-set black(say.en.man.457) "\[MAN\] Optional settings: \002idleopmax\002 <period> (default time idledeop) ; \002idlevoicemax\002 <period> (default time idlevoice) ; \002idlehalfopmax\002 <period> (default time idlehalfop) ; \002idle-scantime\002 <period> (scan time)"
+set black(say.en.man.457) "\[MAN\] Optional settings: \002idleopmax\002 <period> (default time idledeop) ; \002idlevoicemax\002 <period> (default time idlevoice) ; \002idlehalfopmax\002 <period> (default time idlehalfop) ; \002idlebanmax\002 <period> (default time idleban) ; \002idleban-reason\002 <reason> (ban reason) ; \002idleban-bantime\002 <period> (ban time) ; \002idle-scantime\002 <period> (scan time)"
 set black(say.en.man.458) "View options settings: \002%char%show\002 <setting> ; \002%botnick% show\002 <setting> ; \002(PRIVMSG) show\002 <#chan> <setting>"
 set black(say.en.man.458_1) "\[MAN\] For informations about \002idlevoice\002 please check: \002%char%man idle\002"
 set black(say.en.man.458_2) "\[MAN\] For informations about \002idleop\002 please check: \002%char%man idle\002"
