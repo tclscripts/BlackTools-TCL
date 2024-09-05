@@ -632,12 +632,12 @@ set black(say.ro.man.452) "\[MAN\] Pentru a adauga mai mult de 1 propozitie intr
 
 #Idle
 
-set black(say.ro.man.453) "\[MAN\] \002Idle\002 este un modul care odata activat nu va lasa pe userii cu idle sa aibe \002op (@)\002 sau \002voice (+v)\002."
+set black(say.ro.man.453) "\[MAN\] \002Idle\002 este un modul care odata activat nu va lasa pe userii cu idle sa aibe \002op (@)\002 sau \002voice (+v)\002. Poate interzice si userilor normali sa nu faca idle pe canal (vor primi ban) prin setarea \002(+/-)b\002."
 set black(say.ro.man.453_1) "\[MAN\] Format perioada: <x>\002m\002 = minute, <x>\002h\002 = ore, <x>\002d\002 = zile"
 set black(say.ro.man.454) "\[MAN\] SINTAXE FOLOSIRE:"
-set black(say.ro.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002(PRIVMSG) idle\002 <#canal> <(+/-)o / (+/-)v / (+/-)ho>"
+set black(say.ro.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002(PRIVMSG) idle\002 <#canal> <(+/-)o / (+/-)v / (+/-)ho / (+/-)b>"
 set black(say.ro.man.456) "\[MAN\] \002%char%idle add\002 <nick> (adaugare exceptie de la idle), \002%char%idle <list>\002 (listare exceptii), \002%char%idle del\002 <nick> (stergere exceptie)"
-set black(say.ro.man.457) "\[MAN\] Setari optionale: \002idleopmax\002 <perioada> (perioada timp idledeop) ; \002idlevoicemax\002 <perioada> (perioada timp idlevoice) ; \002idlehalfopmax\002 <perioada> (perioada timp idlehalfop) ; \002idle-scantime\002 <perioada> (timp scanare)"
+set black(say.ro.man.457) "\[MAN\] Setari optionale: \002idleopmax\002 <perioada> (perioada timp idledeop) ; \002idlevoicemax\002 <perioada> (perioada timp idlevoice) ; \002idlehalfopmax\002 <perioada> (perioada timp idlehalfop) ; \002idlebanmax\002 <perioada> (perioada timp idleban) ; \002idle-scantime\002 <perioada> (timp scanare)"
 set black(say.ro.man.458) "Vizualizare setari optiuni: \002%char%show\002 <setare> ; \002%botnick% show\002 <setare> ; \002(PRIVMSG) show\002 <#canal> <setare>"
 set black(say.ro.man.458_1) "\[MAN\] Pentru informatii despre \002idlevoice\002 vezi: \002%char%man idle\002"
 set black(say.ro.man.458_2) "\[MAN\] Pentru informatii despre \002idleop\002 vezi: \002%char%man idle\002"
