@@ -564,6 +564,9 @@ set black(say.en.idle.23) "\005\[BT\]\005 \002%msg.1%\002 is not added as an exc
 set black(say.en.idle.24) "\005\[BT\]\005 \001%msg.1%\001 was removed from my \002Idle Exceptions List\002."
 set black(say.en.idle.25) "\005\[BT\]\005 \002Idle-HalfOp\002 module turned \001ON\001 on \001%chan%\001."
 set black(say.en.idle.26) "\005\[BT\]\005 \002Idle-HalfOp\002 module turned \001OFF\001 on \001%chan%\001."
+set black(say.en.idle.27) "\005\[BT\]\005 \002Idle-Ban\002 module turned \001ON\001 on \001%chan%\001."
+set black(say.en.idle.28) "\005\[BT\]\005 \002Idle-Ban\002 module turned \001OFF\001 on \001%chan%\001."
+set black(say.en.idle.29) "You are not permitted to idle in here."
 
 ################################# TCL ######################################
 
