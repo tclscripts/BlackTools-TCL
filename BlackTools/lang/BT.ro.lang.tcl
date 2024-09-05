@@ -565,6 +565,9 @@ set black(say.ro.idle.23) "\005\[BT\]\005 \001%msg.1%\001 nu este adaugat ca exc
 set black(say.ro.idle.24) "\005\[BT\]\005 \001%msg.1%\001 a fost sters din lista de exceptii la \002AntiIdle\002."
 set black(say.ro.idle.25) "\005\[BT\]\005 Am activat \001Idle HalfOP\001 pe \002%chan%\002."
 set black(say.ro.idle.26) "\005\[BT\]\005 Am dezactivat \001Idle HalfOP\001 pe \002%chan%\002."
+set black(say.ro.idle.27) "\005\[BT\]\005 Am activat \001Idle BAN\001 pe \002%chan%\002."
+set black(say.ro.idle.28) "\005\[BT\]\005 Am dezactivat \001Idle BAN\001 pe \002%chan%\002."
+set black(say.ro.idle.29) "Nu ai voie sa faci idle aici!"
 
 ################################# TCL ######################################
 
