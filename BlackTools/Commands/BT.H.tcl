@@ -924,6 +924,9 @@ if {[setting:get $chan idlevoice]} {
 if {[setting:get $chan idlehalfop]} {
 	lappend idle_type "%"
 }
+if {[setting:get $chan idleban]} {
+	lappend idle_type "B"
+}
 if {$idle_type == ""} {
 	set idle_type ""
 }
