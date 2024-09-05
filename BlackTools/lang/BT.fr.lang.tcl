@@ -564,6 +564,9 @@ set black(say.fr.idle.23) "\005\[BT\]\005 \002%msg.1%\002 n'est pas ajouté en t
 set black(say.fr.idle.24) "\005\[BT\]\005 \001%msg.1%\001 a été retiré de ma \002Liste des Exceptions Idle\002."
 set black(say.fr.idle.25) "\005\[BT\]\005 Module \002Idle-HalfOp\002 activé sur \001%chan%\001."
 set black(say.fr.idle.26) "\005\[BT\]\005 Module \002Idle-HalfOp\002 désactivé sur \001%chan%\001."
+set black(say.fr.idle.27) "\005\[BT\]\005 Module \002Idle-Ban\002 activé sur \001%chan%\001."
+set black(say.fr.idle.28) "\005\[BT\]\005 Module \002Idle-Ban\002 désactivé sur \001%chan%\001."
+set black(say.fr.idle.29) "Vous n'êtes pas autorisé à rester inactif ici."
 
 ################################# TCL ######################################
 
