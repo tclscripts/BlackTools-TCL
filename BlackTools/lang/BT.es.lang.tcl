@@ -567,6 +567,9 @@ set black(say.es.idle.23) "\005\[BT\]\005 \002%msg.1%\002 No se agrega como una 
 set black(say.es.idle.24) "\005\[BT\]\005 \001%msg.1%\001 fue Removido de mi \002Idle Exceptions List\002."
 set black(say.es.idle.25) "\005\[BT\]\005 \002Idle-HalfOp\002 módulo convertido \001ON\001 on \001%chan%\001."
 set black(say.es.idle.26) "\005\[BT\]\005 \002Idle-HalfOp\002 módulo convertido \001OFF\001 on \001%chan%\001."
+set black(say.es.idle.27) "\005\[BT\]\005 \002Idle-Ban\002 módulo convertido \001ON\001 on \001%chan%\001."
+set black(say.es.idle.28) "\005\[BT\]\005 \002Idle-Ban\002 módulo convertido \001OFF\001 on \001%chan%\001."
+set black(say.es.idle.29) "No está permitido estar inactivo aquí."
 
 ################################# TCL ######################################
 
