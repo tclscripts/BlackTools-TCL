@@ -702,9 +702,9 @@ if {$type == 0} {
 }
 
 ###
-proc blacktools:update_getconfig {} {
+proc blacktools:update_getconfig {{branch "BlackTools-3.0"}} {
     global black
-    set link "https://raw.githubusercontent.com/tclscripts/BlackTools-TCL/master/BlackTools.tcl"
+    set link "https://raw.githubusercontent.com/tclscripts/BlackTools-TCL/$branch/BlackTools.tcl"
     http::register https 443 [list ::tls::socket -tls1 true]
     set ipq [http::config -useragent "lynx"]
 	set error [catch {set ipq [::http::geturl $link -timeout 10000]} eror]
@@ -719,9 +719,9 @@ if {$status != "ok"} {
 }
 
 ###
-proc blacktools:update_verify {} {
+proc blacktools:update_verify {{branch "BlackTools-3.0"}} {
     global black
-    set link "https://raw.githubusercontent.com/tclscripts/BlackTools-TCL/master/VERSION"
+    set link "https://raw.githubusercontent.com/tclscripts/BlackTools-TCL/$branch/VERSION"
     http::register https 443 [list ::tls::socket -tls1 true]
     set ipq [http::config -useragent "lynx"]
 	set error [catch {set ipq [::http::geturl $link -timeout 10000]} eror]
