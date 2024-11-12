@@ -364,7 +364,6 @@ proc blacktools:update_start_download {hand chan new_version last_modify} {
     ::github::github update tclscripts BlackTools-TCL $black(actdir)
     blacktools:every 1000 {
 if {[file isdirectory $black(actdir)/BlackTools]} {
-    set size [llength [glob-r "$black(actdir)/BlackTools"]]
     blacktools:update_start_restore
     break
         }
