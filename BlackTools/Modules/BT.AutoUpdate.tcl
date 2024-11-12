@@ -365,10 +365,8 @@ proc blacktools:update_start_download {hand chan new_version last_modify} {
     blacktools:every 1000 {
 if {[file isdirectory $black(actdir)/BlackTools]} {
     set size [llength [glob-r "$black(actdir)/BlackTools"]]
-if {$size == $black(download_size)} {
     blacktools:update_start_restore
     break
-            }
         }
     }
 }
@@ -510,7 +508,6 @@ if {$black(update_from) == 0} {
     unset black(update_last_modify)
     unset black(finish_action)
     unset black(update_from)
-    unset black(download_size)
     unset black(old_config_file)
     unset black(start_update)
     unset black(restore_config_file)
