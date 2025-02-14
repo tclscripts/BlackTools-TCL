@@ -1,4 +1,5 @@
 BlackTools 3.0:
+  * to implement X rejoin if not on channel [ pending ]
   * to implement .gag ban method ban behavior for all modules and protections [ pending ]
   * to implement "Excesive character protection" [ pending ]
   * to implement .update reinstall [ pending ]
