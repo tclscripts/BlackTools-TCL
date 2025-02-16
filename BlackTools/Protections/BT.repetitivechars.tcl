@@ -25,25 +25,7 @@ if {[isbotnick $nick]} { return  }
 if {$bl_protect == "1"} { return }
 	set getnum [setting:get $chan repetitivechars-char]
 if {$getnum == ""} { set getnum "$black(repetitivechars:num)" }
-	set llength_chars [string length $arg]
-	set chars [split $arg ""]
-	set counter 0
-	set current_char ""
-for {set i 0 } { $i < $llength_chars } { set i [expr $i + 1] } {
-	set char [lindex $chars $i]
-if {$current_char == ""} {
-	set current_char $char
-	set counter [expr $counter + 1]
-} else {
-if {$char != "$current_char"} {
-	set current_char $char
-	set counter 1
-	} else {
-	set counter [expr $counter + 1]
-		}
-	}
-}
-if {$counter >= $getnum} {
+	if {[regexp {([^\s])\1{$getnum,}} $arg]} {
 	blacktools:banner:1 $nick "repetitivechars" $chan $host [get:banmethod "repetitivechars" $chan] [link:chan:get $chan]
 		return 1
 	}
