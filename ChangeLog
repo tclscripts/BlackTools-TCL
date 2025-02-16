@@ -1,7 +1,7 @@
 BlackTools 3.0:
   * to implement X rejoin if not on channel [ pending ]
   * to implement .gag ban method ban behavior for all modules and protections [ pending ]
-  * to implement "Excesive character protection" [ pending ]
+  * improved repetitive chars [done]
   * to implement .update reinstall [ pending ]
   * to implement category TCL in witch you have all tcl and also .tcl info to get info like bind pub, flags, strings from that TCL. [ pending ]
 -------------------------------------------------------------------------------
